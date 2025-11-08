@@ -1,0 +1,56 @@
+/* styles/modules/Navbar.module.css */
+.header {
+  background: #6c5d50;
+  border-bottom: 1px solid #938579;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 53px;
+  position: relative;
+  padding: 0px 20px;
+  overflow: hidden;
+}
+.nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.nav li {
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: color 0.3s;
+}
+.centerLogos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 30px;
+}
+.craig, .linke {
+  font-size: 16px;
+  letter-spacing: 6px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.menuButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}

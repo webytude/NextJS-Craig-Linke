@@ -1,0 +1,26 @@
+/* styles/modules/Spacer.module.css */
+.spacer {
+  flex-shrink: 0; /* Prevent shrinking in flex containers */
+}
+
+/* Vertical Spacers */
+.spacer-vertical-xxs { height: var(--space-xxs); }
+.spacer-vertical-xs { height: var(--space-xs); }
+.spacer-vertical-sm { height: var(--space-sm); }
+.spacer-vertical-md { height: var(--space-md); }
+.spacer-vertical-lg { height: var(--space-lg); }
+.spacer-vertical-xl { height: var(--space-xl); }
+.spacer-vertical-xxl { height: var(--space-xxl); }
+.spacer-vertical-xxxl { height: var(--space-xxxl); }
+.spacer-vertical-xxxxl { height: var(--space-xxxxl); }
+
+/* Horizontal Spacers */
+.spacer-horizontal-xxs { width: var(--space-xxs); }
+.spacer-horizontal-xs { width: var(--space-xs); }
+.spacer-horizontal-sm { width: var(--space-sm); }
+.spacer-horizontal-md { width: var(--space-md); }
+.spacer-horizontal-lg { width: var(--space-lg); }
+.spacer-horizontal-xl { width: var(--space-xl); }
+.spacer-horizontal-xxl { width: var(--space-xxl); }
+.spacer-horizontal-xxxl { width: var(--space-xxxl); }
+.spacer-horizontal-xxxxl { width: var(--space-xxxxl); }

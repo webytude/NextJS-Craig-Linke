@@ -1,0 +1,40 @@
+/* styles/modules/Link.module.css */
+.link {
+  font-family: var(--font-inter);
+  font-size: var(--font-size-body);
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+}
+
+.link:hover {
+  opacity: 0.8;
+  text-decoration: none; /* Override default underline */
+}
+
+/* Default Link */
+.default {
+  /* No specific styles beyond base */
+}
+
+/* Arrow Link (e.g., "READ MORE ->") */
+.arrow {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.arrow .arrow { /* The actual arrow icon */
+  margin-left: var(--space-xs);
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+}
+.arrow:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* Footer Links (can be different style if needed) */
+.footer {
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+}
