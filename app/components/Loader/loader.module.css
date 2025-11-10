@@ -28,7 +28,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  overflow: hidden; /* only hides during loader transition */
+  overflow: hidden; 
 }
  .container {
   position: relative;
@@ -41,8 +41,7 @@
   z-index: 1;
   width: 100%;
   min-height: 100vh;
-  background: #f4f0ee;
-  overflow-y: auto; /* enable scrolling for long content */
+  overflow-y: auto; 
 }
 .loaderWrapper {
   position: fixed;

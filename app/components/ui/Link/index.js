@@ -1,44 +1,26 @@
 // components/ui/Link.js
-import NextLink from 'next/link';
-import React from 'react';
+import Link from "next/link";
 import styles from './link.module.css';
 
-/**
- * @param {object} props
- * @param {string} props.href
- * @param {React.ReactNode} props.children
- * @param {string} [props.className]
- * @param {'default' | 'arrow' | 'footer'} [props.variant='default']
- * @param {'_blank' | '_self' | '_parent' | '_top'} [props.target]
- * @param {string} [props.rel]
- * @param {any} rest - other props to pass to NextLink or a
- */
-const Link = ({
-  href,
-  children,
-  className,
-  variant = 'default',
-  target,
-  rel,
-  ...props
-}) => {
-  const classes = `${styles.link} ${styles[variant]} ${className || ''}`;
 
-  if (href.startsWith('/') || href.startsWith('#')) {
-    return (
-      <NextLink href={href} className={classes} {...props}>
-        {children}
-        {variant === 'arrow' && <span className={styles.arrow}>&rarr;</span>}
-      </NextLink>
-    );
-  } else {
-    return (
-      <a href={href} className={classes} target={target || '_blank'} rel={rel || 'noopener noreferrer'} {...props}>
-        {children}
-        {variant === 'arrow' && <span className={styles.arrow}>&rarr;</span>}
-      </a>
-    );
-  }
-};
-
-export default Link;
+export default function LinkWithArrow({
+  text = "Learn More",
+  href = "#",
+  arrowDirection = "right", // 'right' | 'left'
+  underline = true,
+  target = "_self",
+  className = "",
+}) {
+  return (
+    <Link href={href} target={target} className={`${styles.link} ${className}`}>
+      {arrowDirection === "left" && <span className={styles.arrow}>←</span>}
+      <span className={styles.text}>{text}</span>
+      {arrowDirection === "right" && <span className={styles.arrow}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
+          <path d="M5.77842 8.66763L5.16603 8.05524L7.38005 5.85693C8.14946 5.08752 8.71474 4.67926 8.71474 4.67926C8.71474 4.67926 8.02384 4.77348 6.92468 4.77348H0V3.87845H6.90898C8.00814 3.87845 8.69903 3.98837 8.69903 3.98837C8.69903 3.98837 8.13375 3.56441 7.36434 2.795L5.18174 0.596685L5.79412 0L10.1122 4.33381L5.77842 8.66763Z" fill="#EAEAE8"/>
+        </svg>  
+      </span>}
+      {underline && <span className={styles.underline}></span>}
+    </Link>
+  );
+}

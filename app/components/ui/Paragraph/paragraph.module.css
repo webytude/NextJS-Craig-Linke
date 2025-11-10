@@ -1,0 +1,44 @@
+.paragraph {
+  transition: color 0.3s ease;
+}
+
+/* Default sizes */
+.small {
+  font-size: 14px;
+}
+
+.medium {
+  font-size: 16px;
+}
+
+.large {
+  font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .large {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .medium {
+    font-size: 15px;
+  }
+  .large {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .small {
+    font-size: 13px;
+  }
+  .medium {
+    font-size: 14px;
+  }
+  .large {
+    font-size: 15px;
+  }
+}

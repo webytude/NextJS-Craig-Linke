@@ -1,0 +1,13 @@
+.projectCard {
+    text-align: center;
+    padding: 80px 0;
+}
+.imageWrapper {
+    margin-bottom: 24px;
+}
+.proTitle {
+    font-family: 'collapselight_italic';
+    font-size: 20px;
+    line-height: normal;
+    font-weight: normal;
+}

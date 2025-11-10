@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import Loader from "./components/Loader";
+import PageLayout from "./PageLayout";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,11 +14,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="default">
-        <Loader>
+        <PageLayout>
+          <Loader>
           <Navbar />
           {children}
           <Footer />
         </Loader>
+        </PageLayout>
       </body>
     </html>
   );

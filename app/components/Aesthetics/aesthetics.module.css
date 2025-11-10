@@ -1,0 +1,65 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0000004D;
+}
+.backgroundWrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.mainMedia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.03);
+  animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.aestheticsList {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: 0;
+    width: 100%;
+    height: 100%;   
+}
+.description {
+    max-width: 338px;
+}
+.listContent {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+    padding: 0px 100px;
+}
+.show {
+  max-height: 500px; /* enough space for content */
+  opacity: 1;
+  transform: translateY(0);
+}

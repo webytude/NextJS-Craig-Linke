@@ -1,40 +1,49 @@
-/* styles/modules/Link.module.css */
 .link {
-  font-family: var(--font-inter);
-  font-size: var(--font-size-body);
-  color: inherit;
-  text-decoration: none;
-  transition: opacity 0.2s ease-in-out;
+  position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
 }
 
 .link:hover {
-  opacity: 0.8;
-  text-decoration: none; /* Override default underline */
+  color: #BBAEA1;
 }
 
-/* Default Link */
-.default {
-  /* No specific styles beyond base */
-}
-
-/* Arrow Link (e.g., "READ MORE ->") */
+/* arrow animation */
 .arrow {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.arrow .arrow { /* The actual arrow icon */
-  margin-left: var(--space-xs);
   display: inline-block;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s ease;
 }
-.arrow:hover .arrow {
+
+.link:hover .arrow {
   transform: translateX(5px);
 }
 
-/* Footer Links (can be different style if needed) */
-.footer {
-  font-size: var(--font-size-small);
-  text-transform: uppercase;
+/* underline animation */
+.underline {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.link:hover .underline {
+  transform: scaleX(1);
+}
+
+.text {
+  position: relative;
+  z-index: 1;
 }
