@@ -1,36 +1,40 @@
-.wrapper {
-  width: 100%;
-}
-
 .navContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 153px;
-  padding: 24px;
+  gap: 3rem;
+  padding: 2rem 0;
   font-family: "Inter", sans-serif;
   letter-spacing: 0.05em;
-  min-height: 200px;
 }
 
 .navItem {
   background: none;
   border: none;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  line-height: 18px;
+  color: #6a5d4d;
+  font-size: 0.85rem;
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 0.4rem;
   transition: all 0.2s ease-in-out;
 }
 
+.navItem:hover {
+  color: #000;
+}
+
 .active {
-  font-weight: 300;
+  font-weight: 600;
+  color: #3d3227;
 }
 
 .icon {
   font-family: monospace;
+}
+
+.label {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
 }

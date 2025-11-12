@@ -18,10 +18,19 @@
     font-display: swap;
 }
 
+body.loading main {
+  opacity: 0;
+  visibility: hidden;
+}
+body.loaded main {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in;
+}
+
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
@@ -101,14 +110,23 @@ ul {
 }
 .default {
   background: #6C5D50;
-  color: #fff;
+  color: #EAEAE8;
+}
+.default button {
+  color: #EAEAE8;
 }
 .variant2 {
   background: #FFFAF2;
   color: #6C5D50;
 }
+.variant2 button {
+  color: #6C5D50;
+}
 .variant3 {
   background: #5B272F;
+  color: #EAEAE8;
+}
+.variant3 button {
   color: #EAEAE8;
 }
 

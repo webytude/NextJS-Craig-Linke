@@ -19,7 +19,6 @@
   overflow: hidden;
 }
 
-/* Divider line */
 .divider {
   position: absolute;
   top: 0;
@@ -27,17 +26,16 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  pointer-events: none; /* So it doesn’t block clicks or hover */
+  pointer-events: none;
 }
 
-/* Responsive behavior */
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
   }
 
   .divider {
-    display: none; /* hide divider in stacked view */
+    display: none;
   }
 
   .leftColumn,

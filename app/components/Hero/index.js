@@ -22,7 +22,6 @@ export default function Hero() {
         </div>
       </Box>
 
-      {/* === BOTTOM BOX === */}
       <Box
         fullHeight
         direction="row"

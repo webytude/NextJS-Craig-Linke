@@ -2,14 +2,6 @@
 import { useState } from "react";
 import styles from "./projectFilterBase.module.css";
 
-/**
- * Reusable project filter logic
- * 
- * Props:
- * - projects: [{ id, title, category, image, ... }]
- * - renderProjects: function(projects[]) => JSX
- * - categories: optional custom category array
- */
 export default function ProjectFilterBase({ projects = [], renderProjects, categories = [] }) {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -23,14 +15,15 @@ export default function ProjectFilterBase({ projects = [], renderProjects, categ
   return (
     <div className={styles.wrapper}>
       {/* Tabs */}
-      <div className={styles.tabs}>
+      <div className={styles.navContainer}>
         {categoryList.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`${styles.tab} ${activeCategory === cat ? styles.active : ""}`}
+            className={`${styles.navItem} ${activeCategory === cat ? styles.active : ""}`}
           >
-            {cat}
+            <span className={styles.icon}>{activeCategory === cat ? "(•)" : "( )"}</span>
+            <span className={styles.label}>{cat}</span>
           </button>
         ))}
       </div>

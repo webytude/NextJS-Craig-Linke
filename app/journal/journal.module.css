@@ -1,7 +1,18 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 120px 20px;
+  padding: 20px;
+}
+.grid > *:nth-child(3n + 1) {
+  justify-self: start; /* Left aligned */
+}
+.grid > *:nth-child(3n + 2) {
+  justify-self: center; /* Center aligned */
+}
+
+.grid > *:nth-child(3n + 3) {
+  justify-self: end; /* Right aligned */
 }
 
 .card {
@@ -19,4 +30,23 @@
   bottom: 20px;
   left: 20px;*/
   color: #000; 
+}
+
+.subNav {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+}
+.subNav button {
+  background: none;
+  border: none;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #BBAEA1;
+}
+.subNav button.active {
+  color: #EAEAE8;
 }

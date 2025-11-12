@@ -1,0 +1,84 @@
+/* html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+} */
+
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+/* 🧭 Navbar */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 25px;
+  border-radius: 50px;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.navbar li:hover {
+  color: #38bdf8;
+}
+
+/* 🧩 Container */
+.container {
+  display: flex;
+  height: 100vh;
+  width: 400vw;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+/* 🧱 Sections */
+.section {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  color: white;
+  user-select: none;
+}
+
+.one {
+  background: linear-gradient(120deg, #2563eb, #60a5fa);
+}
+
+.two {
+  background: linear-gradient(120deg, #059669, #34d399);
+}
+
+.three {
+  background: linear-gradient(120deg, #b91c1c, #f87171);
+}
+
+.four {
+  background: linear-gradient(120deg, #7c3aed, #c084fc);
+}

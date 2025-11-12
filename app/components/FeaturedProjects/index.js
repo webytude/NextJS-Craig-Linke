@@ -21,7 +21,19 @@ export default function FeaturedProjects() {
             <LinkWithArrow text="EXPLORE ALL" href="/projects" />
           </div>
         </div>
-        <ProjectCard />
+        <div className="featureProjectList">
+          <ul>
+            <li className={styles.projectCard}>
+              <ProjectCard />
+            </li>
+            <li className={styles.projectCard}>
+              <ProjectCard />
+            </li>
+            <li className={styles.projectCard}>
+              <ProjectCard />
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );

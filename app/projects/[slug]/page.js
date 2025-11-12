@@ -10,7 +10,7 @@ const projects = [
 export default async function ProjectDetail({ params }) {
     const { slug } = await params;
 
-  const project = projects.find((p) => p.slug === slug);
+  const project = projects.find((p) => p.slug === slug); 
 
   if (!project) {
     return <div style={{ padding: "60px" }}>Project not found.</div>;
