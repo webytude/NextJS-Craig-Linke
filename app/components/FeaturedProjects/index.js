@@ -2,6 +2,7 @@ import TwoColumnLayout from "../layout/TwoColumnLayout";
 import ProjectCard from "../ProjectCard";
 import ProjectCardOverly from "../ProjectCardOverly";
 import LinkWithArrow from "../ui/Link";
+import styles from './featuredProjects.module.css';
 
 export default function FeaturedProjects() {
   const leftContent = (

@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProjectFilterBase from "../components/ProjectFilterBase";
 import styles from "./journal.module.css";
 import Divider from "../components/ui/Divider";
-import Spacer from "../components/ui/Spacer";
 import JournalCard from "../components/JournalCard";
 import TwoColumnLayout from "../components/layout/TwoColumnLayout";
+import JournalCardOverly from "../components/JournalCardOverly";
 
 const projects = [
   {
@@ -98,7 +98,7 @@ export default function Journal() {
     const [firstItem, ...restItems] = visibleProjects;
 
     const leftContent = (
-      <div className="stickyBox">
+      <div className="stickyBox p20">
         {firstItem && (
           <motion.div
             key={firstItem.id}
@@ -106,16 +106,16 @@ export default function Journal() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <JournalCard {...firstItem} />
+            <JournalCardOverly {...firstItem} />
           </motion.div>
         )}
       </div>
     );
 
     const rightContent = (
-      <div>
+      <>
         <motion.div
-          //className={styles.grid}
+          className={styles.list}
           layout
           initial="hidden"
           animate="visible"
@@ -152,7 +152,7 @@ export default function Journal() {
             </motion.p>
           </div>
         )}
-      </div>
+      </>
     );
 
     return (
@@ -178,7 +178,7 @@ export default function Journal() {
             <TwoColumnLayout left={leftContent} right={rightContent} />
           </section>
         )}
-        <Spacer desktop={130} />
+        {/* <Spacer desktop={130} /> */}
         <Divider color="#8B6B68" />
       </>
     );

@@ -1,0 +1,32 @@
+.projectHighlight {
+    position: relative;
+}
+.proOverlyContent {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.contentBottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+}
+.description {
+    max-width: 275px;
+}
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.categoryName {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px; 
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}

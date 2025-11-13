@@ -1,4 +1,4 @@
-import JournalCard from '../JournalCard'
+import JournalCard from './JournalCard'
 import TwoColumnLayout from '../layout/TwoColumnLayout'
 import LinkWithArrow from '../ui/Link'
 import Spacer from '../ui/Spacer'

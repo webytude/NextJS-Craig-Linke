@@ -7,7 +7,7 @@ import Divider from "./components/ui/Divider";
 import Link from "next/link";
 import ProjectCard from "./components/ProjectCard";
 import ProjectCardOverly from "./components/ProjectCardOverly";
-import JournalCard from "./components/JournalCard";
+import JournalCard from "./components/Journal/JournalCard";
 import Spacer from "./components/ui/Spacer";
 import Aesthetics from "./components/Aesthetics";
 import InteriorDesign from "./components/InteriorDesign";
