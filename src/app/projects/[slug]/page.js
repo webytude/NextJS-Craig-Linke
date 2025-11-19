@@ -123,12 +123,14 @@ export default function ProjectDetail() {
             </div>
             <div className={styles.bottomWrapper}>
               {galleryMediaBlocks.length > 0 && (
-                <div className={`${styles.materialsPhoto} p20`}>
+                <div className={`${styles.materialsPhoto} ${styles.leftGallery} p20`}>
+                  <div className={styles.galleryBlock}>
                   {galleryMediaBlocks.map((block) => (
                     <div key={block.id}>
                       <MediaRenderer media={block} width={40} height={57} />
                     </div>
                   ))}
+                  </div>
                 </div>
               )}
               <Divider />

@@ -86,3 +86,11 @@
 .grid > *:nth-child(3n + 3) {
   justify-self: end;
 }
+.leftGallery {
+  overflow: hidden;
+}
+.galleryBlock {
+  overflow-y: auto;
+  max-height: 295px;
+  width: 114%;
+}
