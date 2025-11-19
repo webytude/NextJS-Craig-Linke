@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/common/Loading";
 import ProjectFilterBase from "@/components/common/ProjectFilterBase";
 import InfiniteProjects from "@/components/project/InfiniteProjects";
 import { PROJECTS_QUERY } from "@/queries/queries";
@@ -20,7 +21,7 @@ export default function Projects() {
     window.dispatchEvent(new Event("theme-change"));
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
   if (!projectData) return <p>Page not found</p>;
 

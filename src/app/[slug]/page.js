@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
 import { useQuery } from "@apollo/client/react";
 import { useEffect } from "react";
+import Loading from "@/components/common/Loading";
 
 export default function page() {
   const { slug } = useParams();
@@ -24,7 +25,7 @@ export default function page() {
     
 }, [page?.ThemeColor]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
   if (!page) return <p>Page not found</p>;    
 

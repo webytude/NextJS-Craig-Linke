@@ -11,6 +11,7 @@ import styles from "./journal.module.css";
 import { useQuery } from "@apollo/client/react";
 import { JOURNALS_QUERY } from "@/queries/queries";
 import InfiniteJournal from "@/components/journal/InfiniteJournal";
+import Loading from "@/components/common/Loading";
 
 export default function Journal() {
 
@@ -27,7 +28,7 @@ export default function Journal() {
     window.dispatchEvent(new Event("theme-change"));
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
   if (!journalData) return <p>Page not found</p>;
 

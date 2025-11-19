@@ -13,6 +13,7 @@ import Spacer from "@/components/ui/Spacer";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import RelatedProjects from "@/components/sections/RelatedProjects";
+import Loading from "@/components/common/Loading";
 
 export default function ProjectDetail() {
   const params = useParams();
@@ -73,7 +74,7 @@ export default function ProjectDetail() {
     window.dispatchEvent(new Event("theme-change"));
   }, []);
 
-  if (loading) return <p>Loading project details...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
   if (!project) return <p>Project not found.</p>;
 

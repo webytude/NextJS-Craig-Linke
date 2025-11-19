@@ -3,6 +3,7 @@ import { PAGES_QUERY } from "@/queries/queries";
 import client from "@/lib/apolloClient";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
 import PageThemeSetter from "@/components/layouts/PageThemeSetter";
+import Loading from "@/components/common/Loading";
 
 export default async function Home() {
   const slug = 'home';
@@ -12,7 +13,7 @@ export default async function Home() {
       fetchPolicy: 'no-cache',
     });
 
-    if (loading) return <p>Loading…</p>;
+    if (loading) return <Loading />;
     if (error) return <p>Error loading data</p>;
 
     const page = data?.pages?.find((p) => p.Slug === slug);
