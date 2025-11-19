@@ -1,0 +1,18 @@
+.customGrid {
+  width: 100%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* Optional: simple responsive behavior */
+@media (max-width: 992px) {
+  .customGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .customGrid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}

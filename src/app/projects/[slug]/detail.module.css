@@ -1,0 +1,77 @@
+.pageWrapper {
+  display: grid;
+  grid-template-columns: 315px 1fr 315px; 
+  width: 100%;
+}
+.leftColumn,
+.rightColumn {
+  position: sticky;
+  top: 0;
+  height: 100vh; 
+  align-self: start; 
+}
+.middleColumn {
+  width: 100%;
+  border-left: 1px solid #D0D0D0;
+  border-right: 1px solid #D0D0D0;
+}
+.specification {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 18px;
+    color: #000;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.specification label {
+    display: block;
+    color: #6C5D50;
+}
+.bottomWrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.materials {
+    font-size: 12px;
+    line-height: 18px;
+    color: #000;
+}
+.materials ol {
+    color: #6C5D50;
+    padding-left: 15px;
+    line-height: 18px;
+}
+.materialsPhoto {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.gallery .imageWrapper {
+    height: calc(100vh - 53px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.gallery .imageWrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 120px 20px;
+  padding: 20px;
+}
+.grid > *:nth-child(3n + 1) {
+  justify-self: start; /* Left aligned */
+}
+.grid > *:nth-child(3n + 2) {
+  justify-self: center; /* Center aligned */
+}
+.grid > *:nth-child(3n + 3) {
+  justify-self: end; /* Right aligned */
+}

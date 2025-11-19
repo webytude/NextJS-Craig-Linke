@@ -1,0 +1,29 @@
+import styles from "./paragraph.module.css";
+
+export default function Paragraph({
+  children,
+  size = "small", // small | medium | large
+  color = "",
+  align = "left",
+  weight = 300,
+  lineHeight = '21px',
+  className = "",
+  style = {},
+}) {
+  const inlineStyle = {
+    color,
+    textAlign: align,
+    fontWeight: weight,
+    lineHeight,
+    ...style,
+  };
+
+  return (
+    <div
+      className={`${styles.paragraph} ${styles[size]} ${className}`}
+      style={inlineStyle}
+    >
+      {children}
+    </div>
+  );
+}

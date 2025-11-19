@@ -1,0 +1,36 @@
+.wrapper {
+  width: 100%;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 153px;
+  padding: 24px;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.05em;
+  min-height: 200px;
+}
+
+.navItem {
+  background: none;
+  border: none;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.active {
+  font-weight: 300;
+}
+
+.icon {
+  font-family: monospace;
+}

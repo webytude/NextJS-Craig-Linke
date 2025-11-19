@@ -1,0 +1,42 @@
+
+.footer {
+  padding: 20px;
+}
+.footerTop {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-xxl);
+}
+.footerCta {
+  display: flex;
+  gap: 107px;
+}
+.footerCol {
+  text-transform: uppercase;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+.social ul {
+  display: flex;
+}
+.social ul li {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-right: 19px;
+}
+.social ul li img {
+  margin-bottom: 5px;
+}
+
+
+.company {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-top: 118px;
+}

@@ -1,0 +1,20 @@
+.journalCard {
+    max-width: 334px;
+    margin: 0 auto;
+}
+.imageWrapper {
+    padding: 0px 0px 16px;
+}
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.categoryName {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px; 
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}

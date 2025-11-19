@@ -1,0 +1,34 @@
+.spacer {
+  display: block;
+}
+
+/* Vertical spacing (height-based) */
+.vertical {
+  height: var(--spacer-desktop);
+  width: 100%;
+}
+
+/* Horizontal spacing (width-based) */
+.horizontal {
+  width: var(--spacer-desktop);
+  height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .vertical {
+    height: var(--spacer-tablet);
+  }
+  .horizontal {
+    width: var(--spacer-tablet);
+  }
+}
+
+@media (max-width: 600px) {
+  .vertical {
+    height: var(--spacer-mobile);
+  }
+  .horizontal {
+    width: var(--spacer-mobile);
+  }
+}
