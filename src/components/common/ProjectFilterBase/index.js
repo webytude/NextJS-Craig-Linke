@@ -6,21 +6,24 @@ export default function ProjectFilterBase({
   projects = [],
   renderProjects,
   initialCategory = "All",
+  categoryKey = "ProjectCategory",
 }) {
   const [activeCategory, setActiveCategory] = useState(initialCategory);
 
-  console.log("PROJECT: ", projects);
-
   // const categoryList = ["All", ...new Set(categories.length ? categories : projects.map(p => p.category))];
+
+  console.log('ProjectFilterBase', projects)
 
   const getAllCategories = () => {
     const categoriesSet = new Set();
     projects.forEach((project) => {
+      const categories = project[categoryKey]
+
       if (
-        Array.isArray(project.ProjectCategory) &&
-        project.ProjectCategory.length > 0
+        Array.isArray(categories) &&
+        categories.length > 0
       ) {
-        project.ProjectCategory.forEach((cat) => {
+        categories.forEach((cat) => {
           if (cat && cat.Name) {
             categoriesSet.add(cat.Name);
           }
@@ -37,8 +40,8 @@ export default function ProjectFilterBase({
       ? projects
       : projects.filter(
           (project) =>
-            Array.isArray(project.ProjectCategory) &&
-            project.ProjectCategory.some(
+            Array.isArray(project[categoryKey]) &&
+            project[categoryKey].some(
               (cat) => cat && cat.Name === activeCategory
             )
         );

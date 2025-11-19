@@ -1,0 +1,24 @@
+.subNav {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+}
+.subNav button {
+  background: none;
+  border: none;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #BBAEA1;
+}
+.subNav button.active {
+  color: #EAEAE8;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+  padding: 175px 0;
+}
