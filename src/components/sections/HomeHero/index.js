@@ -12,7 +12,7 @@ export default function HomeHero({ data }) {
   const leftContent = (
     <>
       <Box fullHeight direction="column" justify="space-between" borderBottom>
-        <h1 className="headingOne">{Title}</h1>
+        <h1 className="headingOne" style={{ maxWidth: 560 }}>{Title}</h1>
         <div className="flex justify-space-between fullWidth">
           <div className="text-light uppercase">{ShortText}</div>
           {Button && (
@@ -44,7 +44,7 @@ export default function HomeHero({ data }) {
   const rightContent = (
     <>
       <div className="p20">
-        <MediaRenderer media={RightSideMedia} />
+        <MediaRenderer media={RightSideMedia} classes={'image'} />
       </div>
     </>
   );

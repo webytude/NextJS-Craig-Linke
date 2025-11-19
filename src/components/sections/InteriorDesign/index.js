@@ -43,13 +43,14 @@ export default function InteriorDesign({ data }) {
   const rightContent = (
     <>
       <div className="p20">
-        <MediaRenderer media={Media} />
+        <MediaRenderer media={Media} classes={'image'} />
       </div>
     </>
   );
 
   return (
     <>
+    <Divider />
     <section>
       <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
     </section>

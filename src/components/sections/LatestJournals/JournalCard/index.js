@@ -15,7 +15,7 @@ export default function JournalCard({ data }) {
     <div className={styles.journalCard}>
       <Heading level={4}>{Name}</Heading>
       <div className={styles.imageWrapper}>
-        <MediaRenderer media={Media} />
+        <MediaRenderer media={Media} width={322} height={434} />
       </div>
       <div className={styles.description}>
         <Paragraph align='center'>

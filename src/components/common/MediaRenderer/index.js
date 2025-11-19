@@ -1,9 +1,9 @@
 import MuxPlayer from "@mux/mux-player-react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
 
-export default function MediaRenderer({ media, width, height }) {
+export default function MediaRenderer({ media, width, height, classes }) {
   if (!media) return null;
 
   const { EnableMuxVideo, MuxVideo, ImageORCarousel } = media;
@@ -33,7 +33,7 @@ export default function MediaRenderer({ media, width, height }) {
               alt={img?.alternativeText || ""}
               width={width || 716}
               height={height || 889}
-              // className="image"
+              className={classes || ''}
             />
           </div>
         ))}
@@ -49,7 +49,7 @@ export default function MediaRenderer({ media, width, height }) {
         alt={img?.alternativeText || ""}
         width={width || 716}
         height={height || 889}
-        // className="image"
+        className={classes || ''}
       />
     );
   }
