@@ -1,7 +1,12 @@
+'use client';
+
 import MuxPlayer from "@mux/mux-player-react";
 import Image from "next/image";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import styles from './mediaRenderer.module.css';
 
 export default function MediaRenderer({ media, width, height, classes }) {
   if (!media) return null;
@@ -25,9 +30,10 @@ export default function MediaRenderer({ media, width, height, classes }) {
 
   if (Array.isArray(ImageORCarousel) && ImageORCarousel.length > 1) {
     return (
-      <div className="slider-wrapper">
+      <div className={styles.sliderWrapper}>
+        <Swiper style={{ width: '100%', height: '100%' }}>
         {ImageORCarousel.map((img, index) => (
-          <div key={index}>
+          <SwiperSlide key={index}>
             <Image
               src={img.url}
               alt={img?.alternativeText || ""}
@@ -35,8 +41,9 @@ export default function MediaRenderer({ media, width, height, classes }) {
               height={height || 889}
               className={classes || ''}
             />
-          </div>
+          </SwiperSlide>
         ))}
+        </Swiper>
       </div>
     );
   }
