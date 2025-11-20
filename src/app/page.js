@@ -31,9 +31,7 @@ export default async function Home() {
   } catch (error) {
     console.error('Error loading home page:', error);
     return (
-      <div>
-        <PageNotFound/>
-      </div>
+      <PageNotFound/>
     );
   }
 }

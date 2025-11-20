@@ -1,7 +1,6 @@
 "use client";
 
 import PageClientComponent from "@/components/layouts/PageClientComponent";
-import PageNotFound from "../PageNotFound";
 import client from "@/lib/apolloClient";
 import { PAGES_QUERY } from "@/queries/queries";
 import { useParams } from "next/navigation";
@@ -9,6 +8,7 @@ import BlockRenderer from "@/components/layouts/BlockRenderer";
 import { useQuery } from "@apollo/client/react";
 import { useEffect } from "react";
 import Loading from "@/components/common/Loading";
+import PageNotFound from "../PageNotFound";
 
 export default function page() {
   const { slug } = useParams();
@@ -27,7 +27,7 @@ export default function page() {
 
   if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
-  if (!page) return <p>Page not found</p>;    
+  if (!page) return <PageNotFound />;    
 
     return (
     <>

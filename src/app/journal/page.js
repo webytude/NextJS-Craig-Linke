@@ -12,6 +12,7 @@ import { useQuery } from "@apollo/client/react";
 import { JOURNALS_QUERY } from "@/queries/queries";
 import InfiniteJournal from "@/components/journal/InfiniteJournal";
 import Loading from "@/components/common/Loading";
+import PageNotFound from "../PageNotFound";
 
 export default function Journal() {
 
@@ -30,7 +31,7 @@ export default function Journal() {
 
   if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
-  if (!journalData) return <p>Page not found</p>;
+  if (!journalData) return <PageNotFound />;
 
   return (
     <ProjectFilterBase

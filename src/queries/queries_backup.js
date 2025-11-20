@@ -331,7 +331,37 @@ const BLOCKS_SELECTION = `
         alternativeText
       }
     }
-  } 
+  }
+  ... on ComponentGlobalProjectMedia {
+    EnableMuxVideo
+    MuxVideo {
+      playback_id
+    }
+    ImageORCarousel {
+      alternativeText
+      url
+    }
+    MediaType
+    id
+  }
+  ... on ComponentSectionExploreProjects {
+    Title
+    SelectProjects {
+      Name
+      Slug
+      Media {
+          EnableMuxVideo
+          MuxVideo {
+            playback_id
+          }
+          MediaType
+          ImageORCarousel {
+            alternativeText
+            url
+          }
+      }
+    }
+  }  
 `;
 
 export const PAGES_QUERY = gql`
@@ -797,39 +827,6 @@ export const JOURNALS_QUERY = gql`
         MetaTitle
         MetaDescription
         SchemaMarkup
-      }
-    }
-  }
-`;
-
-export const GET_BY_SLUG_JOURNALS = gql`
-  query GetBySlugJournals($slug: String!) {
-    journals(filters: { Slug: { eq: $slug } }) {
-      Name
-      Slug
-      Description
-      Media {
-        EnableMuxVideo
-        MuxVideo {
-          playback_id
-        }
-        ImageORCarousel {
-          alternativeText
-          url
-        }
-      }
-      JournalCategory {
-        Name
-        Slug
-      }
-      ThemeColor
-      Seo {
-        MetaTitle
-        MetaDescription
-        SchemaMarkup
-      }
-      Blocks {
-        ${BLOCKS_SELECTION}
       }
     }
   }

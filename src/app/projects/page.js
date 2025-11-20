@@ -6,6 +6,7 @@ import InfiniteProjects from "@/components/project/InfiniteProjects";
 import { PROJECTS_QUERY } from "@/queries/queries";
 import { useQuery } from "@apollo/client/react";
 import { useEffect } from "react";
+import PageNotFound from "../PageNotFound";
 
 export default function Projects() {
   const { data, loading, error } = useQuery(PROJECTS_QUERY, {
@@ -23,7 +24,7 @@ export default function Projects() {
 
   if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
-  if (!projectData) return <p>Page not found</p>;
+  if (!projectData) return <PageNotFound />;
 
   return (
     <ProjectFilterBase
