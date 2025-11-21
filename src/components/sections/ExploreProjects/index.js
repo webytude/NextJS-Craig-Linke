@@ -6,7 +6,7 @@ export default function ExploreProjects({ data }) {
   const { Title, SelectProjects } = data;
 
   return (
-    <section>
+    <section className="explore-projects">
         <div className="container">
           <Spacer desktop={122} />
           <Heading level={4} align="center">

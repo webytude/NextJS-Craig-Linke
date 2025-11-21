@@ -1,0 +1,10 @@
+.contactDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-transform: uppercase;
+    max-width: 210px;
+}
+.subHeading {
+    padding-bottom: 8px;
+}

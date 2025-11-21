@@ -18,9 +18,6 @@ import MuxPlayer from "@mux/mux-player-react";
 export default function FullScreenMedia({ data }) {
   const { Title, FullScreenMedia, DefaultMedia, TextList } = data;
   const { EnableMuxVideo, MuxVideo, ImageORCarousel } = DefaultMedia;
-
-  console.log('TextList', TextList)
-
   const [currentMedia, setCurrentMedia] = useState(DefaultMedia); 
   
   useEffect(() => {
@@ -40,7 +37,7 @@ export default function FullScreenMedia({ data }) {
   };
 
   return (
-    <section className="aesthetics">
+    <section className="aesthetics FullScreenMedia">
       <div className="positionRelative">
         <div className={styles.backgroundWrapper}>
           {currentMedia?.EnableMuxVideo && currentMedia?.MuxVideo?.playback_id && (

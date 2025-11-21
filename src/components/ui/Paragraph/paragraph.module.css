@@ -32,9 +32,6 @@
 }
 
 @media (max-width: 480px) {
-  .small {
-    font-size: 13px;
-  }
   .medium {
     font-size: 14px;
   }

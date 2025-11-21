@@ -11,12 +11,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 
 .rightColumn {
   flex: 1;
   position: relative;
   overflow: hidden;
+  width: 50%;
 }
 
 .divider {

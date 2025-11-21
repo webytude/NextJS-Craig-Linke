@@ -13,7 +13,7 @@ export default function RelatedProjects({ data }) {
     console.log('SelectProjects', SelectProjects)
 
   return (
-    <section>
+    <section className="RelatedProjects">
         <div className="container">
           <Spacer desktop={122} />
           <Heading level={4} align="center">

@@ -6,8 +6,10 @@ import ProjectCard from "../common/ProjectCard";
 import styles from "./InfiniteProjects.module.css";
 import Divider from "../ui/Divider";
 import Spacer from "../ui/Spacer";
+import Index from "./Index";
 
 export default function InfiniteProjects({ filteredProjects }) {
+  const [openIndex, setOpenIndex] = useState(false);
   const [visibleCount, setVisibleCount] = useState(12);
   const loaderRef = useRef(null);
 
@@ -43,11 +45,19 @@ export default function InfiniteProjects({ filteredProjects }) {
     }),
   };
 
+  function handleOpenIndex() {
+    setOpenIndex(true)
+  }
+
+  function handleCloseIndex() {
+    setOpenIndex(false);
+  }
+
   return (
     <>
       <div className={styles.subNav}>
         <button className={styles.active}>OVERVIEW</button>
-        <button>INDEX</button>
+        <button onClick={handleOpenIndex}>INDEX</button>
       </div>
       <Divider color="#D0D0D0" />
       {filteredProjects.length === 0 ? (
@@ -101,6 +111,9 @@ export default function InfiniteProjects({ filteredProjects }) {
           <Spacer desktop={130} />
         </>
       )}
+      <AnimatePresence>
+      {openIndex && <Index projects={filteredProjects} onClose={handleCloseIndex} />}
+      </AnimatePresence>
     </>
   );
 }

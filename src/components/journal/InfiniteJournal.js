@@ -46,9 +46,6 @@ export default function InfiniteJournal({ filteredProjects }) {
 
   const [firstItem, ...restItems] = visibleProjects;
 
-  console.log('firstItem', firstItem)
-  console.log('restItems', restItems)
-
   const leftContent = (
     <div className="stickyBox p20">
       {firstItem && (
@@ -111,7 +108,7 @@ export default function InfiniteJournal({ filteredProjects }) {
     <>
       <div className={styles.subNav}>
         <button className={styles.active}>OVERVIEW</button>
-        <button>INDEX</button>
+        {/* <button>INDEX</button>  */}
       </div>
       
       <Divider color="#8B6B68" />

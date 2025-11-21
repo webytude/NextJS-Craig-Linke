@@ -51,7 +51,7 @@ export default function InteriorDesign({ data }) {
   return (
     <>
     <Divider />
-    <section>
+    <section className="InteriorDesign">
       <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
     </section>
     <Divider />

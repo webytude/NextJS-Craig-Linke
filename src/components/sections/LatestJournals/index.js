@@ -38,7 +38,7 @@ export default function LatestJournals({ data }) {
   );
 
   return (
-    <section>
+    <section className="LatestJournals">
       <TwoColumnLayout showDivider left={leftContent} right={rightContent} />
     </section>
   );

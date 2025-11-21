@@ -10,15 +10,20 @@ export default function ExpressiveMediaModule({ data }) {
 
   const leftContent = (
     <>
-      <Box fullHeight direction="column" justify="space-between" borderBottom>
-        <MediaRenderer media={LeftSideMedia} />
+      <Box fullHeight direction="column" justify="space-between">
+        <div className="fullWidth">
+          <MediaRenderer media={LeftSideMedia} classes={'image'} />
+        </div>
+        <div>
+          sfasdf
+        </div>
       </Box>
     </>
   );
 
   const rightContent = (
     <>
-      <div className="p20">
+      <div className="p20 centerContent">
         <MediaRenderer media={RightSideMedia} width={436} height={585} />
       </div>
     </>
@@ -26,7 +31,8 @@ export default function ExpressiveMediaModule({ data }) {
 
   return (
     <>
-    <section className="home-hero">
+    <Divider />
+    <section className="expressiveMedia">
       <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
     </section>
     <Divider />
