@@ -53,6 +53,18 @@ export default function InfiniteProjects({ filteredProjects }) {
     setOpenIndex(false);
   }
 
+  useEffect(() => {
+    if (openIndex) {
+      document.body.classList.add(styles.indexOpen);
+    } else {
+      document.body.classList.remove(styles.indexOpen);
+    }
+
+    return () => {
+      document.body.classList.remove(styles.indexOpen);
+    };
+  }, [openIndex]);
+
   return (
     <>
       <div className={styles.subNav}>

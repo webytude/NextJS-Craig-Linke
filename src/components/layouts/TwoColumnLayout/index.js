@@ -16,7 +16,7 @@ export default function TwoColumnLayout({
   const containerStyle = {
     flexDirection: reverse ? "row-reverse" : "row",
     backgroundColor: bg,
-    height: fullHeight ? "100vh" : "auto",
+    height: fullHeight ? "calc(100vh - 52px)" : "auto",
     gap,
     ...style,
   };

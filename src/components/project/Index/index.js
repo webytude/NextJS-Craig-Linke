@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import LinkWithArrow from "@/components/ui/Link";
 import styles from "./index.module.css";
@@ -6,13 +6,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import MediaRenderer from "@/components/common/MediaRenderer";
+import Link from "next/link";
+import Heading from "@/components/ui/Heading";
+import Box from "@/components/ui/Box/Box";
 
 export default function Index({ onClose, projects }) {
-    const [hoveredImage, setHoveredImage] = useState(null);
+  const [hoveredMedia, setHoveredMedia] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     if (projects && projects.length > 0) {
-      setHoveredImage(projects[0].Media.ImageORCarousel[0].url);
+      setHoveredMedia(projects[0].Media);
     }
   }, [projects]);
 
@@ -27,53 +31,101 @@ export default function Index({ onClose, projects }) {
   };
 
   const imageVariants = {
-    initial: { opacity: 0, scale: 0.99 }, // શરૂઆતની સ્થિતિ: પારદર્શક અને થોડી નાની
-    animate: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }, // દેખાય ત્યારે: અસ્પષ્ટ અને સામાન્ય સાઈઝ
-    exit: { opacity: 0, scale: 0.99, transition: { duration: 0.4, ease: "easeIn" } } // નીકળે ત્યારે: પારદર્શક અને નાની
+    initial: { opacity: 0, scale: 0.99 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.99,
+      transition: { duration: 0.4, ease: "easeIn" },
+    },
   };
 
-  console.log('index project', projects)
-
   const leftContent = (
-     <div className={styles.projectList}>
-      {projects && projects.map((projectItem) => (
-        <a
-          key={projectItem.Slug}
-          href={`/projects/${projectItem.Slug}`}
-          className={styles.projectNameLink}
-          onMouseEnter={() => setHoveredImage(projectItem.Media.ImageORCarousel[0].url)}
-          onMouseLeave={() => {
-            // if (projects && projects.length > 0) setHoveredImage(projects[0].Media.ImageORCarousel[0].url);
-          }}
-        >
-          {projectItem.Name}
-        </a>
-      ))}
-    </div>
-  )
+    <>
+      <Box direction="row" align="flex-end" fullHeight padding="0">
+        <div className={`${styles.projectList} fullWidth`}>
+          <button className={styles.backBtn} onClick={onClose}>
+            <span className={styles.arrow}>
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.7417 4.79035H1.17033"
+                  stroke="#EAEAE8"
+                  stroke-width="0.917469"
+                  stroke-linecap="square"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M4.6001 0.64875L0.458496 4.79035L4.6001 8.93195"
+                  stroke="#EAEAE8"
+                  stroke-width="0.917469"
+                  stroke-linecap="square"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>{" "}
+            Back
+          </button>
+          <ul>
+            {projects &&
+              projects.map((projectItem, index) => {
+                const projectNumber = index + 1;
+                const formattedNumber =
+                  projectNumber < 10 ? `0${projectNumber}` : `${projectNumber}`;
+                return (
+                  <li
+                    key={projectItem.Slug}
+                    onMouseEnter={() => setHoveredMedia(projectItem.Media)}
+                  >
+                    <Link
+                      href={`/projects/${projectItem.Slug}`}
+                      className={styles.projectNameLink}
+                    >
+                      <span className={styles.projectNumber}>
+                        {formattedNumber}
+                      </span>
+                      <Heading level={4}>{projectItem.Name}</Heading>
+                      <span className={styles.exploreText}>EXPLORE</span>
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+      </Box>
+    </>
+  );
 
   const rightContent = (
     <div className={styles.projectImageContainer}>
-        <AnimatePresence mode="wait">
-{hoveredImage ? (
-        <motion.div
-          key={hoveredImage}
-          variants={imageVariants}
-          initial={"initial"}
-          animate={"animate"}
-          exit="exit"
-          className={styles.projectImageWrapper}
-        >
-          <Image
-            src={hoveredImage}
-            alt="Project Image"
-            width={431}
-            height={627}
-          />
-        </motion.div>
-      ) : (
-        <motion.p
-            key="placeholder" // placeholder માટે પણ એક key આપો
+      <AnimatePresence mode="wait">
+        {hoveredMedia ? (
+          <motion.div
+            key={
+              hoveredMedia.EnableMuxVideo && hoveredMedia.MuxVideo?.playback_id
+                ? hoveredMedia.MuxVideo.playback_id
+                : hoveredMedia.ImageORCarousel?.[0]?.url || "default-media"
+            }
+            variants={imageVariants}
+            initial={"initial"}
+            animate={"animate"}
+            exit="exit"
+            className={`p20 text-right`}
+          >
+            <MediaRenderer media={hoveredMedia} width={431} height={627} />
+          </motion.div>
+        ) : (
+          <motion.p
+            key="placeholder"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -81,11 +133,10 @@ export default function Index({ onClose, projects }) {
           >
             Hover over a project to see its image
           </motion.p>
-      )}
-        </AnimatePresence>
-      
+        )}
+      </AnimatePresence>
     </div>
-  )
+  );
 
   return (
     <motion.div
@@ -95,8 +146,12 @@ export default function Index({ onClose, projects }) {
       exit="exit"
       className={styles.indexWrapper}
     >
-      <button onClick={onClose}>Back</button>
-      <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
+      <TwoColumnLayout
+        left={leftContent}
+        right={rightContent}
+        showDivider
+        fullHeight
+      />
     </motion.div>
   );
 }

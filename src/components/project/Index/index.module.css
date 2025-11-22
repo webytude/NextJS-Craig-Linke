@@ -8,3 +8,68 @@
     background: #6C5D50;
     color: #EAEAE8;
 }
+
+.projectList li {
+    position: relative;
+    border-bottom: 1px solid #938579;
+    overflow: hidden;
+}
+
+.projectNameLink {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.projectNameLink::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #fff;
+    transition: width 0.3s ease-out;
+    z-index: 0;
+}
+
+.projectNameLink:hover::before {
+    width: 100%;
+}
+
+.projectNumber {
+    width: 95px;
+    padding-right: 40px;
+    flex-shrink: 0;
+}
+
+.exploreText {
+    text-transform: uppercase;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.backBtn:hover .arrow {
+  transform: translateX(-3px);
+}
