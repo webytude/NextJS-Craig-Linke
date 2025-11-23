@@ -8,6 +8,7 @@ export default function TwoColumnLayout({
   gap = "0px",
   bg = "transparent",
   showDivider = false,
+  showMobileDivider = null,
   dividerColor = "#938579",
   dividerWidth = "1px",
   dividerHeight = "1px",
@@ -21,6 +22,10 @@ export default function TwoColumnLayout({
     gap,
     ...style,
   };
+
+  const shouldRenderHorizontalDivider = showMobileDivider !== null
+    ? showMobileDivider // If showMobileDivider is explicitly set (true/false)
+    : showDivider;
 
   return (
     <div className={`${styles.container} ${className} ${reverse ? styles.reverseColumns : ''}`} style={containerStyle}>
@@ -36,7 +41,7 @@ export default function TwoColumnLayout({
           }}
         ></div>
       )}
-      {showDivider && (
+      {shouldRenderHorizontalDivider && (
         <div
           className={styles.horizontalDivider}
           style={{

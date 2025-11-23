@@ -8,7 +8,7 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
 
   return (
     <div className={styles.projectHighlight}>
-      <div className="flex justify-space-between pt20">
+      <div className="flex justify-space-between pt20 hide-desktop">
         <div className="text-light uppercase">{topTitle}</div>
       </div>
       <div className={styles.imgWrapper}>
@@ -36,7 +36,7 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
             <div className={styles.description}>
               <BlocksRenderer content={bottomDescription || []} />
             </div>
-            <div>
+            <div className="hide-desktop">
               <LinkWithArrow
                   text={button?.ButtonText}
                   href={button?.ButtonURL}

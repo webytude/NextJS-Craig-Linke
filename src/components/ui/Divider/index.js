@@ -3,7 +3,7 @@ import styles from "./divider.module.css";
 export default function Divider({
   direction = "horizontal", // 'horizontal' or 'vertical'
   color = "#938579",
-  margin = "0 0",
+  // margin = "0 0",
   className = "",
   style = {},
 }) {
@@ -14,7 +14,7 @@ export default function Divider({
       } ${className}`}
       style={{
         backgroundColor: color,
-        margin,
+        // margin,
         ...style,
       }}
     ></div>

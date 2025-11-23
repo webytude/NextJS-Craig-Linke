@@ -16,7 +16,7 @@ export default function HomeHero({ data }) {
           {Title}
         </h1>
         <div className="flex justify-space-between fullWidth">
-          <div className="text-light uppercase">{ShortText}</div>
+          <div className="uppercase hero-text-light">{ShortText}</div>
           {Button && (
             <div className="hide-mobile">
               <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />

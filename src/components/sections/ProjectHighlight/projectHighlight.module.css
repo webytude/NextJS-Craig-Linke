@@ -9,3 +9,8 @@
 .projectCard {
     padding: 50px 0;
 }
+@media (max-width: 768px) {
+    .featureProjectList {
+        padding-top: 30px;
+    }
+}

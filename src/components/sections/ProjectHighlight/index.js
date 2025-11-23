@@ -44,7 +44,7 @@ export default function ProjectHighlight({ data }) {
             </div>
           )}
         </div>
-        <div className="featureProjectList">
+        <div className={styles.featureProjectList}>
           <ul>
             {FeaturedProjects.SelectProjects.map((item, index) => (
               <li key={index} className={styles.projectCard}>

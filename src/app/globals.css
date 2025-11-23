@@ -209,7 +209,7 @@ textarea {
 .pb20 {
   padding-bottom: 20px;
 }
-.text-light {
+.text-light, .hero-text-light {
   color: #BBAEA1;
 }
 .positionRelative {
@@ -300,5 +300,8 @@ textarea {
   .headingOne {
     font-size: 24px;
     line-height: 28px;
+  }
+  .text-light {
+    color: #EAEAE8;
   }
 }

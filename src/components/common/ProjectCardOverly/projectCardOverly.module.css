@@ -28,6 +28,9 @@
 
 /* --- Mobile Styles --- */
 @media (max-width: 768px) {
+    .projectHighlight {
+        padding-bottom: 60px;
+    }
     .proOverlyContent, .contentBottom {
         position: static;
     }
