@@ -5,79 +5,50 @@ import { useState, useEffect } from 'react';
 import styles from './loader.module.css';
 import SplashScreen from './splashScreen';
 
-const Loader = ({ onFinish }) => {
-  const [loading, setLoading] = useState(false);
-  const [exit, setExit] = useState(false);
-  // const [showLoader, setShowLoader] = useState(false);
-
-  // useEffect(() => {
-  //   const hasSeenLoader = localStorage.getItem("hasSeenLoader");
-  //   if (!hasSeenLoader) {
-  //     setShowLoader(true);
-  //     localStorage.setItem("hasSeenLoader", "true");
-
-  //     setTimeout(() => {
-  //       setLoading(true);
-  //     }, 2000);
-
-  //     setTimeout(() => {
-  //       setShowLoader(false);
-  //     }, 3400);
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setLoading(true), 2000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+const Loader = ({ onExitStart, onExitComplete }) => {
+  const [triggerExit, setTriggerExit] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setExit(true), 2000); // hold splash
-    const done = setTimeout(() => onFinish(), 3200); // 2s splash + 1.2s exit
+    const splashScreenAnimationDuration = 3000; 
+    const delayBeforeExit = splashScreenAnimationDuration + 100;
+
+    const exitTimer = setTimeout(() => {
+      setTriggerExit(true);
+      onExitStart();
+    }, delayBeforeExit);
+
     return () => {
-      clearTimeout(timer);
-      clearTimeout(done);
+      clearTimeout(exitTimer);
     };
-  }, [onFinish]);
+  }, [onExitStart]);
 
   return (
     <>
-    {/* <div className={styles.mainWrapper}> */}
-      {/* === Loader Screen === */}
-    <AnimatePresence>
-    {/* {showLoader && (
-    <div className={styles.loaderWrapper}> */}
-      <motion.div
-        key="loader"
-        initial={{ y: 0 }}
-        animate={{ y: exit ? "-100%" : 0 }}
-        exit={{ y: "-100%" }}
-        transition={{
-          duration: 1.2,
-          ease: [0.83, 0, 0.17, 1],
-        }}
-        className={styles.loaderContainer}
-      >
-        <SplashScreen />
-      </motion.div>
-    {/* </div>
-    )} */}
-    </AnimatePresence>
-
-    {/* === Home Page === */}
-    {/* <motion.div
-      key="home"
-        initial={{ y: showLoader ? "100%" : "0%" }}
-        animate={{ y: showLoader && loading ? "0%" : "0%" }}
-        transition={{
-          duration: 1.2,
-          ease: [0.83, 0, 0.17, 1],
-        }}
-      className={styles.homeWrapper}
+    <AnimatePresence
+      onExitComplete={() => {
+        console.log("Loader exit animation complete!");
+        if (onExitComplete) {
+          onExitComplete();
+        }
+      }}
     >
-      {children}
-    </motion.div>
-    </div> */}
+      {!triggerExit && ( 
+        <motion.div
+          key="loader"
+          initial={{ y: 0 }}
+          animate={{ y: 0 }}
+          exit={{ y: "-100%" }} 
+          transition={{
+            duration: 1.2, 
+            ease: [0.83, 0, 0.17, 1],
+          }}
+          className={styles.loaderContainer}
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 1000 }}
+        >
+          <SplashScreen />
+        </motion.div>
+      )}
+    </AnimatePresence>
     </>
   );
 };

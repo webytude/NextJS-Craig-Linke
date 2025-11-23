@@ -1,16 +1,68 @@
-import React from 'react'
+'use client';
+
+import React, { useEffect, useState } from 'react'
 import ApolloWrapper from './ApolloWrapper'
 import Header from '@/components/common/Header'
 import Footer from '@/components/common/Footer'
 import BodyTheme from '@/components/layouts/BodyTheme'
+import Loader from '@/components/Loader';
 
 export default function LayoutClient({ children, globalData }) {
+  const [showLoader, setShowLoader] = useState(true);
+  const [loaderExitStarted, setLoaderExitStarted] = useState(false);
+  const [loaderAnimationComplete, setLoaderAnimationComplete] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+     if (typeof window !== 'undefined') {
+      const visitedBefore = localStorage.getItem('visitedBefore');
+      if (visitedBefore) {
+        setShowLoader(false);
+       setLoaderExitStarted(true);
+        setLoaderAnimationComplete(true);
+      } else {
+        
+        localStorage.setItem('visitedBefore', 'true');
+        setShowLoader(true);
+      }
+    }
+    setIsInitialized(true); 
+  }, []);
+
+  const handleLoaderExitStart = () => {
+    setLoaderExitStarted(true); 
+  };
+
+  const handleLoaderExitComplete = () => {
+    setShowLoader(false); 
+    setLoaderAnimationComplete(true); 
+  };
+
+  if (!isInitialized) {
+    return null;
+  }
+
   return (
-    <ApolloWrapper>
-      <BodyTheme />
-      <Header globalData={globalData} />
-      <main>{children}</main>
-      <Footer globalData={globalData} />
-    </ApolloWrapper>
+    <>
+      {showLoader && (
+        <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} />
+      )}
+      <div
+        style={{
+          transform: loaderExitStarted ? 'translateY(0%)' : 'translateY(100%)',
+          transition: 'transform 1s cubic-bezier(0.83, 0, 0.17, 1)', 
+          width: '100%',
+          minHeight: '100vh',
+          // overflowY: loaderExitStarted ? 'auto' : 'hidden',
+        }}
+      >
+      <ApolloWrapper>
+        <BodyTheme />
+        <Header globalData={globalData} />
+        <main>{children}</main>
+        <Footer globalData={globalData} />
+      </ApolloWrapper>
+      </div>
+    </>
   )
 }
