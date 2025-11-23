@@ -8,6 +8,9 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
 
   return (
     <div className={styles.projectHighlight}>
+      <div className="flex justify-space-between pt20">
+        <div className="text-light uppercase">{topTitle}</div>
+      </div>
       <div className={styles.imgWrapper}>
         <Image
           src={media?.url || ""}
@@ -18,8 +21,8 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
         />
       </div>
       <div className={styles.proOverlyContent}>
-        <div className="flex justify-space-between p20">
-          <div className="text-light">{topTitle}</div>
+        <div className="flex justify-space-between p20 hide-mobile">
+          <div className="text-light uppercase">{topTitle}</div>
           <div>
             <LinkWithArrow
                 text={button?.ButtonText}
@@ -28,10 +31,16 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
           </div>
         </div>
         <div className={styles.contentBottom}>
-          <div className="flex justify-space-between">
+          <div className={`${styles.highlightContent} flex justify-space-between mobile-flex-column`}>
             <h3 className={styles.title}>{bottomTitle}</h3>
             <div className={styles.description}>
               <BlocksRenderer content={bottomDescription || []} />
+            </div>
+            <div>
+              <LinkWithArrow
+                  text={button?.ButtonText}
+                  href={button?.ButtonURL}
+                />
             </div>
           </div>
         </div>

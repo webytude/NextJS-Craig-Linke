@@ -16,13 +16,13 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
-.nav ul {
+.nav > ul {
   list-style: none;
   display: flex;
   flex-direction: row;
   gap: 40px;
 }
-.nav li {
+.nav > ul > li {
   font-size: 14px;
   letter-spacing: 2px;
   transition: color 0.3s;
@@ -53,24 +53,88 @@
   position: relative;
   z-index: 2;
 }
-.toggleicon {
-  width: 42px;
-  height: 42px;
-  background: url('/images/toggleicon.svg') center center no-repeat;
-  border: none;
-  cursor: pointer;
+.mobileLeftArea {
+  display: none;
 }
-.mobileMenuWrapper {
-  transition-duration: 500ms;
-  color: #fff;
-  background-color:#000;
-  overflow-y: auto;
-  flex-direction: column;
-  display: flex;
-  z-index: 100;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+  .desktopMenuButton,
+  .menuButton {
+    display: none;
+  }
+  .mobileLeftArea {
+    display: block;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .menuToggleButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 18px;
+    height: 12px;
+    padding: 0;
+    z-index: 1001;
+  }
+  .hamburgerLine {
+    width: 100%;
+    height: 1px;
+    background-color: #EAEAE8;
+    transition: all 0.3s ease;
+  }
+  .nav {
+    position: fixed;
+    top: 53px;
+    left: 0;
+    transform: none !important;
+    text-align: left;
+    background: #5B272F;
+    width: 100%;
+    height: calc(100vh - 53px);
+    z-index: 99;
+    overflow: hidden;
+  }
+  .nav > ul {
+    flex-direction: column;
+    gap: 0;
+    padding-top: 12px;
+  }
+  .nav > ul > li {
+    position: relative;
+    border-bottom: 1px solid #957579;
+    overflow: hidden;
+    font-size: 12px;
+  }
+  .nav > ul > li a {
+    display: block;
+    padding: 16px;
+  }
+  .nav > ul > li a:hover {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.449951 5.35221H9.07106' stroke='%23EAEAE8' stroke-width='0.9' stroke-linecap='square' stroke-linejoin='round'/%3E%3Cpath d='M5.16577 0.636395L9.88159 5.35221L5.16577 10.068' stroke='%23EAEAE8' stroke-width='0.9' stroke-linecap='square' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: 96% center;
+    background-repeat: no-repeat;
+  }
+  .craig, .linke, .leftLogo {
+    transform: none !important;
+  }
+  .leftLogo {
+    opacity: 1 !important;
+  }
+  .mobileMenu {
+    background: #5B272F;
+    color: #FFFAF2;
+    overflow: hidden;
+  }
+  .menuBottom {
+    position: absolute;
+    bottom: 0;
+    padding: 16px;
+    border-top: 1px solid #957579;
+    width: 100%;
+  }
 }

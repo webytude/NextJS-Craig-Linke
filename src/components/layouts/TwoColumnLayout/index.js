@@ -10,11 +10,12 @@ export default function TwoColumnLayout({
   showDivider = false,
   dividerColor = "#938579",
   dividerWidth = "1px",
+  dividerHeight = "1px",
   className = "",
   style = {},
 }) {
   const containerStyle = {
-    flexDirection: reverse ? "row-reverse" : "row",
+    // flexDirection: reverse ? "row-reverse" : "row",
     backgroundColor: bg,
     height: fullHeight ? "calc(100vh - 52px)" : "auto",
     gap,
@@ -22,19 +23,31 @@ export default function TwoColumnLayout({
   };
 
   return (
-    <div className={`${styles.container} ${className}`} style={containerStyle}>
+    <div className={`${styles.container} ${className} ${reverse ? styles.reverseColumns : ''}`} style={containerStyle}>
       <div className={styles.leftColumn}>{left}</div>
-      <div className={styles.rightColumn}>{right}</div>
+      {/* <div className={styles.rightColumn}>{right}</div> */}
 
       {showDivider && (
         <div
-          className={styles.divider}
+          className={styles.verticalDivider}
           style={{
             backgroundColor: dividerColor,
             width: dividerWidth,
           }}
         ></div>
       )}
+      {showDivider && (
+        <div
+          className={styles.horizontalDivider}
+          style={{
+            backgroundColor: dividerColor,
+            height: dividerWidth,
+          }}
+        ></div>
+      )}
+
+      <div className={styles.rightColumn}>{right}</div>
+
     </div>
   );
 }

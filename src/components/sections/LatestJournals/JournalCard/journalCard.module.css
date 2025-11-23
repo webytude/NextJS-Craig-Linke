@@ -13,3 +13,8 @@
     display: -webkit-box;
     overflow: hidden;
 }
+@media (max-width: 768px) {
+    .journalCard {
+        padding: 0 20px;
+    }
+}

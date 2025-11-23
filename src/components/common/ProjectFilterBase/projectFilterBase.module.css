@@ -34,3 +34,10 @@
 .icon {
   font-family: monospace;
 }
+@media (max-width: 768px) {
+  .navContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

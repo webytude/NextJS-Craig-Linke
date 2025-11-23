@@ -1,0 +1,18 @@
+.footerCta {
+  display: flex;
+  gap: 107px;
+}
+.footerCol {
+  text-transform: uppercase;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 768px) {
+  .footerCta {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footerCol:last-child {
+    display: none;
+  }
+}

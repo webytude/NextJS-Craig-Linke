@@ -9,9 +9,6 @@
 }
 
 .info {
-  /* position: absolute;
-  bottom: 20px;
-  left: 20px;*/
   color: #000; 
 }
 .grid {
@@ -66,7 +63,11 @@
     justify-self: center !important;
   }
 }
-
+@media (max-width: 768px) {
+  .grid {
+    gap: 90px;
+  }
+}
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;

@@ -61,32 +61,11 @@ export default function FullScreenMedia({ data }) {
               className={styles.mainMedia}
             />
           )}
-          {/* {EnableMuxVideo && MuxVideo?.playback_id && (
-            <MuxPlayer
-              playbackId={MuxVideo.playback_id}
-              streamType="on-demand"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              style={{ aspectRatio: '16 / 9', width: '100%', }}
-            />
-          )}
-          {Array.isArray(ImageORCarousel) && ImageORCarousel.length === 1 && (
-            <Image
-                src={ImageORCarousel[0].url}
-                alt={ImageORCarousel[0]?.alternativeText || ""}
-                width={1905}
-                height={1271}
-                className={styles.mainMedia}
-              />
-          )} */}
         </div>
         <div className={styles.overlay}></div>
 
         <div className={styles.content}>
-          <div className="flex justify-space-between p20">
+          <div className={`${styles.aestheticsContent} flex justify-space-between p20`}>
             <div className="text-light uppercase">{Title}</div>
             <div className={styles.description}>
               <Paragraph>
@@ -97,7 +76,7 @@ export default function FullScreenMedia({ data }) {
           <div className={styles.aestheticsList}>
             <Grid>
               {TextList.map((item, index) => (
-                <Box key={index} className="text-center" padding="0">
+                <Box key={index} className={styles.aestheticsListContent} padding="0">
                   <div
                     onMouseEnter={() => handleMouseEnter(item.HoverMedia)}
                     onMouseLeave={handleMouseLeave}
@@ -112,7 +91,7 @@ export default function FullScreenMedia({ data }) {
                       }`}
                     >
                       <div>
-                        <Paragraph align="center">
+                        <Paragraph>
                           <BlocksRenderer
                             content={item.HoverDescription || []}
                           />

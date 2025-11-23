@@ -16,7 +16,18 @@ export default function LatestJournals({ data }) {
 
   const leftContent = (
     <>
-      <div className="text-light p20 uppercase">{Title}</div>
+      {/* <div className="text-light p20 uppercase">{Title}</div> */}
+      <div className="flex justify-space-between p20">
+        <div className="text-light uppercase">{Title}</div>
+        {Button && (
+          <div className="hide-desktop">
+            <LinkWithArrow
+              text={Button.ButtonText}
+              href={Button.ButtonURL}
+            />
+          </div>
+        )}
+      </div>
       <Spacer desktop={84} tablet={50} mobile={30} />
       <div className="journal">
         <JournalCard data={leftJournal} />
@@ -26,7 +37,7 @@ export default function LatestJournals({ data }) {
   );
   const rightContent = (
     <>
-      <div className="p20 text-right">
+      <div className="p20 text-right hide-mobile">
         <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
       </div>
       <Spacer desktop={84} tablet={50} mobile={30} />

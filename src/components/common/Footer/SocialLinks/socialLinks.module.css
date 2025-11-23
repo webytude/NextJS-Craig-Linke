@@ -1,0 +1,19 @@
+
+.social ul {
+  display: flex;
+}
+.social ul li {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-right: 19px;
+}
+.social ul li img {
+  margin-bottom: 5px;
+}
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+  .social {
+    padding-bottom: 90px;
+  }
+}

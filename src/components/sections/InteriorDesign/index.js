@@ -6,6 +6,7 @@ import styles from "./interiorDesign.module.css";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import Divider from "@/components/ui/Divider";
+import Spacer from "@/components/ui/Spacer";
 
 export default function InteriorDesign({ data }) {
   const { Title, SubTitle, InteriorDesign, Media, Button } = data;
@@ -13,9 +14,17 @@ export default function InteriorDesign({ data }) {
   const leftContent = (
     <>
       {/* === TOP BOX === */}
-      <Box fullHeight direction="column" justify="space-between" borderBottom>
+      <Box fullHeight direction="column" justify="space-between" borderBottom mobileBorderBottom={false} mobileGap="30px">
         <div className="text-light uppercase">{Title}</div>
         <h1 className="headingOne">{SubTitle}</h1>
+
+      <div className="hide-desktop">
+        <Paragraph>
+          <BlocksRenderer content={InteriorDesign || []} />
+        </Paragraph>
+        <Spacer mobile={30} />
+        <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+      </div>
       </Box>
 
       {/* === BOTTOM BOX === */}
@@ -27,6 +36,7 @@ export default function InteriorDesign({ data }) {
         padding="0"
         equalChildren
         showDivider
+        className="hide-mobile"
       >
         <div className="p20">
           <Paragraph>

@@ -1,8 +1,6 @@
 .projectHighlight {
     position: relative;
 }
-.imgWrapper {
-}
 .proOverlyContent {
     position: absolute;
     height: 100%;
@@ -26,4 +24,23 @@
     font-size: 14px;
     line-height: 21px;
     max-width: 275px;
+}
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+    .proOverlyContent, .contentBottom {
+        position: static;
+    }
+    .contentBottom {
+        padding: 0;
+    }
+    .highlightContent {
+        gap: 20px;
+    }
+    .imgWrapper {
+        padding: 16px 0px 24px;
+    }
+    .description {
+        max-width: max-content;
+    }
 }

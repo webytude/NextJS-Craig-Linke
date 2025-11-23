@@ -11,3 +11,10 @@
     line-height: normal;
     font-weight: normal;
 }
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+    .projectCard {
+        padding: 50px 0;
+    }   
+}

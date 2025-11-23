@@ -8,9 +8,8 @@ export default function RelatedProjects({ data }) {
 
     const sectionData = data[0];
 
-    const {Title, SelectProjects} = sectionData;
+    const {Title = '', SelectProjects} = sectionData;
 
-    console.log('SelectProjects', SelectProjects)
 
   return (
     <section className="RelatedProjects">

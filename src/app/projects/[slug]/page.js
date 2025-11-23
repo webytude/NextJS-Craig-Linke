@@ -93,7 +93,9 @@ export default function ProjectDetail() {
   ? project.Blocks.filter(
       (block) => block.__typename === "ComponentSectionExploreProjects"
     )
-  : [];
+  : null;
+
+  console.log('relatedProjects', relatedProjects)
 
   return (
     <>
@@ -212,7 +214,7 @@ export default function ProjectDetail() {
         </div>
       </section>
       <Divider />
-      <RelatedProjects data={relatedProjects} />
+      {relatedProjects.length > 0 && <RelatedProjects data={relatedProjects} />}
     </>
   );
 }

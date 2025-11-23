@@ -277,9 +277,28 @@ textarea {
 .full-width-media {
   padding-top: 100px;
 }
+
+@media (min-width: 768px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
 @media (max-width: 768px) {
+  .no-padding-mobile {
+    padding: 0;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
   .padding {
     padding-top: var(--mobile-top-padding, 0px);
     padding-bottom: var(--mobile-bottom-padding, 0px);
+  }
+  .mobile-flex-column {
+    flex-direction: column;
+  }
+  .headingOne {
+    font-size: 24px;
+    line-height: 28px;
   }
 }

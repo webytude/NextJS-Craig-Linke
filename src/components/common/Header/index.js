@@ -5,9 +5,12 @@ import Navigation from "./Navigation";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Link from "next/link";
 import styles from './navbar.module.css';
+import SocialLinks from "../Footer/SocialLinks";
+import ContctDetail from "../Footer/Contact";
 
 export default function Header({ globalData }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [positions, setPositions] = useState({ left: 0, right: 0 });
 
 
@@ -44,7 +47,11 @@ export default function Header({ globalData }) {
       opacity: 0,
       transition: { duration: 1, ease: "easeInOut" },
     });
-    setMenuOpen(true);
+    setMenuOpen(prev => !prev);
+  };
+
+  const handleMobileToggle = async () => {
+    setOpenMobileMenu(prev => !prev);
   };
 
   const handleClose = async () => {
@@ -57,10 +64,23 @@ export default function Header({ globalData }) {
   };
 
   const headerData = globalData?.Header;
+  const footerData = globalData?.Footer;
 
-  const openMenu = () => {
-    setMenuOpen(true);
+  const closeMobileMenu = () => {
+    setOpenMobileMenu(false);
   };
+
+  useEffect(() => {
+  if (openMobileMenu) {
+    document.body.classList.add(styles.mobileMenu);
+  } else {
+    document.body.classList.remove(styles.mobileMenu);
+  }
+
+  return () => {
+    document.body.classList.remove(styles.mobileMenu);
+  };
+}, [openMobileMenu]);
 
   return (
     <header className={`${styles.header} borderBottom`}>
@@ -70,7 +90,7 @@ export default function Header({ globalData }) {
           animate={menuOpen ? { x: -100, opacity: 0 } : { x: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
-          <span>
+          <span className={styles.desktopMenuButton}>
               <svg
                 width="25"
                 height="13"
@@ -84,12 +104,16 @@ export default function Header({ globalData }) {
                 />
               </svg>
           </span>
-          {/* <button
-            type="button"
-            onClick={openMenu}
-            className={styles.toggleicon}
-            aria-label="Open mobile menu"
-          /> */}
+          <span className={styles.mobileLeftArea}>
+            <button
+                className={styles.menuToggleButton}
+                onClick={handleMobileToggle}
+              >
+                <span className={styles.hamburgerLine}></span>
+                <span className={styles.hamburgerLine}></span>
+                <span className={styles.hamburgerLine}></span>
+              </button>
+          </span>
         </motion.div>
       <div className={styles.centerLogos}>
         <motion.h1
@@ -130,7 +154,7 @@ export default function Header({ globalData }) {
         <motion.button
           ref={rightRef}
           key="menuButton"
-          className={styles.menuButton}
+          className={`${styles.menuButton} ${styles.desktopMenuButton}`}
           onClick={handleMenuToggle}
           animate={menuButtonControls}
           whileTap={{ scale: 0.9 }}
@@ -141,7 +165,7 @@ export default function Header({ globalData }) {
 
       {/* Navigation Animation */}
       <AnimatePresence>
-        {menuOpen && (
+        {(menuOpen || openMobileMenu) && (
           <motion.nav
             key="navMenu"
             className={styles.nav}
@@ -150,55 +174,14 @@ export default function Header({ globalData }) {
             exit={{ y: "-150%", opacity: 0 }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <Navigation menu={headerData?.Menu} />
+            <Navigation menu={headerData?.Menu} onCloseMenu={closeMobileMenu} />
+            <div className={`${styles.menuBottom} hide-desktop`}>
+              <SocialLinks socialLinks={footerData.SocialLinks} />
+              <ContctDetail extraDetails={footerData.ExtraDetails} />
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>
-
-      {/* Mobile Menu */}
-      {/*<div
-        className={`${styles.mobileMenuWrapper} ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="mobile-menu-title"
-      >
-        <div className="flex justify-between items-center border-b border-[#B6C380]/40">
-          <button
-            className="text-[20px] font-light leading-none ps-4 menuLogo"
-            onClick={() => handleLinkClick('/')}
-          >
-            logo
-          </button>
-          <button
-            type="button"
-            // onClick={closeMenu}
-            className="text-[16px] font-light w-[60px] h-[60px] text-center flex items-center justify-center border-l border-[#B6C380]/40"
-            aria-label="Close menu"
-          >
-            close
-          </button>
-        </div>
-
-        {global?.header?.right_side_text && (
-          <Link
-            href="#"
-            className="mt-4 text-base font-light text-[#E5E1D5] hover:text-[#B6C380]"
-            // onClick={closeMenu}
-          >
-            {global.header.right_side_text}
-          </Link>
-        )}
-
-        <nav className="flex flex-col md:gap-4 text-xl font-light border-t border-[#B6C380]/40 pt-8 leading-none">
-          navtigation
-        </nav>
-
-        <address className="text-[16px] font-light text-[#a1a68b] not-italic">
-          sdfsdf
-        </address>
-      </div>*/} 
     </header>
   )
 }

@@ -7,9 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Divider from "@/components/ui/Divider";
+import SocialLinks from "./SocialLinks";
+import ContctDetail from "./Contact";
 
 const Footer = ({ globalData }) => {
-  // console.log('FOOTER RENDER', globalData?.Footer)
   const data = globalData?.Footer;
   return (
     <>
@@ -17,58 +18,8 @@ const Footer = ({ globalData }) => {
       <footer className={styles.footer}>
         <div className={styles.inner}>
           <div className={styles.footerTop}>
-            <div className={styles.social}>
-              <ul>
-                {data.SocialLinks.map((item, index) => <li key={index}>
-                  <Link href={item.Links.ButtonURL}>
-                    <Swiper className="mySwiper">
-                        {item.Media.ImageORCarousel.map((item, index) => <SwiperSlide key={index}>
-                          <Image
-                            src={item.url}
-                            width={70}
-                            height={96}
-                            alt={item.alternativeText || ""}
-                          />
-                        </SwiperSlide>)}
-                    </Swiper>
-                    <div className={styles.font12}>{item.Links.ButtonText}</div>
-                  </Link>
-                </li>)}
-              </ul>
-            </div>
-            <div className={styles.footerCta}>
-              {data.ExtraDetails.map((item, index) => <div key={index} className={styles.footerCol}>
-                <BlocksRenderer content={item.Content} />
-              </div>)}
-              {/* <div className={styles.footerCol}>
-                <ul>
-                  <li>
-                    <a href="#">(08) 7225 4472</a>
-                  </li>
-                  <li>
-                    <a href="#">admin@craiglinke.com.au</a>
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.footerCol}>
-                <ul>
-                  <li>
-                    Suite 13/59 Fullarton Road Kent <br />
-                    Town SA 5067
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.footerCol}>
-                <ul>
-                  <li>
-                    <a href="#">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <a href="#">Terms and Conditions</a>
-                  </li>
-                </ul>
-              </div> */}
-            </div>
+            <SocialLinks socialLinks={data.SocialLinks} />
+            <ContctDetail extraDetails={data.ExtraDetails} />
           </div>
           <div className={styles.company}>
             <div className={styles.logoItem}>

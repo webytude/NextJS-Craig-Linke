@@ -11,16 +11,21 @@ export default function HomeHero({ data }) {
 
   const leftContent = (
     <>
-      <Box fullHeight direction="column" justify="space-between" borderBottom>
-        <h1 className="headingOne" style={{ maxWidth: 560 }}>{Title}</h1>
+      <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
+        <h1 className="headingOne" style={{ maxWidth: 560 }}>
+          {Title}
+        </h1>
         <div className="flex justify-space-between fullWidth">
           <div className="text-light uppercase">{ShortText}</div>
           {Button && (
-            <div>
+            <div className="hide-mobile">
               <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
             </div>
           )}
         </div>
+      </Box>
+      <Box className="hide-desktop" borderBottom>
+        <MediaRenderer media={RightSideMedia} classes={"image"} />
       </Box>
       <Box
         fullHeight
@@ -30,12 +35,19 @@ export default function HomeHero({ data }) {
         padding="0"
         equalChildren
         showDivider
+        mobileDirection="row-reverse"
+        mobileJustify="center"
+        mobileAlign="center"
       >
         <div className="p20">
           <MediaRenderer media={LeftSideMedia} />
         </div>
-        <div className="p20 text-right">
-          {/* <LinkWithArrow text="READ MORE" href="#" /> */}
+        <div className="p20">
+          {Button && (
+            <div className="text-center hide-desktop">
+              <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+            </div>
+          )}
         </div>
       </Box>
     </>
@@ -43,18 +55,18 @@ export default function HomeHero({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20">
-        <MediaRenderer media={RightSideMedia} classes={'image'} />
+      <div className="p20 hide-mobile">
+        <MediaRenderer media={RightSideMedia} classes={"image"} />
       </div>
     </>
   );
 
   return (
     <>
-    <section className="home-hero">
-      <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
-    </section>
-    <Divider />
+      <section className="home-hero">
+        <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
+      </section>
+      <Divider />
     </>
   );
 }

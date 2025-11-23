@@ -4,3 +4,8 @@
     max-width: 334px;
     margin: 0 auto;
 }
+
+/* --- Mobile Styles --- */
+.projectCard {
+    padding: 50px 0;
+}
