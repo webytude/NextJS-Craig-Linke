@@ -95,8 +95,6 @@ export default function ProjectDetail() {
     )
   : null;
 
-  console.log('relatedProjects', relatedProjects)
-
   return (
     <>
       <section>

@@ -43,8 +43,6 @@ export default function JournalDetails() {
 
         const fetchedProject = fetchedApolloData?.journals?.[0];
 
-        console.log("fetchedProject", fetchedProject);
-
         if (fetchedProject) {
           setProject(fetchedProject);
         } else {

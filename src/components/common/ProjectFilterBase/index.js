@@ -12,8 +12,6 @@ export default function ProjectFilterBase({
 
   // const categoryList = ["All", ...new Set(categories.length ? categories : projects.map(p => p.category))];
 
-  console.log('ProjectFilterBase', projects)
-
   const getAllCategories = () => {
     const categoriesSet = new Set();
     projects.forEach((project) => {

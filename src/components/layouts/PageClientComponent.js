@@ -5,10 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import BlockRenderer from "./BlockRenderer";
 import DefaultLayout from "./DefaultLayout";
 
-export default function PageClientComponent({ page, heading }) {
-  
-  console.log("PAGE ", page);
-  
+export default function PageClientComponent({ page, heading }) {  
   useEffect(() => {
     if (!page || !page.page_color) return;
 

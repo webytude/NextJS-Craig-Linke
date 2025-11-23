@@ -6,17 +6,13 @@ import Divider from "@/components/ui/Divider";
 export default function ExpressiveMediaModule({ data }) {
   const { LeftSideMedia, RightSideMedia } = data;
 
-  console.log('ExpressiveMediaModule', data)
-
   const leftContent = (
     <>
       <Box fullHeight direction="column" justify="space-between">
         <div className="fullWidth">
           <MediaRenderer media={LeftSideMedia} classes={'image'} />
         </div>
-        <div>
-          sfasdf
-        </div>
+        <div> </div>
       </Box>
     </>
   );

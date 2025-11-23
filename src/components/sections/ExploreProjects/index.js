@@ -5,8 +5,6 @@ import Spacer from "@/components/ui/Spacer";
 export default function ExploreProjects({ data }) {
   const { Title, SelectProjects } = data;
 
-  console.log('ExploreProjects', data)
-
   return (
     <section className="explore-projects">
         <div className="container">

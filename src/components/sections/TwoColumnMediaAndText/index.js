@@ -9,8 +9,6 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 export default function TwoColumnMediaAndText({ data }) {
   const { LeftSide, RightSide, ReverseLayout, Padding } = data;
 
-  console.log('TwoColumnMediaAndText', data)
-
   const sectionStyle = {};
 
   const hasPaddingData = Padding && Object.keys(Padding).length > 0;
