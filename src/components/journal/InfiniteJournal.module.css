@@ -22,3 +22,9 @@
   gap: 160px;
   padding: 175px 0;
 }
+@media (max-width: 768px) {
+  .list {
+    gap:  60px;
+    padding: 0 20px 70px;
+  }
+}

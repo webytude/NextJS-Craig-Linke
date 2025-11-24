@@ -107,7 +107,7 @@ export default function InfiniteJournal({ filteredProjects }) {
   return (
     <>
       <div className={styles.subNav}>
-        <button className={styles.active}>OVERVIEW</button>
+        <button className={styles.active}>JOURNAL</button>
         {/* <button>INDEX</button>  */}
       </div>
       

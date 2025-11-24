@@ -24,3 +24,12 @@
     display: -webkit-box;
     overflow: hidden;
 }
+@media (max-width: 768px) {
+  .journalCard {
+    max-width: 100%;
+  }
+  .imageWrapper img {
+    width: 100%;
+    object-fit: cover;
+  }
+}

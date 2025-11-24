@@ -34,3 +34,15 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
+@media (max-width: 768px) {
+    .proOverlyContent,
+    .contentBottom {
+        position: static;
+    }
+    .proOverlyContent {
+        padding-bottom: 24px;
+    }
+    .contentBottom {
+        padding: 16px 0;
+    }
+}

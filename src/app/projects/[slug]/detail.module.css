@@ -51,12 +51,14 @@
     flex-direction: column;
     gap: 7px;
 }
+.gallery {
+  padding: 20px;
+}
 .gallery .imageWrapper {
     height: calc(100vh - 53px);
     /* display: flex; */
     /* justify-content: center;
     align-items: center; */
-    padding: 20px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -115,6 +117,7 @@
     position: static;
     transform: none;
     max-height: fit-content;
+    margin: 0px auto;
   }
   .specification {
     padding: 40px 0;
