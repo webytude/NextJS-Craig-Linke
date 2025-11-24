@@ -34,6 +34,11 @@
 .icon {
   font-family: monospace;
 }
+@media (max-width: 980px) {
+  .navContainer {
+    gap: 50px;
+  }
+}
 @media (max-width: 768px) {
   .navContainer {
     flex-direction: column;

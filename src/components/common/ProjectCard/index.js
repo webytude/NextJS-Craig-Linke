@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./projectCard.module.css";
 import Image from "next/image";
 import MediaRenderer from "../MediaRenderer";
+import HoverZoom from "@/components/ui/animations/HoverZoom";
 
 export default function ProjectCard({ project }) {
   const { Name, Media, Slug } = project;
@@ -9,7 +10,9 @@ export default function ProjectCard({ project }) {
     <div className="text-center">
       <Link href={`projects/${Slug}`}>
         <div className={styles.imageWrapper}>
-          <MediaRenderer media={Media} width={338} height={480} />
+          <HoverZoom>
+            <MediaRenderer media={Media} width={338} height={480} />
+          </HoverZoom>
         </div>
         <h3 className={styles.proTitle}>{Name}</h3>
       </Link>

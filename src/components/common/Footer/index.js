@@ -14,12 +14,11 @@ const Footer = ({ globalData }) => {
   const data = globalData?.Footer;
   return (
     <>
-      <Divider />
-      <footer className={styles.footer}>
+      <footer className={`${styles.footer} borderTop`}>
         <div className={styles.inner}>
           <div className={styles.footerTop}>
-            <SocialLinks socialLinks={data.SocialLinks} />
-            <ContctDetail extraDetails={data.ExtraDetails} />
+            <SocialLinks socialLinks={data?.SocialLinks} />
+            <ContctDetail extraDetails={data?.ExtraDetails} />
           </div>
           <div className={styles.company}>
             <div className={styles.logoItem}>

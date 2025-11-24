@@ -183,16 +183,16 @@ textarea {
   border-left: 1px solid #D0D0D0;
 }
 .White .borderRight {
-  border-right: 1px solid #8B6B68;
+  border-right: 1px solid #D0D0D0;
 }
 .White .borderTop {
-  border-top: 1px solid #8B6B68;
+  border-top: 1px solid #D0D0D0;
 }
 .White .borderBottom {
-  border-bottom: 1px solid #8B6B68;
+  border-bottom: 1px solid #D0D0D0;
 }
 .White .borderLeft {
-  border-left: 1px solid #8B6B68;
+  border-left: 1px solid #D0D0D0;
 }
 .headingOne {
   font-family: 'collapselight_italic';
@@ -293,6 +293,17 @@ textarea {
 }
 .Malt .toogleBtn {
     background-color: #fff;
+}
+.indexOpen {
+  overflow: hidden;
+  background: #6C5D50;
+  color: #EAEAE8;
+}
+.indexOpen button {
+  color: #EAEAE8;
+}
+.indexOpen .toogleBtn {
+  background-color: #EAEAE8;
 }
 @media (min-width: 980px) {
   .hide-desktop {

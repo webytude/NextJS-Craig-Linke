@@ -55,13 +55,13 @@ export default function InfiniteProjects({ filteredProjects }) {
 
   useEffect(() => {
     if (openIndex) {
-      document.body.classList.add(styles.indexOpen);
+      document.body.classList.add('indexOpen');
     } else {
-      document.body.classList.remove(styles.indexOpen);
+      document.body.classList.remove('indexOpen');
     }
 
     return () => {
-      document.body.classList.remove(styles.indexOpen);
+      document.body.classList.remove('indexOpen');
     };
   }, [openIndex]);
 
@@ -91,7 +91,7 @@ export default function InfiniteProjects({ filteredProjects }) {
             <AnimatePresence>
               {visibleProjects.map((p, i) => (
                 <motion.div
-                  key={p.id}
+                  key={p.Slug}
                   custom={i}
                   variants={fadeInVariants}
                   initial="hidden"
@@ -120,7 +120,7 @@ export default function InfiniteProjects({ filteredProjects }) {
               </motion.p>
             </div>
           )}
-          <Spacer desktop={130} />
+          <Spacer desktop={130} mobile={100} />
         </>
       )}
       <AnimatePresence>

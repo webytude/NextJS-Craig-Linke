@@ -10,6 +10,7 @@ import MediaRenderer from "@/components/common/MediaRenderer";
 import Link from "next/link";
 import Heading from "@/components/ui/Heading";
 import Box from "@/components/ui/Box/Box";
+import Footer from "@/components/common/Footer";
 
 export default function Index({ onClose, projects }) {
   const [hoveredMedia, setHoveredMedia] = useState(null);
@@ -106,7 +107,8 @@ export default function Index({ onClose, projects }) {
   );
 
   const rightContent = (
-    <div className={styles.projectImageContainer}>
+    <>
+    <div className={`${styles.projectImageContainer} hide-mobile`}>
       <AnimatePresence mode="wait">
         {hoveredMedia ? (
           <motion.div
@@ -136,6 +138,7 @@ export default function Index({ onClose, projects }) {
         )}
       </AnimatePresence>
     </div>
+    </>
   );
 
   return (
@@ -150,6 +153,7 @@ export default function Index({ onClose, projects }) {
         left={leftContent}
         right={rightContent}
         showDivider
+        showMobileDivider={false}
         fullHeight
       />
     </motion.div>

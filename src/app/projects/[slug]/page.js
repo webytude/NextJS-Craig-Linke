@@ -97,6 +97,7 @@ export default function ProjectDetail() {
 
   return (
     <>
+      <div className="hide-mobile">
       <section>
         <div className={styles.pageWrapper}>
           <div className={styles.leftColumn}>
@@ -163,8 +164,8 @@ export default function ProjectDetail() {
           </div>
           <div className={styles.rightColumn}>
             <div className="p20">
-              <Heading level={5}>{project.Name}</Heading>
-              <Paragraph>
+              <Heading level={5} color="#000">{project.Name}</Heading>
+              <Paragraph className={styles.paragraph}>
                 <BlocksRenderer content={project.Description || []} />
               </Paragraph>
             </div>
@@ -213,6 +214,66 @@ export default function ProjectDetail() {
       </section>
       <Divider />
       {relatedProjects.length > 0 && <RelatedProjects data={relatedProjects} />}
+      </div>
+      <div className="hide-desktop">
+          <div className={styles.detailWrapper}>
+            <div className={styles.productImg}>
+              <MediaRenderer
+                media={project.Media}
+                width={358}
+                height={510}
+                classes={'image'}
+              />
+            </div>
+            <div className={styles.detailContent}>
+              <Heading level={5} color="#000">{project.Name}</Heading>
+              <Paragraph className={styles.paragraph}>
+                <BlocksRenderer content={project.Description || []} />
+              </Paragraph>
+            </div>
+            <div className={`${styles.specification}`}>
+              <div>
+                <label>LOCATION</label>
+                {project.Location}
+              </div>
+              <div>
+                <label>YEAR</label>
+                {project.Year}
+              </div>
+              <div>
+                <label>ARCHITECTURE</label>
+                {project.Architecture}
+              </div>
+              <div>
+                <label>PHOTOGRAPHY</label>
+                {project.Photography}
+              </div>
+              <div>
+                <label>AESTHETIC</label>
+                {project.Aesthetic}
+              </div>
+            </div>
+              {galleryMediaBlocks.length > 0 && (
+              <div className={styles.gallery}>
+                {galleryMediaBlocks.map((block) => {
+                  const isPortrait = block.MediaType === 'Portrait';
+                  const mediaWidth = isPortrait ? 524 : 720;
+                  const mediaHeight = isPortrait ? 746 : 500;
+
+                  return (
+                    <div key={block.id} className={styles.imageWrapper}>
+                      <MediaRenderer
+                        media={block}
+                        width={mediaWidth}
+                        height={mediaHeight} 
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+      </div>
     </>
   );
 }

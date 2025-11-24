@@ -77,11 +77,3 @@
     justify-self: center !important;
   }
 }
-.indexOpen {
-  overflow: hidden;
-  background: #6C5D50;
-  color: #EAEAE8;
-}
-.indexOpen button {
-  color: #EAEAE8;
-}

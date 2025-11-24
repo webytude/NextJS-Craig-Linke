@@ -73,3 +73,12 @@
 .backBtn:hover .arrow {
   transform: translateX(-3px);
 }
+@media (max-width: 980px) {
+    .projectList {
+        padding-top: 70px;
+    }
+    .projectNumber {
+        width: auto;
+        padding-right: 24px;
+    }
+}   
