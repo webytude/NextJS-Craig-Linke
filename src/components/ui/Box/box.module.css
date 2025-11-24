@@ -135,4 +135,7 @@
   .box.mobile-border-right-defined {
     border-right: var(--mobile-box-border-right) !important;
   }
+  .hideMobileDivider {
+    display: none !important;
+  }
 }

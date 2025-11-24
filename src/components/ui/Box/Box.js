@@ -7,14 +7,12 @@ export default function Box({
   direction = "column",
   justify = "flex-start",
   align = "flex-start",
-  // reverse = false,
   equalChildren = false,
   gap,
 
   mobileDirection,
   mobileJustify,
   mobileAlign,
-  // mobileReverse = false,
   mobileEqualChildren,
   mobileGap,
 
@@ -34,37 +32,26 @@ export default function Box({
   mobileBorderRight = null,
   
   showDivider = false,
+  hideMobileDivider = false,
   dividerColor = "#938579",
   dividerWidth = "1px",
   className = "",
   style = {},
 }) {
 
-  const borderStyles = {
-    borderTop: borderTop ? `1px solid ${borderColor}` : "none",
-    borderBottom: borderBottom ? `1px solid ${borderColor}` : "none",
-    borderLeft: borderLeft ? `1px solid ${borderColor}` : "none",
-    borderRight: borderRight ? `1px solid ${borderColor}` : "none",
-  };
 
   const boxStyle = {
     flex: fullHeight ? 1 : "unset",
-    // flexDirection: direction,
-    // justifyContent: justify,
-    // alignItems: align,
     padding,
     backgroundColor: bg,
     position: "relative",
-    '--box-gap': gap || '0', // Default gap (desktop)
+    '--box-gap': gap || '0',
     '--mobile-box-gap': mobileGap || '0',
-    
     '--box-border-top': borderTop ? `1px solid ${borderColor}` : "none",
     '--box-border-bottom': borderBottom ? `1px solid ${borderColor}` : "none",
     '--box-border-left': borderLeft ? `1px solid ${borderColor}` : "none",
     '--box-border-right': borderRight ? `1px solid ${borderColor}` : "none",
-    '--box-border-color': borderColor, // Also make color a variable for consistency
-
-    // Set mobile-specific border variables if defined (will be used by CSS for overrides)
+    '--box-border-color': borderColor,
     '--mobile-box-border-top': mobileBorderTop === true ? `1px solid ${borderColor}` : "none",
     '--mobile-box-border-bottom': mobileBorderBottom === true ? `1px solid ${borderColor}` : "none",
     '--mobile-box-border-left': mobileBorderLeft === true ? `1px solid ${borderColor}` : "none",
@@ -117,7 +104,11 @@ export default function Box({
     <div className={boxClasses} style={boxStyle}>
       {processedChildren}
       {showDivider && currentDirection.includes("row") && (
-        <div className={styles.dividersWrapper}>
+        <div 
+          className={classNames(styles.dividersWrapper, {
+            [styles.hideMobileDivider]: hideMobileDivider 
+          })}
+        >
           {Children.count(children) > 1 &&
             Array.from({ length: Children.count(children) - 1 }).map((_, i) => (
               <div

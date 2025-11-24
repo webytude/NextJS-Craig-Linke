@@ -8,3 +8,8 @@
 .subHeading {
     padding-bottom: 8px;
 }
+@media (max-width: 980px) {
+    .contactDetail {
+        max-width: 100%;
+    }
+}

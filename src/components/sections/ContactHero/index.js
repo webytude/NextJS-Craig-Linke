@@ -7,6 +7,8 @@ import styles from "./contactHero.module.css";
 import Paragraph from "@/components/ui/Paragraph";
 import ContactForm from "../ContactForm";
 import Spacer from "@/components/ui/Spacer";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import Heading from "@/components/ui/Heading";
 
 export default function ContactHero({ data }) {
   const { Title, Description, Address, Email, Number, Media, FormSideMedia } =
@@ -14,13 +16,15 @@ export default function ContactHero({ data }) {
 
   const leftContent = (
     <>
-      <Box fullHeight direction="column" justify="space-between" borderBottom>
+      <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
         <div className="text-light uppercase">{Title}</div>
-        <h1 className="headingOne" style={{ maxWidth: 476 }}>
-          {Description}
-        </h1>
+        <FadeUp><Heading level={1} style={{ maxWidth: 476 }}>{Description}</Heading></FadeUp>
       </Box>
-
+      <Box className="hide-desktop" borderBottom>
+        <FadeUp>
+          <MediaRenderer media={Media} classes={"image"} />
+        </FadeUp>
+      </Box>
       <Box
         fullHeight
         direction="row"
@@ -28,12 +32,13 @@ export default function ContactHero({ data }) {
         align="flex-end"
         padding="0"
         equalChildren
-        showDivider
+        showDivider={true}
+        hideMobileDivider={true}
       >
         <div className="p20">
           <div className={styles.contactDetail}>
             <div>
-              <div clas sName={`text-light uppercase ${styles.subHeading}`}>
+              <div className={`text-light uppercase ${styles.subHeading}`}>
                 ADDRESS
               </div>
               <Paragraph style={{fontSize: 12 }}>{Address}</Paragraph>
@@ -52,14 +57,14 @@ export default function ContactHero({ data }) {
             </div>
           </div>
         </div>
-        <div className="p20 text-right" />
+        <div className="p20 text-right hide-mobile" />
       </Box>
     </>
   );
 
   const rightContent = (
     <>
-      <div className="p20">
+      <div className="p20 hide-mobile">
         <MediaRenderer media={Media} classes={"image"} />
       </div>
     </>
@@ -80,7 +85,7 @@ export default function ContactHero({ data }) {
   return (
     <>
       <section className="contactHero">
-        <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
+        <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} />
       </section>
       <Divider />
       <section className="contactForm">
