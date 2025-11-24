@@ -913,3 +913,150 @@ export const PROJECTS_QUERY_SLUG = gql`
     }
   }
 `;
+
+export const ASTHETICS_QUERY_SLUG = gql `
+  query AstheticsDetails {
+    astheticsDetails {
+      Name
+      Slug
+      Description
+      DesktopMedia {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          name
+          alternativeText
+        }
+      }
+      MobileMedia {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          name
+          alternativeText
+        }
+      }
+      QuickLinks {
+        Name
+        Slug
+      }
+      Blocks {
+        ... on ComponentSectionMediaWithTopBottomContent {
+          id
+          Title
+          TopContent
+          BottomContent
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              name
+              alternativeText
+            }
+          }
+        }
+        ... on ComponentSectionProjectWithManuallyEditable {
+          Title
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              name
+              alternativeText
+            }
+          }
+          Description
+          Button {
+            ButtonText
+            ButtonURL
+            OpenNewTab
+          }
+        }
+        ... on ComponentSectionImageAndText {
+          Title
+          Media {
+          EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              name
+              alternativeText
+            }
+          }
+          Heading
+          Content
+        }
+        ... on ComponentSectionFullWidthMedia {
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              name
+              alternativeText
+            }
+          }
+          Padding {
+            DesktopTopPadding
+            DesktopBottomPadding
+            MobileTopPadding
+            MobileBottomPadding
+          }
+        }
+        ... on ComponentSectionAestheticMaterials {
+          Title
+          TopContent
+          BottomContent
+          MaterialsImages {
+            name
+            alternativeText
+          }
+        }
+        ... on ComponentSectionSingleMedia {
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              name
+              alternativeText
+            }
+          }
+        }
+        ... on ComponentSectionAstheticsContact {
+          Title
+          Description
+          Content
+        }
+        ... on ComponentSectionRelatedAesthetics {
+          RelatedAesthetics {
+            Name
+            Slug
+            Description
+            DesktopMedia {
+              EnableMuxVideo
+              MuxVideo {
+                playback_id
+              }
+              ImageORCarousel {
+                name
+                alternativeText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

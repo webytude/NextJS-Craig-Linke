@@ -7,19 +7,23 @@ import Paragraph from "@/components/ui/Paragraph";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 import styles from "./aboutHero.module.css";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import Heading from "@/components/ui/Heading";
 
 export default function AboutHero({ data }) {
   const { Title, SubTitle, Buttons, ShortText, RightSideMedia } = data;
 
   const leftContent = (
     <>
-      <Box fullHeight direction="column" justify="space-between" borderBottom>
+      <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
         <div className="text-light uppercase">{Title}</div>
-        <h1 className="headingOne" style={{ maxWidth: 476 }}>
-          {SubTitle}
-        </h1>
+        <FadeUp><Heading level={1} style={{ maxWidth: 476 }}>{SubTitle}</Heading></FadeUp>
       </Box>
-
+      <Box className="hide-desktop" borderBottom>
+        <FadeUp style={{ width: '100%' }}>
+          <MediaRenderer media={RightSideMedia} classes={"image"} />
+        </FadeUp>
+      </Box>
       <Box
         fullHeight
         direction="row"
@@ -47,7 +51,7 @@ export default function AboutHero({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20">
+      <div className="p20 hide-mobile">
         <MediaRenderer media={RightSideMedia} classes={"image"} />
       </div>
     </>

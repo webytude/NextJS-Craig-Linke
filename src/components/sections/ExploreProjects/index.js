@@ -8,7 +8,7 @@ export default function ExploreProjects({ data }) {
   return (
     <section className="explore-projects">
         <div className="container">
-          <Spacer desktop={122} />
+          <Spacer desktop={122} mobile={80} />
           <Heading level={4} align="center">
             {Title}
           </Heading>
@@ -20,7 +20,7 @@ export default function ExploreProjects({ data }) {
                 ))}
             </div>
           </div>
-          <Spacer desktop={122} />
+          <Spacer desktop={122} mobile={80} />
         </div>
     </section>
   );

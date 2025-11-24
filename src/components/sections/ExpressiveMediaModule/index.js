@@ -29,7 +29,7 @@ export default function ExpressiveMediaModule({ data }) {
     <>
     <Divider />
     <section className="expressiveMedia">
-      <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
+      <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} />
     </section>
     <Divider />
     </>

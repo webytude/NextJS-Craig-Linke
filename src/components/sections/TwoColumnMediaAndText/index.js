@@ -38,6 +38,7 @@ export default function TwoColumnMediaAndText({ data }) {
         direction="row"
         padding="0"
         align="flex-end"
+        mobileAlign="flex-start"
         style={{minHeight: 430}}
       >
          <div className="content p20">
