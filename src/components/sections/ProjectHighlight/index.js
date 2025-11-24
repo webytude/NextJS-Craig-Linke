@@ -5,6 +5,7 @@ import LinkWithArrow from "@/components/ui/Link";
 import ProjectCard from "@/components/common/ProjectCard";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
 import Divider from "@/components/ui/Divider";
+import FadeUp from "@/components/ui/animations/FadeUp";
 
 export default function ProjectHighlight({ data }) {
   const {
@@ -34,17 +35,18 @@ export default function ProjectHighlight({ data }) {
     <>
       <div className="featuredProject p20">
         <div className="flex justify-space-between pt20 pb20 no-padding-mobile">
-          <div className="text-light uppercase">{FeaturedProjects.Title}</div>
+          <FadeUp><div className="text-light uppercase">{FeaturedProjects.Title}</div></FadeUp>
           {FeaturedProjects.Button && (
-            <div>
+            <FadeUp>
               <LinkWithArrow
                 text={FeaturedProjects.Button.ButtonText}
                 href={FeaturedProjects.Button.ButtonURL}
               />
-            </div>
+            </FadeUp>
           )}
         </div>
         <div className={styles.featureProjectList}>
+          <FadeUp>
           <ul>
             {FeaturedProjects.SelectProjects.map((item, index) => (
               <li key={index} className={styles.projectCard}>
@@ -52,6 +54,7 @@ export default function ProjectHighlight({ data }) {
               </li>
             ))}
           </ul>
+          </FadeUp>
         </div>
       </div>
     </>

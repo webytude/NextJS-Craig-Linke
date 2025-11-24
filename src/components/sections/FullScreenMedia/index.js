@@ -15,6 +15,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import MuxPlayer from "@mux/mux-player-react";
 import classNames from 'classnames';
+import FadeUp from "@/components/ui/animations/FadeUp";
 
 export default function FullScreenMedia({ data }) {
   const { Title, FullScreenMedia, DefaultMedia, TextList } = data;
@@ -97,11 +98,13 @@ export default function FullScreenMedia({ data }) {
 
         <div className={styles.content}>
           <div className={`${styles.aestheticsContent} flex justify-space-between p20`}>
-            <div className="text-light uppercase">{Title}</div>
+            <FadeUp><div className="text-light uppercase">{Title}</div></FadeUp>
             <div className={styles.description}>
+              <FadeUp>
               <Paragraph>
                 <BlocksRenderer content={FullScreenMedia || []} />
               </Paragraph>
+              </FadeUp>
             </div>
           </div>
           <div className={styles.aestheticsList}>
@@ -119,6 +122,7 @@ export default function FullScreenMedia({ data }) {
                         [styles.activeOnMobile]: isMobile && isActive,
                       })}
                     >
+                      <FadeUp>
                       <Heading level={4} className={styles.listItemHeading}>
                         {item.Title}
                         {isMobile && (
@@ -137,6 +141,7 @@ export default function FullScreenMedia({ data }) {
                         )}
                       </Heading>
                       <Divider color="#EAEAE8" className={styles.divider} />
+                      </FadeUp>
                       <div
                         className={classNames(styles.listContent, {
                           [styles.show]: (!isMobile && isItemHoverMediaCurrent) || (isMobile && isActive),

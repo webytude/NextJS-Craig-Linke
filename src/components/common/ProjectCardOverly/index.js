@@ -3,6 +3,8 @@ import styles from "./projectCardOverly.module.css";
 import LinkWithArrow from "@/components/ui/Link";
 import MediaRenderer from "../MediaRenderer";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import FadeIn from "@/components/ui/animations/FadeIn";
 
 export default function ProjectCardOverly({ bottomDescription, bottomTitle, button, media, topTitle}) {
 
@@ -22,19 +24,21 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
       </div>
       <div className={styles.proOverlyContent}>
         <div className="flex justify-space-between p20 hide-mobile">
-          <div className="text-light uppercase">{topTitle}</div>
-          <div>
+          <FadeUp><div className="text-light uppercase">{topTitle}</div></FadeUp>
+          <FadeUp>
             <LinkWithArrow
                 text={button?.ButtonText}
                 href={button?.ButtonURL}
               />
-          </div>
+          </FadeUp>
         </div>
         <div className={styles.contentBottom}>
           <div className={`${styles.highlightContent} flex justify-space-between mobile-flex-column`}>
-            <h3 className={styles.title}>{bottomTitle}</h3>
+            <FadeUp><h3 className={styles.title}>{bottomTitle}</h3></FadeUp>
             <div className={styles.description}>
+              <FadeUp>
               <BlocksRenderer content={bottomDescription || []} />
+              </FadeUp>
             </div>
             <div className="hide-desktop">
               <LinkWithArrow

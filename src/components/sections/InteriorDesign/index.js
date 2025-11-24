@@ -8,6 +8,9 @@ import MediaRenderer from "@/components/common/MediaRenderer";
 import Divider from "@/components/ui/Divider";
 import Spacer from "@/components/ui/Spacer";
 import Heading from "@/components/ui/Heading";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import SlideRight from "@/components/ui/animations/SlideRight";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function InteriorDesign({ data }) {
   const { Title, SubTitle, InteriorDesign, Media, Button } = data;
@@ -18,14 +21,20 @@ export default function InteriorDesign({ data }) {
       <Box fullHeight direction="column" justify="space-between" borderBottom mobileBorderBottom={false} mobileGap="30px">
         <div className="text-light uppercase">{Title}</div>
         {/* <h1 className="headingOne" style={{ maxWidth: 470 }}>{SubTitle}</h1> */}
-        <Heading level={2} style={{ maxWidth: 470 }}>{SubTitle}</Heading>
+        <FadeUp>
+          <Heading level={2} style={{ maxWidth: 470 }}>{SubTitle}</Heading>
+        </FadeUp>
 
       <div className="hide-desktop">
+        <FadeUp>
         <Paragraph>
           <BlocksRenderer content={InteriorDesign || []} />
         </Paragraph>
+        </FadeUp>
         <Spacer mobile={30} />
+        <FadeUp>
         <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+        </FadeUp>
       </div>
       </Box>
 
@@ -41,12 +50,16 @@ export default function InteriorDesign({ data }) {
         className="hide-mobile"
       >
         <div className="p20">
+          <FadeUp>
           <Paragraph>
             <BlocksRenderer content={InteriorDesign || []} />
           </Paragraph>
+          </FadeUp>
         </div>
         <div className="p20 text-right">
+          <FadeUp>
           <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+          </FadeUp>
         </div>
       </Box>
     </>
@@ -55,7 +68,9 @@ export default function InteriorDesign({ data }) {
   const rightContent = (
     <>
       <div className="p20">
-        <MediaRenderer media={Media} classes={'image'} />
+        <SlideLeft>
+          <MediaRenderer media={Media} classes={'image'} />
+        </SlideLeft>
       </div>
     </>
   );

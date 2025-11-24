@@ -6,6 +6,9 @@ import Image from "next/image";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import Divider from "@/components/ui/Divider";
 import Heading from "@/components/ui/Heading";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
+import SlideRight from "@/components/ui/animations/SlideRight";
 
 export default function HomeHero({ data }) {
   const { Title, ShortText, Button, LeftSideMedia, RightSideMedia } = data;
@@ -13,18 +16,24 @@ export default function HomeHero({ data }) {
   const leftContent = (
     <>
       <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
-        <Heading level={1} style={{ maxWidth: 560 }}>{Title}</Heading>
+        <FadeUp><Heading level={1} style={{ maxWidth: 560 }}>{Title}</Heading></FadeUp>
         <div className="flex justify-space-between fullWidth">
+          <FadeUp>
           <div className="uppercase hero-text-light">{ShortText}</div>
+          </FadeUp>
           {Button && (
             <div className="hide-mobile">
+              <FadeUp>
               <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+              </FadeUp>
             </div>
           )}
         </div>
       </Box>
       <Box className="hide-desktop" borderBottom>
+        <FadeUp>
         <MediaRenderer media={RightSideMedia} classes={"image"} />
+        </FadeUp>
       </Box>
       <Box
         fullHeight
@@ -39,13 +48,17 @@ export default function HomeHero({ data }) {
         mobileAlign="center"
       >
         <div className="p20">
+            <SlideRight>
           <MediaRenderer media={LeftSideMedia} />
+          </SlideRight>
         </div>
         <div className="p20">
           {Button && (
+            <FadeUp>
             <div className="text-center hide-desktop">
               <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
             </div>
+            </FadeUp>
           )}
         </div>
       </Box>
@@ -55,7 +68,9 @@ export default function HomeHero({ data }) {
   const rightContent = (
     <>
       <div className="p20 hide-mobile">
+        <SlideLeft>
         <MediaRenderer media={RightSideMedia} classes={"image"} />
+        </SlideLeft>
       </div>
     </>
   );
