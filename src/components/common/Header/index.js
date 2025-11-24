@@ -109,9 +109,9 @@ export default function Header({ globalData }) {
                 className={styles.menuToggleButton}
                 onClick={handleMobileToggle}
               >
-                <span className={styles.hamburgerLine}></span>
-                <span className={styles.hamburgerLine}></span>
-                <span className={styles.hamburgerLine}></span>
+                <span className={`${styles.hamburgerLine} toogleBtn`}></span>
+                <span className={`${styles.hamburgerLine} toogleBtn`}></span>
+                <span className={`${styles.hamburgerLine} toogleBtn`}></span>
               </button>
           </span>
         </motion.div>

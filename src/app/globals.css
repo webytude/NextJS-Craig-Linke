@@ -281,6 +281,19 @@ textarea {
 .aesthetics .text-light {
   color: #EAEAE8;
 }
+.toogleBtn,
+.Stone .toogleBtn {
+    background-color: #EAEAE8;
+}
+.White .toogleBtn {
+    background-color: #6C5D50;
+}
+.Pinot .toogleBtn {
+    background-color: #EAEAE8;
+}
+.Malt .toogleBtn {
+    background-color: #fff;
+}
 @media (min-width: 980px) {
   .hide-desktop {
     display: none !important;

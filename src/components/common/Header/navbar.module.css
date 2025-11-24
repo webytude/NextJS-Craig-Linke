@@ -84,7 +84,6 @@
   .hamburgerLine {
     width: 100%;
     height: 1px;
-    background-color: #EAEAE8;
     transition: all 0.3s ease;
   }
   .nav {
