@@ -57,7 +57,7 @@
   display: none;
 }
 /* --- Mobile Styles --- */
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .desktopMenuButton,
   .menuButton {
     display: none;

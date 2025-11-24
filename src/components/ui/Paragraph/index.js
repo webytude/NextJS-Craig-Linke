@@ -4,7 +4,7 @@ export default function Paragraph({
   children,
   size = "small", // small | medium | large
   color = "",
-  align = "left",
+  align = "",
   weight = 300,
   lineHeight = '21px',
   className = "",

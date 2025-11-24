@@ -18,7 +18,7 @@
   margin-top: 118px;
 }
 /* --- Mobile Styles --- */
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .footerTop {
     gap: 90px;
   }

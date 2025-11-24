@@ -7,6 +7,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import Divider from "@/components/ui/Divider";
 import Spacer from "@/components/ui/Spacer";
+import Heading from "@/components/ui/Heading";
 
 export default function InteriorDesign({ data }) {
   const { Title, SubTitle, InteriorDesign, Media, Button } = data;
@@ -16,7 +17,8 @@ export default function InteriorDesign({ data }) {
       {/* === TOP BOX === */}
       <Box fullHeight direction="column" justify="space-between" borderBottom mobileBorderBottom={false} mobileGap="30px">
         <div className="text-light uppercase">{Title}</div>
-        <h1 className="headingOne">{SubTitle}</h1>
+        {/* <h1 className="headingOne" style={{ maxWidth: 470 }}>{SubTitle}</h1> */}
+        <Heading level={2} style={{ maxWidth: 470 }}>{SubTitle}</Heading>
 
       <div className="hide-desktop">
         <Paragraph>

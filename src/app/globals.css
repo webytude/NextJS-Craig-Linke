@@ -125,6 +125,7 @@ input,
 textarea {
   font-size: 12px;
   letter-spacing: 0.5px;
+  font-family: 'saanslight';
 }
 .Stone {
   background: #6C5D50;
@@ -277,13 +278,15 @@ textarea {
 .full-width-media {
   padding-top: 100px;
 }
-
-@media (min-width: 768px) {
+.aesthetics .text-light {
+  color: #EAEAE8;
+}
+@media (min-width: 980px) {
   .hide-desktop {
     display: none !important;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .no-padding-mobile {
     padding: 0;
   }

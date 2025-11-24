@@ -95,3 +95,10 @@
   justify-content: center;
   margin-top: -36px;
 }
+.craig svg,
+.linke svg {
+  width: 50px;
+}
+.logo svg {
+  width: 25px;
+}

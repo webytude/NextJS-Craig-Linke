@@ -69,7 +69,7 @@
 .divider {
   margin: 22px 0px;
 }
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .aestheticsContent {
     flex-direction: column;
     gap: 30px;

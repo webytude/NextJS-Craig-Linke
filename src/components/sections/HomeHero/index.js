@@ -5,6 +5,7 @@ import LinkWithArrow from "@/components/ui/Link";
 import Image from "next/image";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import Divider from "@/components/ui/Divider";
+import Heading from "@/components/ui/Heading";
 
 export default function HomeHero({ data }) {
   const { Title, ShortText, Button, LeftSideMedia, RightSideMedia } = data;
@@ -12,9 +13,7 @@ export default function HomeHero({ data }) {
   const leftContent = (
     <>
       <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
-        <h1 className="headingOne" style={{ maxWidth: 560 }}>
-          {Title}
-        </h1>
+        <Heading level={1} style={{ maxWidth: 560 }}>{Title}</Heading>
         <div className="flex justify-space-between fullWidth">
           <div className="uppercase hero-text-light">{ShortText}</div>
           {Button && (

@@ -7,7 +7,7 @@
 /* Optional: simple responsive behavior */
 @media (max-width: 992px) {
   .customGrid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(1, 1fr) !important;
   }
 }
 
