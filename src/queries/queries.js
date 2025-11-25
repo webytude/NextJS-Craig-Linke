@@ -98,6 +98,7 @@ const BLOCKS_SELECTION = `
   ... on ComponentSectionInteriorDesign {
     Title
     SubTitle
+    ShowInQuickView
     InteriorDesign: Description
     Button {
       ButtonText
@@ -141,6 +142,7 @@ const BLOCKS_SELECTION = `
   }
   ... on ComponentSectionTextModule {
     Title
+    ShowInQuickView
     SideContent(pagination: { limit: -1 }) {
       Content
     }
@@ -772,6 +774,7 @@ export const JOURNALS_QUERY = gql`
     journals {
       Name
       Slug
+      publishedAt
       Description
       Media {
         EnableMuxVideo
@@ -921,7 +924,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
           playback_id
         }
         ImageORCarousel {
-          name
+          url
           alternativeText
         }
       }
@@ -931,7 +934,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
           playback_id
         }
         ImageORCarousel {
-          name
+          url
           alternativeText
         }
       }
@@ -943,6 +946,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
         ... on ComponentSectionMediaWithTopBottomContent {
           id
           Title
+          ShowInQuickView
           TopContent
           BottomContent
           Media {
@@ -951,7 +955,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
               playback_id
             }
             ImageORCarousel {
-              name
+              url
               alternativeText
             }
           }
@@ -964,7 +968,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
               playback_id
             }
             ImageORCarousel {
-              name
+              url
               alternativeText
             }
           }
@@ -977,13 +981,14 @@ export const ASTHETICS_QUERY_SLUG = gql `
         }
         ... on ComponentSectionImageAndText {
           Title
+          ShowInQuickView
           Media {
           EnableMuxVideo
             MuxVideo {
               playback_id
             }
             ImageORCarousel {
-              name
+              url
               alternativeText
             }
           }
@@ -997,7 +1002,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
               playback_id
             }
             ImageORCarousel {
-              name
+              url
               alternativeText
             }
           }
@@ -1010,6 +1015,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
         }
         ... on ComponentSectionAestheticMaterials {
           Title
+          ShowInQuickView
           TopContent
           BottomContent
           MaterialsImages {
@@ -1024,13 +1030,14 @@ export const ASTHETICS_QUERY_SLUG = gql `
               playback_id
             }
             ImageORCarousel {
-              name
+              url
               alternativeText
             }
           }
         }
         ... on ComponentSectionAstheticsContact {
           Title
+          ShowInQuickView
           Description
           Content
         }
@@ -1045,7 +1052,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
                 playback_id
               }
               ImageORCarousel {
-                name
+                url
                 alternativeText
               }
             }

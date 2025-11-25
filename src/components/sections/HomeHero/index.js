@@ -13,6 +13,9 @@ import SlideRight from "@/components/ui/animations/SlideRight";
 export default function HomeHero({ data }) {
   const { Title, ShortText, Button, LeftSideMedia, RightSideMedia } = data;
 
+  console.log('RightSideMedia', RightSideMedia)
+  console.log('LeftSideMedia', LeftSideMedia)
+
   const leftContent = (
     <>
       <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
@@ -49,7 +52,7 @@ export default function HomeHero({ data }) {
       >
         <div className="p20">
             <SlideRight>
-          <MediaRenderer media={LeftSideMedia} />
+          <MediaRenderer media={LeftSideMedia} classes={"image"} />
           </SlideRight>
         </div>
         <div className="p20">

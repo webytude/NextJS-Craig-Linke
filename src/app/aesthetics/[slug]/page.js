@@ -13,6 +13,8 @@ import { useParams, useRouter } from "next/navigation";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
+import Heading from "@/components/ui/Heading";
+import LinkWithArrow from "@/components/ui/Link";
 
 export default function AestheticsDetail() {
   const router = useRouter();
@@ -94,11 +96,11 @@ export default function AestheticsDetail() {
   if (error) return <p>Error loading data</p>;
   if (!astheticsData) return <PageNotFound />;
 
-  console.log('activeData', activeData)
+  console.log("activeData", activeData);
 
   return (
     <div className={styles.wrapper}>
-      {showNav && (
+      {/* {showNav && (
         <nav className={styles.navbar}>
           <ul>
             {sections.map((s, i) => (
@@ -108,7 +110,7 @@ export default function AestheticsDetail() {
             ))}
           </ul>
         </nav>
-      )}
+      )} */}
 
       <motion.div
         ref={containerRef}
@@ -119,17 +121,7 @@ export default function AestheticsDetail() {
       >
         <section className={`${styles.section} ${styles.one}`}>
           <div className={styles.backgroundWrapper}>
-            <Image
-                  src={activeData?.DesktopMedia.ImageORCarousel[0]?.name}
-                  alt={
-                    activeData?.DesktopMedia.ImageORCarousel[0]
-                      ?.alternativeText || ""
-                  }
-                  width={1905}
-                  height={1271}
-                  className={styles.mainMedia}
-                />
-            {/* {activeData?.DesktopMedia.EnableMuxVideo &&
+            {activeData?.DesktopMedia.EnableMuxVideo &&
               activeData?.DesktopMedia.MuxVideo?.playback_id && (
                 <MuxPlayer
                   playbackId={activeData?.DesktopMedia.MuxVideo.playback_id}
@@ -150,7 +142,7 @@ export default function AestheticsDetail() {
               Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
               activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
                 <Image
-                  src={activeData?.DesktopMedia.ImageORCarousel[0]?.name}
+                  src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
                   alt={
                     activeData?.DesktopMedia.ImageORCarousel[0]
                       ?.alternativeText || ""
@@ -159,17 +151,24 @@ export default function AestheticsDetail() {
                   height={1271}
                   className={styles.mainMedia}
                 />
-              )} */}
+              )}
           </div>
           <div className={styles.overlay}></div>
           <div className={styles.content}>
             <div className={`${styles.child} ${styles.topLeft}`}>
-              <ul>
-                <li>OVERVIEW</li>
-                <li>OVERVIEW</li>
-                <li>OVERVIEW</li>
-                <li>OVERVIEW</li>
-                <li>OVERVIEW</li>
+              <ul className={styles.topNav}>
+                <li>
+                  <Link href={"#"}>OVERVIEW</Link>
+                </li>
+                <li>
+                  <Link href={"#"}>MATERIAL APPROACH</Link>
+                </li>
+                <li>
+                  <Link href={"#"}>COLOURS AND TONES</Link>
+                </li>
+                <li>
+                  <Link href={"#"}>RELATED AESTHETICS </Link>
+                </li>
               </ul>
             </div>
             <div className={`${styles.child} ${styles.topRight}`}>
@@ -178,19 +177,28 @@ export default function AestheticsDetail() {
               </Paragraph>
             </div>
             <div className={`${styles.child} ${styles.bottomLeft}`}>
-              <ul>
-                <li>
-                  <Link href={"#"}>TAILORED AESTHETIC</Link>
-                </li>
-                <li>TAILORED AESTHETIC </li>
-                <li>TAILORED AESTHETIC </li>
-              </ul>
+              <div className={`${styles.navItem}`}>
+                <Link href="#">
+                  <span className={styles.icon}>( )</span>
+                  <span className={styles.label}>NEW HERITAGE</span>
+                </Link>
+                <Link href="#">
+                  <span className={styles.icon}>( )</span>
+                  <span className={styles.label}>TAILORED AESTHETIC </span>
+                </Link>
+                <Link href="#">
+                  <span className={styles.icon}>( )</span>
+                  <span className={styles.label}>CONTEMPORARY CLASSIC</span>
+                </Link>
+              </div>
             </div>
             <div className={`${styles.child} ${styles.bottomRight}`}>
-              SCROLL
+              <LinkWithArrow text={"SCROLL"} href={"#"} />
             </div>
             <div className={`${styles.child} ${styles.center}`}>
-              {activeData.Name}
+              <Heading level={1} className={styles.mainHeading}>
+                {activeData.Name}
+              </Heading>
             </div>
           </div>
         </section>

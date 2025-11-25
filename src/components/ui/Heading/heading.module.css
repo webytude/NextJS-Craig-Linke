@@ -28,6 +28,9 @@
   font-size: 16px;
 }
 
+.mainHeading {
+  font-size: 44px;
+}
 /* Responsive sizes */
 @media (max-width: 1024px) {
   .h1 {
