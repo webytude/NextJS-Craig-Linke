@@ -1,3 +1,11 @@
+import AestheticMaterials from "../ashetics/AestheticMaterials";
+import AstheticsContact from "../ashetics/AstheticsContact";
+import FullWidthMediaAshetics from "../ashetics/FullWidthMedia";
+import ImageAndText from "../ashetics/ImageAndText";
+import MediaWithTopBottomContent from "../ashetics/MediaWithTopBottomContent";
+import ProjectWithManuallyEditable from "../ashetics/ProjectWithManuallyEditable";
+import RelatedAesthetics from "../ashetics/RelatedAesthetics";
+import SingleMedia from "../ashetics/SingleMedia";
 import AboutHero from "../sections/AboutHero";
 import ContactHero from "../sections/ContactHero";
 import ExploreProjects from "../sections/ExploreProjects";
@@ -61,6 +69,31 @@ export default function BlockRenderer({ block }) {
 
     case "ComponentSectionContactHero":
       return <ContactHero data={block} />;
+
+    // Ashetics Detail
+    case "ComponentSectionMediaWithTopBottomContent":
+      return <MediaWithTopBottomContent data={block} />;
+    
+    case "ComponentSectionProjectWithManuallyEditable":
+      return <ProjectWithManuallyEditable data={block} />;
+
+    case "ComponentSectionImageAndText":
+      return <ImageAndText data={block} />;
+
+    // case "ComponentSectionFullWidthMedia":
+    //   return <FullWidthMediaAshetics data={block} />;
+
+    case "ComponentSectionAestheticMaterials":
+      return <AestheticMaterials data={block} />;
+
+    case "ComponentSectionSingleMedia":
+      return <SingleMedia data={block} />;
+
+    case "ComponentSectionAstheticsContact":
+      return <AstheticsContact data={block} />;
+
+    case "ComponentSectionRelatedAesthetics":
+      return <RelatedAesthetics data={block} />;
 
     default:
       return null;

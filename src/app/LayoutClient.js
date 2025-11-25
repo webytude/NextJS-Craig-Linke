@@ -6,12 +6,16 @@ import Header from '@/components/common/Header'
 import Footer from '@/components/common/Footer'
 import BodyTheme from '@/components/layouts/BodyTheme'
 import Loader from '@/components/Loader';
+import { usePathname } from 'next/navigation';
 
 export default function LayoutClient({ children, globalData }) {
+  const pathname = usePathname();
   const [showLoader, setShowLoader] = useState(true);
   const [loaderExitStarted, setLoaderExitStarted] = useState(false);
   const [loaderAnimationComplete, setLoaderAnimationComplete] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+
+  const isAestheticsPage = pathname?.startsWith('/aesthetics');
 
   useEffect(() => {
      if (typeof window !== 'undefined') {
@@ -53,14 +57,13 @@ export default function LayoutClient({ children, globalData }) {
           transition: 'transform 1s cubic-bezier(0.83, 0, 0.17, 1)', 
           width: '100%',
           minHeight: '100vh',
-          // overflowY: loaderExitStarted ? 'auto' : 'hidden',
         }}
       >
       <ApolloWrapper>
         <BodyTheme />
-        <Header globalData={globalData} />
+        {!isAestheticsPage && <Header globalData={globalData} />}
         <main>{children}</main>
-        <Footer globalData={globalData} />
+        {!isAestheticsPage && <Footer globalData={globalData} />}
       </ApolloWrapper>
       </div>
     </>
