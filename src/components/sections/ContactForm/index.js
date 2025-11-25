@@ -89,11 +89,11 @@ export default function ContactForm() {
     return (
         <form className="contact-form" onSubmit={(e) => handleSubmit(e, "Contact")}>
             <div className={styles.floatingGroup}>
-                <input type="text" name="FullName" placeholder="" onChange={handleChange} />
+                <input type="text" name="FullName" placeholder="" required onChange={handleChange} />
                 <label for="FullName">FULL NAME</label>
             </div>
             <div className={styles.floatingGroup}>
-                <input type="email" name="Email" placeholder="" onChange={handleChange} />
+                <input type="email" name="Email" placeholder="" required onChange={handleChange} />
                 <label>EMAIL</label>
             </div>
             <div className={styles.floatingGroup}>
