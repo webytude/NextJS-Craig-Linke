@@ -33,14 +33,14 @@ export default function AboutHero({ data }) {
         equalChildren
       >
         <div className={`${styles.navItem} p20`}>
-          {Buttons.map((item, index) => (
+          {/* {Buttons.map((item, index) => (
             <div key={index}>
               <Link href={item.ButtonURL || "#"}>
                 <span className={styles.icon}>( )</span>
                 <span className={styles.label}>{item.ButtonText}</span>
               </Link>
             </div>
-          ))}
+          ))} */}
         </div>
         <div className="p20 text-right">
           <div className="text-light uppercase">{ShortText}</div>
