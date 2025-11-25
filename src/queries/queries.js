@@ -575,11 +575,6 @@ export const PAGES_QUERY = gql`
         ... on ComponentSectionAboutHero {
           Title
           SubTitle
-          Buttons(pagination: { limit: -1 }) {
-            ButtonText
-            ButtonURL
-            OpenNewTab
-          }
           ShortText
           RightSideMedia {
             EnableMuxVideo
