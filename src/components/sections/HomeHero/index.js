@@ -13,9 +13,6 @@ import SlideRight from "@/components/ui/animations/SlideRight";
 export default function HomeHero({ data }) {
   const { Title, ShortText, Button, LeftSideMedia, RightSideMedia } = data;
 
-  console.log('RightSideMedia', RightSideMedia)
-  console.log('LeftSideMedia', LeftSideMedia)
-
   const leftContent = (
     <>
       <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>

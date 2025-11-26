@@ -1019,7 +1019,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
           TopContent
           BottomContent
           MaterialsImages {
-            name
+            url
             alternativeText
           }
         }

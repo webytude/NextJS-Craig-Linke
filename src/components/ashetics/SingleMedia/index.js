@@ -1,3 +1,4 @@
+import MediaRenderer from '@/components/common/MediaRenderer';
 import React from 'react'
 
 export default function SingleMedia({ data }) {
@@ -5,7 +6,7 @@ export default function SingleMedia({ data }) {
 
   return (
     <div>
-      SingleMedia
+      <MediaRenderer media={Media} classes={'image'} />
     </div>
   )
 }

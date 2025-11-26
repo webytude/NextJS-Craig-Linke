@@ -1,11 +1,10 @@
+import AsheticsCard from '@/components/common/AsheticsCard'
 import React from 'react'
 
 export default function ProjectWithManuallyEditable({ data }) {
-  const { Title, Content, Heading, Media } = data;
-
   return (
     <div>
-      ProjectWithManuallyEditable
+      <AsheticsCard data={data} />
     </div>
   )
 }

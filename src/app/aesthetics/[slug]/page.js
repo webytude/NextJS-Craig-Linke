@@ -4,12 +4,17 @@ import { ASTHETICS_QUERY_SLUG } from "@/queries/queries";
 import { useQuery } from "@apollo/client/react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useMotionValue, animate } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  animate,
+  AnimatePresence,
+} from "framer-motion";
 import styles from "../aesthetics.module.css";
 import Paragraph from "@/components/ui/Paragraph";
 import Loading from "@/components/common/Loading";
 import PageNotFound from "@/app/PageNotFound";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
@@ -19,6 +24,7 @@ import LinkWithArrow from "@/components/ui/Link";
 export default function AestheticsDetail() {
   const router = useRouter();
   const params = useParams();
+  const pathname = usePathname();
 
   const currentSlug = params?.slug;
 
@@ -28,6 +34,7 @@ export default function AestheticsDetail() {
   const [showNav, setShowNav] = useState(true);
   const sections = ["home", "about", "services", "contact"];
   const animationRef = useRef(null);
+  const [prevSlug, setPrevSlug] = useState(null);
 
   const { data, loading, error } = useQuery(ASTHETICS_QUERY_SLUG, {
     fetchPolicy: "cache-first",
@@ -39,6 +46,16 @@ export default function AestheticsDetail() {
   const activeData = astheticsData.find((item) => item.Slug === targetSlug);
 
   useEffect(() => {
+  setPrevSlug((old) => (old === targetSlug ? old : old || targetSlug));
+
+  if (prevSlug !== targetSlug) {
+    setTimeout(() => {
+      setPrevSlug(targetSlug);  
+    }, 800);
+  }
+}, [targetSlug]);
+
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const updateWidth = () => setScreenWidth(window.innerWidth);
       updateWidth();
@@ -47,7 +64,7 @@ export default function AestheticsDetail() {
     }
   }, []);
 
-  const maxDrag = screenWidth * (activeData?.Blocks.length - 1);
+  const maxDrag = screenWidth * activeData?.Blocks.length;
 
   useEffect(() => {
     const el = containerRef.current;
@@ -92,122 +109,155 @@ export default function AestheticsDetail() {
     window.dispatchEvent(new Event("theme-change"));
   }, []);
 
-  if (loading) return <Loading />;
+  if (loading && !astheticsData.length) return <Loading />;
   if (error) return <p>Error loading data</p>;
-  if (!astheticsData) return <PageNotFound />;
 
-  console.log("activeData", activeData);
+  const variants = {
+    initial: { y: "100%", zIndex: 10 },
+    animate: { y: "0%", zIndex: 10 },
+    // exit: {
+    //   y: "0%",
+    //   zIndex: 1,
+    //   opacity: 1,
+    // },
+  };
 
   return (
-    <div className={styles.wrapper}>
-      {/* {showNav && (
-        <nav className={styles.navbar}>
-          <ul>
-            {sections.map((s, i) => (
-              <li key={s} onClick={() => scrollToSection(i)}>
-                {s.charAt(0).toUpperCase() + s.slice(1)}
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )} */}
-
-      <motion.div
-        ref={containerRef}
-        className={styles.container}
-        drag="x"
-        dragConstraints={{ left: -maxDrag, right: 0 }}
-        style={{ x }}
-      >
-        <section className={`${styles.section} ${styles.one}`}>
-          <div className={styles.backgroundWrapper}>
-            {activeData?.DesktopMedia.EnableMuxVideo &&
-              activeData?.DesktopMedia.MuxVideo?.playback_id && (
-                <MuxPlayer
-                  playbackId={activeData?.DesktopMedia.MuxVideo.playback_id}
-                  streamType="on-demand"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  style={{
-                    aspectRatio: "16 / 9",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-              )}
-            {!activeData?.DesktopMedia?.EnableMuxVideo &&
-              Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
-              activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
-                <Image
-                  src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
-                  alt={
-                    activeData?.DesktopMedia.ImageORCarousel[0]
-                      ?.alternativeText || ""
-                  }
-                  width={1905}
-                  height={1271}
-                  className={styles.mainMedia}
-                />
-              )}
-          </div>
-          <div className={styles.overlay}></div>
-          <div className={styles.content}>
-            <div className={`${styles.child} ${styles.topLeft}`}>
-              <ul className={styles.topNav}>
-                <li>
-                  <Link href={"#"}>OVERVIEW</Link>
-                </li>
-                <li>
-                  <Link href={"#"}>MATERIAL APPROACH</Link>
-                </li>
-                <li>
-                  <Link href={"#"}>COLOURS AND TONES</Link>
-                </li>
-                <li>
-                  <Link href={"#"}>RELATED AESTHETICS </Link>
-                </li>
-              </ul>
-            </div>
-            <div className={`${styles.child} ${styles.topRight}`}>
-              <Paragraph>
-                <BlocksRenderer content={activeData.Description || []} />
-              </Paragraph>
-            </div>
-            <div className={`${styles.child} ${styles.bottomLeft}`}>
-              <div className={`${styles.navItem}`}>
-                <Link href="#">
-                  <span className={styles.icon}>( )</span>
-                  <span className={styles.label}>NEW HERITAGE</span>
-                </Link>
-                <Link href="#">
-                  <span className={styles.icon}>( )</span>
-                  <span className={styles.label}>TAILORED AESTHETIC </span>
-                </Link>
-                <Link href="#">
-                  <span className={styles.icon}>( )</span>
-                  <span className={styles.label}>CONTEMPORARY CLASSIC</span>
-                </Link>
-              </div>
-            </div>
-            <div className={`${styles.child} ${styles.bottomRight}`}>
-              <LinkWithArrow text={"SCROLL"} href={"#"} />
-            </div>
-            <div className={`${styles.child} ${styles.center}`}>
-              <Heading level={1} className={styles.mainHeading}>
-                {activeData.Name}
-              </Heading>
-            </div>
-          </div>
-        </section>
-        {activeData.Blocks.map((block, index) => (
-          <section key={index} className={`${styles.section}`}>
-            <BlockRenderer block={block} />
-          </section>
-        ))}
-      </motion.div>
+    <div
+      className={styles.wrapper}
+      style={{
+        position: "relative",
+        height: "100vh",
+        overflow: "hidden",
+        width: "100vw",
+      }}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={targetSlug}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit={{ y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          {activeData ? (
+            <motion.div
+              ref={containerRef}
+              className={styles.container}
+              drag="x"
+              dragConstraints={{ left: -maxDrag, right: 0 }}
+              style={{ x }}
+            >
+              <section className={`${styles.section} ${styles.one}`}>
+                <div className={styles.backgroundWrapper}>
+                  {activeData?.DesktopMedia.EnableMuxVideo &&
+                    activeData?.DesktopMedia.MuxVideo?.playback_id && (
+                      <MuxPlayer
+                        playbackId={
+                          activeData?.DesktopMedia.MuxVideo.playback_id
+                        }
+                        streamType="on-demand"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        style={{
+                          aspectRatio: "16 / 9",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      />
+                    )}
+                  {!activeData?.DesktopMedia?.EnableMuxVideo &&
+                    Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
+                    activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
+                      <Image
+                        src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
+                        alt={
+                          activeData?.DesktopMedia.ImageORCarousel[0]
+                            ?.alternativeText || ""
+                        }
+                        width={1905}
+                        height={1271}
+                        className={styles.mainMedia}
+                      />
+                    )}
+                </div>
+                <div className={styles.overlay}></div>
+                <div className={styles.content}>
+                  <div className={`${styles.child} ${styles.topLeft}`}>
+                    <ul className={styles.topNav}>
+                      <li>
+                        <Link href={"#"}>OVERVIEW</Link>
+                      </li>
+                      <li>
+                        <Link href={"#"}>MATERIAL APPROACH</Link>
+                      </li>
+                      <li>
+                        <Link href={"#"}>COLOURS AND TONES</Link>
+                      </li>
+                      <li>
+                        <Link href={"#"}>RELATED AESTHETICS </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={`${styles.child} ${styles.topRight}`}>
+                    <Paragraph>
+                      <BlocksRenderer content={activeData.Description || []} />
+                    </Paragraph>
+                  </div>
+                  <div className={`${styles.child} ${styles.bottomLeft}`}>
+                    <div className={`${styles.navItem}`}>
+                      {astheticsData.map((item) => {
+                        const isActive =
+                          pathname === `/aesthetics/${item.Slug}`;
+                        return (
+                          <Link
+                            href={item.Slug}
+                            className={isActive ? "activeLink" : "normalLink"}
+                          >
+                            <span className={styles.icon}>
+                              {isActive ? "(•)" : "( )"}
+                            </span>
+                            <span className={styles.label}>{item.Name}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className={`${styles.child} ${styles.bottomRight}`}>
+                    <LinkWithArrow text={"SCROLL"} href={"#"} />
+                  </div>
+                  <div className={`${styles.child} ${styles.center}`}>
+                    <Heading level={1} className={styles.mainHeading}>
+                      {activeData.Name}
+                    </Heading>
+                  </div>
+                </div>
+              </section>
+              {activeData.Blocks.map((block, index) => (
+                <section
+                  key={index}
+                  className={`${styles.section} media-section`}
+                >
+                  <BlockRenderer block={block} />
+                </section>
+              ))}
+            </motion.div>
+          ) : (
+            <Loading />
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

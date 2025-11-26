@@ -278,6 +278,10 @@ textarea {
 .full-width-media {
   padding-top: 100px;
 }
+.media-section .full-width-media {
+  width: 100%;
+  padding: 0;
+}
 .aesthetics .text-light {
   color: #EAEAE8;
 }
@@ -304,6 +308,24 @@ textarea {
 }
 .indexOpen .toogleBtn {
   background-color: #EAEAE8;
+}
+.innerWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #EAEAE8; 
+  height: 100%;
+}
+.content:last-child {
+  border-right: none;
 }
 @media (min-width: 980px) {
   .hide-desktop {
