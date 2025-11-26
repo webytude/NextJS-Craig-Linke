@@ -14,9 +14,9 @@ export default function MediaWithTopBottomContent({ data }) {
     <>
       <Box fullHeight direction="column" justify="space-between" borderBottom borderColor="#EAEAE8">
         <div className="uppercase">{Title}</div>
-        <FadeUp><Heading level={2} style={{ maxWidth: 476 }}>
-          Blending classic forms, natural textures, and thoughtful details, comfortable, and timeless. Here are five elements that define the New Heritage style.
-          </Heading></FadeUp>
+        <div className='heading'>
+            <BlocksRenderer content={TopContent || []} />
+          </div>
       </Box>
       <Box className="hide-desktop" borderBottom borderColor="#EAEAE8">
         <FadeUp style={{ width: '100%' }}>
@@ -32,7 +32,7 @@ export default function MediaWithTopBottomContent({ data }) {
         equalChildren
       >
         <div className='p20'>
-         <Paragraph>
+          <Paragraph>
             <BlocksRenderer content={BottomContent || []} />
           </Paragraph>
         </div>

@@ -201,6 +201,13 @@ textarea {
   font-weight: 300;
   line-height: 40px;
 }
+.heading {
+  font-family: 'collapselight_italic';
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 34px;
+}
 .p20 {
   padding: 20px;
 }

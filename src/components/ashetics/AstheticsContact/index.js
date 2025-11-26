@@ -12,8 +12,9 @@ export default function AstheticsContact({ data }) {
     <>
       <Box fullHeight direction="column" justify="space-between" borderBottom borderColor="#EAEAE8">
         <div className="uppercase">{Title}</div>
-        {/* <h1 className="headingOne" style={{ maxWidth: 470 }}>{SubTitle}</h1> */}
-          <Heading level={2} style={{ maxWidth: 470 }}>{'This balance of unique texture and refined materials creates a home full of depth, warmth, and character,'}</Heading>
+        <div className='heading'>
+            <BlocksRenderer content={Description || []} />
+          </div>
       </Box>
 
       <Box

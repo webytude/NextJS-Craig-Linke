@@ -50,6 +50,18 @@ export default function AestheticsDetail() {
   const activeData = astheticsData.find((item) => item.Slug === targetSlug);
 
   useEffect(() => {
+    if (!incomingData) return;
+
+    setShowInnerContent(false);
+
+    const t = setTimeout(() => {
+      setShowInnerContent(true);
+    }, 300);
+
+    return () => clearTimeout(t);
+  }, [incomingData]);
+
+  useEffect(() => {
     if (activeData && !displayData) {
       setDisplayData(activeData);
     }
@@ -144,17 +156,7 @@ export default function AestheticsDetail() {
   if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
 
-  useEffect(() => {
-    if (!incomingData) return;
-
-    setShowInnerContent(false);
-
-    const t = setTimeout(() => {
-      setShowInnerContent(true);
-    }, 300);
-
-    return () => clearTimeout(t);
-  }, [incomingData]);
+  
 
   const renderContent = (activeData) => (
     <motion.div
