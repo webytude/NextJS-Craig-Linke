@@ -37,6 +37,8 @@ export default function AestheticsDetail() {
   const [incomingData, setIncomingData] = useState(null);
   const [showInnerContent, setShowInnerContent] = useState(false);
   const animationRef = useRef(null);
+  const oldRef = useRef(null);
+  const newRef = useRef(null);
 
   const { data, loading, error } = useQuery(ASTHETICS_QUERY_SLUG, {
     fetchPolicy: "cache-first",
@@ -64,22 +66,41 @@ export default function AestheticsDetail() {
 
   const maxDrag = screenWidth * activeData?.Blocks.length;
 
+  // useEffect(() => {
+  //   const el = containerRef.current;
+  //   if (!el) return;
+
+  //   const handleWheel = (e) => {
+  //     e.preventDefault();
+  //     const delta = -e.deltaY;
+  //     const current = x.get();
+  //     const next = current + delta;
+
+  //     x.set(Math.max(-maxDrag, Math.min(0, next)));
+  //   };
+
+  //   el.addEventListener("wheel", handleWheel, { passive: false });
+  //   return () => el.removeEventListener("wheel", handleWheel);
+  // }, [x, maxDrag]);
+
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+    const activeEl = incomingData ? newRef.current : oldRef.current;
+    if (!activeEl) return;
 
     const handleWheel = (e) => {
       e.preventDefault();
       const delta = -e.deltaY;
       const current = x.get();
       const next = current + delta;
-
       x.set(Math.max(-maxDrag, Math.min(0, next)));
     };
 
-    el.addEventListener("wheel", handleWheel, { passive: false });
-    return () => el.removeEventListener("wheel", handleWheel);
-  }, [x, maxDrag]);
+    activeEl.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      activeEl.removeEventListener("wheel", handleWheel);
+    };
+  }, [incomingData, maxDrag]);
 
   useEffect(() => {
     const unsubscribe = x.on("change", (value) => {
@@ -120,7 +141,7 @@ export default function AestheticsDetail() {
     return () => clearTimeout(timer);
   }, [activeData]);
 
-  if (loading && !astheticsData.length) return <Loading />;
+  if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
 
   useEffect(() => {
@@ -247,6 +268,7 @@ export default function AestheticsDetail() {
         {displayData && (
           <motion.div
             key="old-content"
+            ref={oldRef}
             initial={false}
             animate={{ opacity: incomingData ? 1 : 1 }}
             exit={{ opacity: 0 }}
@@ -265,6 +287,7 @@ export default function AestheticsDetail() {
         {incomingData && (
           <motion.div
             key="new-content"
+            ref={newRef}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ opacity: 0 }}
