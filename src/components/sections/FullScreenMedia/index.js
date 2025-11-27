@@ -115,15 +115,17 @@ export default function FullScreenMedia({ data }) {
                 return (
                   <Box key={index} className={styles.aestheticsListContent} padding="0">
                     <div
-                      onMouseEnter={!isMobile ? () => handleMouseEnter(item.HoverMedia) : undefined}
-                      onMouseLeave={!isMobile ? handleMouseLeave : undefined}
                       onClick={isMobile ? () => handleMobileClick(item, index) : undefined}
                       className={classNames(styles.listItemWrapper, {
                         [styles.activeOnMobile]: isMobile && isActive,
                       })}
                     >
                       <FadeUp>
-                      <Heading level={4} className={styles.listItemHeading}>
+                      <h4 
+                        onMouseEnter={!isMobile ? () => handleMouseEnter(item.HoverMedia) : undefined}
+                        onMouseLeave={!isMobile ? handleMouseLeave : undefined}
+                        level={4} className={styles.listItemHeading}
+                      >
                         {item.Title}
                         {isMobile && (
                           <span className={styles.toggleIcon}>
@@ -139,7 +141,7 @@ export default function FullScreenMedia({ data }) {
                             )}
                           </span>
                         )}
-                      </Heading>
+                      </h4>
                       <Divider color="#EAEAE8" className={styles.divider} />
                       </FadeUp>
                       <div

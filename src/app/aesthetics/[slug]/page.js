@@ -271,6 +271,7 @@ export default function AestheticsDetail() {
                 const isActive = pathname === `/aesthetics/${item.Slug}`;
                 return (
                   <Link
+                    key={item.Slug}
                     href={item.Slug}
                     className={isActive ? "activeLink" : "normalLink"}
                   >
@@ -294,7 +295,7 @@ export default function AestheticsDetail() {
         </motion.div>
       </section>
       {activeData.Blocks.map((block, index) => (
-        <section>
+        <section key={index}>
           <div className={styles.headerSpacer} />
           <BlockRenderer key={index} block={block} />
           </section>

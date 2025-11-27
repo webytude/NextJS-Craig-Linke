@@ -8,7 +8,7 @@ export default function RelatedAesthetics({ data }) {
   return (
     <section className={`${astheticsStyles.section} ${astheticsStyles.relatedAesthetics}`}> 
       <div className='innerWrapper'>
-        {RelatedAesthetics.map((item, index) => <div className='content'><AsheticsCard key={index} data={item} /></div>)}
+        {RelatedAesthetics.map((item, index) => <div key={index} className='content'><AsheticsCard data={item} /></div>)}
         </div>
     </section>
   )
