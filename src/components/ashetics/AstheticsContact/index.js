@@ -18,7 +18,9 @@ export default function AstheticsContact({ data }) {
           direction="column"
           justify="space-between"
           borderBottom
+          mobileBorderBottom="none"
           borderColor="#EAEAE8"
+          mobileGap={'20px'}
         >
           <div className="flex justify-space-between fullWidth">
             <div className="uppercase">{'( 04 )'}</div>
@@ -37,6 +39,7 @@ export default function AstheticsContact({ data }) {
           padding="0"
           equalChildren
           showDivider
+          hideMobileDivider
           dividerColor="#EAEAE8"
         >
           <div className="p20">
@@ -44,7 +47,7 @@ export default function AstheticsContact({ data }) {
               <BlocksRenderer content={Content || []} />
             </Paragraph>
           </div>
-          <div className="p20 text-right" />
+          <div className="p20 text-right hide-mobile" />
         </Box>
       </div>
     </section>

@@ -16,3 +16,18 @@
   align-items: center;
   position: relative;
 }
+@media (max-width: 768px) {
+    .txtWrapper {
+        width: 100%;
+    }
+    .content {
+        max-width: 100%;
+    }
+    .imageWrapper img {
+        width: 100%;
+        height: auto;
+    }
+    .imageWrapper {
+        margin-bottom: 60px;
+    }
+}

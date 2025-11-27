@@ -396,4 +396,7 @@ textarea {
     font-size: 22px;
     line-height: 26px;
   }
+  .aesthetics-container .full-width-media {
+    padding: 40px 0px;
+  }
 }

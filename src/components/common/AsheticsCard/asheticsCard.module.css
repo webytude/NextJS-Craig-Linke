@@ -28,6 +28,10 @@
 @media (max-width: 768px) {
   .asheticsCard {
     max-width: 100%;
+    padding: 0px 20px;
+  }
+  .imageWrapper {
+    padding: 30px 0;
   }
   .imageWrapper img {
     width: 100%;

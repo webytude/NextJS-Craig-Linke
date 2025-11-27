@@ -13,7 +13,7 @@ export default function AestheticMaterials({ data }) {
   return (
     <section className={`${astheticsStyles.section} ${astheticsStyles.aestheticMaterials}`}>
       <div className={`${astheticsStyles.box}`}>
-      <Box fullHeight direction="column" justify="space-between" borderBottom borderColor="#EAEAE8">
+      <Box fullHeight direction="column" justify="space-between" borderBottom mobileBorderBottom="none" mobileGap="20px" borderColor="#EAEAE8">
         <div className="uppercase">{Title}</div>
          <div className='heading' style={{ maxWidth: 445 }}>
             <BlocksRenderer content={TopContent || []} />
@@ -32,7 +32,7 @@ export default function AestheticMaterials({ data }) {
             <BlocksRenderer content={BottomContent || []} />
           </Paragraph>
         </div>
-        <div className="p20 text-right">
+        <div className="p20 text-right hide-mobile">
           <div className={styles.materialsPhoto}>
             {MaterialsImages.map((material, index) => (
                 <div key={index}>

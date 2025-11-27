@@ -56,12 +56,13 @@ export default function MediaWithTopBottomContent({ data }) {
 
   return (
     <section
-      className={`${astheticsStyles.section} ${astheticsStyles.full} mediaWithTopBottomContent`}
+      className={`${astheticsStyles.section} ${astheticsStyles.full} ${astheticsStyles.mediaWithTopBottomContent}`}
     >
       <TwoColumnLayout
         left={leftContent}
         right={rightContent}
         showDivider
+        showMobileDivider={false}
         fullHeight
         dividerColor="#EAEAE8"
       />

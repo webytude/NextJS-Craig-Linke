@@ -11,8 +11,8 @@ export default function ImageAndText({ data }) {
   return (
     <section className={`${astheticsStyles.section} ${astheticsStyles.imageAndText}`}> 
       {/* //className={`${astheticsStyles.section} imageAndText`} */}
-      <Box fullHeight direction="column" justify="space-between">
-        <div>
+      <Box fullHeight direction="column" justify="space-between" mobileGap={'20px'}>
+        <div className={styles.txtWrapper}>
           <div className={styles.imageWrapper}>
             <MediaRenderer media={Media} width={272} height={381} />
           </div>

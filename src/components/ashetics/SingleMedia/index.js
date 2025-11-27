@@ -6,7 +6,7 @@ export default function SingleMedia({ data }) {
 
   return (
     <section className={`${astheticsStyles.section} ${astheticsStyles.singleMedia}`}>
-      <MediaRenderer media={Media} width={417} height={573} />
+      <div className='p20'><MediaRenderer media={Media} width={417} height={573} /></div>
     </section>
   )
 }
