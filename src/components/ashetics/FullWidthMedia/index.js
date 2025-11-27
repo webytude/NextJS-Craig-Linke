@@ -1,9 +1,9 @@
-import React from 'react'
+import astheticsStyles from '../style/asthetics..module.css';
 
 export default function FullWidthMediaAshetics() {
   return (
-    <div>
+    <section className={`${astheticsStyles.section} fullWidthMediaAshetics`}>
       FullWidthMedia
-    </div>
+    </section>
   )
 }

@@ -5,19 +5,20 @@ import Paragraph from '@/components/ui/Paragraph';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import styles from './aestheticMaterials.module.css'
 import Image from 'next/image';
+import astheticsStyles from '../style/asthetics..module.css';
 
 export default function AestheticMaterials({ data }) {
   const { Title, TopContent, BottomContent, MaterialsImages } = data;
 
-  const leftContent = (
-    <>
+  return (
+    <section className={`${astheticsStyles.section} ${astheticsStyles.aestheticMaterials}`}>
+      <div className={`${astheticsStyles.box}`}>
       <Box fullHeight direction="column" justify="space-between" borderBottom borderColor="#EAEAE8">
         <div className="uppercase">{Title}</div>
          <div className='heading'>
             <BlocksRenderer content={TopContent || []} />
         </div>
       </Box>
-
       <Box
         fullHeight
         direction="row"
@@ -49,19 +50,7 @@ export default function AestheticMaterials({ data }) {
           </div>
         </div>
       </Box>
-    </>
-  );
-
-  const rightContent = (
-    <>
-      <div className="p20">
-          {/* <MediaRenderer media={Media} classes={'image'} /> */}
-          right image
-      </div>
-    </>
-  );
-
-  return (
-    <TwoColumnLayout left={leftContent} right={rightContent} fullHeight showDivider dividerColor="#EAEAE8" />
+    </div>
+    </section>
   )
 }

@@ -51,7 +51,7 @@
 }
 
 .section {
-  width: 100vw;
+  /* width: 70vw; */
   height: 100vh;
   flex-shrink: 0;
   display: flex;

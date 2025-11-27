@@ -240,8 +240,8 @@ textarea {
 }
 .image {
   width: 100%;
-  height: auto;
-  object-fit: cover; /* or contain */
+  /* height: auto; */
+  object-fit: cover;
   display: block;
 }
 .uppercase {
@@ -284,6 +284,18 @@ textarea {
 }
 .full-width-media {
   padding-top: 100px;
+}
+.aesthetics-container .full-width-media {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  border-right: 1px solid #EAEAE8;
+  width: 1400px;
 }
 .media-section .full-width-media {
   width: 100%;

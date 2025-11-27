@@ -5,7 +5,7 @@ import Box from '@/components/ui/Box/Box';
 import Heading from '@/components/ui/Heading';
 import Paragraph from '@/components/ui/Paragraph';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-import React from 'react'
+import astheticsStyles from '../style/asthetics..module.css';
 
 export default function MediaWithTopBottomContent({ data }) {
   const { Title, TopContent, BottomContent, Media } = data;
@@ -52,6 +52,8 @@ export default function MediaWithTopBottomContent({ data }) {
   );
 
   return (
-    <TwoColumnLayout left={leftContent} right={rightContent} showDivider fullHeight dividerColor="#EAEAE8" />
+    <section className={`${astheticsStyles.section} ${astheticsStyles.full} mediaWithTopBottomContent`}>
+      <TwoColumnLayout left={leftContent} right={rightContent} showDivider fullHeight dividerColor="#EAEAE8" />
+    </section>
   )
 }

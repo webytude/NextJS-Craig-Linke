@@ -1,0 +1,40 @@
+.section {
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-right: 1px solid #EAEAE8;
+}
+.section:last-child {
+  border-right: none;
+}
+.projectWithManuallyEditable {
+    width: 1000px;
+}
+.imageAndText {
+    width: 700px;
+}
+.aestheticMaterials,
+.astheticsContact {
+    width: 755px;
+}
+.singleMedia {
+    width: 765px;
+}
+.relatedAesthetics {
+    width: 1500px;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+.full {
+    width: 100vw;
+}
+.half {
+    width: 50vw;
+}

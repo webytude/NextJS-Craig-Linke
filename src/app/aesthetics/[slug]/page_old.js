@@ -36,7 +36,7 @@ export default function AestheticsDetail() {
   const [displayData, setDisplayData] = useState(null);
   const [incomingData, setIncomingData] = useState(null);
   const [showInnerContent, setShowInnerContent] = useState(false);
-  const [maxDrag, setMaxDrag] = useState(0);
+  const [sectionWidth, setSectionWidth] = useState(0);
   const animationRef = useRef(null);
   const oldRef = useRef(null);
   const newRef = useRef(null);
@@ -69,6 +69,23 @@ export default function AestheticsDetail() {
   }, [activeData]);
 
   useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const firstSection = containerRef.current.querySelector(`.${styles.section}`);
+    if (firstSection) {
+      setSectionWidth(firstSection.offsetWidth);
+    }
+
+    const handleResize = () => {
+      if (!firstSection) return;
+      setSectionWidth(firstSection.offsetWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const updateWidth = () => setScreenWidth(window.innerWidth);
       updateWidth();
@@ -78,25 +95,22 @@ export default function AestheticsDetail() {
   }, []);
 
   useEffect(() => {
-  const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-  if (!activeElWrapper) return;
+  const measure = () => {
+    const el = incomingData ? newRef.current : oldRef.current;
+    if (!el) return;
 
-  // જે div પર horizontal scroll છે તેને શોધો
-  // તમારી styles.container વાળી div
-  const scrollContainer = activeElWrapper.querySelector(`.${styles.container}`);
+    const firstSection = el.querySelector(`.${styles.section}`);
+    if (firstSection) {
+      setSectionWidth(firstSection.offsetWidth);
+    }
+  };
 
-  if (scrollContainer) {
-    // આ મેઈન લોજીક છે:
-    // જેટલું કન્ટેન્ટ છે (scrollWidth) એમાંથી સ્ક્રીન સાઈઝ (innerWidth) બાદ કરો
-    // એટલે છેલ્લી સ્લાઈડ સ્ક્રીન પૂરી થાય ત્યાં અટકી જશે.
-    const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
-    
-    // જો કન્ટેન્ટ સ્ક્રીન કરતા નાનું હોય તો 0, નહીંતર ગણતરી મુજબ
-    setMaxDrag(Math.max(0, calculatedMaxDrag));
-  }
-}, [incomingData, activeData, screenWidth]);
+  measure();
+  window.addEventListener("resize", measure);
+  return () => window.removeEventListener("resize", measure);
+}, [incomingData]);
 
-  // const maxDrag = screenWidth * activeData?.Blocks.length;
+  const maxDrag = screenWidth * (displayData?.Blocks?.length || 1);
 
   // useEffect(() => {
   //   const el = containerRef.current;
@@ -116,26 +130,23 @@ export default function AestheticsDetail() {
   // }, [x, maxDrag]);
 
   useEffect(() => {
-    const activeEl = incomingData ? newRef.current : oldRef.current;
-    if (!activeEl) return;
+  const activeEl = incomingData ? newRef.current : oldRef.current;
+  if (!activeEl) return;
 
-    const handleWheel = (e) => {
-      e.preventDefault();
-      const delta = -e.deltaY; // અથવા deltaX જો તમે shift દબાવીને સ્ક્રોલ કરતા હોવ
-      const current = x.get();
-      const next = current + delta;
+  const handleWheel = (e) => {
+    e.preventDefault();
 
-      // અહી અપડેટ કરેલો maxDrag વપરાશે
-      // -maxDrag એટલે ડાબી બાજુની લિમિટ
-      x.set(Math.max(-maxDrag, Math.min(0, next)));
-    };
+    const delta = -e.deltaY;
+    const current = x.get();
+    const next = current + delta;
 
-    activeEl.addEventListener("wheel", handleWheel, { passive: false });
+    x.set(Math.max(-maxDrag, Math.min(0, next)));
+  };
 
-    return () => {
-      activeEl.removeEventListener("wheel", handleWheel);
-    };
-}, [incomingData, maxDrag, x]);
+  activeEl.addEventListener("wheel", handleWheel, { passive: false });
+
+  return () => activeEl.removeEventListener("wheel", handleWheel);
+}, [incomingData, maxDrag]);
 
   useEffect(() => {
     const unsubscribe = x.on("change", (value) => {
@@ -145,29 +156,16 @@ export default function AestheticsDetail() {
   }, [x, screenWidth]);
 
   const scrollToSection = (index) => {
-    // હાલના એક્ટિવ કન્ટેનરને શોધો
-    const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-    const scrollContainer = activeElWrapper?.querySelector(`.${styles.container}`);
-    
-    if (!scrollContainer) return;
-    
-    // બધા સેક્શન મેળવો
-    const sections = scrollContainer.children;
-    const targetSection = sections[index];
+    const target = -index * screenWidth;
 
-    if (targetSection) {
-      // સેક્શન ડાબી બાજુથી કેટલો દૂર છે તે શોધો
-      const targetPosition = -targetSection.offsetLeft;
+    if (animationRef.current) animationRef.current.stop();
 
-      if (animationRef.current) animationRef.current.stop();
-
-      animationRef.current = animate(x, targetPosition, {
-        type: "spring",
-        stiffness: 120,
-        damping: 20,
-        onComplete: () => (animationRef.current = null),
-      });
-    }
+    animationRef.current = animate(x, target, {
+      type: "spring",
+      stiffness: 120,
+      damping: 20,
+      onComplete: () => (animationRef.current = null),
+    });
   };
 
   useEffect(() => {
@@ -190,17 +188,19 @@ export default function AestheticsDetail() {
   }, [activeData]);
 
   if (loading) return <Loading />;
-  if (error) return <p>Error loading data</p>;  
+  if (error) return <p>Error loading data</p>;
+
+  
 
   const renderContent = (activeData) => (
     <motion.div
       ref={containerRef}
-      className={`${styles.container} aesthetics-container`}
+      className={styles.container}
       drag="x"
       dragConstraints={{ left: -maxDrag, right: 0 }}
       style={{ x }}
     >
-      <section className={`${styles.one}`} style={{ width: '100vw', flexShrink: '0', justifyContent: 'center', alignItems: 'center', height: '100vh', display: 'flex', position: 'relative' }}>
+      <section className={`${styles.section} ${styles.one}`}>
         <div className={styles.backgroundWrapper}>
           {activeData?.DesktopMedia.EnableMuxVideo &&
             activeData?.DesktopMedia.MuxVideo?.playback_id && (
@@ -291,8 +291,8 @@ export default function AestheticsDetail() {
         </motion.div>
       </section>
       {activeData.Blocks.map((block, index) => (
-        // <section key={index} className={`${styles.section} media-section`} style={{ width: '70vw' }}>
-          <BlockRenderer block={block} />
+        // <section key={index} className={`${styles.section} media-section`}>
+          <BlockRenderer key={index} block={block} />
         // </section>
       ))}
     </motion.div>

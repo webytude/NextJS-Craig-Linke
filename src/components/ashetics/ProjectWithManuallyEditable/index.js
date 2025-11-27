@@ -1,10 +1,10 @@
 import AsheticsCard from '@/components/common/AsheticsCard'
-import React from 'react'
+import astheticsStyles from '../style/asthetics..module.css';
 
 export default function ProjectWithManuallyEditable({ data }) {
   return (
-    <div>
-      <AsheticsCard data={data} />
-    </div>
+    <section className={`${astheticsStyles.section} ${astheticsStyles.projectWithManuallyEditable}`}>
+    <AsheticsCard data={data} />
+    </section>
   )
 }
