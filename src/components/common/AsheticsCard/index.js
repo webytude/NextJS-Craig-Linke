@@ -5,13 +5,19 @@ import Paragraph from '@/components/ui/Paragraph';
 import LinkWithArrow from '@/components/ui/Link';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import MediaRenderer from '../MediaRenderer';
+import HoverZoom from '@/components/ui/animations/HoverZoom';
+import Link from 'next/link';
 
 export default function AsheticsCard({ data }) {
   return (
     <div className={styles.asheticsCard}>
       <Heading level={4}>{data?.Title}</Heading>
       <div className={styles.imageWrapper}>
-        <MediaRenderer media={data?.Media || data?.DesktopMedia} width={334} height={434} />
+        <HoverZoom>
+          <Link href={data?.Button?.ButtonUR || `${data?.Slug}` || "#"}>
+            <MediaRenderer media={data?.Media || data?.DesktopMedia} width={334} height={434} />
+          </Link>
+        </HoverZoom>
       </div>
       <div className={styles.contentWrapper}>
       <div className={styles.description}>

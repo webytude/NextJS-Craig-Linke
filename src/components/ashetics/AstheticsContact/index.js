@@ -20,7 +20,10 @@ export default function AstheticsContact({ data }) {
           borderBottom
           borderColor="#EAEAE8"
         >
-          <div className="uppercase">{Title}</div>
+          <div className="flex justify-space-between fullWidth">
+            <div className="uppercase">{'( 04 )'}</div>
+            <div className="uppercase">{Title}</div>
+          </div>
           <div className="heading">
             <BlocksRenderer content={Description || []} />
           </div>

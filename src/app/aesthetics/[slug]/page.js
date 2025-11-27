@@ -55,7 +55,7 @@ export default function AestheticsDetail() {
   const astheticsData = data?.astheticsDetails || [];
   const targetSlug = currentSlug || "new-heritage";
   const activeData = astheticsData.find((item) => item.Slug === targetSlug);
-  const globalData = headerData?.data?.global?.Header;
+  const globalData = headerData?.data?.global;
 
   useEffect(() => {
     if (!incomingData) return;
@@ -194,18 +194,15 @@ export default function AestheticsDetail() {
       style={{ x }}
     >
       <section className={`${styles.one}`} style={{ width: '100vw', flexShrink: '0', justifyContent: 'center', alignItems: 'center', height: '100vh', display: 'flex', position: 'relative' }}>
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            zIndex: 100,
-          }}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: showInnerContent ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+          className={styles.header}
           onPointerDownCapture={(e) => e.stopPropagation()} 
         >
           <Header globalData={globalData} /> 
-        </div>
+        </motion.div>
 
         <div className={styles.backgroundWrapper}>
           {activeData?.DesktopMedia.EnableMuxVideo &&
