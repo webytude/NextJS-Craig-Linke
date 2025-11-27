@@ -10,12 +10,9 @@
   transition: color 0.3s ease;
   text-transform: uppercase;
 }
-
 .link:hover {
-  color: #BBAEA1;
+  color: #fff;
 }
-
-/* arrow animation */
 .arrow {
   display: inline-block;
   transition: transform 0.3s ease;
@@ -24,8 +21,6 @@
 .link:hover .arrow {
   transform: translateX(5px);
 }
-
-/* underline animation */
 .underline {
   position: absolute;
   left: 0;

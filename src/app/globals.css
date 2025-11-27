@@ -240,7 +240,7 @@ textarea {
 }
 .image {
   width: 100%;
-  /* height: auto; */
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -287,15 +287,19 @@ textarea {
 }
 .aesthetics-container .full-width-media {
   width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
+  height: calc(100vh - 53px);
+  /* flex-shrink: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   position: relative;
   padding: 0;
   border-right: 1px solid #EAEAE8;
   width: 1400px;
+}
+.aesthetics-container .full-width-media .p20,
+.mediaWithTopBottomContent .p20 {
+  height: 100%;
 }
 .media-section .full-width-media {
   width: 100%;

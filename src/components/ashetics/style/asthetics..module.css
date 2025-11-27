@@ -1,5 +1,6 @@
 .section {
-  height: 100vh;
+  /* height: 100vh; */
+  height: calc(100vh - 53px);
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -7,9 +8,9 @@
   position: relative;
   border-right: 1px solid #EAEAE8;
 }
-.section:last-child {
+/* .section:last-child {
   border-right: none;
-}
+} */
 .projectWithManuallyEditable {
     width: 1000px;
 }
