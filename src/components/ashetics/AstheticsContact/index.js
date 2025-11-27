@@ -24,7 +24,7 @@ export default function AstheticsContact({ data }) {
             <div className="uppercase">{'( 04 )'}</div>
             <div className="uppercase">{Title}</div>
           </div>
-          <div className="heading">
+          <div className="heading" style={{ maxWidth: 500 }}>
             <BlocksRenderer content={Description || []} />
           </div>
         </Box>

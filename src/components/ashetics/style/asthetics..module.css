@@ -1,4 +1,16 @@
-.section {
+
+/* .section:last-child {
+  border-right: none;
+} */
+.box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    .section {
   /* height: 100vh; */
   height: calc(100vh - 53px);
   flex-shrink: 0;
@@ -8,10 +20,7 @@
   position: relative;
   border-right: 1px solid #EAEAE8;
 }
-/* .section:last-child {
-  border-right: none;
-} */
-.projectWithManuallyEditable {
+    .projectWithManuallyEditable {
     width: 1000px;
 }
 .imageAndText {
@@ -27,15 +36,10 @@
 .relatedAesthetics {
     width: 1500px;
 }
-.box {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    height: 100%;
-}
-.full {
+  .full {
     width: 100vw;
-}
-.half {
-    width: 50vw;
+    }
+    .half {
+        width: 50vw;
+    }
 }

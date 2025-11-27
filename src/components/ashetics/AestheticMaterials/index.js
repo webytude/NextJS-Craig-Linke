@@ -15,7 +15,7 @@ export default function AestheticMaterials({ data }) {
       <div className={`${astheticsStyles.box}`}>
       <Box fullHeight direction="column" justify="space-between" borderBottom borderColor="#EAEAE8">
         <div className="uppercase">{Title}</div>
-         <div className='heading'>
+         <div className='heading' style={{ maxWidth: 445 }}>
             <BlocksRenderer content={TopContent || []} />
         </div>
       </Box>

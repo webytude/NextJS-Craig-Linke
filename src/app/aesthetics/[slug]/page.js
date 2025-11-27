@@ -42,6 +42,8 @@ export default function AestheticsDetail() {
   const oldRef = useRef(null);
   const newRef = useRef(null);
 
+  const isMobile = screenWidth < 768;
+
   const { data, loading, error } = useQuery(ASTHETICS_QUERY_SLUG, {
     fetchPolicy: "cache-first",
     notifyOnNetworkStatusChange: true,
@@ -115,6 +117,7 @@ export default function AestheticsDetail() {
   // }, [x, maxDrag]);
 
   useEffect(() => {
+    if (screenWidth < 768) return; 
     const activeEl = incomingData ? newRef.current : oldRef.current;
     if (!activeEl) return;
 
@@ -185,123 +188,129 @@ export default function AestheticsDetail() {
   if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;  
 
-  const renderContent = (activeData) => (
-    <motion.div
-      ref={containerRef}
-      className={`${styles.container} aesthetics-container`}
-      drag="x"
-      dragConstraints={{ left: -maxDrag, right: 0 }}
-      style={{ x }}
-    >
-      <section className={`${styles.one}`} style={{ width: '100vw', flexShrink: '0', justifyContent: 'center', alignItems: 'center', height: '100vh', display: 'flex', position: 'relative' }}>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showInnerContent ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-          className={styles.header}
-          onPointerDownCapture={(e) => e.stopPropagation()} 
-        >
-          <Header globalData={globalData} /> 
-        </motion.div>
+  const renderContent = (activeData) => {
+    const isMobile = screenWidth < 768;
 
-        <div className={styles.backgroundWrapper}>
-          {activeData?.DesktopMedia.EnableMuxVideo &&
-            activeData?.DesktopMedia.MuxVideo?.playback_id && (
-              <MuxPlayer
-                playbackId={activeData?.DesktopMedia.MuxVideo.playback_id}
-                streamType="on-demand"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                style={{
-                  aspectRatio: "16 / 9",
-                  width: "100%",
-                  height: "100%",
-                }}
-              />
-            )}
-          {!activeData?.DesktopMedia?.EnableMuxVideo &&
-            Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
-            activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
-              <Image
-                src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
-                alt={
-                  activeData?.DesktopMedia.ImageORCarousel[0]
-                    ?.alternativeText || ""
-                }
-                width={1905}
-                height={1271}
-                className={styles.mainMedia}
-              />
-            )}
-        </div>
-        <div className={styles.overlay}></div>
+    return (
+      (
         <motion.div
-          className={styles.content}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showInnerContent ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
+          ref={containerRef}
+          className={`${styles.container} aesthetics-container`}
+          drag={isMobile ? false : "x"} 
+          dragConstraints={{ left: -maxDrag, right: 0 }}
+          style={isMobile ? {} : { x }}
         >
-          <div className={`${styles.child} ${styles.topLeft}`}>
-            <ul className={styles.topNav}>
-              <li>
-                <Link href={"#"}>OVERVIEW</Link>
-              </li>
-              <li>
-                <Link href={"#"}>MATERIAL APPROACH</Link>
-              </li>
-              <li>
-                <Link href={"#"}>COLOURS AND TONES</Link>
-              </li>
-              <li>
-                <Link href={"#"}>RELATED AESTHETICS </Link>
-              </li>
-            </ul>
-          </div>
-          <div className={`${styles.child} ${styles.topRight}`}>
-            <Paragraph>
-              <BlocksRenderer content={activeData.Description || []} />
-            </Paragraph>
-          </div>
-          <div className={`${styles.child} ${styles.bottomLeft}`}>
-            <div className={`${styles.navItem}`}>
-              {astheticsData.map((item) => {
-                const isActive = pathname === `/aesthetics/${item.Slug}`;
-                return (
-                  <Link
-                    key={item.Slug}
-                    href={item.Slug}
-                    className={isActive ? "activeLink" : "normalLink"}
-                  >
-                    <span className={styles.icon}>
-                      {isActive ? "(•)" : "( )"}
-                    </span>
-                    <span className={styles.label}>{item.Name}</span>
-                  </Link>
-                );
-              })}
+          <section className={`${styles.one}`} style={{ width: '100vw', flexShrink: '0', justifyContent: 'center', alignItems: 'center', height: '100vh', display: 'flex', position: 'relative' }}>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: showInnerContent ? 1 : 0 }}
+              transition={{ duration: 0.5 }}
+              className={styles.header}
+              onPointerDownCapture={(e) => e.stopPropagation()} 
+            >
+              <Header globalData={globalData} /> 
+            </motion.div>
+
+            <div className={styles.backgroundWrapper}>
+              {activeData?.DesktopMedia.EnableMuxVideo &&
+                activeData?.DesktopMedia.MuxVideo?.playback_id && (
+                  <MuxPlayer
+                    playbackId={activeData?.DesktopMedia.MuxVideo.playback_id}
+                    streamType="on-demand"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    style={{
+                      aspectRatio: "16 / 9",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  />
+                )}
+              {!activeData?.DesktopMedia?.EnableMuxVideo &&
+                Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
+                activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
+                  <Image
+                    src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
+                    alt={
+                      activeData?.DesktopMedia.ImageORCarousel[0]
+                        ?.alternativeText || ""
+                    }
+                    width={1905}
+                    height={1271}
+                    className={styles.mainMedia}
+                  />
+                )}
             </div>
-          </div>
-          <div className={`${styles.child} ${styles.bottomRight}`}>
-            <LinkWithArrow text={"SCROLL"} href={"#"} />
-          </div>
-          <div className={`${styles.child} ${styles.center}`}>
-            <Heading level={1} className={styles.mainHeading}>
-              {activeData.Name}
-            </Heading>
-          </div>
-        </motion.div>
-      </section>
-      {activeData.Blocks.map((block, index) => (
-        <section key={index}>
-          <div className={styles.headerSpacer} />
-          <BlockRenderer key={index} block={block} />
+            <div className={styles.overlay}></div>
+            <motion.div
+              className={styles.content}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: showInnerContent ? 1 : 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className={`${styles.child} ${styles.topLeft} hide-mobile`}>
+                <ul className={styles.topNav}>
+                  <li>
+                    <Link href={"#"}>OVERVIEW</Link>
+                  </li>
+                  <li>
+                    <Link href={"#"}>MATERIAL APPROACH</Link>
+                  </li>
+                  <li>
+                    <Link href={"#"}>COLOURS AND TONES</Link>
+                  </li>
+                  <li>
+                    <Link href={"#"}>RELATED AESTHETICS </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className={`${styles.child} ${styles.topRight}`}>
+                <Paragraph>
+                  <BlocksRenderer content={activeData.Description || []} />
+                </Paragraph>
+              </div>
+              <div className={`${styles.child} ${styles.bottomLeft}`}>
+                <div className={`${styles.navItem}`}>
+                  {astheticsData.map((item) => {
+                    const isActive = pathname === `/aesthetics/${item.Slug}`;
+                    return (
+                      <Link
+                        key={item.Slug}
+                        href={item.Slug}
+                        className={isActive ? "activeLink" : "normalLink"}
+                      >
+                        <span className={styles.icon}>
+                          {isActive ? "(•)" : "( )"}
+                        </span>
+                        <span className={styles.label}>{item.Name}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className={`${styles.child} ${styles.bottomRight} hide-mobile`}>
+                <LinkWithArrow text={"SCROLL"} href={"#"} />
+              </div>
+              <div className={`${styles.child} ${styles.center}`}>
+                <Heading level={1} className={styles.mainHeading}>
+                  {activeData.Name}
+                </Heading>
+              </div>
+            </motion.div>
           </section>
-      ))}
-    </motion.div>
-  );
+          {activeData.Blocks.map((block, index) => (
+            <section key={index}>
+              <div className={`${styles.headerSpacer} hide-mobile`} />
+              <BlockRenderer key={index} block={block} />
+              </section>
+          ))}
+        </motion.div>
+      )
+    )
+  }
 
   return (
     <div className={styles.wrapper}>
