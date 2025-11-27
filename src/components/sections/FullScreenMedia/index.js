@@ -1,6 +1,5 @@
 "use client";
 
-import { renderRichText } from "@/utils/richText";
 import { useEffect, useState } from "react";
 import styles from "./fullScreenMedia.module.css";
 import Image from "next/image";
@@ -68,11 +67,70 @@ export default function FullScreenMedia({ data }) {
     }
   };
 
+  const renderMediaItem = (mediaData) => {
+    if (mediaData?.EnableMuxVideo && mediaData?.MuxVideo?.playback_id) {
+      return (
+        <MuxPlayer
+          playbackId={mediaData.MuxVideo.playback_id}
+          streamType="on-demand"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          style={{ aspectRatio: '16 / 9', width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      );
+    }
+    if (!mediaData?.EnableMuxVideo && Array.isArray(mediaData?.ImageORCarousel) && mediaData.ImageORCarousel.length > 0) {
+      return (
+        <Image
+          src={mediaData.ImageORCarousel[0].url}
+          alt={mediaData.ImageORCarousel[0]?.alternativeText || ""}
+          fill
+          style={{ objectFit: "cover" }}
+          className={styles.mainMedia}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <section className="aesthetics FullScreenMedia">
       <div className="positionRelative">
         <div className={styles.backgroundWrapper}>
-          {currentMedia?.EnableMuxVideo && currentMedia?.MuxVideo?.playback_id && (
+          <div
+            style={{
+              opacity: currentMedia === DefaultMedia ? 1 : 0,
+              transition: 'opacity 0.7s ease-in-out',
+              zIndex: currentMedia === DefaultMedia ? 10 : 1,
+            }}
+            className={styles.bgPostion}
+          >
+            {renderMediaItem(DefaultMedia)}
+          </div>
+          {TextList.map((item, index) => {
+            if (!item.HoverMedia) return null;
+
+            const isActive = currentMedia === item.HoverMedia;
+
+            return (
+              <div
+                key={index}
+                style={{
+                  opacity: isActive ? 1 : 0,
+                  transition: 'opacity 0.7s ease-in-out',
+                  zIndex: isActive ? 10 : 1,
+                  pointerEvents: 'none'
+                }}
+                className={styles.bgPostion}
+              >
+                {renderMediaItem(item.HoverMedia)}
+              </div>
+            );
+          })}
+          {/* {currentMedia?.EnableMuxVideo && currentMedia?.MuxVideo?.playback_id && (
             <MuxPlayer
               playbackId={currentMedia.MuxVideo.playback_id}
               streamType="on-demand"
@@ -88,11 +146,13 @@ export default function FullScreenMedia({ data }) {
             <Image
               src={currentMedia.ImageORCarousel[0].url}
               alt={currentMedia.ImageORCarousel[0]?.alternativeText || ""}
-              width={1905}
-              height={1271}
+              // width={1905}
+              // height={1271}
+              fill
+              style={{ objectFit: "cover" }}
               className={styles.mainMedia}
             />
-          )}
+          )} */}
         </div>
         <div className={styles.overlay}></div>
 
