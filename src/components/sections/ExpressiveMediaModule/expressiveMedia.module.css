@@ -1,0 +1,23 @@
+.sliderNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    color: #BBAEA1;
+    min-height: 400px;
+}
+.sliderNav button {
+    background: none;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #BBAEA1;
+}
+.sliderNav button:disabled {
+    opacity: 0.3;
+}
+@media (max-width: 768px) {
+    .sliderNav {
+        min-height: auto;
+    }
+}
