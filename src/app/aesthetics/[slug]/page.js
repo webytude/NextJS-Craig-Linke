@@ -59,6 +59,8 @@ export default function AestheticsDetail() {
   const activeData = astheticsData.find((item) => item.Slug === targetSlug);
   const globalData = headerData?.data?.global;
 
+  console.log("activeData", activeData);
+
   useEffect(() => {
     if (!incomingData) return;
 
@@ -87,15 +89,17 @@ export default function AestheticsDetail() {
   }, []);
 
   useEffect(() => {
-  const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-  if (!activeElWrapper) return;
-  const scrollContainer = activeElWrapper.querySelector(`.${styles.container}`);
+    const activeElWrapper = incomingData ? newRef.current : oldRef.current;
+    if (!activeElWrapper) return;
+    const scrollContainer = activeElWrapper.querySelector(
+      `.${styles.container}`
+    );
 
-  if (scrollContainer) {
-    const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
-    setMaxDrag(Math.max(0, calculatedMaxDrag));
-  }
-}, [incomingData, activeData, screenWidth]);
+    if (scrollContainer) {
+      const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
+      setMaxDrag(Math.max(0, calculatedMaxDrag));
+    }
+  }, [incomingData, activeData, screenWidth]);
 
   // const maxDrag = screenWidth * activeData?.Blocks.length;
 
@@ -117,7 +121,7 @@ export default function AestheticsDetail() {
   // }, [x, maxDrag]);
 
   useEffect(() => {
-    if (screenWidth < 768) return; 
+    if (screenWidth < 768) return;
     const activeEl = incomingData ? newRef.current : oldRef.current;
     if (!activeEl) return;
 
@@ -134,7 +138,7 @@ export default function AestheticsDetail() {
     return () => {
       activeEl.removeEventListener("wheel", handleWheel);
     };
-}, [incomingData, maxDrag, x]);
+  }, [incomingData, maxDrag, x]);
 
   useEffect(() => {
     const unsubscribe = x.on("change", (value) => {
@@ -143,26 +147,32 @@ export default function AestheticsDetail() {
     return () => unsubscribe();
   }, [x, screenWidth]);
 
-  const scrollToSection = (index) => {
+  const scrollToSection = (blockIndex) => {
     const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-    const scrollContainer = activeElWrapper?.querySelector(`.${styles.container}`);
-    
+    if (!activeElWrapper) return;
+
+    const scrollContainer = activeElWrapper.querySelector(`.${styles.container}`);
     if (!scrollContainer) return;
-    
+
     const sections = scrollContainer.children;
-    const targetSection = sections[index];
+    
+    const targetSection = sections[blockIndex + 1];
 
     if (targetSection) {
-      const targetPosition = -targetSection.offsetLeft;
+      if (screenWidth < 768) {
+        targetSection.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+      } else {
+        const targetPosition = -targetSection.offsetLeft;
 
-      if (animationRef.current) animationRef.current.stop();
+        if (animationRef.current) animationRef.current.stop();
 
-      animationRef.current = animate(x, targetPosition, {
-        type: "spring",
-        stiffness: 120,
-        damping: 20,
-        onComplete: () => (animationRef.current = null),
-      });
+        animationRef.current = animate(x, targetPosition, {
+          type: "spring",
+          stiffness: 60,
+          damping: 20,
+          onComplete: () => (animationRef.current = null),
+        });
+      }
     }
   };
 
@@ -186,131 +196,144 @@ export default function AestheticsDetail() {
   }, [activeData]);
 
   if (loading) return <Loading />;
-  if (error) return <p>Error loading data</p>;  
+  if (error) return <p>Error loading data</p>;
 
   const renderContent = (activeData) => {
     const isMobile = screenWidth < 768;
 
     return (
-      (
-        <motion.div
-          ref={containerRef}
-          className={`${styles.container} aesthetics-container`}
-          drag={isMobile ? false : "x"} 
-          dragConstraints={{ left: -maxDrag, right: 0 }}
-          style={isMobile ? {} : { x }}
+      <motion.div
+        ref={containerRef}
+        className={`${styles.container} aesthetics-container`}
+        drag={isMobile ? false : "x"}
+        dragConstraints={{ left: -maxDrag, right: 0 }}
+        style={isMobile ? {} : { x }}
+      >
+        <section
+          className={`${styles.one}`}
+          style={{
+            width: "100vw",
+            flexShrink: "0",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            display: "flex",
+            position: "relative",
+          }}
         >
-          <section className={`${styles.one}`} style={{ width: '100vw', flexShrink: '0', justifyContent: 'center', alignItems: 'center', height: '100vh', display: 'flex', position: 'relative' }}>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showInnerContent ? 1 : 0 }}
-              transition={{ duration: 0.5 }}
-              className={styles.header}
-              onPointerDownCapture={(e) => e.stopPropagation()} 
-            >
-              <Header globalData={globalData} /> 
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: showInnerContent ? 1 : 0 }}
+            transition={{ duration: 0.5 }}
+            className={styles.header}
+            onPointerDownCapture={(e) => e.stopPropagation()}
+          >
+            <Header globalData={globalData} />
+          </motion.div>
 
-            <div className={styles.backgroundWrapper}>
-              {activeData?.DesktopMedia.EnableMuxVideo &&
-                activeData?.DesktopMedia.MuxVideo?.playback_id && (
-                  <MuxPlayer
-                    playbackId={activeData?.DesktopMedia.MuxVideo.playback_id}
-                    streamType="on-demand"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    style={{
-                      aspectRatio: "16 / 9",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                )}
-              {!activeData?.DesktopMedia?.EnableMuxVideo &&
-                Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
-                activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
-                  <Image
-                    src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
-                    alt={
-                      activeData?.DesktopMedia.ImageORCarousel[0]
-                        ?.alternativeText || ""
-                    }
-                    width={1905}
-                    height={1271}
-                    className={styles.mainMedia}
-                  />
-                )}
-            </div>
-            <div className={styles.overlay}></div>
-            <motion.div
-              className={styles.content}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showInnerContent ? 1 : 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className={`${styles.child} ${styles.topLeft} hide-mobile`}>
-                <ul className={styles.topNav}>
-                  <li>
-                    <Link href={"#"}>OVERVIEW</Link>
-                  </li>
-                  <li>
-                    <Link href={"#"}>MATERIAL APPROACH</Link>
-                  </li>
-                  <li>
-                    <Link href={"#"}>COLOURS AND TONES</Link>
-                  </li>
-                  <li>
-                    <Link href={"#"}>RELATED AESTHETICS </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className={`${styles.child} ${styles.topRight}`}>
-                <Paragraph>
-                  <BlocksRenderer content={activeData.Description || []} />
-                </Paragraph>
-              </div>
-              <div className={`${styles.child} ${styles.bottomLeft}`}>
-                <div className={`${styles.navItem}`}>
-                  {astheticsData.map((item) => {
-                    const isActive = pathname === `/aesthetics/${item.Slug}`;
+          <div className={styles.backgroundWrapper}>
+            {activeData?.DesktopMedia.EnableMuxVideo &&
+              activeData?.DesktopMedia.MuxVideo?.playback_id && (
+                <MuxPlayer
+                  playbackId={activeData?.DesktopMedia.MuxVideo.playback_id}
+                  streamType="on-demand"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  style={{
+                    aspectRatio: "16 / 9",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                />
+              )}
+            {!activeData?.DesktopMedia?.EnableMuxVideo &&
+              Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
+              activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
+                <Image
+                  src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
+                  alt={
+                    activeData?.DesktopMedia.ImageORCarousel[0]
+                      ?.alternativeText || ""
+                  }
+                  width={1905}
+                  height={1271}
+                  className={styles.mainMedia}
+                />
+              )}
+          </div>
+          <div className={styles.overlay}></div>
+          <motion.div
+            className={styles.content}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: showInnerContent ? 1 : 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className={`${styles.child} ${styles.topLeft} hide-mobile`}>
+              <ul className={styles.topNav}>
+                {activeData.Blocks.map((item, index) => {
+                  if (item.ShowInQuickView && item.Title) {
                     return (
-                      <Link
-                        key={item.Slug}
-                        href={item.Slug}
-                        className={isActive ? "activeLink" : "normalLink"}
-                      >
-                        <span className={styles.icon}>
-                          {isActive ? "(•)" : "( )"}
-                        </span>
-                        <span className={styles.label}>{item.Name}</span>
-                      </Link>
+                      <li key={item.id || index}>
+                        <Link href={"#"} 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection(index);
+                          }}>{item.Title}</Link>
+                      </li>
                     );
-                  })}
-                </div>
+                  }
+                  return null;
+                })}
+              </ul>
+            </div>
+            <div className={`${styles.child} ${styles.topRight}`}>
+              <Paragraph>
+                <BlocksRenderer content={activeData.Description || []} />
+              </Paragraph>
+            </div>
+            <div className={`${styles.child} ${styles.bottomLeft}`}>
+              <div className={`${styles.navItem}`}>
+                {astheticsData.map((item) => {
+                  const isActive = pathname === `/aesthetics/${item.Slug}`;
+                  return (
+                    <Link
+                      key={item.Slug}
+                      href={item.Slug}
+                      className={isActive ? "activeLink" : "normalLink"}
+                    >
+                      <span className={styles.icon}>
+                        {isActive ? "(•)" : "( )"}
+                      </span>
+                      <span className={styles.label}>{item.Name}</span>
+                    </Link>
+                  );
+                })}
               </div>
-              <div className={`${styles.child} ${styles.bottomRight} hide-mobile`}>
-                <LinkWithArrow text={"SCROLL"} href={"#"} />
-              </div>
-              <div className={`${styles.child} ${styles.center}`}>
-                <Heading level={1} className={styles.mainHeading}>
-                  {activeData.Name}
-                </Heading>
-              </div>
-            </motion.div>
+            </div>
+            <div
+              className={`${styles.child} ${styles.bottomRight} hide-mobile`}
+            >
+              <LinkWithArrow text={"SCROLL"} href={"#"} />
+            </div>
+            <div className={`${styles.child} ${styles.center}`}>
+              <Heading level={1} className={styles.mainHeading}>
+                {activeData.Name}
+              </Heading>
+            </div>
+          </motion.div>
+        </section>
+        {activeData.Blocks.map((block, index) => (
+          <section key={index}>
+            <div className={`${styles.headerSpacer} hide-mobile`} />
+            <BlockRenderer key={index} block={block} />
           </section>
-          {activeData.Blocks.map((block, index) => (
-            <section key={index}>
-              <div className={`${styles.headerSpacer} hide-mobile`} />
-              <BlockRenderer key={index} block={block} />
-              </section>
-          ))}
-        </motion.div>
-      )
-    )
-  }
+        ))}
+      </motion.div>
+    );
+  };
 
   return (
     <div className={styles.wrapper}>
