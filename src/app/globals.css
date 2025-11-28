@@ -332,7 +332,7 @@ textarea {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   border-right: 1px solid #EAEAE8; 
   height: 100%;
 }
