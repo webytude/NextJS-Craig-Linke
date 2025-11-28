@@ -167,7 +167,7 @@ export default function AestheticsDetail() {
   };
 
   useEffect(() => {
-    const finalTheme = "Malt";
+    const finalTheme = "Malt page-aesthetics";
     window.__PAGE_THEME_COLOR__ = finalTheme;
     window.dispatchEvent(new Event("theme-change"));
   }, []);

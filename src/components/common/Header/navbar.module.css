@@ -8,6 +8,7 @@
   position: relative;
   padding: 0px 20px;
   overflow: hidden;
+  transition: background-color 0.8s ease-in-out;
 }
 .nav {
   position: absolute;
@@ -128,6 +129,9 @@
     background: #5B272F;
     color: #FFFAF2;
     overflow: hidden;
+  }
+  .mobileMenu :global(.header-aesthetics) {
+    background: #5B272F;
   }
   .menuBottom {
     position: absolute;
