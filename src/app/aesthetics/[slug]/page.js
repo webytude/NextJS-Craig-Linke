@@ -59,8 +59,6 @@ export default function AestheticsDetail() {
   const activeData = astheticsData.find((item) => item.Slug === targetSlug);
   const globalData = headerData?.data?.global;
 
-  console.log("activeData", activeData);
-
   useEffect(() => {
     if (!incomingData) return;
 
