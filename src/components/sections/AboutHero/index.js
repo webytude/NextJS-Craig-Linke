@@ -10,8 +10,17 @@ import styles from "./aboutHero.module.css";
 import FadeUp from "@/components/ui/animations/FadeUp";
 import Heading from "@/components/ui/Heading";
 
-export default function AboutHero({ data }) {
+export default function AboutHero({ data, quickLinks }) {
+  console.log('AboutHero', data)
   const { Title, SubTitle, Buttons, ShortText, RightSideMedia } = data;
+
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const leftContent = (
     <>
@@ -33,14 +42,22 @@ export default function AboutHero({ data }) {
         equalChildren
       >
         <div className={`${styles.navItem} p20`}>
-          {/* {Buttons.map((item, index) => (
-            <div key={index}>
-              <Link href={item.ButtonURL || "#"}>
-                <span className={styles.icon}>( )</span>
-                <span className={styles.label}>{item.ButtonText}</span>
-              </Link>
-            </div>
-          ))} */}
+          {quickLinks && quickLinks.length > 0 ? (
+             quickLinks.map((link, index) => (
+                <div key={index}>
+                  <Link 
+                    href={`#${link.id}`} 
+                    onClick={(e) => handleScroll(e, link.id)}
+                    style={{ textDecoration: 'none', cursor: 'pointer' }}
+                  >
+                    <span className={styles.icon}>( )</span>
+                    <span className={styles.label}>{link.label}</span>
+                  </Link>
+                </div>
+             ))
+          ) : (
+             null
+          )}
         </div>
         <div className="p20 text-right">
           <div className="text-light uppercase">{ShortText}</div>

@@ -8,6 +8,11 @@ import { useEffect } from "react";
 import Loading from "@/components/common/Loading";
 import PageNotFound from "../PageNotFound";
 
+const generateId = (text) => {
+  if (!text) return "";
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+};
+
 export default function page() {
   const { slug } = useParams();
   const { data, loading, error } = useQuery(PAGES_QUERY);
@@ -25,13 +30,23 @@ export default function page() {
 
   if (loading) return <Loading />;
   if (error) return <p>Error loading data</p>;
-  if (!page) return <PageNotFound />;    
+  if (!page) return <PageNotFound />; 
+  
+  const quickViewLinks = page.Blocks
+  .filter(block => block.ShowInQuickView === true && block.Title)
+  .map(block => ({
+    label: block.Title,
+    id: generateId(block.Title)
+  }));
+
+  console.log('PAGE DATA', page)
 
     return (
     <>
       {page.Blocks.map((block, index) => (
-        <BlockRenderer key={index} block={block} />
+        <BlockRenderer key={index} block={block} quickViewLinks={quickViewLinks} blockId={block.ShowInQuickView === true ? generateId(block.Title) : null} />
       ))}
     </>
   );
 }
+

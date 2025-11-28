@@ -97,6 +97,7 @@ const BLOCKS_SELECTION = `
   }
   ... on ComponentSectionInteriorDesign {
     Title
+    ShowInQuickView
     SubTitle
     ShowInQuickView
     InteriorDesign: Description
@@ -444,6 +445,7 @@ export const PAGES_QUERY = gql`
         }
         ... on ComponentSectionInteriorDesign {
           Title
+          ShowInQuickView
           SubTitle
           InteriorDesign: Description
           Button {
@@ -488,6 +490,7 @@ export const PAGES_QUERY = gql`
         }
         ... on ComponentSectionTextModule {
           Title
+          ShowInQuickView
           SideContent(pagination: { limit: -1 }) {
             Content
           }

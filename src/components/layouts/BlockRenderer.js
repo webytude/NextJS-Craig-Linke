@@ -22,8 +22,10 @@ import TeamListing from "../sections/TeamListing";
 import TextModule from "../sections/TextModule";
 import TwoColumnMediaAndText from "../sections/TwoColumnMediaAndText";
 
-export default function BlockRenderer({ block }) {
-  switch (block.__typename) {
+export default function BlockRenderer({ block, quickViewLinks, blockId }) {
+
+  const Component = () => {
+    switch (block.__typename) {
 
     case "ComponentSectionHomeHero":
       return <HomeHero data={block} />;
@@ -59,7 +61,7 @@ export default function BlockRenderer({ block }) {
       return <ExploreProjects data={block} />;
 
     case "ComponentSectionAboutHero":
-      return <AboutHero data={block} />;
+      return <AboutHero data={block} quickLinks={quickViewLinks} />;
 
     case "ComponentSection4RowMediaAndText":
       return <FourRowMediaAndText data={block} />;
@@ -97,5 +99,16 @@ export default function BlockRenderer({ block }) {
 
     default:
       return null;
+    }
   }
+
+  if (blockId) {
+    return (
+      <div id={blockId} style={{ scrollMarginTop: '100px' }}>
+         <Component />
+      </div>
+    );
+  }
+
+  return <Component />;
 }
