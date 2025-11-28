@@ -42,7 +42,7 @@ export default function AestheticsDetail() {
   const oldRef = useRef(null);
   const newRef = useRef(null);
 
-  const isMobile = screenWidth < 768;
+  // const isMobile = screenWidth < 768;
 
   const { data, loading, error } = useQuery(ASTHETICS_QUERY_SLUG, {
     fetchPolicy: "cache-first",
@@ -322,13 +322,7 @@ export default function AestheticsDetail() {
             initial={false}
             animate={{ opacity: incomingData ? 1 : 1 }}
             exit={{ opacity: 0 }}
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              top: 0,
-              left: 0,
-            }}
+            className={styles.content}
           >
             {renderContent(displayData)}
           </motion.div>
@@ -342,13 +336,7 @@ export default function AestheticsDetail() {
             animate={{ y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              top: 0,
-              left: 0,
-            }}
+            className={styles.content}
           >
             {renderContent(incomingData)}
           </motion.div>

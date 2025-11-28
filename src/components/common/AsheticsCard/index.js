@@ -9,10 +9,11 @@ import HoverZoom from '@/components/ui/animations/HoverZoom';
 import Link from 'next/link';
 
 export default function AsheticsCard({ data }) {
+  const blockType = data.__typename;
   return (
     <div className={styles.asheticsCard}>
-      <Heading level={4}>{data?.Title}</Heading>
-      <div className={styles.imageWrapper}>
+      <Heading className={blockType === 'AstheticsDetail' ? 'hide-mobile' : ''} level={4}>{data?.Title || data?.Name}</Heading>
+      <div className={blockType === 'AstheticsDetail' ? `${styles.imageWrapper} ${styles.relatedImageWrapper}` : styles.imageWrapper}>
         <HoverZoom>
           <Link href={data?.Button?.ButtonUR || `${data?.Slug}` || "#"}>
             <MediaRenderer media={data?.Media || data?.DesktopMedia} width={334} height={434} />
@@ -20,6 +21,7 @@ export default function AsheticsCard({ data }) {
         </HoverZoom>
       </div>
       <div className={styles.contentWrapper}>
+      {blockType === 'AstheticsDetail' && <Heading className='hide-desktop' level={4}>{data?.Title || data?.Name}</Heading>}
       <div className={styles.description}>
         <Paragraph>
           <BlocksRenderer content={data?.Description || []} />

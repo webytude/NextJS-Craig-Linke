@@ -37,4 +37,7 @@
     width: 100%;
     object-fit: cover;
   }
+  .relatedImageWrapper {
+    padding-top: 0;
+  }
 }

@@ -10,11 +10,11 @@ import Divider from "@/components/ui/Divider";
 import SocialLinks from "./SocialLinks";
 import ContctDetail from "./Contact";
 
-const Footer = ({ globalData }) => {
+const Footer = ({ globalData, hideOnMobile }) => {
   const data = globalData?.Footer;
   return (
     <>
-      <footer className={`${styles.footer} borderTop`}>
+      <footer className={`${styles.footer} ${hideOnMobile} borderTop`}>
         <div className={styles.inner}>
           <div className={styles.footerTop}>
             <SocialLinks socialLinks={data?.SocialLinks} />

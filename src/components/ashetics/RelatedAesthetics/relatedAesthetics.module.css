@@ -1,0 +1,40 @@
+.innerWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #EAEAE8; 
+  border-top: 1px solid #EAEAE8;
+  height: 100%;
+}
+@media (max-width: 768px) {
+  .innerWrapper {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .innerWrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .content {
+    flex: none;
+    width: 70vw;
+    scroll-snap-align: center;
+    padding: 44px 4px;
+  }
+  .content img {
+    width: 242px;
+    height: 312px;
+  }
+}

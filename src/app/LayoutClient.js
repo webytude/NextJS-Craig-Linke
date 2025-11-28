@@ -63,7 +63,8 @@ export default function LayoutClient({ children, globalData }) {
         <BodyTheme />
         {!isAestheticsPage && <Header globalData={globalData} />}
         <main>{children}</main>
-        {!isAestheticsPage && <Footer globalData={globalData} />}
+        {/* {!isAestheticsPage && <Footer globalData={globalData} />} */}
+        <Footer hideOnMobile={isAestheticsPage ? 'hide-desktop' : ''} globalData={globalData} />
       </ApolloWrapper>
       </div>
     </>
