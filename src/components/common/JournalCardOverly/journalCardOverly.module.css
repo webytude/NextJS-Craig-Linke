@@ -1,5 +1,6 @@
 .projectHighlight {
     position: relative;
+    height: calc(100vh - 40px);
 }
 .proOverlyContent {
     position: absolute;
@@ -7,6 +8,9 @@
     width: 100%;
     top: 0;
     left: 0;
+}
+.imgWrapper {
+    height: 100%;
 }
 .contentBottom {
     position: absolute;

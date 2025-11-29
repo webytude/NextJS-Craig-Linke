@@ -1,5 +1,8 @@
 import MediaRenderer from "@/components/common/MediaRenderer";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
+import SlideRight from "@/components/ui/animations/SlideRight";
 import Box from "@/components/ui/Box/Box";
 import Divider from "@/components/ui/Divider";
 import Paragraph from "@/components/ui/Paragraph";
@@ -38,7 +41,9 @@ export default function FourRowMediaAndText({ data }) {
   const leftContent = (
     <>
       <div className="p20 centerContent">
-        <MediaRenderer media={Media} width={431} height={578} />
+        <SlideRight>
+          <MediaRenderer media={Media} width={431} height={578} />
+        </SlideRight>
       </div>
     </>
   );
@@ -63,9 +68,15 @@ export default function FourRowMediaAndText({ data }) {
           >
             {row.map((item, itemIndex) => (
               <Box key={itemIndex} borderRight={itemIndex === 0} style={{ minHeight: 360 }}>
-                <div className="text-light uppercase pb20">{item.Title}</div>
+                <div className="text-light uppercase pb20">
+                  <FadeUp>
+                  {item.Title}
+                  </FadeUp>
+                </div>
                 <Paragraph>
+                  <FadeUp>
                   <BlocksRenderer content={item.Content || []} />
+                  </FadeUp>
                 </Paragraph>
               </Box>
             ))}

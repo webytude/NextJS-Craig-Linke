@@ -1,5 +1,7 @@
 import MediaRenderer from "@/components/common/MediaRenderer";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
 import Box from "@/components/ui/Box/Box";
 import Divider from "@/components/ui/Divider";
 import Paragraph from "@/components/ui/Paragraph";
@@ -30,9 +32,10 @@ export default function TwoColumnMediaAndText({ data }) {
   const leftContent = (
     <>
       <Box fullHeight borderBottom>
+        <SlideLeft className="fullWidth">
         <MediaRenderer media={RightSide.Media} width={716} height={452} classes={'image'} />
+        </SlideLeft>
       </Box>
-
       <Box
         fullHeight
         direction="row"
@@ -44,9 +47,15 @@ export default function TwoColumnMediaAndText({ data }) {
          <div className="content p20">
           {RightSide.Content.map((text, index) => (
             <div>
-              <div className="text-light uppercase pb20">{text.Title}</div>
+              <div className="text-light uppercase pb20">
+                <FadeUp>
+                {text.Title}
+                </FadeUp>
+              </div>
               <Paragraph key={index}>
+                <FadeUp>
                 <BlocksRenderer content={text.Content || []} />
+                </FadeUp>
               </Paragraph>
             </div>
           ))}
@@ -58,7 +67,9 @@ export default function TwoColumnMediaAndText({ data }) {
   const rightContent = (
     <>
       <div className="p20 centerContent">
-        <MediaRenderer media={LeftSide} width={431} height={578} />
+        <SlideLeft>
+          <MediaRenderer media={LeftSide} width={431} height={578} />
+        </SlideLeft>
       </div>
     </>
   );

@@ -1,4 +1,5 @@
 import ProjectCard from "@/components/common/ProjectCard";
+import FadeUp from "@/components/ui/animations/FadeUp";
 import Heading from "@/components/ui/Heading";
 import Spacer from "@/components/ui/Spacer";
 
@@ -9,9 +10,11 @@ export default function ExploreProjects({ data }) {
     <section className="explore-projects">
         <div className="container">
           <Spacer desktop={122} mobile={80} />
+          <FadeUp>
           <Heading level={4} align="center">
             {Title}
           </Heading>
+          </FadeUp>
           <Spacer desktop={40} />
           <div className="relatedProjects">
             <div className="grid">

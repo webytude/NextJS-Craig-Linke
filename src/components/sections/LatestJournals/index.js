@@ -4,8 +4,6 @@ import Spacer from "@/components/ui/Spacer";
 import { renderRichText } from "@/utils/richText";
 import JournalCard from "./JournalCard";
 import FadeUp from "@/components/ui/animations/FadeUp";
-import SlideLeft from "@/components/ui/animations/SlideLeft";
-import SlideRight from "@/components/ui/animations/SlideRight";
 
 export default function LatestJournals({ data }) {
   const { Title, Button, SelectJournals } = data;
@@ -24,10 +22,12 @@ export default function LatestJournals({ data }) {
         <div className="text-light uppercase"><FadeUp>{Title}</FadeUp></div>
         {Button && (
           <div className="hide-desktop">
+            <FadeUp>
             <LinkWithArrow
               text={Button.ButtonText}
               href={Button.ButtonURL}
             />
+            </FadeUp>
           </div>
         )}
       </div>

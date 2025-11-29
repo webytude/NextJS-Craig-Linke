@@ -26,6 +26,9 @@
   gap: 16px;
   transition: all 0.2s ease-in-out;
 }
+.navItem:hover {
+  opacity: 0.8;
+}
 
 .active {
   font-weight: 300;

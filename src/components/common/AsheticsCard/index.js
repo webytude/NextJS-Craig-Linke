@@ -7,11 +7,13 @@ import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import MediaRenderer from '../MediaRenderer';
 import HoverZoom from '@/components/ui/animations/HoverZoom';
 import Link from 'next/link';
+import FadeUp from '@/components/ui/animations/FadeUp';
 
 export default function AsheticsCard({ data }) {
   const blockType = data.__typename;
   return (
     <div className={styles.asheticsCard}>
+      <FadeUp>
       <Heading className={blockType === 'AstheticsDetail' ? 'hide-mobile' : ''} level={4}>{data?.Title || data?.Name}</Heading>
       <div className={blockType === 'AstheticsDetail' ? `${styles.imageWrapper} ${styles.relatedImageWrapper}` : styles.imageWrapper}>
         <HoverZoom>
@@ -31,6 +33,7 @@ export default function AsheticsCard({ data }) {
         <LinkWithArrow text={data?.Button?.ButtonText || "READ MORE"} href={data?.Button?.ButtonUR || `${data?.Slug}`} />
       </div>
       </div>
+      </FadeUp>
     </div>
   )
 }

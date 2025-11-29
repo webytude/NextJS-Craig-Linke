@@ -1,4 +1,5 @@
 import MediaRenderer from "@/components/common/MediaRenderer";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function FullWidthMedia({ data }) {
   const { Media, Padding } = data;
@@ -24,7 +25,9 @@ export default function FullWidthMedia({ data }) {
   return (
     <section className="full-width-media padding" style={sectionStyle}>
       <div className="p20">
+        <SlideLeft>
         <MediaRenderer media={Media} classes={'image'} />
+        </SlideLeft>
       </div>
     </section>
   );

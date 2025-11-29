@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import styles from './teamListing.module.css';
 import Image from 'next/image';
+import FadeUp from '@/components/ui/animations/FadeUp';
 
 export default function TeamListing({ data }) {
   const { Listing, ReadBioLabel } = data;
@@ -68,6 +69,7 @@ export default function TeamListing({ data }) {
       <div className="container">
         <div className={styles.teamWrapper}>
             <div className={styles.teamImageContainer}>
+              <FadeUp>
                 <Image
                     src={currentImage.url}
                     alt="Team Member"
@@ -75,8 +77,10 @@ export default function TeamListing({ data }) {
                     height={322}
                     className={styles.teamImage}
                 />
+                </FadeUp>
             </div>
             <div className={styles.teamList}>
+              <FadeUp>
                 {Listing.map((member) => (
                     <div
                         key={member.id}
@@ -91,6 +95,7 @@ export default function TeamListing({ data }) {
                         </a>
                     </div>
                 ))}
+                </FadeUp>
             </div>
         </div>
       </div>

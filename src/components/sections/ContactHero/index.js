@@ -9,6 +9,7 @@ import ContactForm from "../ContactForm";
 import Spacer from "@/components/ui/Spacer";
 import FadeUp from "@/components/ui/animations/FadeUp";
 import Heading from "@/components/ui/Heading";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function ContactHero({ data }) {
   const { Title, Description, Address, Email, Number, Media, FormSideMedia } =
@@ -16,14 +17,24 @@ export default function ContactHero({ data }) {
 
   const leftContent = (
     <>
-      <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
+      <Box
+        fullHeight
+        direction="column"
+        justify="space-between"
+        mobileGap="90px"
+        borderBottom
+      >
         <div className="text-light uppercase">{Title}</div>
-        <FadeUp><Heading level={1} style={{ maxWidth: 476 }}>{Description}</Heading></FadeUp>
+        <FadeUp>
+          <Heading level={1} style={{ maxWidth: 476 }}>
+            {Description}
+          </Heading>
+        </FadeUp>
       </Box>
       <Box className="hide-desktop" borderBottom>
-        <FadeUp>
+        <SlideLeft>
           <MediaRenderer media={Media} classes={"image"} />
-        </FadeUp>
+        </SlideLeft>
       </Box>
       <Box
         fullHeight
@@ -37,24 +48,26 @@ export default function ContactHero({ data }) {
       >
         <div className="p20">
           <div className={styles.contactDetail}>
-            <div>
-              <div className={`text-light uppercase ${styles.subHeading}`}>
-                ADDRESS
+            <FadeUp>
+              <div>
+                <div className={`text-light uppercase ${styles.subHeading}`}>
+                  ADDRESS
+                </div>
+                <Paragraph style={{ fontSize: 12 }}>{Address}</Paragraph>
               </div>
-              <Paragraph style={{fontSize: 12 }}>{Address}</Paragraph>
-            </div>
-            <div>
-              <div className={`text-light uppercase ${styles.subHeading}`}>
-                EMAIL
+              <div>
+                <div className={`text-light uppercase ${styles.subHeading}`}>
+                  EMAIL
+                </div>
+                <Paragraph style={{ fontSize: 12 }}>{Email}</Paragraph>
               </div>
-              <Paragraph style={{fontSize: 12 }}>{Email}</Paragraph>
-            </div>
-            <div>
-              <div className={`text-light uppercase ${styles.subHeading}`}>
-                NUMBER
+              <div>
+                <div className={`text-light uppercase ${styles.subHeading}`}>
+                  NUMBER
+                </div>
+                <Paragraph style={{ fontSize: 12 }}>{Number}</Paragraph>
               </div>
-              <Paragraph style={{fontSize: 12 }}>{Number}</Paragraph>
-            </div>
+            </FadeUp>
           </div>
         </div>
         <div className="p20 text-right hide-mobile" />
@@ -65,27 +78,38 @@ export default function ContactHero({ data }) {
   const rightContent = (
     <>
       <div className="p20 hide-mobile">
-        <MediaRenderer media={Media} classes={"image"} />
+        <SlideLeft>
+          <MediaRenderer media={Media} classes={"image"} />
+        </SlideLeft>
       </div>
     </>
   );
 
   const leftContentSecond = (
     <div className="p20">
-      <MediaRenderer media={FormSideMedia} width={244} height={329} />
+      <SlideLeft>
+        <MediaRenderer media={FormSideMedia} width={244} height={329} />
+      </SlideLeft>
     </div>
   );
 
   const rightContentSecond = (
     <div className="p20">
-      <ContactForm />
+      <FadeUp>
+        <ContactForm />
+      </FadeUp>
     </div>
   );
 
   return (
     <>
       <section className="contactHero">
-        <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} />
+        <TwoColumnLayout
+          left={leftContent}
+          right={rightContent}
+          showDivider
+          showMobileDivider={false}
+        />
       </section>
       <Divider />
       <section className="contactForm">

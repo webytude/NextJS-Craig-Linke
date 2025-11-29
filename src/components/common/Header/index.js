@@ -95,6 +95,7 @@ export default function Header({ globalData }) {
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         <span className={styles.desktopMenuButton}>
+          <Link href={"/"}>
           <svg
             width="25"
             height="13"
@@ -107,6 +108,7 @@ export default function Header({ globalData }) {
               fill="currentColor"
             />
           </svg>
+          </Link>
         </span>
         <span className={styles.mobileLeftArea}>
           <button

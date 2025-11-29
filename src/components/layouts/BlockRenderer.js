@@ -1,6 +1,6 @@
 import AestheticMaterials from "../ashetics/AestheticMaterials";
 import AstheticsContact from "../ashetics/AstheticsContact";
-import FullWidthMediaAshetics from "../ashetics/FullWidthMedia";
+// import FullWidthMediaAshetics from "../ashetics/FullWidthMedia";
 import ImageAndText from "../ashetics/ImageAndText";
 import MediaWithTopBottomContent from "../ashetics/MediaWithTopBottomContent";
 import ProjectWithManuallyEditable from "../ashetics/ProjectWithManuallyEditable";

@@ -39,8 +39,6 @@ export default function page() {
     id: generateId(block.Title)
   }));
 
-  console.log('PAGE DATA', page)
-
     return (
     <>
       {page.Blocks.map((block, index) => (

@@ -47,3 +47,9 @@
 .floatingGroup textarea:not(:placeholder-shown) + label {
   top: -12px;
 }
+.textError {
+  color: #ff7474;
+}
+.success {
+  color: #23ef21;
+}

@@ -9,6 +9,7 @@ import Link from "next/link";
 import styles from "./aboutHero.module.css";
 import FadeUp from "@/components/ui/animations/FadeUp";
 import Heading from "@/components/ui/Heading";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function AboutHero({ data, quickLinks }) {
   console.log('AboutHero', data)
@@ -42,6 +43,7 @@ export default function AboutHero({ data, quickLinks }) {
         equalChildren
       >
         <div className={`${styles.navItem} p20`}>
+          <FadeUp>
           {quickLinks && quickLinks.length > 0 ? (
              quickLinks.map((link, index) => (
                 <div key={index}>
@@ -58,9 +60,14 @@ export default function AboutHero({ data, quickLinks }) {
           ) : (
              null
           )}
+          </FadeUp>
         </div>
         <div className="p20 text-right">
-          <div className="text-light uppercase">{ShortText}</div>
+          <div className="text-light uppercase">
+            <FadeUp>
+              {ShortText}
+            </FadeUp>
+          </div>
         </div>
       </Box>
     </>
@@ -69,7 +76,9 @@ export default function AboutHero({ data, quickLinks }) {
   const rightContent = (
     <>
       <div className="p20 hide-mobile">
-        <MediaRenderer media={RightSideMedia} classes={"image"} />
+        <SlideLeft>
+          <MediaRenderer media={RightSideMedia} classes={"image"} />
+        </SlideLeft>
       </div>
     </>
   );

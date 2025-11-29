@@ -6,6 +6,7 @@ import Heading from "@/components/ui/Heading";
 import Paragraph from "@/components/ui/Paragraph";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import astheticsStyles from "../style/asthetics..module.css";
+import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function MediaWithTopBottomContent({ data }) {
   const { Title, TopContent, BottomContent, Media } = data;
@@ -21,9 +22,11 @@ export default function MediaWithTopBottomContent({ data }) {
         mobileBorderBottom={false}
         mobileGap={'20px'}
       >
-        <div className="uppercase">{Title}</div>
+        <div className="uppercase"><FadeUp>{Title}</FadeUp></div>
         <div className="heading" style={{ maxWidth: 500 }}>
+          <FadeUp>
           <BlocksRenderer content={TopContent || []} />
+          </FadeUp>
         </div>
       </Box>
 
@@ -37,9 +40,11 @@ export default function MediaWithTopBottomContent({ data }) {
         mobileDirection="column"
       >
         <div className="p20">
+          <FadeUp>
           <Paragraph>
             <BlocksRenderer content={BottomContent || []} />
           </Paragraph>
+          </FadeUp>
         </div>
         <div className="p20 text-right hide-mobile" />
       </Box>
@@ -49,7 +54,9 @@ export default function MediaWithTopBottomContent({ data }) {
   const rightContent = (
     <>
       <div className="p20">
+        <SlideLeft>
         <MediaRenderer media={Media} classes={"image"} />
+        </SlideLeft>
       </div>
     </>
   );

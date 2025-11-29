@@ -4,6 +4,7 @@ import Heading from "@/components/ui/Heading";
 import Paragraph from "@/components/ui/Paragraph";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import astheticsStyles from "../style/asthetics..module.css";
+import FadeUp from "@/components/ui/animations/FadeUp";
 
 export default function AstheticsContact({ data }) {
   const { Title, Content, Description } = data;
@@ -23,11 +24,21 @@ export default function AstheticsContact({ data }) {
           mobileGap={'20px'}
         >
           <div className="flex justify-space-between fullWidth">
-            <div className="uppercase">{'( 04 )'}</div>
-            <div className="uppercase">{Title}</div>
+            <div className="uppercase">
+              <FadeUp>
+              {'( 04 )'}
+              </FadeUp>
+            </div>
+            <div className="uppercase">
+              <FadeUp>
+              {Title}
+              </FadeUp>
+            </div>
           </div>
           <div className="heading" style={{ maxWidth: 500 }}>
+            <FadeUp>
             <BlocksRenderer content={Description || []} />
+            </FadeUp>
           </div>
         </Box>
 
@@ -43,9 +54,11 @@ export default function AstheticsContact({ data }) {
           dividerColor="#EAEAE8"
         >
           <div className="p20">
+            <FadeUp>
             <Paragraph>
               <BlocksRenderer content={Content || []} />
             </Paragraph>
+            </FadeUp>
           </div>
           <div className="p20 text-right hide-mobile" />
         </Box>

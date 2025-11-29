@@ -55,6 +55,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+a:hover {
+  opacity: 0.8;
+}
 
 ul {
   list-style: none  ;
@@ -126,6 +129,9 @@ textarea {
   font-size: 12px;
   letter-spacing: 0.5px;
   font-family: 'saanslight';
+}
+button:hover {
+  opacity: 0.8;
 }
 .Stone {
   background: #6C5D50;
@@ -284,6 +290,7 @@ textarea {
 }
 .full-width-media {
   padding-top: 100px;
+  overflow: hidden;
 }
 
 .aesthetics-container .full-width-media .p20,
@@ -339,6 +346,9 @@ textarea {
 .content:last-child {
   border-right: none;
 }
+.TwoColumnMediaAndText {
+  overflow: hidden;
+}
 @media (min-width: 980px) {
   .hide-desktop {
     display: none !important;
@@ -348,10 +358,6 @@ textarea {
   .aesthetics-container .full-width-media {
     width: 100vw;
     height: calc(100vh - 53px);
-    /* flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
     position: relative;
     padding: 0;
     border-right: 1px solid #EAEAE8;

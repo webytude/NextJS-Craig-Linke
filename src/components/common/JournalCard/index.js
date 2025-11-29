@@ -5,12 +5,18 @@ import Paragraph from '@/components/ui/Paragraph';
 import LinkWithArrow from '@/components/ui/Link';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import MediaRenderer from '../MediaRenderer';
+import Link from 'next/link';
+import HoverZoom from '@/components/ui/animations/HoverZoom';
 
 export default function JournalCard({ journal }) {
   return (
     <div className={styles.journalCard}>
       <div className={styles.imageWrapper}>
-        <MediaRenderer media={journal?.Media} width={334} height={434} />
+        <Link href={`journal/${journal?.Slug}`}>
+          <HoverZoom>
+            <MediaRenderer media={journal?.Media} width={334} height={434} />
+          </HoverZoom>
+        </Link>
       </div>
       <div className={styles.contentWrapper}>
       <div className={styles.categoryName}>

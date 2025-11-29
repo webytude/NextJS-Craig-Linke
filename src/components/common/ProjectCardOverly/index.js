@@ -11,7 +11,11 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
   return (
     <div className={styles.projectHighlight}>
       <div className="flex justify-space-between pt20 hide-desktop">
-        <div className="text-light uppercase">{topTitle}</div>
+        <div className="text-light uppercase">
+          <FadeUp>
+            {topTitle}
+          </FadeUp>
+        </div>
       </div>
       <div className={styles.imgWrapper}>
         <Image
@@ -41,10 +45,12 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
               </FadeUp>
             </div>
             <div className="hide-desktop">
+              <FadeUp>
               <LinkWithArrow
                   text={button?.ButtonText}
                   href={button?.ButtonURL}
                 />
+                </FadeUp>
             </div>
           </div>
         </div>

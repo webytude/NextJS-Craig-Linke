@@ -21,6 +21,7 @@ import Image from "next/image";
 import Heading from "@/components/ui/Heading";
 import LinkWithArrow from "@/components/ui/Link";
 import Header from "@/components/common/Header";
+import FadeUp from "@/components/ui/animations/FadeUp";
 
 export default function AestheticsDetail() {
   // const router = useRouter();
@@ -270,6 +271,7 @@ export default function AestheticsDetail() {
             transition={{ duration: 0.5 }}
           >
             <div className={`${styles.child} ${styles.topLeft} hide-mobile`}>
+              <FadeUp>
               <ul className={styles.topNav}>
                 {activeData.Blocks.map((item, index) => {
                   if (item.ShowInQuickView && item.Title) {
@@ -286,13 +288,17 @@ export default function AestheticsDetail() {
                   return null;
                 })}
               </ul>
+              </FadeUp>
             </div>
             <div className={`${styles.child} ${styles.topRight}`}>
+              <FadeUp>
               <Paragraph>
                 <BlocksRenderer content={activeData.Description || []} />
               </Paragraph>
+              </FadeUp>
             </div>
             <div className={`${styles.child} ${styles.bottomLeft}`}>
+              <FadeUp>
               <div className={`${styles.navItem}`}>
                 {astheticsData.map((item) => {
                   const isActive = pathname === `/aesthetics/${item.Slug}`;
@@ -310,6 +316,7 @@ export default function AestheticsDetail() {
                   );
                 })}
               </div>
+              </FadeUp>
             </div>
             <div
               className={`${styles.child} ${styles.bottomRight} hide-mobile`}
@@ -317,9 +324,11 @@ export default function AestheticsDetail() {
               <LinkWithArrow text={"SCROLL"} href={"#"} />
             </div>
             <div className={`${styles.child} ${styles.center}`}>
+              <FadeUp>
               <Heading level={1} className={styles.mainHeading}>
                 {activeData.Name}
               </Heading>
+              </FadeUp>
             </div>
           </motion.div>
         </section>

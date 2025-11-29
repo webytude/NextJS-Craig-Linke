@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./projectFilterBase.module.css";
+import FadeUp from "@/components/ui/animations/FadeUp";
 
 export default function ProjectFilterBase({
   projects = [],
@@ -48,7 +49,9 @@ export default function ProjectFilterBase({
     <div className={styles.wrapper}>
       {/* Tabs */}
       <div className={styles.navContainer}>
+        
         {categoryList.map((cat, index) => (
+          <FadeUp>
           <button
             key={index}
             onClick={() => setActiveCategory(cat)}
@@ -61,6 +64,7 @@ export default function ProjectFilterBase({
             </span>
             <span className={styles.label}>{cat}</span>
           </button>
+          </FadeUp>
         ))}
       </div>
 
