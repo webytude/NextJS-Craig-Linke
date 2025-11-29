@@ -3,7 +3,7 @@
 import { PROJECTS_QUERY_SLUG } from "@/queries/queries";
 import { useApolloClient } from "@apollo/client/react";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./detail.module.css";
 import Image from "next/image";
 import Divider from "@/components/ui/Divider";
@@ -23,6 +23,9 @@ export default function ProjectDetail() {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [activeImageId, setActiveImageId] = useState(null);
+  const imageRefs = useRef({});
 
   useEffect(() => {
     if (!slug) {
@@ -74,26 +77,66 @@ export default function ProjectDetail() {
     window.dispatchEvent(new Event("theme-change"));
   }, []);
 
-  if (loading) return <Loading />;
-  if (error) return <p>Error: {error.message}</p>;
-  if (!project) return <p>Project not found.</p>;
-
-  const materialSectionData =
-    Array.isArray(project.Materials) && project.Materials.length > 0
-      ? project.Materials[0]
-      : null;
-
-  const galleryMediaBlocks = Array.isArray(project.Blocks)
-    ? project.Blocks.filter(
+  const galleryMediaBlocks = Array.isArray(project?.Blocks)
+    ? project?.Blocks.filter(
         (block) => block.__typename === "ComponentGlobalProjectMedia"
       )
     : [];
 
-  const relatedProjects = Array.isArray(project.Blocks)
-  ? project.Blocks.filter(
+  useEffect(() => {
+    if (loading || galleryMediaBlocks.length === 0) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveImageId(entry.target.getAttribute('data-id'));
+        }
+      });
+    }, observerOptions);
+
+    galleryMediaBlocks.forEach((block) => {
+      const el = imageRefs.current[block.id];
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [galleryMediaBlocks, loading]);
+
+  const handleThumbnailClick = (id) => {
+    const element = imageRefs.current[id];
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
+
+
+  const materialSectionData =
+    Array.isArray(project?.Materials) && project?.Materials.length > 0
+      ? project?.Materials[0]
+      : null;
+
+  
+
+  const relatedProjects = Array.isArray(project?.Blocks)
+  ? project?.Blocks.filter(
       (block) => block.__typename === "ComponentSectionExploreProjects"
     )
   : null;
+
+   if (loading) return <Loading />;
+    if (error) return <p>Error: {error.message}</p>;
+    if (!project) return <p>Project not found.</p>;
 
   return (
     <>
@@ -127,15 +170,34 @@ export default function ProjectDetail() {
               {galleryMediaBlocks.length > 0 && (
                 <div className={`${styles.materialsPhoto} ${styles.leftGallery} p20`}>
                   <div className={styles.galleryBlock}>
-                  {galleryMediaBlocks.map((block) => (
+                    {galleryMediaBlocks.map((block) => {
+                      const isActive = activeImageId === block.id;
+                      
+                      return (
+                        <div 
+                          key={block.id}
+                          onClick={() => handleThumbnailClick(block.id)}
+                          style={{
+                            transition: 'filter 0.3s ease',
+                            filter: isActive ? 'grayscale(0%)' : 'grayscale(100%)',
+                            opacity: isActive ? 1 : 0.5,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <MediaRenderer media={block} width={40} height={57} />
+                        </div>
+                      );
+                    })}
+
+                  {/* {galleryMediaBlocks.map((block) => (
                     <div key={block.id}>
                       <MediaRenderer media={block} width={40} height={57} />
                     </div>
-                  ))}
+                  ))} */}
                   </div>
                 </div>
               )}
-              <Divider />
+              <Divider color="#D0D0D0" />
               <div className="text-center font12 uppercase p20">
                 GALLERY MODE
               </div>
@@ -150,7 +212,7 @@ export default function ProjectDetail() {
                   const mediaHeight = isPortrait ? 746 : 500;
 
                   return (
-                    <div key={block.id} className={styles.imageWrapper}>
+                    <div key={block.id} className={styles.imageWrapper} ref={(el) => (imageRefs.current[block.id] = el)} data-id={block.id}>
                       <MediaRenderer
                         media={block}
                         width={mediaWidth}
@@ -212,7 +274,7 @@ export default function ProjectDetail() {
           </div>
         </div>
       </section>
-      <Divider />
+      <Divider color="#D0D0D0" />
       {relatedProjects.length > 0 && <RelatedProjects data={relatedProjects} />}
       </div>
       <div className="hide-desktop">
