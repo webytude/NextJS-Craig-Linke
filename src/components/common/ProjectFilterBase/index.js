@@ -51,9 +51,8 @@ export default function ProjectFilterBase({
       <div className={styles.navContainer}>
         
         {categoryList.map((cat, index) => (
-          <FadeUp>
+          <FadeUp key={index}>
           <button
-            key={index}
             onClick={() => setActiveCategory(cat)}
             className={`${styles.navItem} ${
               activeCategory === cat ? styles.active : ""

@@ -44,6 +44,9 @@
   cursor: pointer;
   transition: color 0.3s;
 }
+.linke:hover {
+  opacity: 0.8;
+}
 .menuButton {
   background: none;
   border: none;
@@ -139,5 +142,11 @@
     padding: 16px;
     border-top: 1px solid #957579;
     width: 100%;
+  }
+  .menuBottom :global(.text:last-child) {
+    display: none;
+  }
+  .menuBottom :global(.social-mobile) {
+    padding-bottom: 93px;
   }
 }

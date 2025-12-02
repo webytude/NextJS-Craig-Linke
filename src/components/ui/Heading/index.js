@@ -6,7 +6,7 @@ export default function Heading({
   color = "",
   align = "",
   weight = 300,
-  margin = "0",
+  margin,
   lineHeight = 1.2,
   className = "",
   style = {},

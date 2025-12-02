@@ -7,6 +7,7 @@ import Link from "next/link";
 import styles from "./navbar.module.css";
 import SocialLinks from "../Footer/SocialLinks";
 import ContctDetail from "../Footer/Contact";
+import { useRouter } from 'next/navigation';
 
 export default function Header({ globalData }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function Header({ globalData }) {
   const linkeRef = useRef(null);
 
   const menuButtonControls = useAnimation();
+  const router = useRouter();
 
   useEffect(() => {
     const updatePositions = () => {
@@ -57,6 +59,14 @@ export default function Header({ globalData }) {
   const handleMobileToggle = async () => {
     setOpenMobileMenu((prev) => !prev);
   };
+
+  const handleLogoClick = async () => {
+  if (menuOpen) {
+    await handleClose();
+  } else {
+    router.push('/');
+  }
+};
 
   const handleClose = async () => {
     setMenuOpen(false);
@@ -163,7 +173,7 @@ export default function Header({ globalData }) {
         <motion.h1
           ref={linkeRef}
           className={styles.linke}
-          onClick={handleClose}
+          onClick={handleLogoClick}
           animate={menuOpen ? { x: positions.linkeToRight } : { x: 0 }}
           transition={{ duration: 1, ease: "easeInOut" }}
         >

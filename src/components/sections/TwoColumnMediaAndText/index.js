@@ -46,13 +46,13 @@ export default function TwoColumnMediaAndText({ data }) {
       >
          <div className="content p20">
           {RightSide.Content.map((text, index) => (
-            <div>
+            <div key={index}>
               <div className="text-light uppercase pb20">
                 <FadeUp>
                 {text.Title}
                 </FadeUp>
               </div>
-              <Paragraph key={index}>
+              <Paragraph>
                 <FadeUp>
                 <BlocksRenderer content={text.Content || []} />
                 </FadeUp>

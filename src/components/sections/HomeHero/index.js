@@ -16,7 +16,7 @@ export default function HomeHero({ data }) {
   const leftContent = (
     <>
       <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
-        <FadeUp><Heading level={1} style={{ maxWidth: 560 }}>{Title}</Heading></FadeUp>
+        <FadeUp><Heading level={1} style={{ maxWidth: 580 }}>{Title}</Heading></FadeUp>
         <div className="flex justify-space-between fullWidth">
           <FadeUp>
           <div className="uppercase hero-text-light">{ShortText}</div>

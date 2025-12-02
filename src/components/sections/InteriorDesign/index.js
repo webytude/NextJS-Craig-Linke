@@ -77,7 +77,7 @@ export default function InteriorDesign({ data }) {
 
   return (
     <>
-    <Divider />
+    <Divider className="hide-desktop" style={{ marginTop: '35px'}} />
     <section className="InteriorDesign">
       <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} />
     </section>

@@ -130,29 +130,6 @@ export default function FullScreenMedia({ data }) {
               </div>
             );
           })}
-          {/* {currentMedia?.EnableMuxVideo && currentMedia?.MuxVideo?.playback_id && (
-            <MuxPlayer
-              playbackId={currentMedia.MuxVideo.playback_id}
-              streamType="on-demand"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              style={{ aspectRatio: '16 / 9', width: '100%', height: '100%' }}
-            />
-          )}
-          {!currentMedia?.EnableMuxVideo && Array.isArray(currentMedia?.ImageORCarousel) && currentMedia.ImageORCarousel.length === 1 && (
-            <Image
-              src={currentMedia.ImageORCarousel[0].url}
-              alt={currentMedia.ImageORCarousel[0]?.alternativeText || ""}
-              // width={1905}
-              // height={1271}
-              fill
-              style={{ objectFit: "cover" }}
-              className={styles.mainMedia}
-            />
-          )} */}
         </div>
         <div className={styles.overlay}></div>
 
@@ -176,14 +153,14 @@ export default function FullScreenMedia({ data }) {
                   <Box key={index} className={styles.aestheticsListContent} padding="0">
                     <div
                       onClick={isMobile ? () => handleMobileClick(item, index) : undefined}
+                      onMouseLeave={!isMobile ? handleMouseLeave : undefined}
                       className={classNames(styles.listItemWrapper, {
                         [styles.activeOnMobile]: isMobile && isActive,
                       })}
-                    >
+                      >
                       <FadeUp>
-                      <h4 
+                      <h4
                         onMouseEnter={!isMobile ? () => handleMouseEnter(item.HoverMedia) : undefined}
-                        onMouseLeave={!isMobile ? handleMouseLeave : undefined}
                         level={4} className={styles.listItemHeading}
                       >
                         {item.Title}

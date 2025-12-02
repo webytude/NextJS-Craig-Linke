@@ -1,73 +1,58 @@
-"use client";
 
-import Loading from "@/components/common/Loading";
+import { notFound } from "next/navigation";
+import JournalClient from "./JournalClient";
+import client from "@/lib/apolloClient";
 import { GET_BY_SLUG_JOURNALS } from "@/queries/queries";
-import { useApolloClient } from "@apollo/client/react";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import UniversalPageClient from "@/components/UniversalPageClient";
 
-export default function JournalDetails() {
-  const params = useParams();
-  const slug = params?.slug;
-  const client = useApolloClient();
+const COLLECTION_NAME = "journals";
 
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  return await generateCmsMetadata(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
+}
 
-  useEffect(() => {
-    if (!slug) {
-      setLoading(false);
-      setError(new Error("No project slug provided."));
-      return;
-    }
+export default async function JournalDetails({ params }) {
+  const { slug } = await params;
+  const data = await fetchCmsData(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
 
-    const fetchProject = async () => {
-      setLoading(true);
-      setError(null);
-      setProject(null);
+  if (!data) return notFound();
 
-      try {
-        const { data: fetchedApolloData, errors: apolloErrors } =
-          await client.query({
-            query: GET_BY_SLUG_JOURNALS,
-            variables: { slug: slug },
-            fetchPolicy: "network-only",
-          });
+  return <UniversalPageClient data={data} defaultTheme="Pinot" />;
+}
 
-        if (apolloErrors) {
-          console.error("GraphQL Query Errors:", apolloErrors);
-          setError(new Error(apolloErrors.map((e) => e.message).join(", ")));
-          return;
-        }
+async function getJournalData(slug) {
+  const { data } = await client.query({ 
+    query: GET_BY_SLUG_JOURNALS, 
+    variables: { slug } 
+  });
+  
+  return data?.journals?.find(p => p.Slug === slug);
+}
 
-        const fetchedProject = fetchedApolloData?.journals?.[0];
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const journal = await getJournalData(slug);
 
-        if (fetchedProject) {
-          setProject(fetchedProject);
-        } else {
-          setError(new Error(`Project with slug "${slug}" not found.`));
-        }
-      } catch (err) {
-        console.error("Error fetching project details:", err);
-        setError(new Error(`Failed to load project: ${err.message}`));
-      } finally {
-        setLoading(false);
-      }
+  if (!journal) {
+    return {
+      title: "Journal Not Found",
     };
+  }
 
-    fetchProject();
-  }, [slug, client]);
+  return {
+    title: journal.MetaTitle || 'Craig Linke',
+    description: journal.MetaDescription || "Default description"
+  };
+}
 
-  useEffect(() => {
-    const finalTheme = "Pinot";
-    window.__PAGE_THEME_COLOR__ = finalTheme;
-    window.dispatchEvent(new Event("theme-change"));
-  }, []);
+export default async function JournalDetails({ params }) {
+  const { slug } = await params;
+  const journal = await getJournalData(slug);
 
-  if (loading) return <Loading />;
-  if (error) return <p>Error: {error.message}</p>;
-  if (!project) return <p>Project not found.</p>;
+  if (!journal) {
+    return notFound();
+  }
 
-  return <div>JournalDetails</div>;
+  return <JournalClient journal={journal} />;
 }

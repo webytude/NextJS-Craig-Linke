@@ -15,7 +15,7 @@ export default function JournalCard({ data }) {
 
   return (
     <div className={styles.journalCard}>
-      <Heading level={4}>{Name}</Heading>
+      <Heading className={styles.title} level={4}>{Name}</Heading>
       <div className={styles.imageWrapper}>
         <Link href={Slug}>
         <HoverZoom>

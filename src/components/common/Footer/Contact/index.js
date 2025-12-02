@@ -5,10 +5,8 @@ import FadeUp from '@/components/ui/animations/FadeUp'
 export default function ContctDetail({ extraDetails }) {
   return (
     <div className={styles.footerCta}>
-        {extraDetails.map((item, index) => <div key={index} className={styles.footerCol}>
-      <FadeUp>
-            <BlocksRenderer content={item.Content} />
-        </FadeUp>
+        {extraDetails.map((item, index) => <div key={index} className={`${styles.footerCol} text`}>
+          <BlocksRenderer content={item.Content} />
         </div>)}
     </div>
   )

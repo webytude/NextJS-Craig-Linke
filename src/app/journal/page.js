@@ -23,6 +23,8 @@ export default function Journal() {
 
   const journalData = data?.journals;
 
+  console.log('journalData', journalData)
+
   useEffect(() => {
     const finalTheme = "Pinot";
     window.__PAGE_THEME_COLOR__ = finalTheme;

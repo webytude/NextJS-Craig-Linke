@@ -12,8 +12,7 @@ import Heading from "@/components/ui/Heading";
 import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function AboutHero({ data, quickLinks }) {
-  console.log('AboutHero', data)
-  const { Title, SubTitle, Buttons, ShortText, RightSideMedia } = data;
+  const { Title, SubTitle, ShortText, RightSideMedia } = data;
 
   const handleScroll = (e, id) => {
     e.preventDefault();

@@ -2,12 +2,14 @@
 
 import { useEffect } from "react";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
-import Loading from "@/components/common/Loading";
 import PageNotFound from "../PageNotFound";
 
-export default function DynamicClientPage({ initialPageData, loading, error, slug }) {
+const generateId = (text) => {
+  if (!text) return "";
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+};
 
-  const page = !loading && !error ? initialPageData?.pages?.find(p => p.Slug === slug) : null;
+export default function DynamicClientPage({ page }) {
 
   useEffect(() => {
     const finalTheme = page?.ThemeColor && page.ThemeColor.trim() !== ""
@@ -18,14 +20,19 @@ export default function DynamicClientPage({ initialPageData, loading, error, slu
     window.dispatchEvent(new Event("theme-change"));
   }, [page?.ThemeColor]);
 
-  if (loading) return <Loading />;
-  if (error) return <p>Error loading data</p>;
   if (!page) return <PageNotFound />;
+
+  const quickViewLinks = page.Blocks
+  .filter(block => block.ShowInQuickView === true && block.Title)
+  .map(block => ({
+    label: block.Title,
+    id: generateId(block.Title)
+  }));
 
   return (
     <>
       {page.Blocks.map((block, index) => (
-        <BlockRenderer key={index} block={block} />
+        <BlockRenderer key={index} block={block} quickViewLinks={quickViewLinks} blockId={block.ShowInQuickView === true ? generateId(block.Title) : null} />
       ))}
     </>
   );

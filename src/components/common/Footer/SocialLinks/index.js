@@ -7,11 +7,11 @@ import FadeUp from '@/components/ui/animations/FadeUp';
 
 export default function SocialLinks({ socialLinks }) {
   return (
-    <div className={styles.social}>
+    <div className={`${styles.social} social-mobile`}>
         <ul>
         {socialLinks.map((item, index) => <li key={index}>
           <FadeUp>
-            <Link href={item.Links.ButtonURL}>
+            <Link href={item.Links.ButtonURL} target={item.Links.OpenNewTab ? "_blank" : ''}>
             <Swiper className="mySwiper">
                 {item.Media.ImageORCarousel.map((item, index) => <SwiperSlide key={index}>
                     <Image

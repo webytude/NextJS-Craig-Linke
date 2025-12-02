@@ -41,8 +41,8 @@ export default function TextModule({ data }) {
     <>
       <div className="p20 content">
         {SideContent.map((text, index) => (
-          <FadeUp>
-            <Paragraph key={index}>
+          <FadeUp key={index}>
+            <Paragraph>
               <BlocksRenderer content={text.Content || []} />
             </Paragraph>
           </FadeUp>
