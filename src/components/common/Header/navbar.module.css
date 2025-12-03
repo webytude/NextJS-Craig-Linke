@@ -5,10 +5,13 @@
   align-items: center;
   justify-content: space-between;
   height: 53px;
-  position: relative;
+  position: sticky;
   padding: 0px 20px;
   overflow: hidden;
   transition: background-color 0.8s ease-in-out;
+  top: 0;
+  z-index: 12;
+  backdrop-filter: blur(10px);
 }
 .nav {
   position: absolute;
