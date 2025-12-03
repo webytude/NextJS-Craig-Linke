@@ -43,8 +43,6 @@ export default function Header({ globalData }) {
     };
 
     updatePositions();
-    // window.addEventListener("resize", updatePositions);
-    // return () => window.removeEventListener("resize", updatePositions);
   }, []);
 
   const handleMenuToggle = async () => {
@@ -230,7 +228,11 @@ export default function Header({ globalData }) {
             initial={{ y: "-150%", opacity: 0 }}
             animate={{ y: "-50%", opacity: 1 }}
             exit={{ y: "-150%", opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            transition={{ 
+              duration: 0.8, 
+              ease: "easeInOut", 
+              delay: 0.3 
+            }}
           >
             <Navigation menu={headerData?.Menu} onCloseMenu={closeMobileMenu} />
             <div className={`${styles.menuBottom} hide-desktop`}>
