@@ -5,21 +5,21 @@ import client from "@/lib/apolloClient";
 import { GET_BY_SLUG_JOURNALS } from "@/queries/queries";
 import UniversalPageClient from "@/components/UniversalPageClient";
 
-const COLLECTION_NAME = "journals";
+// const COLLECTION_NAME = "journals";
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  return await generateCmsMetadata(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
-}
+// export async function generateMetadata({ params }) {
+//   const { slug } = await params;
+//   return await generateCmsMetadata(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
+// }
 
-export default async function JournalDetails({ params }) {
-  const { slug } = await params;
-  const data = await fetchCmsData(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
+// export default async function JournalDetails({ params }) {
+//   const { slug } = await params;
+//   const data = await fetchCmsData(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
 
-  if (!data) return notFound();
+//   if (!data) return notFound();
 
-  return <UniversalPageClient data={data} defaultTheme="Pinot" />;
-}
+//   return <UniversalPageClient data={data} defaultTheme="Pinot" />;
+// }
 
 async function getJournalData(slug) {
   const { data } = await client.query({ 

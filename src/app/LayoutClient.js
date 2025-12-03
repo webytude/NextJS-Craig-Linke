@@ -7,6 +7,7 @@ import Footer from '@/components/common/Footer'
 import BodyTheme from '@/components/layouts/BodyTheme'
 import Loader from '@/components/Loader';
 import { usePathname } from 'next/navigation';
+import Preloader from '@/components/Loader/Preloader';
 
 export default function LayoutClient({ children, globalData }) {
   const pathname = usePathname();
@@ -51,6 +52,7 @@ export default function LayoutClient({ children, globalData }) {
       {showLoader && (
         <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} />
       )}
+      {/* <Preloader /> */}
       <div
         style={{
           transform: loaderExitStarted ? 'translateY(0%)' : 'translateY(100%)',
