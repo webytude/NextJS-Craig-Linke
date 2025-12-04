@@ -64,6 +64,11 @@
   display: none;
 }
 /* --- Mobile Styles --- */
+@media (min-width: 768px) {
+  .header {
+    overflow: hidden;
+  }
+}
 @media (max-width: 980px) {
   .desktopMenuButton,
   .menuButton {
