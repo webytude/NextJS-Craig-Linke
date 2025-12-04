@@ -9,7 +9,7 @@ const Loader = ({ onExitStart, onExitComplete }) => {
   const [triggerExit, setTriggerExit] = useState(false);
 
   useEffect(() => {
-    const splashScreenAnimationDuration = 3000; 
+    const splashScreenAnimationDuration = 4500; 
     const delayBeforeExit = splashScreenAnimationDuration + 100;
 
     const exitTimer = setTimeout(() => {

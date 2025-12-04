@@ -349,10 +349,6 @@ button:hover {
 .TwoColumnMediaAndText {
   overflow: hidden;
 }
-/* .aesthetics {
-  position: sticky;
-  top: 0;
-} */
 @media (min-width: 980px) {
   .hide-desktop {
     display: none !important;

@@ -58,31 +58,47 @@ export default function SplashScreen() {
       await new Promise((res) => setTimeout(res, 500));
 
       if (isMounted.current) {
-        craigControls
-          .start({
+        craigControls.start({
+            // x: craigTargetX,
+             y: 0, 
+            opacity: 1,
+            transition: { duration: 1, ease: "easeInOut" },
+        })
+        linkeControls.start({
+            // x: linkeTargetX,
+             y: 0, 
+            opacity: 1,
+            transition: { duration: 1, ease: "easeInOut" },
+        })
+        // logoControls.start({
+        //     y: 0,
+        //     opacity: 1,
+        //     transition: { duration: 1, ease: "easeInOut" },
+        // })
+      }
+
+      await new Promise((res) => setTimeout(res, 2000));
+
+      if (isMounted.current) {
+        await Promise.all([
+          craigControls.start({
             x: craigTargetX,
             transition: { duration: 1.5, ease: "easeInOut" },
-          })
-          .catch((e) => console.error("Error animating craigControls:", e));
-      }
-
-      if (isMounted.current) {
-        linkeControls
-          .start({
+          }),
+          linkeControls.start({
             x: linkeTargetX,
             transition: { duration: 1.5, ease: "easeInOut" },
-          })
-          .catch((e) => console.error("Error animating linkeControls:", e));
+          }),
+          logoControls.start({
+            y: 0,
+            opacity: 1,
+            transition: { duration: 1.5, ease: "easeOut" },
+          }),
+        ]);
       }
 
       if (isMounted.current) {
-        logoControls
-          .start({
-            y: 0,
-            opacity: 1,
-            transition: { duration: 1.5, ease: "easeInOut" },
-          })
-          .catch((e) => console.error("Error animating logoControls:", e));
+        
       }
     };
 
@@ -95,7 +111,7 @@ export default function SplashScreen() {
         <motion.div
           ref={craigRef}
           className={styles.craig}
-          initial={{ x: 0 }}
+          initial={{ y: 100, opacity: 0 }}
           animate={craigControls}
         >
           <svg
@@ -130,7 +146,7 @@ export default function SplashScreen() {
         <motion.div
           ref={linkeRef}
           className={styles.linke}
-          initial={{ x: 0 }}
+          initial={{ y: 100, opacity: 0 }}
           animate={linkeControls}
         >
           <svg
