@@ -25,7 +25,7 @@ export default function RelatedProjects({ data }) {
           <div className="relatedProjects">
             <div className={styles.grid}>
                 {SelectProjects.map((p, i) => (
-                  <ProjectCard project={p} />
+                  <ProjectCard key={i} project={p} />
                 ))}
             </div>
           </div>

@@ -1,47 +1,45 @@
-"use client";
-
-import JournalCard from "@/components/common/JournalCard";
-import JournalCardOverly from "@/components/common/JournalCardOverly";
-import ProjectFilterBase from "@/components/common/ProjectFilterBase";
-import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
-import Divider from "@/components/ui/Divider";
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import styles from "./journal.module.css";
-import { useQuery } from "@apollo/client/react";
 import { JOURNALS_QUERY } from "@/queries/queries";
-import InfiniteJournal from "@/components/journal/InfiniteJournal";
-import Loading from "@/components/common/Loading";
-import PageNotFound from "../PageNotFound";
+import JournalClient from "./ClientPage";
+import { createPage } from "@/utils/createPage";
 
-export default function Journal() {
+const { Page, generateMetadata } = createPage({
+  query: JOURNALS_QUERY,
+  component: JournalClient,
+  propName: 'journal',
+  
+  getData: (data) => data?.journals,
 
-  const { data, loading, error } = useQuery(JOURNALS_QUERY, {
-    fetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
-  });
+  metadataConfig: {
+    notFoundTitle: "Page Not Found",
+    generate: (data) => ({
+      title: data?.MetaTitle || 'Journals Craig Linke',
+      description: data?.MetaDescription || 'Craig Linke is a boutique...',
+    })
+  }
+});
 
-  const journalData = data?.journals;
+export { generateMetadata };
+export default Page;
 
-  console.log('journalData', journalData)
+// async function getData() {
+//   const { data } = await client.query({ 
+//     query: JOURNALS_QUERY, 
+//     fetchPolicy: "cache-first",
+//   });
+  
+//   return data?.journals;
+// }
 
-  useEffect(() => {
-    const finalTheme = "Pinot";
-    window.__PAGE_THEME_COLOR__ = finalTheme;
-    window.dispatchEvent(new Event("theme-change"));
-  }, []);
+// export async function generateMetadata() {
+//   return {
+//     title: 'Craig Linke',
+//     description: "Default description"
+//   };
+// }
 
-  if (loading) return <Loading />;
-  if (error) return <p>Error loading data</p>;
-  if (!journalData) return <PageNotFound />;
+// export default async function Journal() {
 
-  return (
-    <ProjectFilterBase
-      projects={journalData}
-      categoryKey={'JournalCategory'}
-      renderProjects={(filteredProjects) => (
-        <InfiniteJournal filteredProjects={filteredProjects} />
-      )}
-    />
-  );
-}
+//   const journalData = await getData();
+
+//   return <JournalClient journal={journalData} />;
+// }

@@ -1,58 +1,61 @@
-
-import { notFound } from "next/navigation";
+import { createPage } from "@/utils/createPage";
 import JournalClient from "./JournalClient";
-import client from "@/lib/apolloClient";
 import { GET_BY_SLUG_JOURNALS } from "@/queries/queries";
-import UniversalPageClient from "@/components/UniversalPageClient";
 
-// const COLLECTION_NAME = "journals";
+const { Page, generateMetadata } = createPage({
+  query: GET_BY_SLUG_JOURNALS,
+  component: JournalClient,
+  propName: 'journal',
+  
+  getVariables: (params) => ({ slug: params.slug }),
+  
+  getData: (data, vars) => data?.journals?.find(p => p.Slug === vars.slug),
+  
+  
+  metadataConfig: {
+    notFoundTitle: "Page Not Found",
+    generate: (data) => ({
+      title: data?.MetaTitle || 'Craig Linke',
+      description: data?.MetaDescription || 'Craig Linke is a boutique...',
+    })
+  }
+});
+
+export { generateMetadata };
+export default Page;
+
+// async function getJournalData(slug) {
+//   const { data } = await client.query({ 
+//     query: GET_BY_SLUG_JOURNALS, 
+//     variables: { slug } 
+//   });
+  
+//   return data?.journals?.find(p => p.Slug === slug);
+// }
 
 // export async function generateMetadata({ params }) {
 //   const { slug } = await params;
-//   return await generateCmsMetadata(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
+//   const journal = await getJournalData(slug);
+
+//   if (!journal) {
+//     return {
+//       title: "Journal Not Found",
+//     };
+//   }
+
+//   return {
+//     title: journal.MetaTitle || 'Craig Linke',
+//     description: journal.MetaDescription || "Default description"
+//   };
 // }
 
 // export default async function JournalDetails({ params }) {
 //   const { slug } = await params;
-//   const data = await fetchCmsData(slug, GET_BY_SLUG_JOURNALS, COLLECTION_NAME);
+//   const journal = await getJournalData(slug);
 
-//   if (!data) return notFound();
+//   if (!journal) {
+//     return notFound();
+//   }
 
-//   return <UniversalPageClient data={data} defaultTheme="Pinot" />;
+//   return <JournalClient journal={journal} />;
 // }
-
-async function getJournalData(slug) {
-  const { data } = await client.query({ 
-    query: GET_BY_SLUG_JOURNALS, 
-    variables: { slug } 
-  });
-  
-  return data?.journals?.find(p => p.Slug === slug);
-}
-
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const journal = await getJournalData(slug);
-
-  if (!journal) {
-    return {
-      title: "Journal Not Found",
-    };
-  }
-
-  return {
-    title: journal.MetaTitle || 'Craig Linke',
-    description: journal.MetaDescription || "Default description"
-  };
-}
-
-export default async function JournalDetails({ params }) {
-  const { slug } = await params;
-  const journal = await getJournalData(slug);
-
-  if (!journal) {
-    return notFound();
-  }
-
-  return <JournalClient journal={journal} />;
-}
