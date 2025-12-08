@@ -45,7 +45,6 @@ export function createPage({
     };
   };
 
-  // 3. The Main Page Component
   const Page = async ({ params }) => {
     const resolvedParams = await params;
     const data = await fetchPageData(resolvedParams);
@@ -54,8 +53,6 @@ export function createPage({
       return notFound();
     }
 
-    // Dynamic props creating: { [propName]: data }
-    // Example: { page: data } or { journal: data }
     const props = { [propName]: data };
 
     return <ClientComponent {...props} />;
