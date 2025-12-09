@@ -2,6 +2,10 @@
   transition: color 0.3s ease;
 }
 
+.paragraph p {
+  margin-bottom: 16px;
+}
+
 /* Default sizes */
 .small {
   font-size: 14px;

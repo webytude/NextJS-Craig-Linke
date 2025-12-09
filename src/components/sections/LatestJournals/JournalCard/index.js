@@ -6,7 +6,6 @@ import LinkWithArrow from '@/components/ui/Link';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import MediaRenderer from '@/components/common/MediaRenderer';
 import Link from 'next/link';
-import HoverZoom from '@/components/ui/animations/HoverZoom';
 
 export default function JournalCard({ data }) {
   if (!data) return null;
@@ -18,9 +17,7 @@ export default function JournalCard({ data }) {
       <Heading className={styles.title} level={4}>{Name}</Heading>
       <div className={styles.imageWrapper}>
         <Link href={Slug}>
-        <HoverZoom>
         <MediaRenderer media={Media} width={322} height={434} />
-        </HoverZoom>
         </Link>
       </div>
       <div className={styles.description}>

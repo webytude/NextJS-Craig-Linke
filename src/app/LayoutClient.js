@@ -50,6 +50,7 @@ export default function LayoutClient({ children, globalData }) {
       {showLoader && (
         <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} />
       )}
+      {/* <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} /> */}
       <div
         style={{
           transform: loaderExitStarted ? 'translateY(0%)' : 'translateY(100%)',

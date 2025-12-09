@@ -25,9 +25,9 @@ export default function FullWidthMedia({ data }) {
   return (
     <section className="full-width-media padding" style={sectionStyle}>
       <div className="p20">
-        <SlideLeft>
+        {/* <SlideLeft> */}
         <MediaRenderer media={Media} classes={'image'} />
-        </SlideLeft>
+        {/* </SlideLeft> */}
       </div>
     </section>
   );

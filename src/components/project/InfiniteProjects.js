@@ -37,10 +37,13 @@ export default function InfiniteProjects({ filteredProjects }) {
 
   // Animations
   const fadeInVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { 
+      opacity: 0, 
+      //y: 20 
+    },
     visible: (i) => ({
       opacity: 1,
-      y: 0,
+      //y: 0,
       transition: { delay: i * 0.06, duration: 0.4, ease: "easeOut" },
     }),
   };
@@ -84,7 +87,7 @@ export default function InfiniteProjects({ filteredProjects }) {
         <>
           <motion.div
             className={styles.grid}
-            layout
+            //layout
             initial="hidden"
             animate="visible"
           >
@@ -97,7 +100,7 @@ export default function InfiniteProjects({ filteredProjects }) {
                   initial="hidden"
                   animate="visible"
                   exit={{ opacity: 0 }}
-                  layout
+                  //layout
                 >
                   <ProjectCard project={p} />
                 </motion.div>

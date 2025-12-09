@@ -6,8 +6,8 @@
 .leftColumn,
 .rightColumn {
   position: sticky;
-  top: 0;
-  height: 100vh; 
+  top: 53px;
+  height: calc(100vh - 53px); 
   align-self: start; 
 }
 .middleColumn {
@@ -102,9 +102,9 @@
 .paragraph {
   padding-top: 20px;
 }
-.paragraph p {
+/* .paragraph p {
   padding-bottom: 20px;
-}
+} */
 .paragraph p:last-child {
   padding-bottom: 0px;
 }

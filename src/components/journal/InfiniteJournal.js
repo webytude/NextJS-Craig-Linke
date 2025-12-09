@@ -111,7 +111,7 @@ export default function InfiniteJournal({ filteredProjects }) {
         {/* <button>INDEX</button>  */}
       </div>
       
-      <Divider color="#8B6B68" />
+      <Divider color="#BBAEA180" />
 
       {filteredProjects.length === 0 ? (
           <motion.div
@@ -127,7 +127,7 @@ export default function InfiniteJournal({ filteredProjects }) {
             <TwoColumnLayout left={leftContent} right={rightContent} />
           </section>
         )}
-        <Divider color="#8B6B68" />
+        {/* <Divider color="#BBAEA180" /> */}
     </>
   );
 }

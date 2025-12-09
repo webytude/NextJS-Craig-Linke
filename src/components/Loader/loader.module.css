@@ -56,7 +56,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #511f29; 
+  background: #5B272F; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 90px;
   position: relative;
   font-size: 22px;
   letter-spacing: 6px;

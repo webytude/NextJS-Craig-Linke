@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   border-right: 1px solid #EAEAE8; 
-  border-top: 1px solid #EAEAE8;
+  /* border-top: 1px solid #EAEAE8; */
   height: 100%;
 }
 @media (max-width: 768px) {

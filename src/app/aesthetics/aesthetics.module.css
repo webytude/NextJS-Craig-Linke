@@ -169,11 +169,14 @@
   border-bottom: 1px solid #EAEAE8;
 }
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
+}
+h1.mainHeading {
+  font-size: 44px;
 }
 @media (min-width: 768px) {
   .wrapper {

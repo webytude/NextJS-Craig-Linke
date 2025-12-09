@@ -22,6 +22,7 @@ export default function ProjectClient({ projects }) {
   // const [error, setError] = useState(null);
 
   const [activeImageId, setActiveImageId] = useState(null);
+  const [contentOpacity, setContentOOpacity] = useState(1);
   const imageRefs = useRef({});
 
   // useEffect(() => {
@@ -67,6 +68,23 @@ export default function ProjectClient({ projects }) {
 
   //   fetchProject();
   // }, [slug, client]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const fadeLimit = 300;
+
+      let newOpacity = 1 - scrollPosition / fadeLimit;
+
+      if (newOpacity < 0) newOpacity = 0;
+      if (newOpacity > 1) newOpacity = 1;
+
+      setContentOOpacity(newOpacity);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const finalTheme = "White";
@@ -128,9 +146,11 @@ export default function ProjectClient({ projects }) {
       )
     : null;
 
-  // if (loading) return <Loading />;
-  // if (error) return <p>Error: {error.message}</p>;
-  // if (!project) return <p>Project not found.</p>;
+  const fadeStyle = {
+    opacity: contentOpacity,
+    transition: 'opacity 0.1s ease-out',
+    pointerEvents: contentOpacity === 0 ? 'none' : 'auto',
+  };
 
   return (
     <>
@@ -138,7 +158,7 @@ export default function ProjectClient({ projects }) {
         <section>
           <div className={styles.pageWrapper}>
             <div className={styles.leftColumn}>
-              <div className={`${styles.specification} p20`}>
+              <div className={`${styles.specification} p20`} style={fadeStyle}>
                 <div>
                   <label>LOCATION</label>
                   {projects.Location}
@@ -232,7 +252,7 @@ export default function ProjectClient({ projects }) {
               )}
             </div>
             <div className={styles.rightColumn}>
-              <div className="p20">
+              <div className="p20" style={fadeStyle}>
                 <Heading level={5} color="#000">
                   {projects.Name}
                 </Heading>
@@ -242,7 +262,7 @@ export default function ProjectClient({ projects }) {
               </div>
 
               <div
-                className={`${styles.bottomWrapper} flex justify-space-between p20`}
+                className={`${styles.bottomWrapper} flex justify-space-between flex-end p20`}
               >
                 {materialSectionData && (
                   <>

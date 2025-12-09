@@ -10,6 +10,7 @@ export default function ProjectFilterBase({
   categoryKey = "ProjectCategory",
 }) {
   const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   // const categoryList = ["All", ...new Set(categories.length ? categories : projects.map(p => p.category))];
 
@@ -54,12 +55,14 @@ export default function ProjectFilterBase({
           <FadeUp key={index}>
           <button
             onClick={() => setActiveCategory(cat)}
+            onMouseEnter={() => setHoveredCategory(cat)}
+            onMouseLeave={() => setHoveredCategory(null)}
             className={`${styles.navItem} ${
               activeCategory === cat ? styles.active : ""
             }`}
           >
             <span className={styles.icon}>
-              {activeCategory === cat ? "(•)" : "( )"}
+              {activeCategory === cat || hoveredCategory === cat ? "(•)" : "( )"}
             </span>
             <span className={styles.label}>{cat}</span>
           </button>

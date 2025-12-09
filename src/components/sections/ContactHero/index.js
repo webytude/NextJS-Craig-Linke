@@ -47,28 +47,28 @@ export default function ContactHero({ data }) {
         hideMobileDivider={true}
       >
         <div className="p20">
-          <div className={styles.contactDetail}>
-            <FadeUp>
+          {/* <div className={styles.contactDetail}> */}
+            <FadeUp classes={styles.contactDetail}>
               <div>
                 <div className={`text-light uppercase ${styles.subHeading}`}>
                   ADDRESS
                 </div>
-                <Paragraph style={{ fontSize: 12 }}>{Address}</Paragraph>
+                <Paragraph style={{ fontSize: 12, lineHeight: '18px' }}>{Address}</Paragraph>
               </div>
               <div>
                 <div className={`text-light uppercase ${styles.subHeading}`}>
                   EMAIL
                 </div>
-                <Paragraph style={{ fontSize: 12 }}>{Email}</Paragraph>
+                <Paragraph style={{ fontSize: 12, lineHeight: '18px' }}>{Email}</Paragraph>
               </div>
               <div>
                 <div className={`text-light uppercase ${styles.subHeading}`}>
                   NUMBER
                 </div>
-                <Paragraph style={{ fontSize: 12 }}>{Number}</Paragraph>
+                <Paragraph style={{ fontSize: 12, lineHeight: '18px' }}>{Number}</Paragraph>
               </div>
             </FadeUp>
-          </div>
+          {/* </div> */}
         </div>
         <div className="p20 text-right hide-mobile" />
       </Box>

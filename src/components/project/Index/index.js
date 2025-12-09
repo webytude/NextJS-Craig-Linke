@@ -22,25 +22,29 @@ export default function Index({ onClose, projects }) {
   }, [projects]);
 
   const indexVariants = {
-    hidden: { opacity: 0, y: "100%" },
+    hidden: { 
+      opacity: 0, 
+    },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: { duration: 0.6, ease: "easeIn" } 
     },
-    exit: { opacity: 0, y: "100%", transition: { ease: "easeInOut" } },
+    exit: { 
+      opacity: 0, 
+      transition: { duration: 0.6, ease: "easeInOut" } 
+    },
   };
 
   const imageVariants = {
     initial: { opacity: 0, scale: 0.99 },
     animate: {
       opacity: 1,
-      scale: 1,
+      // scale: 1,
       transition: { duration: 0.6, ease: "easeOut" },
     },
     exit: {
       opacity: 0,
-      scale: 0.99,
+      // scale: 0.99,
       transition: { duration: 0.4, ease: "easeIn" },
     },
   };

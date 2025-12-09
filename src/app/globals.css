@@ -86,6 +86,9 @@ ul {
 .justify-space-between {
     justify-content: space-between;
 }
+.flex-end {
+    align-items: flex-end;
+}
 .centerContent {
   display: flex;
   justify-content: center;
@@ -97,7 +100,7 @@ ul {
   width: 100%;
 }
 .fullHeight {
-  height: 100vh;
+  height: 100%;
 }
 .font12 {
   font-size: 12px;
@@ -199,6 +202,19 @@ button:hover {
 }
 .Malt .borderLeft {
   border-left: 1px solid #EAEAE8;
+}
+
+.Pinot .borderRight {
+  border-right: 1px solid #BBAEA180;
+}
+.Pinot .borderTop {
+  border-top: 1px solid #BBAEA180;
+}
+.Pinot .borderBottom {
+  border-bottom: 1px solid #BBAEA180;
+}
+.Pinot .borderLeft {
+  border-left: 1px solid #BBAEA180;
 }
 .headingOne {
   font-family: 'collapselight_italic';
@@ -362,6 +378,7 @@ button:hover {
     padding: 0;
     border-right: 1px solid #EAEAE8;
     width: 1400px;
+    margin-top: 53px;
   }
 }
 @media (max-width: 980px) {

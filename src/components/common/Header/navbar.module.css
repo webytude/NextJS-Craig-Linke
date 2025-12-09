@@ -27,8 +27,8 @@
   gap: 40px;
 }
 .nav > ul > li {
-  font-size: 14px;
-  letter-spacing: 2px;
+  letter-spacing: 0.5px;
+  font-size: 12px;
   transition: color 0.3s;
   text-transform: uppercase;
 }

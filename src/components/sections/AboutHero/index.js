@@ -1,3 +1,5 @@
+"use client";
+
 import MediaRenderer from "@/components/common/MediaRenderer";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
 import Box from "@/components/ui/Box/Box";
@@ -10,9 +12,12 @@ import styles from "./aboutHero.module.css";
 import FadeUp from "@/components/ui/animations/FadeUp";
 import Heading from "@/components/ui/Heading";
 import SlideLeft from "@/components/ui/animations/SlideLeft";
+import { useState } from "react";
 
 export default function AboutHero({ data, quickLinks }) {
   const { Title, SubTitle, ShortText, RightSideMedia } = data;
+  const [activeId, setActiveId] = useState('');
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   const handleScroll = (e, id) => {
     e.preventDefault();
@@ -20,6 +25,7 @@ export default function AboutHero({ data, quickLinks }) {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    setActiveId(id);
   };
 
   const leftContent = (
@@ -41,26 +47,31 @@ export default function AboutHero({ data, quickLinks }) {
         padding="0"
         equalChildren
       >
-        <div className={`${styles.navItem} p20`}>
-          <FadeUp>
+          <FadeUp classes={`${styles.navItem} p20`}>
           {quickLinks && quickLinks.length > 0 ? (
-             quickLinks.map((link, index) => (
+             quickLinks.map((link, index) => {
+              const isActive = activeId === link.id;
+              return (
                 <div key={index}>
                   <Link 
                     href={`#${link.id}`} 
                     onClick={(e) => handleScroll(e, link.id)}
+                    onMouseEnter={() => setHoveredCategory(link.id)}
+                    onMouseLeave={() => setHoveredCategory(null)}
                     style={{ textDecoration: 'none', cursor: 'pointer' }}
                   >
-                    <span className={styles.icon}>( )</span>
+                    <span className={styles.icon}>
+                      {isActive || hoveredCategory === link.id ? "(•)" : "( )"}
+                    </span>
                     <span className={styles.label}>{link.label}</span>
                   </Link>
                 </div>
-             ))
+             )
+             })
           ) : (
              null
           )}
           </FadeUp>
-        </div>
         <div className="p20 text-right">
           <div className="text-light uppercase">
             <FadeUp>

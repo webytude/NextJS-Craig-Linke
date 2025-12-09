@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function FadeUp({ children, duration = 0.6, delay = 0, style }) {
+export default function FadeUp({ children, duration = 0.6, delay = 0, style, classes }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 60 }}
@@ -10,6 +10,7 @@ export default function FadeUp({ children, duration = 0.6, delay = 0, style }) {
       transition={{ duration, delay, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.2 }}
       style={style}
+      className={classes}
     >
       {children}
     </motion.div>

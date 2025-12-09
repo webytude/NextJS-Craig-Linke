@@ -88,25 +88,6 @@ const activeData = asthetics.find(p => p.Slug === currentSlug)
     }
   }, [incomingData, activeData, screenWidth]);
 
-  // const maxDrag = screenWidth * activeData?.Blocks.length;
-
-  // useEffect(() => {
-  //   const el = containerRef.current;
-  //   if (!el) return;
-
-  //   const handleWheel = (e) => {
-  //     e.preventDefault();
-  //     const delta = -e.deltaY;
-  //     const current = x.get();
-  //     const next = current + delta;
-
-  //     x.set(Math.max(-maxDrag, Math.min(0, next)));
-  //   };
-
-  //   el.addEventListener("wheel", handleWheel, { passive: false });
-  //   return () => el.removeEventListener("wheel", handleWheel);
-  // }, [x, maxDrag]);
-
   useEffect(() => {
     if (screenWidth < 768) return;
     const activeEl = incomingData ? newRef.current : oldRef.current;
@@ -186,6 +167,10 @@ const activeData = asthetics.find(p => p.Slug === currentSlug)
     const isMobile = screenWidth < 768;
 
     return (
+      <>
+      <div className={styles.header}>
+        <Header globalData={globalData} />
+      </div>
       <motion.div
         ref={containerRef}
         className={`${styles.container} aesthetics-container`}
@@ -205,16 +190,6 @@ const activeData = asthetics.find(p => p.Slug === currentSlug)
             position: "relative",
           }}
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: showInnerContent ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
-            className={styles.header}
-            onPointerDownCapture={(e) => e.stopPropagation()}
-          >
-            <Header globalData={globalData} />
-          </motion.div>
-
           <div className={styles.backgroundWrapper}>
             {activeData?.DesktopMedia.EnableMuxVideo &&
               activeData?.DesktopMedia.MuxVideo?.playback_id && (
@@ -319,11 +294,12 @@ const activeData = asthetics.find(p => p.Slug === currentSlug)
         </section>
         {activeData.Blocks.map((block, index) => (
           <section key={index}>
-            <div className={`${styles.headerSpacer} hide-mobile`} />
+            {/* <div className={`${styles.headerSpacer} hide-mobile`} /> */}
             <BlockRenderer key={index} block={block} />
           </section>
         ))}
       </motion.div>
+      </>
     );
   };
 

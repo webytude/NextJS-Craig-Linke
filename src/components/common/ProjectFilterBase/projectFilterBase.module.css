@@ -7,10 +7,10 @@
   justify-content: center;
   align-items: center;
   gap: 153px;
-  padding: 24px;
+  padding: 50px 20px 20px;
   font-family: "Inter", sans-serif;
   letter-spacing: 0.05em;
-  min-height: 200px;
+  min-height: 162px;
 }
 
 .navItem {

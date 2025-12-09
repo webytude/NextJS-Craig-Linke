@@ -43,6 +43,7 @@ export default function Header({ globalData }) {
     };
 
     updatePositions();
+
   }, []);
 
   const handleMenuToggle = async () => {
