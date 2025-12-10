@@ -15,7 +15,7 @@
 .rightColumn {
   flex: 1;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   width: 50%;
 }
 .divider {

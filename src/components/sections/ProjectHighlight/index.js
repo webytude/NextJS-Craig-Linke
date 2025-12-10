@@ -34,7 +34,7 @@ export default function ProjectHighlight({ data }) {
   const rightContent = (
     <>
       <div className="featuredProject p20">
-        <div className="flex justify-space-between pt20 pb20 no-padding-mobile">
+        <div className={`flex justify-space-between pt20 pb20 no-padding-mobile ${styles.stickyHeader}`}>
           <FadeUp><div className="text-light uppercase">{FeaturedProjects.Title}</div></FadeUp>
           {FeaturedProjects.Button && (
             <FadeUp>
