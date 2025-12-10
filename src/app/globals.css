@@ -166,19 +166,6 @@ button:hover {
 .Malt button {
   color: #fff;
 }
-.borderRight {
-  border-right: 1px solid #938579;
-}
-.borderTop {
-  border-top: 1px solid #938579;
-}
-.borderBottom {
-  border-bottom: 1px solid #938579;
-}
-.borderLeft {
-  border-left: 1px solid #938579;
-}
-
 .White .borderRight {
   border-right: 1px solid #D0D0D0;
 }
@@ -203,7 +190,6 @@ button:hover {
 .Malt .borderLeft {
   border-left: 1px solid #EAEAE8;
 }
-
 .Pinot .borderRight {
   border-right: 1px solid #BBAEA180;
 }
@@ -215,6 +201,19 @@ button:hover {
 }
 .Pinot .borderLeft {
   border-left: 1px solid #BBAEA180;
+}
+.borderRight {
+  border-right: 1px solid #938579;
+}
+.borderTop {
+  border-top: 1px solid #938579;
+}
+.indexOpen .borderBottom,
+.borderBottom {
+  border-bottom: 1px solid #938579;
+}
+.borderLeft {
+  border-left: 1px solid #938579;
 }
 .headingOne {
   font-family: 'collapselight_italic';

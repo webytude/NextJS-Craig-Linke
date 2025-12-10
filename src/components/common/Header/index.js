@@ -36,8 +36,8 @@ export default function Header({ globalData }) {
         const rightEdge = rightRef.current.getBoundingClientRect().right;
 
         setPositions({
-          craigToLeft: leftEdge - craigEdge + 10,
-          linkeToRight: rightEdge - linkeEdge - 10,
+          craigToLeft: leftEdge - craigEdge,
+          linkeToRight: rightEdge - linkeEdge,
         });
       }
     };
