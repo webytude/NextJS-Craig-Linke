@@ -22,6 +22,15 @@ export default function Header({ globalData }) {
   const menuButtonControls = useAnimation();
   const router = useRouter();
 
+  // useEffect(() => {
+  //   if (menuOpen) {
+  //     handleClose();
+  //   }
+  //   if (openMobileMenu) {
+  //     setOpenMobileMenu(false);
+  //   }
+  // }, [pathname]); 
+
   useEffect(() => {
     const updatePositions = () => {
       if (
@@ -94,6 +103,14 @@ export default function Header({ globalData }) {
       document.body.classList.remove(styles.mobileMenu);
     };
   }, [openMobileMenu]);
+
+  const handleLinkClick = async () => {
+    setOpenMobileMenu(false);
+    
+    if (menuOpen) {
+      await handleClose(); 
+    }
+  };
 
   return (
     <header className={`${styles.header} borderBottom header-aesthetics`}>
@@ -235,7 +252,7 @@ export default function Header({ globalData }) {
               delay: 0.3 
             }}
           >
-            <Navigation menu={headerData?.Menu} onCloseMenu={closeMobileMenu} />
+            <Navigation menu={headerData?.Menu} onCloseMenu={closeMobileMenu} onLinkClick={handleLinkClick} />
             <div className={`${styles.menuBottom} hide-desktop`}>
               <SocialLinks socialLinks={footerData.SocialLinks} />
               <ContctDetail extraDetails={footerData.ExtraDetails} />
