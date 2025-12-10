@@ -7,6 +7,7 @@ import Footer from '@/components/common/Footer'
 import BodyTheme from '@/components/layouts/BodyTheme'
 import Loader from '@/components/Loader';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 export default function LayoutClient({ children, globalData }) {
   const pathname = usePathname();
@@ -14,8 +15,15 @@ export default function LayoutClient({ children, globalData }) {
   const [loaderExitStarted, setLoaderExitStarted] = useState(false);
   const [loaderAnimationComplete, setLoaderAnimationComplete] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isAnimationComplete, setIsAnimationComplete] = useState(!showLoader);
 
   const isAestheticsPage = pathname?.startsWith('/aesthetics');
+
+  useEffect(() => {
+    if (!loaderExitStarted) {
+      setIsAnimationComplete(false);
+    }
+  }, [loaderExitStarted]);
 
   useEffect(() => {
      if (typeof window !== 'undefined') {
@@ -51,12 +59,17 @@ export default function LayoutClient({ children, globalData }) {
         <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} />
       )}
       {/* <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} /> */}
-      <div
+      <motion.div
+        initial={{ y: showLoader ? '100%' : '0%' }}
+        animate={{ y: (showLoader && !loaderExitStarted) ? '100%' : '0%' }}
+        transition={{ duration: showLoader ? 1 : 0,  ease: [0.83, 0, 0.17, 1] }}
+        onAnimationComplete={() => {
+          setIsAnimationComplete(true);
+        }}
         style={{
-          transform: loaderExitStarted ? 'translateY(0%)' : 'translateY(100%)',
-          transition: 'transform 1s cubic-bezier(0.83, 0, 0.17, 1)', 
+          transform: isAnimationComplete ? 'none' : undefined,
           width: '100%',
-          minHeight: '100vh',
+          minHeight: '100vh'
         }}
       >
       <ApolloWrapper>
@@ -66,7 +79,7 @@ export default function LayoutClient({ children, globalData }) {
         {/* {!isAestheticsPage && <Footer globalData={globalData} />} */}
         <Footer hideOnMobile={isAestheticsPage ? 'hide-desktop' : ''} globalData={globalData} />
       </ApolloWrapper>
-      </div>
+      </motion.div>
     </>
   )
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./fullScreenMedia.module.css";
 import Image from "next/image";
 import Paragraph from "@/components/ui/Paragraph";
@@ -22,6 +22,28 @@ export default function FullScreenMedia({ data }) {
   const [currentMedia, setCurrentMedia] = useState(DefaultMedia); 
   const [activeItem, setActiveItem] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const revealRef = useRef(null);
+
+  useEffect(() => {
+  const handleScroll = () => {
+    if (revealRef.current) {
+      const { top } = revealRef.current.getBoundingClientRect();
+      if (top > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []);
   
   useEffect(() => {
     setCurrentMedia(DefaultMedia);
@@ -97,8 +119,8 @@ export default function FullScreenMedia({ data }) {
   };
 
   return (
-    <section className="aesthetics FullScreenMedia">
-      <div className="positionRelative">
+    <section ref={revealRef} className={`${styles.aesthetics} FullScreenMedia ${isSticky ? styles.aestheticsFixed : ''}`}>
+      <div className={`${styles.reveal__content} positionRelative`}>
         <div className={styles.backgroundWrapper}>
           <div
             style={{
@@ -134,7 +156,7 @@ export default function FullScreenMedia({ data }) {
         <div className={styles.overlay}></div>
 
         <div className={styles.content}>
-          <div className={`${styles.aestheticsContent} flex justify-space-between p20`}>
+          <div className={`${styles.aestheticsContent} flex justify-space-between`}>
             <FadeUp><div className="text-light uppercase">{Title}</div></FadeUp>
             <div className={styles.description}>
               <FadeUp>

@@ -28,6 +28,12 @@ export default function MediaRenderer({ media, width, height, classes }) {
     );
   }
 
+  const responsiveImageStyle = {
+    width: '100%',
+    height: 'auto',
+    display: 'block'
+  };
+
   if (Array.isArray(ImageORCarousel) && ImageORCarousel.length > 1) {
     return (
       <div className={styles.sliderWrapper}>
@@ -40,6 +46,8 @@ export default function MediaRenderer({ media, width, height, classes }) {
               width={width || 716}
               height={height || 889}
               className={classes || ''}
+              // style={responsiveImageStyle}
+              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </SwiperSlide>
         ))}
@@ -57,6 +65,8 @@ export default function MediaRenderer({ media, width, height, classes }) {
         width={width || 716}
         height={height || 889}
         className={classes || ''}
+        // style={responsiveImageStyle}
+        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
     );
   }
