@@ -156,7 +156,7 @@ export default function Index({ onClose, projects }) {
       <TwoColumnLayout
         left={leftContent}
         right={rightContent}
-        showDivider
+        showDivider 
         showMobileDivider={false}
         fullHeight
       />
