@@ -23,7 +23,8 @@ export default function MediaRenderer({ media, width, height, classes }) {
         loop
         playsInline
         preload="auto"
-        style={{ aspectRatio: "16 / 9", width: "100%" }}
+        controls={false}
+        style={{ width: "100%", height: '100%', '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
       />
     );
   }
