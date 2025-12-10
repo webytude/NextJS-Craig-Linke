@@ -110,8 +110,6 @@ export default function InfiniteJournal({ filteredProjects }) {
         <button className={styles.active}>JOURNAL</button>
         {/* <button>INDEX</button>  */}
       </div>
-      
-      <Divider color="#BBAEA180" />
 
       {filteredProjects.length === 0 ? (
           <motion.div
