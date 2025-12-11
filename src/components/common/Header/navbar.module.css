@@ -1,24 +1,17 @@
-
-.header {
-  /* border-bottom: 1px solid #938579; */
+.headerContainer {
+  top: 0;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 53px;
   position: sticky;
   padding: 0px 20px;
-  /* overflow: hidden; */
   transition: background-color 0.8s ease-in-out;
   top: 0;
   z-index: 12;
   backdrop-filter: blur(10px);
-}
-.nav {
-  position: absolute;
-  top: 50%;
-  left: 32.4%;
-  transform: translate(-50%, -50%);
-  text-align: center;
 }
 .nav > ul {
   list-style: none;
@@ -31,24 +24,6 @@
   font-size: 12px;
   transition: color 0.3s;
   text-transform: uppercase;
-}
-.centerLogos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  gap: 30px;
-}
-.craig, .linke {
-  font-size: 16px;
-  letter-spacing: 6px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.linke:hover {
-  opacity: 0.8;
 }
 .menuButton {
   background: none;
@@ -63,11 +38,36 @@
 .mobileLeftArea {
   display: none;
 }
-/* --- Mobile Styles --- */
-@media (min-width: 768px) {
-  .header {
-    overflow: hidden;
-  }
+.leftSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 120px;
+  z-index: 20;
+}
+.rightSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 120px;
+  z-index: 20;
+}
+.centerSection {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.centerLogoGroup {
+  display: flex;
+  gap: 30px;
+}
+.cursorPointer {
+  cursor: pointer;
 }
 @media (max-width: 980px) {
   .desktopMenuButton,
@@ -129,12 +129,6 @@
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.449951 5.35221H9.07106' stroke='%23EAEAE8' stroke-width='0.9' stroke-linecap='square' stroke-linejoin='round'/%3E%3Cpath d='M5.16577 0.636395L9.88159 5.35221L5.16577 10.068' stroke='%23EAEAE8' stroke-width='0.9' stroke-linecap='square' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-position: 96% center;
     background-repeat: no-repeat;
-  }
-  .craig, .linke, .leftLogo {
-    transform: none !important;
-  }
-  .leftLogo {
-    opacity: 1 !important;
   }
   .mobileMenu {
     background: #5B272F;
