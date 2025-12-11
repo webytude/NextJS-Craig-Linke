@@ -59,17 +59,27 @@ export default function LayoutClient({ children, globalData }) {
         <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} />
       )}
       {/* <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} /> */}
+
       <motion.div
-        initial={{ y: showLoader ? '100%' : '0%' }}
-        animate={{ y: (showLoader && !loaderExitStarted) ? '100%' : '0%' }}
-        transition={{ duration: showLoader ? 1 : 0,  ease: [0.83, 0, 0.17, 1] }}
-        onAnimationComplete={() => {
-          setIsAnimationComplete(true);
+        // initial={{ y: showLoader ? '100%' : '0%' }}
+        // animate={{ y: (showLoader && !loaderExitStarted) ? '100%' : '0%' }}
+        // transition={{ duration: showLoader ? 1 : 0,  ease: [0.83, 0, 0.17, 1] }}
+        // onAnimationComplete={() => {
+        //   setIsAnimationComplete(true);
+        // }}
+        // style={{
+        //   transform: isAnimationComplete ? 'none' : undefined,
+        //   width: '100%',
+        //   minHeight: '100vh'
+        // }}
+        initial={{ y: showLoader ? '100%' : 0 }}
+        animate={{ 
+           y: 0
         }}
-        style={{
-          transform: isAnimationComplete ? 'none' : undefined,
-          width: '100%',
-          minHeight: '100vh'
+        transition={{
+          delay: showLoader ? 2.3 : 0,
+          duration: showLoader ? 4 : 0,
+          ease: [0.76, 0, 0.24, 1]
         }}
       >
       <ApolloWrapper>

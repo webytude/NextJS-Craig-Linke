@@ -14,7 +14,10 @@ export default function Header({ globalData }) {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const handleLinkClick = () => setIsOpen(false);
+  const handleLinkClick = () => {
+    setIsOpen(false);
+    setOpenMobileMenu(false)
+  }
 
   const transitionSettings = { duration: 1.5, ease: [0.16, 1, 0.3, 1] };
 
