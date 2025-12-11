@@ -43,7 +43,7 @@ export default function Header({ globalData }) {
         const craigEdge = craigRef.current.getBoundingClientRect().left;
         const linkeEdge = linkeRef.current.getBoundingClientRect().right;
         const rightEdge = rightRef.current.getBoundingClientRect().right;
-
+        console.log('RESIZE', leftEdge)
         setPositions({
           craigToLeft: leftEdge - craigEdge,
           linkeToRight: rightEdge - linkeEdge,
@@ -53,7 +53,13 @@ export default function Header({ globalData }) {
 
     updatePositions();
 
-  }, []);
+    window.addEventListener("resize", updatePositions);
+
+    return () => {
+      window.removeEventListener("resize", updatePositions);
+    };
+
+  }, [menuOpen]);
 
   const handleMenuToggle = async () => {
     await menuButtonControls.start({

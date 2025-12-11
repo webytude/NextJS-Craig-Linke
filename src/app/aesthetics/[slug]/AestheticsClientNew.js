@@ -30,22 +30,15 @@ export default function AestheticsClient({ asthetics }) {
   const containerRef = useRef(null);
   const x = useMotionValue(0);
   const [screenWidth, setScreenWidth] = useState(0);
-  const [showNav, setShowNav] = useState(true);
   const [displayData, setDisplayData] = useState(null);
   const [incomingData, setIncomingData] = useState(null);
   const [showInnerContent, setShowInnerContent] = useState(false);
   const [maxDrag, setMaxDrag] = useState(0);
-  const animationRef = useRef(null);
   const oldRef = useRef(null);
   const newRef = useRef(null);
 
-  const headerData = useQuery(GLOBAL_QUERY, {
-    fetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
-  });
 
   const activeData = asthetics.find((p) => p.Slug === currentSlug);
-  const globalData = headerData?.data?.global;
 
   useEffect(() => {
     if (!incomingData) return;
@@ -66,92 +59,6 @@ export default function AestheticsClient({ asthetics }) {
   }, [activeData]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const updateWidth = () => setScreenWidth(window.innerWidth);
-      updateWidth();
-      window.addEventListener("resize", updateWidth);
-      return () => window.removeEventListener("resize", updateWidth);
-    }
-  }, []);
-
-  useEffect(() => {
-    const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-    if (!activeElWrapper) return;
-    const scrollContainer = activeElWrapper.querySelector(
-      `.${styles.container}`
-    );
-
-    if (scrollContainer) {
-      const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
-      setMaxDrag(Math.max(0, calculatedMaxDrag));
-    }
-  }, [incomingData, activeData, screenWidth]);
-
-  useEffect(() => {
-    if (screenWidth < 768) return;
-    const activeEl = incomingData ? newRef.current : oldRef.current;
-    if (!activeEl) return;
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-      const delta = -e.deltaY;
-      const current = x.get();
-      const next = current + delta;
-      x.set(Math.max(-maxDrag, Math.min(0, next)));
-    };
-
-    activeEl.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      activeEl.removeEventListener("wheel", handleWheel);
-    };
-  }, [incomingData, maxDrag, x]);
-
-  useEffect(() => {
-    const unsubscribe = x.on("change", (value) => {
-      setShowNav(value > -screenWidth * 0.3);
-    });
-    return () => unsubscribe();
-  }, [x, screenWidth]);
-
-  const scrollToSection = (blockIndex) => {
-    const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-    if (!activeElWrapper) return;
-
-    const scrollContainer = activeElWrapper.querySelector(
-      `.${styles.container}`
-    );
-    if (!scrollContainer) return;
-
-    const sections = scrollContainer.children;
-
-    const targetSection = sections[blockIndex + 1];
-
-    if (targetSection) {
-      if (screenWidth < 768) {
-        targetSection.scrollIntoView({ behavior: "smooth", inline: "start" });
-      } else {
-        const targetPosition = -targetSection.offsetLeft;
-
-        if (animationRef.current) animationRef.current.stop();
-
-        animationRef.current = animate(x, targetPosition, {
-          type: "spring",
-          stiffness: 60,
-          damping: 20,
-          onComplete: () => (animationRef.current = null),
-        });
-      }
-    }
-  };
-
-  useEffect(() => {
-    const finalTheme = "Malt page-aesthetics";
-    window.__PAGE_THEME_COLOR__ = finalTheme;
-    window.dispatchEvent(new Event("theme-change"));
-  }, []);
-
-  useEffect(() => {
     if (!activeData) return;
 
     setIncomingData(activeData);
@@ -169,9 +76,6 @@ export default function AestheticsClient({ asthetics }) {
 
     return (
       <>
-        <div className={styles.header}>
-          <Header globalData={globalData} />
-        </div>
         <motion.div
           ref={containerRef}
           className={`${styles.container} aesthetics-container`}
@@ -196,7 +100,7 @@ export default function AestheticsClient({ asthetics }) {
                style={{ width: "100%", height: "100%" }}
                initial={isIncoming ? { y: "100%" } : { y: "0%" }} 
                animate={{ y: "0%" }}
-               transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+               transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
             >
               {activeData?.DesktopMedia.EnableMuxVideo &&
                 activeData?.DesktopMedia.MuxVideo?.playback_id && (
@@ -234,37 +138,7 @@ export default function AestheticsClient({ asthetics }) {
             <div className={styles.overlay}></div>
             <motion.div
               className={styles.content}
-              // initial={{ opacity: 0 }}
-              // animate={{ opacity: showInnerContent ? 1 : 0 }}
-              // transition={{ duration: 0.5 }}
             >
-              <div className={`${styles.child} ${styles.topLeft} hide-mobile`}>
-                  <ul className={styles.topNav}>
-                    {activeData.Blocks.map((item, index) => {
-                      if (item.ShowInQuickView && item.Title) {
-                        return (
-                          <li key={item.id || index}>
-                            <Link
-                              href={"#"}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                scrollToSection(index);
-                              }}
-                            >
-                              {item.Title}
-                            </Link>
-                          </li>
-                        );
-                      }
-                      return null;
-                    })}
-                  </ul>
-              </div>
-              <div className={`${styles.child} ${styles.topRight}`}>
-                  <Paragraph>
-                    <BlocksRenderer content={activeData.Description || []} />
-                  </Paragraph>
-              </div>
               <div className={`${styles.child} ${styles.bottomLeft}`}>
                   <div className={`${styles.navItem}`}>
                     {asthetics.map((item) => {
@@ -284,24 +158,8 @@ export default function AestheticsClient({ asthetics }) {
                     })}
                   </div>
               </div>
-              <div
-                className={`${styles.child} ${styles.bottomRight} hide-mobile`}
-              >
-                <LinkWithArrow text={"SCROLL"} href={"#"} />
-              </div>
-              <div className={`${styles.child} ${styles.center}`}>
-                  <Heading level={1} className={styles.mainHeading}>
-                    {activeData.Name}
-                  </Heading>
-              </div>
             </motion.div>
           </section>
-          {activeData.Blocks.map((block, index) => (
-            <section key={index}>
-              {/* <div className={`${styles.headerSpacer} hide-mobile`} /> */}
-              <BlockRenderer key={index} block={block} />
-            </section>
-          ))}
         </motion.div>
       </>
     );
@@ -314,10 +172,6 @@ export default function AestheticsClient({ asthetics }) {
           <motion.div
             key="old-content"
             ref={oldRef}
-            // initial={{ opacity: 1 }}
-            // animate={{ opacity: 1 }}
-            // exit={{ opacity: 0 }}
-            // transition={{ duration: 1 }}
             className={styles.content}
           >
             {renderContent(displayData, false)}
@@ -328,19 +182,7 @@ export default function AestheticsClient({ asthetics }) {
           <motion.div
             key="new-content"
             ref={newRef}
-            // initial={{ opacity: 0 }}
-            // animate={{ opacity: 1 }}
-            // exit={{ opacity: 0 }}
-            // transition={{ duration: 0.1 }}
             className={styles.content}
-            style={{ 
-              zIndex: 10,
-              position: 'absolute', 
-              top: 0, 
-              left: 0, 
-              width: '100%', 
-              height: '100%' 
-            }} 
           >
             {renderContent(incomingData, true)}
           </motion.div>

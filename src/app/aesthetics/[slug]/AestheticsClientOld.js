@@ -27,8 +27,10 @@ export default function AestheticsClient({ asthetics }) {
   const params = useParams();
   const pathname = usePathname();
   const currentSlug = params?.slug;
-  const containerRef = useRef(null);
+
   const x = useMotionValue(0);
+  const containerRef = useRef(null);
+  
   const [screenWidth, setScreenWidth] = useState(0);
   const [showNav, setShowNav] = useState(true);
   const [displayData, setDisplayData] = useState(null);
@@ -158,8 +160,8 @@ export default function AestheticsClient({ asthetics }) {
 
     const timer = setTimeout(() => {
       setDisplayData(activeData);
-      setIncomingData(null);
-    }, 800);
+    //   setIncomingData(null);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [activeData]);
@@ -196,7 +198,7 @@ export default function AestheticsClient({ asthetics }) {
                style={{ width: "100%", height: "100%" }}
                initial={isIncoming ? { y: "100%" } : { y: "0%" }} 
                animate={{ y: "0%" }}
-               transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+               transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
             >
               {activeData?.DesktopMedia.EnableMuxVideo &&
                 activeData?.DesktopMedia.MuxVideo?.playback_id && (
@@ -234,9 +236,6 @@ export default function AestheticsClient({ asthetics }) {
             <div className={styles.overlay}></div>
             <motion.div
               className={styles.content}
-              // initial={{ opacity: 0 }}
-              // animate={{ opacity: showInnerContent ? 1 : 0 }}
-              // transition={{ duration: 0.5 }}
             >
               <div className={`${styles.child} ${styles.topLeft} hide-mobile`}>
                   <ul className={styles.topNav}>
@@ -298,7 +297,6 @@ export default function AestheticsClient({ asthetics }) {
           </section>
           {activeData.Blocks.map((block, index) => (
             <section key={index}>
-              {/* <div className={`${styles.headerSpacer} hide-mobile`} /> */}
               <BlockRenderer key={index} block={block} />
             </section>
           ))}
@@ -308,17 +306,23 @@ export default function AestheticsClient({ asthetics }) {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <AnimatePresence mode="popLayout">
+    <div className={styles.wrapper} style={{ position: "relative" }}>
+      {/* <AnimatePresence> */}
         {displayData && (
           <motion.div
             key="old-content"
             ref={oldRef}
-            // initial={{ opacity: 1 }}
-            // animate={{ opacity: 1 }}
-            // exit={{ opacity: 0 }}
-            // transition={{ duration: 1 }}
             className={styles.content}
+            style={{
+            zIndex: 1,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            }}
+            animate={{ opacity: incomingData ? 0.4 : 1 }}
+            transition={{ duration: 0.4 }}
           >
             {renderContent(displayData, false)}
           </motion.div>
@@ -328,24 +332,24 @@ export default function AestheticsClient({ asthetics }) {
           <motion.div
             key="new-content"
             ref={newRef}
-            // initial={{ opacity: 0 }}
-            // animate={{ opacity: 1 }}
-            // exit={{ opacity: 0 }}
-            // transition={{ duration: 0.1 }}
             className={styles.content}
-            style={{ 
-              zIndex: 10,
-              position: 'absolute', 
-              top: 0, 
-              left: 0, 
-              width: '100%', 
-              height: '100%' 
-            }} 
+            style={{
+            zIndex: 2,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            }}
+            initial={{ y: "100%" }}
+            animate={{ y: "0%" }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }} 
           >
             {renderContent(incomingData, true)}
           </motion.div>
         )}
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
     </div>
   );
 }

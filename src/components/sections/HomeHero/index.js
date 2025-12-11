@@ -15,16 +15,29 @@ export default function HomeHero({ data }) {
 
   const leftContent = (
     <>
-      <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
-        <FadeUp><Heading level={1} style={{ maxWidth: 580 }}>{Title}</Heading></FadeUp>
+      <Box
+        fullHeight
+        direction="column"
+        justify="space-between"
+        mobileGap="90px"
+        borderBottom
+      >
+        <FadeUp>
+          <Heading level={1} style={{ maxWidth: 580 }}>
+            {Title}
+          </Heading>
+        </FadeUp>
         <div className="flex justify-space-between fullWidth">
           <FadeUp>
-          <div className="uppercase hero-text-light">{ShortText}</div>
+            <div className="uppercase hero-text-light">{ShortText}</div>
           </FadeUp>
           {Button && (
             <div className="hide-mobile">
               <FadeUp>
-              <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+                <LinkWithArrow
+                  text={Button.ButtonText}
+                  href={Button.ButtonURL}
+                />
               </FadeUp>
             </div>
           )}
@@ -32,7 +45,7 @@ export default function HomeHero({ data }) {
       </Box>
       <Box className="hide-desktop" borderBottom>
         <FadeUp>
-        <MediaRenderer media={RightSideMedia} classes={"image"} />
+          <MediaRenderer media={RightSideMedia} classes={"image"} />
         </FadeUp>
       </Box>
       <Box
@@ -47,17 +60,18 @@ export default function HomeHero({ data }) {
         mobileJustify="center"
         mobileAlign="center"
       >
-        <div className="p20">
-            <SlideRight>
-          <MediaRenderer media={LeftSideMedia} classes={"image"} />
+          <SlideRight className="p20 fullHeight">
+            <MediaRenderer media={LeftSideMedia} classes={"image"} />
           </SlideRight>
-        </div>
         <div className="p20">
           {Button && (
             <FadeUp>
-            <div className="text-center hide-desktop">
-              <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
-            </div>
+              <div className="text-center hide-desktop">
+                <LinkWithArrow
+                  text={Button.ButtonText}
+                  href={Button.ButtonURL}
+                />
+              </div>
             </FadeUp>
           )}
         </div>
@@ -67,18 +81,16 @@ export default function HomeHero({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20 hide-mobile">
-        <SlideLeft>
-        <MediaRenderer media={RightSideMedia} classes={"image"} />
+        <SlideLeft className="p20 hide-mobile fullHeight">
+          <MediaRenderer media={RightSideMedia} classes={"image"} />
         </SlideLeft>
-      </div>
     </>
   );
 
   return (
     <>
-      <section className="home-hero">
-        <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
+      <section className={styles.homeHero}>
+        <TwoColumnLayout fullHeight left={leftContent} right={rightContent} showDivider />
       </section>
       <Divider />
     </>

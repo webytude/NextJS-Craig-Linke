@@ -1,5 +1,6 @@
 .asheticsCard {
-    max-width: 446px;
+    /* max-width: 446px; */
+    width: 20vw;
     margin: 0 auto;
     text-align: center;
 }

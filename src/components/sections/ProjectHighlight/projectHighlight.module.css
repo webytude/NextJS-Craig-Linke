@@ -4,7 +4,7 @@
 .projectCard {
     text-align: center;
     padding: 80px 0;
-    max-width: 334px;
+    width: 20vw;
     margin: 0 auto;
 }
 .stickyHeader {

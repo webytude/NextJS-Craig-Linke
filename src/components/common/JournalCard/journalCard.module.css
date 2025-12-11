@@ -1,5 +1,6 @@
 .journalCard {
-    max-width: 334px;
+    /* max-width: 334px; */
+    width: 20vw;
     margin: 0 auto;
 }
 .imageWrapper {

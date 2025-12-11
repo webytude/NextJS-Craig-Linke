@@ -10,7 +10,7 @@ export default function ProjectCard({ project }) {
     <div className="text-center">
       <Link href={`projects/${Slug}`}>
         <div className={styles.imageWrapper}>
-            <MediaRenderer media={Media} width={338} height={480} />
+            <MediaRenderer media={Media} width={338} height={480} classes={'image'} />
         </div>
         <h3 className={styles.proTitle}>{Name}</h3>
       </Link>
