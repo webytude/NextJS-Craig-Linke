@@ -1,0 +1,59 @@
+.movableLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.fixedBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00000066;
+}
+
+.fixedNav {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 20;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+  text-transform: uppercase;
+  display: grid;
+  gap: 10px;
+  flex-direction: column;
+}
+.fixedNav ul {
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+.fixedNav a {
+  display: flex;
+  gap: 16px;
+}
+.icon {
+  font-family: monospace;
+  padding-right: 12px;
+}

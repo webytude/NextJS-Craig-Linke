@@ -377,7 +377,7 @@ button:hover {
     padding: 0;
     border-right: 1px solid #EAEAE8;
     width: 1400px;
-    margin-top: 53px;
+    /* margin-top: 53px; */
   }
 }
 @media (max-width: 980px) {
@@ -451,4 +451,13 @@ button:hover {
 .heroOverlay.show {
   opacity: 1;
   transform: translateY(0%);
+}
+
+.page-aesthetics {
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.page-aesthetics::-webkit-scrollbar {
+  display: none;
 }

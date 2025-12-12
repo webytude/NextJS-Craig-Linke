@@ -17,7 +17,7 @@
         align-items: center;
         position: relative;
         border-right: 1px solid #EAEAE8;
-        margin-top: 53px;
+        /* margin-top: 53px; */
     }
 
     .projectWithManuallyEditable {

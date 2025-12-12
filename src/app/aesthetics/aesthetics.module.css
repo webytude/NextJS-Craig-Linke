@@ -31,7 +31,7 @@
 
 .container {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 53px);
   width: 400vw;
 }
 
@@ -77,12 +77,12 @@
 }
 
 .topLeft {
-  top: 67px;
+  top: 14px;
   left: 20px;
 }
 
 .topRight {
-  top: 77px;
+  top: 24px;
   right: 20px;
   width: 350px;
 }
@@ -158,7 +158,7 @@ h1.mainHeading {
 }
 @media (min-width: 768px) {
   .wrapper {
-    height: 100vh;
+    height: calc(100vh - 53px);
     width: 100vw;
     overflow: hidden;
     position: relative;

@@ -22,48 +22,30 @@ import Heading from "@/components/ui/Heading";
 import LinkWithArrow from "@/components/ui/Link";
 import Header from "@/components/common/Header";
 import FadeUp from "@/components/ui/animations/FadeUp";
+import { useAestheticsScroll } from "@/context/AestheticsContext";
+import Fade from "@/components/ui/animations/Fade";
 
 export default function AestheticsClient({ asthetics }) {
   const params = useParams();
   const pathname = usePathname();
   const currentSlug = params?.slug;
-  const containerRef = useRef(null);
-  const x = useMotionValue(0);
-  const [screenWidth, setScreenWidth] = useState(0);
-  const [showNav, setShowNav] = useState(true);
-  const [displayData, setDisplayData] = useState(null);
-  const [incomingData, setIncomingData] = useState(null);
-  const [showInnerContent, setShowInnerContent] = useState(false);
-  const [maxDrag, setMaxDrag] = useState(0);
-  const animationRef = useRef(null);
-  const oldRef = useRef(null);
-  const newRef = useRef(null);
 
-  const headerData = useQuery(GLOBAL_QUERY, {
-    fetchPolicy: "cache-first",
-    notifyOnNetworkStatusChange: true,
-  });
+  const wrapperRef = useRef(null); 
+  const containerRef = useRef(null);
+
+  const x = useAestheticsScroll();
+
+  const animationRef = useRef(null);
+
+  const [screenWidth, setScreenWidth] = useState(0);
+  const [maxDrag, setMaxDrag] = useState(0);
+  const [showNav, setShowNav] = useState(true);
 
   const activeData = asthetics.find((p) => p.Slug === currentSlug);
-  const globalData = headerData?.data?.global;
 
   useEffect(() => {
-    if (!incomingData) return;
-
-    setShowInnerContent(false);
-
-    const t = setTimeout(() => {
-      setShowInnerContent(true);
-    }, 300);
-
-    return () => clearTimeout(t);
-  }, [incomingData]);
-
-  useEffect(() => {
-    if (activeData && !displayData) {
-      setDisplayData(activeData);
-    }
-  }, [activeData]);
+    x.set(0);
+  }, [currentSlug, x]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -75,21 +57,21 @@ export default function AestheticsClient({ asthetics }) {
   }, []);
 
   useEffect(() => {
-    const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-    if (!activeElWrapper) return;
-    const scrollContainer = activeElWrapper.querySelector(
-      `.${styles.container}`
-    );
+    if (!containerRef.current) return;
 
-    if (scrollContainer) {
-      const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
-      setMaxDrag(Math.max(0, calculatedMaxDrag));
-    }
-  }, [incomingData, activeData, screenWidth]);
+    const scrollContainer = containerRef.current;
+
+    const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
+    setMaxDrag(Math.max(0, calculatedMaxDrag));
+
+    x.set(0); 
+
+  }, [activeData, screenWidth, x]);
 
   useEffect(() => {
     if (screenWidth < 768) return;
-    const activeEl = incomingData ? newRef.current : oldRef.current;
+
+    const activeEl = wrapperRef.current;
     if (!activeEl) return;
 
     const handleWheel = (e) => {
@@ -97,6 +79,7 @@ export default function AestheticsClient({ asthetics }) {
       const delta = -e.deltaY;
       const current = x.get();
       const next = current + delta;
+
       x.set(Math.max(-maxDrag, Math.min(0, next)));
     };
 
@@ -105,7 +88,7 @@ export default function AestheticsClient({ asthetics }) {
     return () => {
       activeEl.removeEventListener("wheel", handleWheel);
     };
-  }, [incomingData, maxDrag, x]);
+  }, [maxDrag, x, screenWidth]);
 
   useEffect(() => {
     const unsubscribe = x.on("change", (value) => {
@@ -114,17 +97,17 @@ export default function AestheticsClient({ asthetics }) {
     return () => unsubscribe();
   }, [x, screenWidth]);
 
-  const scrollToSection = (blockIndex) => {
-    const activeElWrapper = incomingData ? newRef.current : oldRef.current;
-    if (!activeElWrapper) return;
+  useEffect(() => {
+    const finalTheme = "Malt page-aesthetics";
+    window.__PAGE_THEME_COLOR__ = finalTheme;
+    window.dispatchEvent(new Event("theme-change"));
+  }, []);
 
-    const scrollContainer = activeElWrapper.querySelector(
-      `.${styles.container}`
-    );
-    if (!scrollContainer) return;
+   const scrollToSection = (blockIndex) => {
+    if (!containerRef.current) return;
 
-    const sections = scrollContainer.children;
-
+    const sections = containerRef.current.children;
+    
     const targetSection = sections[blockIndex + 1];
 
     if (targetSection) {
@@ -145,38 +128,19 @@ export default function AestheticsClient({ asthetics }) {
     }
   };
 
-  useEffect(() => {
-    const finalTheme = "Malt page-aesthetics";
-    window.__PAGE_THEME_COLOR__ = finalTheme;
-    window.dispatchEvent(new Event("theme-change"));
-  }, []);
+  if (!activeData) return null;
 
-  useEffect(() => {
-    if (!activeData) return;
+  const isMobile = screenWidth < 768;
 
-    setIncomingData(activeData);
-
-    const timer = setTimeout(() => {
-      setDisplayData(activeData);
-      setIncomingData(null);
-    }, 800);
-
-    return () => clearTimeout(timer);
-  }, [activeData]);
-
-  const renderContent = (activeData, isIncoming = false) => {
-    const isMobile = screenWidth < 768;
-
-    return (
-      <>
-        <div className={styles.header}>
-          <Header globalData={globalData} />
-        </div>
+  return (
+    <div className={styles.wrapper} ref={wrapperRef}>
         <motion.div
           ref={containerRef}
           className={`${styles.container} aesthetics-container`}
           drag={isMobile ? false : "x"}
           dragConstraints={{ left: -maxDrag, right: 0 }}
+          dragElastic={{ right: 0, left: 0.2 }}
+          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
           style={isMobile ? {} : { x }}
         >
           <section
@@ -186,59 +150,17 @@ export default function AestheticsClient({ asthetics }) {
               flexShrink: "0",
               justifyContent: "center",
               alignItems: "center",
-              height: "100vh",
+              height: "calc(100vh - 53px)",
               display: "flex",
               position: "relative",
             }}
           >
-            <div className={styles.backgroundWrapper} style={{ overflow: 'hidden' }}>
-              <motion.div 
-               style={{ width: "100%", height: "100%" }}
-               initial={isIncoming ? { y: "100%" } : { y: "0%" }} 
-               animate={{ y: "0%" }}
-               transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-            >
-              {activeData?.DesktopMedia.EnableMuxVideo &&
-                activeData?.DesktopMedia.MuxVideo?.playback_id && (
-                  <MuxPlayer
-                    playbackId={activeData?.DesktopMedia.MuxVideo.playback_id}
-                    streamType="on-demand"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    style={{
-                      aspectRatio: "16 / 9",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                )}
-              {!activeData?.DesktopMedia?.EnableMuxVideo &&
-                Array.isArray(activeData?.DesktopMedia?.ImageORCarousel) &&
-                activeData?.DesktopMedia.ImageORCarousel.length === 1 && (
-                  <Image
-                    src={activeData?.DesktopMedia.ImageORCarousel[0]?.url}
-                    alt={
-                      activeData?.DesktopMedia.ImageORCarousel[0]
-                        ?.alternativeText || ""
-                    }
-                    width={1905}
-                    height={1271}
-                    className={styles.mainMedia}
-                  />
-                )}
-                </motion.div>
-            </div>
-            <div className={styles.overlay}></div>
+            
             <motion.div
               className={styles.content}
-              // initial={{ opacity: 0 }}
-              // animate={{ opacity: showInnerContent ? 1 : 0 }}
-              // transition={{ duration: 0.5 }}
             >
               <div className={`${styles.child} ${styles.topLeft} hide-mobile`}>
+                  <Fade>
                   <ul className={styles.topNav}>
                     {activeData.Blocks.map((item, index) => {
                       if (item.ShowInQuickView && item.Title) {
@@ -259,30 +181,14 @@ export default function AestheticsClient({ asthetics }) {
                       return null;
                     })}
                   </ul>
+                  </Fade>
               </div>
               <div className={`${styles.child} ${styles.topRight}`}>
+                  <Fade>
                   <Paragraph>
                     <BlocksRenderer content={activeData.Description || []} />
                   </Paragraph>
-              </div>
-              <div className={`${styles.child} ${styles.bottomLeft}`}>
-                  <div className={`${styles.navItem}`}>
-                    {asthetics.map((item) => {
-                      const isActive = pathname === `/aesthetics/${item.Slug}`;
-                      return (
-                        <Link
-                          key={item.Slug}
-                          href={item.Slug}
-                          className={isActive ? "activeLink" : "normalLink"}
-                        >
-                          <span className={styles.icon}>
-                            {isActive ? "(•)" : "( )"}
-                          </span>
-                          <span className={styles.label}>{item.Name}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
+                  </Fade>
               </div>
               <div
                 className={`${styles.child} ${styles.bottomRight} hide-mobile`}
@@ -290,62 +196,20 @@ export default function AestheticsClient({ asthetics }) {
                 <LinkWithArrow text={"SCROLL"} href={"#"} />
               </div>
               <div className={`${styles.child} ${styles.center}`}>
+                <Fade>
                   <Heading level={1} className={styles.mainHeading}>
                     {activeData.Name}
                   </Heading>
+                  </Fade>
               </div>
             </motion.div>
           </section>
           {activeData.Blocks.map((block, index) => (
             <section key={index}>
-              {/* <div className={`${styles.headerSpacer} hide-mobile`} /> */}
               <BlockRenderer key={index} block={block} />
             </section>
           ))}
         </motion.div>
-      </>
-    );
-  };
-
-  return (
-    <div className={styles.wrapper}>
-      <AnimatePresence mode="popLayout">
-        {displayData && (
-          <motion.div
-            key="old-content"
-            ref={oldRef}
-            // initial={{ opacity: 1 }}
-            // animate={{ opacity: 1 }}
-            // exit={{ opacity: 0 }}
-            // transition={{ duration: 1 }}
-            className={styles.content}
-          >
-            {renderContent(displayData, false)}
-          </motion.div>
-        )}
-
-        {incomingData && (
-          <motion.div
-            key="new-content"
-            ref={newRef}
-            // initial={{ opacity: 0 }}
-            // animate={{ opacity: 1 }}
-            // exit={{ opacity: 0 }}
-            // transition={{ duration: 0.1 }}
-            className={styles.content}
-            style={{ 
-              zIndex: 10,
-              position: 'absolute', 
-              top: 0, 
-              left: 0, 
-              width: '100%', 
-              height: '100%' 
-            }} 
-          >
-            {renderContent(incomingData, true)}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
