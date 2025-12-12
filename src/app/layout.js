@@ -2,6 +2,7 @@ import "./globals.css";
 import { GLOBAL_QUERY } from "@/queries/queries";
 import LayoutClient from "./LayoutClient";
 import client from "@/lib/apolloClient";
+import SmoothScrolling from "@/components/common/SmoothScrolling";
 
 
 export async function generateMetadata() {
@@ -27,6 +28,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <SmoothScrolling />
         <LayoutClient globalData={data.global}>{children}</LayoutClient>
       </body>
     </html>
