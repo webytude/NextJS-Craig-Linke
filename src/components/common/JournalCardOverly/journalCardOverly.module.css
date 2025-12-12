@@ -49,4 +49,7 @@
     .contentBottom {
         padding: 16px 0;
     }
+    .projectHighlight {
+        height: auto;
+    }
 }

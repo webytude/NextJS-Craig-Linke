@@ -68,6 +68,9 @@
   .grid {
     gap: 90px;
   }
+  .grid > * {
+    width: 100%;
+  }
 }
 @media (max-width: 640px) {
   .grid {

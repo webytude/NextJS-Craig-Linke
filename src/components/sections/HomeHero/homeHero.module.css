@@ -1,3 +1,7 @@
-.homeHero {
-    height: calc(100vh - 54px);
+
+
+@media (min-width: 768px) {
+    .homeHero {
+        height: calc(100vh - 54px);
+    }
 }

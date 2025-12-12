@@ -23,6 +23,7 @@
     scroll-behavior: smooth;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    border-top: 1px solid #EAEAE8; 
   }
   .innerWrapper::-webkit-scrollbar {
     display: none;
