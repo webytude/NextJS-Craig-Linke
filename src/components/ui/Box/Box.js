@@ -41,7 +41,10 @@ export default function Box({
 
 
   const boxStyle = {
-    flex: fullHeight ? 1 : "unset",
+    // flex: fullHeight ? 1 : "unset",
+    flex: fullHeight ? "1 1 0" : "unset",
+    minHeight: fullHeight ? 0 : "auto",
+    // overflow: fullHeight ? "hidden" : "visible", 
     padding,
     backgroundColor: bg,
     position: "relative",

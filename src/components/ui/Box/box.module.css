@@ -77,6 +77,10 @@
   .box.has-mobile-gap {
     gap: var(--mobile-box-gap) !important;
   }
+  .box {
+    flex: unset !important;
+    min-height: auto !important;
+  }
   .mobile-direction-row {
     flex-direction: row !important;
   }

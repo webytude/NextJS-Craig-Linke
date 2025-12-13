@@ -21,13 +21,14 @@ export default function HomeHero({ data }) {
         justify="space-between"
         mobileGap="90px"
         borderBottom
+        padding="0"
       >
-        <FadeUp>
+        <FadeUp classes="p20">
           <Heading level={1} style={{ maxWidth: 580 }}>
             {Title}
           </Heading>
         </FadeUp>
-        <div className="flex justify-space-between fullWidth">
+        <div className="flex justify-space-between fullWidth p20">
           <FadeUp>
             <div className="uppercase hero-text-light">{ShortText}</div>
           </FadeUp>
@@ -63,18 +64,18 @@ export default function HomeHero({ data }) {
           <SlideRight className="p20 fullHeight">
             <MediaRenderer media={LeftSideMedia} classes={"image"} />
           </SlideRight>
-        <div className="p20">
-          {Button && (
-            <FadeUp>
-              <div className="text-center hide-desktop">
-                <LinkWithArrow
-                  text={Button.ButtonText}
-                  href={Button.ButtonURL}
-                />
-              </div>
-            </FadeUp>
-          )}
-        </div>
+          <div className="p20">
+            {Button && (
+              <FadeUp>
+                <div className="text-center hide-desktop">
+                  <LinkWithArrow
+                    text={Button.ButtonText}
+                    href={Button.ButtonURL}
+                  />
+                </div>
+              </FadeUp>
+            )}
+          </div>
       </Box>
     </>
   );
