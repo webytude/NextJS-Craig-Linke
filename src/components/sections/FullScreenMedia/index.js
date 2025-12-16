@@ -157,7 +157,7 @@ export default function FullScreenMedia({ data }) {
 
         <div className={styles.content}>
           <div className={`${styles.aestheticsContent} flex justify-space-between`}>
-            <FadeUp><div className="text-light uppercase">{Title}</div></FadeUp>
+            <FadeUp><div className="uppercase">{Title}</div></FadeUp>
             <div className={styles.description}>
               <FadeUp>
               <Paragraph>

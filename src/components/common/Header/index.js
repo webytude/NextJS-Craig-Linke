@@ -7,7 +7,6 @@ import Link from "next/link";
 import styles from "./navbar.module.css";
 import SocialLinks from "../Footer/SocialLinks";
 import ContctDetail from "../Footer/Contact";
-import { useRouter } from 'next/navigation';
 
 export default function Header({ globalData }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +18,7 @@ export default function Header({ globalData }) {
     setOpenMobileMenu(false)
   }
 
-  const transitionSettings = { duration: 1.5, ease: [0.16, 1, 0.3, 1] };
+  const transitionSettings = { duration: 1.4, ease: [0.76, 0, 0.24, 1] };
 
   const headerData = globalData?.Header;
   const footerData = globalData?.Footer;
@@ -65,7 +64,7 @@ export default function Header({ globalData }) {
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -100, opacity: 0 }}
-                transition={{ duration: 1 }}
+                transition={transitionSettings}
                 className={styles.desktopMenuButton}
               >
                 <Link href={"/"}>
@@ -124,9 +123,16 @@ export default function Header({ globalData }) {
         </div>
 
         <div className={styles.centerSection}>
-          <AnimatePresence>
+          <AnimatePresence initial={false}>
             {!isOpen ? (
-              <div className={styles.centerLogoGroup}>
+              <motion.div 
+                className={styles.centerLogoGroup}
+                key="logo-group"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <motion.h1
                   layoutId="craig-text"
                   transition={transitionSettings}
@@ -197,14 +203,24 @@ export default function Header({ globalData }) {
                   </svg>
                   </Link>
                 </motion.h1>
-              </div>
+              </motion.div>
             ) : (
               <motion.nav
+                key="nav-menu"
                 className={styles.nav}
-                initial={{ y: -50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 1, }}
+                initial={{ y: "calc(-50% - 30px)", x: "-50%", opacity: 0 }}
+                animate={{ y: "-50%", x: "-50%", opacity: 1 }}
+                exit={{ y: "calc(-50% - 30px)", x: "-50%", opacity: 0 }}
+                transition={transitionSettings}
+                style={{ 
+                  position: "absolute",
+                  left: "50%",
+                  width: "max-content",
+                  top: '50%',
+                  display: "flex",
+                  justifyContent: "center",
+                  whiteSpace: "nowrap"
+                }}
               >
                 <Navigation menu={headerData?.Menu} onCloseMenu={closeMobileMenu} onLinkClick={handleLinkClick} />
               </motion.nav>
@@ -222,7 +238,7 @@ export default function Header({ globalData }) {
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 50, opacity: 0 }}
-                transition={{ duration: 1 }}
+                transition={transitionSettings}
               >
                 MENU
               </motion.button>

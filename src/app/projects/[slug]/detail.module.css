@@ -55,7 +55,7 @@
   padding: 20px;
 }
 .gallery .imageWrapper {
-    height: calc(100vh - 53px);
+    height: calc(100vh - 93px);
     text-align: center;
     position: relative;
     overflow: hidden;

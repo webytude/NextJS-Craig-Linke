@@ -27,32 +27,44 @@ export default function Index({ onClose, projects }) {
     },
     visible: {
       opacity: 1,
-      transition: { duration: 0.6, ease: "easeIn" } 
+      transition: { duration: 0.5, ease: "easeOut", when: "beforeChildren", staggerChildren: 0.1 } 
     },
     exit: { 
       opacity: 0, 
-      transition: { duration: 0.6, ease: "easeInOut" } 
+      transition: { duration: 0.6, ease: "easeInOut", when: "afterChildren" } 
     },
   };
 
+  const childVariants = {
+    hidden: { 
+      opacity: 0, 
+    },
+    visible: {
+      opacity: 1, 
+      transition: { duration: 0.5, ease: "easeOut" }
+    },
+    exit: { 
+      opacity: 0, 
+      transition: { duration: 0.3, ease: "easeIn" }
+    }
+  };
+
   const imageVariants = {
-    initial: { opacity: 0, scale: 0.99 },
+    initial: { opacity: 0 },
     animate: {
       opacity: 1,
-      // scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "circOut" },
     },
     exit: {
       opacity: 0,
-      // scale: 0.99,
-      transition: { duration: 0.4, ease: "easeIn" },
+      transition: { duration: 0.3, ease: "circIn" },
     },
   };
 
   const leftContent = (
-    <>
+    <AnimatePresence mode="wait">
       <Box direction="row" align="flex-end" fullHeight padding="0">
-        <div className={`${styles.projectList} fullWidth`}>
+        <motion.div variants={childVariants} className={`${styles.projectList} fullWidth`}>
           <button className={styles.backBtn} onClick={onClose}>
             <span className={styles.arrow}>
               <svg
@@ -94,6 +106,7 @@ export default function Index({ onClose, projects }) {
                     <Link
                       href={`/projects/${projectItem.Slug}`}
                       className={styles.projectNameLink}
+                      onClick={onClose}
                     >
                       <span className={styles.projectNumber}>
                         {formattedNumber}
@@ -105,9 +118,9 @@ export default function Index({ onClose, projects }) {
                 );
               })}
           </ul>
-        </div>
+        </motion.div>
       </Box>
-    </>
+    </AnimatePresence>
   );
 
   const rightContent = (

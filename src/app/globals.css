@@ -285,7 +285,8 @@ button:hover {
   padding: 20px;
 }
 .grid > * {
-  max-width: 338px;
+  /* max-width: 338px; */
+  width: 20vw;
 }
 .grid > *:nth-child(3n + 1) {
   justify-self: start;

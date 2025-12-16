@@ -146,11 +146,11 @@ export default function ProjectClient({ projects }) {
       )
     : null;
 
-  const fadeStyle = {
-    opacity: contentOpacity,
-    transition: 'opacity 0.1s ease-out',
-    pointerEvents: contentOpacity === 0 ? 'none' : 'auto',
-  };
+  // const fadeStyle = {
+  //   opacity: contentOpacity,
+  //   transition: 'opacity 0.1s ease-out',
+  //   pointerEvents: contentOpacity === 0 ? 'none' : 'auto',
+  // };
 
   return (
     <>
@@ -158,7 +158,7 @@ export default function ProjectClient({ projects }) {
         <section>
           <div className={styles.pageWrapper}>
             <div className={styles.leftColumn}>
-              <div className={`${styles.specification} p20`} style={fadeStyle}>
+              <div className={`${styles.specification} p20`}>
                 <div>
                   <label>LOCATION</label>
                   {projects.Location}
@@ -252,7 +252,7 @@ export default function ProjectClient({ projects }) {
               )}
             </div>
             <div className={styles.rightColumn}>
-              <div className="p20" style={fadeStyle}>
+              <div className="p20">
                 <Heading level={5} color="#000">
                   {projects.Name}
                 </Heading>
