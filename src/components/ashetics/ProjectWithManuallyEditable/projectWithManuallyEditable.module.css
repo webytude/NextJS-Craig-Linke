@@ -1,6 +1,5 @@
 .asheticsCard {
-    /* max-width: 446px; */
-    width: 23vw;
+    max-width: 446px;
     margin: 0 auto;
     text-align: center;
 }
@@ -25,13 +24,6 @@
     -webkit-box-orient: vertical;
     display: -webkit-box;
     overflow: hidden;
-}
-@media (min-width: 1531px) {
-  .imageWrapper img {
-    width: 100%;
-    height: auto; 
-    object-fit: cover;
-  }
 }
 @media (max-width: 768px) {
   .asheticsCard {

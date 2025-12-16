@@ -112,3 +112,4 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
 
   return <Component />;
 }
+

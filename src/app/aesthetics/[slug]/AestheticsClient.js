@@ -9,6 +9,7 @@ import {
   useMotionValue,
   animate,
   AnimatePresence,
+  useTransform,
 } from "framer-motion";
 import styles from "../aesthetics.module.css";
 import Paragraph from "@/components/ui/Paragraph";
@@ -41,6 +42,9 @@ export default function AestheticsClient({ asthetics }) {
   const [maxDrag, setMaxDrag] = useState(0);
   const [showNav, setShowNav] = useState(true);
 
+  // const [bgRange, setBgRange] = useState([0, 0]);
+  // const [hasRelatedBlock, setHasRelatedBlock] = useState(false);
+
   const activeData = asthetics.find((p) => p.Slug === currentSlug);
 
   useEffect(() => {
@@ -63,6 +67,38 @@ export default function AestheticsClient({ asthetics }) {
 
     const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
     setMaxDrag(Math.max(0, calculatedMaxDrag));
+
+    // const relatedIndex = activeData.Blocks.findIndex(
+    //   (block) => block.__typename === "ComponentSectionRelatedAesthetics"
+    // );
+
+    // if (relatedIndex !== -1) {
+    //    setHasRelatedBlock(true);
+
+    //    const domSections = scrollContainer.children;
+    //    console.log('domSections', domSections)
+
+    //    const targetSection = domSections[relatedIndex + 1]; 
+    //    console.log('targetSection', targetSection)
+
+    //    if (targetSection) {
+    //       const sectionLeft = targetSection.offsetLeft;
+    //       console.log('sectionLeft', sectionLeft)
+
+    //       const viewportW = window.innerWidth;
+    //       console.log('viewportW', viewportW)
+
+    //       const startPoint = -(sectionLeft - viewportW); 
+    //       console.log('startPoint', startPoint)
+
+    //       const endPoint = -(sectionLeft - (viewportW * 0.2)); 
+    //       console.log('endPoint', endPoint)
+
+    //       setBgRange([startPoint, endPoint]);
+    //    }
+    // } else {
+    //   setHasRelatedBlock(false);
+    // }
 
     x.set(0); 
 
@@ -128,12 +164,18 @@ export default function AestheticsClient({ asthetics }) {
     }
   };
 
+  // const backgroundColor = useTransform(
+  //   x,
+  //   hasRelatedBlock ? bgRange : [0, 0],
+  //   ["", "#6C5D50"]
+  // );
+
   if (!activeData) return null;
 
   const isMobile = screenWidth < 768;
 
   return (
-    <div className={styles.wrapper} ref={wrapperRef}>
+    <motion.div className={styles.wrapper} ref={wrapperRef}>
         <motion.div
           ref={containerRef}
           className={`${styles.container} aesthetics-container`}
@@ -210,6 +252,6 @@ export default function AestheticsClient({ asthetics }) {
             </section>
           ))}
         </motion.div>
-    </div>
+    </motion.div>
   );
 }

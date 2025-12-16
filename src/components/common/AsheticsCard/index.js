@@ -16,7 +16,7 @@ export default function AsheticsCard({ data }) {
       <Heading className={blockType === 'AstheticsDetail' ? 'hide-mobile' : ''} level={4}>{data?.Title || data?.Name}</Heading>
       <div className={blockType === 'AstheticsDetail' ? `${styles.imageWrapper} ${styles.relatedImageWrapper}` : styles.imageWrapper}>
           <Link href={data?.Button?.ButtonUR || `${data?.Slug}` || "#"}>
-            <MediaRenderer media={data?.Media || data?.DesktopMedia} width={334} height={434} classes={'image'} />
+            <MediaRenderer media={data?.Media || data?.DesktopMedia} width={334} height={434} classes={styles.responsiveImage} />
           </Link>
       </div>
       <div className={styles.contentWrapper}>

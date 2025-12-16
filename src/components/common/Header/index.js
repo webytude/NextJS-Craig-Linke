@@ -223,7 +223,7 @@ export default function Header({ globalData }) {
                   whiteSpace: "nowrap"
                 }}
               >
-                <Navigation menu={headerData?.Menu} onCloseMenu={closeMobileMenu} onLinkClick={handleLinkClick} />
+                <Navigation menu={headerData?.MainMenu} onCloseMenu={closeMobileMenu} onLinkClick={handleLinkClick} isMenuOpen={isOpen} />
               </motion.nav>
             )}
           </AnimatePresence>

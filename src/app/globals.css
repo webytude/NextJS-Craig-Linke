@@ -136,7 +136,8 @@ textarea {
 button:hover {
   opacity: 0.8;
 }
-.Stone {
+.Stone,
+.Stone .megaMenuBG {
   background: #6C5D50;
   color: #EAEAE8;
 }
@@ -145,21 +146,24 @@ button:hover {
 .Stone textarea {
   color: #EAEAE8;
 }
-.White {
+.White,
+.White .megaMenuBG {
   background: #FFFAF2;
   color: #6C5D50;
 }
 .White button {
   color: #6C5D50;
 }
-.Pinot {
+.Pinot,
+.Pinot .megaMenuBG {
   background: #5B272F;
   color: #EAEAE8;
 }
 .Pinot button {
   color: #EAEAE8;
 }
-.Malt {
+.Malt,
+.Malt .megaMenuBG {
   background: #BBAEA1;
   color: #fff;
 }

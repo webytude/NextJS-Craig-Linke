@@ -693,10 +693,17 @@ export const GLOBAL_QUERY = gql`
           alternativeText
           url
         }
-        Menu(pagination: { limit: -1 }) {
-          ButtonText
-          ButtonURL
-          OpenNewTab
+        MainMenu(pagination: {limit:-1}) {
+          Name
+          Link
+          SubMenu(pagination: {limit:-1}) {
+            Name
+            Link
+            Image {
+              alternativeText
+              url
+            }
+          }
         }
       }
       Footer {

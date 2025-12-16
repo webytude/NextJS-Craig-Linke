@@ -7,6 +7,7 @@ import Image from "next/image";
 import styles from "./AestheticsGlobalLayer.module.css";
 import { useAestheticsNav, useAestheticsScroll } from "@/context/AestheticsContext";
 import { useEffect, useRef, useState } from "react";
+import MuxPlayer from "@mux/mux-player-react";
 
 export default function AestheticsGlobalLayer({ allAestheticsData }) {
   const pathname = usePathname();
@@ -46,7 +47,17 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
             transition={{ duration: internalNav ? 0.5 : 0, ease: [0.76, 0, 0.24, 1] }}
           >
             {isVideo ? (
-               <div className={styles.placeholderVideo}>Video Component Here</div>
+               <MuxPlayer
+                  playbackId={activeData?.DesktopMedia?.MuxVideo.playback_id}
+                  streamType="on-demand"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  controls={false}
+                  style={{ width: "100%", height: '100%', '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
+                />
             ) : (
               bgImage ? (<Image
                 src={bgImage || ''}
