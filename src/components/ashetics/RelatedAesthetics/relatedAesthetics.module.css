@@ -14,6 +14,9 @@
   /* border-top: 1px solid #EAEAE8; */
   height: 100%;
 }
+:global(.Stone) .content {
+  border-right: 1px solid #938579;
+}
 @media (max-width: 768px) {
   .innerWrapper {
     display: flex;

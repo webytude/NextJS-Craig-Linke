@@ -13,16 +13,11 @@ import {
 } from "framer-motion";
 import styles from "../aesthetics.module.css";
 import Paragraph from "@/components/ui/Paragraph";
-import Loading from "@/components/common/Loading";
-import PageNotFound from "@/app/PageNotFound";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import Image from "next/image";
 import Heading from "@/components/ui/Heading";
 import LinkWithArrow from "@/components/ui/Link";
-import Header from "@/components/common/Header";
-import FadeUp from "@/components/ui/animations/FadeUp";
 import { useAestheticsScroll } from "@/context/AestheticsContext";
 import Fade from "@/components/ui/animations/Fade";
 
@@ -34,6 +29,8 @@ export default function AestheticsClient({ asthetics }) {
   const wrapperRef = useRef(null); 
   const containerRef = useRef(null);
 
+  const sectionsRef = useRef({}); 
+
   const x = useAestheticsScroll();
 
   const animationRef = useRef(null);
@@ -41,9 +38,7 @@ export default function AestheticsClient({ asthetics }) {
   const [screenWidth, setScreenWidth] = useState(0);
   const [maxDrag, setMaxDrag] = useState(0);
   const [showNav, setShowNav] = useState(true);
-
-  // const [bgRange, setBgRange] = useState([0, 0]);
-  // const [hasRelatedBlock, setHasRelatedBlock] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const activeData = asthetics.find((p) => p.Slug === currentSlug);
 
@@ -62,46 +57,10 @@ export default function AestheticsClient({ asthetics }) {
 
   useEffect(() => {
     if (!containerRef.current) return;
-
     const scrollContainer = containerRef.current;
-
     const calculatedMaxDrag = scrollContainer.scrollWidth - window.innerWidth;
     setMaxDrag(Math.max(0, calculatedMaxDrag));
-
-    // const relatedIndex = activeData.Blocks.findIndex(
-    //   (block) => block.__typename === "ComponentSectionRelatedAesthetics"
-    // );
-
-    // if (relatedIndex !== -1) {
-    //    setHasRelatedBlock(true);
-
-    //    const domSections = scrollContainer.children;
-    //    console.log('domSections', domSections)
-
-    //    const targetSection = domSections[relatedIndex + 1]; 
-    //    console.log('targetSection', targetSection)
-
-    //    if (targetSection) {
-    //       const sectionLeft = targetSection.offsetLeft;
-    //       console.log('sectionLeft', sectionLeft)
-
-    //       const viewportW = window.innerWidth;
-    //       console.log('viewportW', viewportW)
-
-    //       const startPoint = -(sectionLeft - viewportW); 
-    //       console.log('startPoint', startPoint)
-
-    //       const endPoint = -(sectionLeft - (viewportW * 0.2)); 
-    //       console.log('endPoint', endPoint)
-
-    //       setBgRange([startPoint, endPoint]);
-    //    }
-    // } else {
-    //   setHasRelatedBlock(false);
-    // }
-
     x.set(0); 
-
   }, [activeData, screenWidth, x]);
 
   useEffect(() => {
@@ -127,11 +86,46 @@ export default function AestheticsClient({ asthetics }) {
   }, [maxDrag, x, screenWidth]);
 
   useEffect(() => {
+    const specialBlockIndex = activeData?.Blocks?.findIndex(
+      (b) => b.__typename === "ComponentSectionRelatedAesthetics"
+    );
+
     const unsubscribe = x.on("change", (value) => {
       setShowNav(value > -screenWidth * 0.3);
+
+      if (containerRef.current && specialBlockIndex !== -1 && specialBlockIndex !== undefined) {
+        const allSections = containerRef.current.children;
+        const targetSection = allSections[specialBlockIndex + 1];
+        if (targetSection) {
+          const elementLeftPosition = targetSection.offsetLeft + value;
+
+          const shouldBeDark = elementLeftPosition < screenWidth; 
+
+          if (shouldBeDark ) {
+             if (window.__PAGE_THEME_COLOR__ !== "Stone page-aesthetics") {
+                window.__PAGE_THEME_COLOR__ = "Stone page-aesthetics";
+                window.dispatchEvent(new Event("theme-change"));
+             }
+          } else {
+             if (window.__PAGE_THEME_COLOR__ !== "Malt page-aesthetics") {
+                window.__PAGE_THEME_COLOR__ = "Malt page-aesthetics";
+                window.dispatchEvent(new Event("theme-change"));
+             }
+          }
+        }
+      }
     });
+
     return () => unsubscribe();
-  }, [x, screenWidth]);
+  }, [x, screenWidth, activeData]);
+
+
+  // useEffect(() => {
+  //   const unsubscribe = x.on("change", (value) => {
+  //     setShowNav(value > -screenWidth * 0.3);
+  //   });
+  //   return () => unsubscribe();
+  // }, [x, screenWidth]);
 
   useEffect(() => {
     const finalTheme = "Malt page-aesthetics";
@@ -163,12 +157,6 @@ export default function AestheticsClient({ asthetics }) {
       }
     }
   };
-
-  // const backgroundColor = useTransform(
-  //   x,
-  //   hasRelatedBlock ? bgRange : [0, 0],
-  //   ["", "#6C5D50"]
-  // );
 
   if (!activeData) return null;
 

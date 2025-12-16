@@ -42,6 +42,7 @@ body {
   letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 1s ease-in-out;
 }
 * {
   box-sizing: border-box;
@@ -378,6 +379,9 @@ button:hover {
   }
 }
 @media (min-width: 768) {
+  .Stone .aesthetics-container .full-width-media {
+    border-right: 1px solid #938579;
+  }
   .aesthetics-container .full-width-media {
     width: 100vw;
     height: calc(100vh - 53px);
