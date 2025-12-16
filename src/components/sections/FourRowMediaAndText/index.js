@@ -89,8 +89,8 @@ export default function FourRowMediaAndText({ data }) {
   return (
     <>
       <Divider />
-      <section className="FourRowMediaAndText padding" style={sectionStyle}>
-        <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
+      <section className="FourRowMediaAndText padding fitToScreen" style={sectionStyle}>
+        <TwoColumnLayout fullHeight left={leftContent} right={rightContent} showDivider />
       </section>
       <Divider />
     </>

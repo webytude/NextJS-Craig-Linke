@@ -84,8 +84,8 @@ export default function ExpressiveMediaModule({ data }) {
   return (
     <>
     <Divider />
-    <section className="expressiveMedia">
-      <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} />
+    <section className="expressiveMedia fitToScreen">
+      <TwoColumnLayout fullHeight left={leftContent} right={rightContent} showDivider showMobileDivider={false} />
     </section>
     <Divider />
     </>

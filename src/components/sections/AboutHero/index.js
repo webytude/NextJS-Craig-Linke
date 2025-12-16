@@ -85,18 +85,16 @@ export default function AboutHero({ data, quickLinks }) {
 
   const rightContent = (
     <>
-      <div className="p20 hide-mobile">
-        <SlideLeft>
-          <MediaRenderer media={RightSideMedia} classes={"image"} />
-        </SlideLeft>
-      </div>
+      <SlideLeft className="p20 hide-mobile fullHeight">
+        <MediaRenderer media={RightSideMedia} classes={"image"} />
+      </SlideLeft>
     </>
   );
 
   return (
     <>
-      <section className="aboutHero">
-        <TwoColumnLayout left={leftContent} right={rightContent} showDivider />
+      <section className="aboutHero fitToScreen">
+        <TwoColumnLayout fullHeight left={leftContent} right={rightContent} showDivider />
       </section>
       <Divider />
     </>

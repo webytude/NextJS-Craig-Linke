@@ -365,6 +365,9 @@ button:hover {
 .TwoColumnMediaAndText {
   overflow: hidden;
 }
+.fitToScreen {
+  height: calc(100vh - 53px);
+}
 @media (min-width: 980px) {
   .hide-desktop {
     display: none !important;

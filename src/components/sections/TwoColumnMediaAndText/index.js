@@ -32,7 +32,7 @@ export default function TwoColumnMediaAndText({ data }) {
   const leftContent = (
     <>
       <Box fullHeight borderBottom>
-        <SlideLeft className="fullWidth">
+        <SlideLeft className="fullWidth fullHeight">
         <MediaRenderer media={RightSide.Media} width={716} height={452} classes={'image'} />
         </SlideLeft>
       </Box>
@@ -77,8 +77,8 @@ export default function TwoColumnMediaAndText({ data }) {
   return (
     <>
       <Divider />
-      <section className="TwoColumnMediaAndText padding" style={sectionStyle}>
-        <TwoColumnLayout left={leftContent} right={rightContent} showDivider reverse={ReverseLayout} />
+      <section className="TwoColumnMediaAndText padding fitToScreen" style={sectionStyle}>
+        <TwoColumnLayout fullHeight left={leftContent} right={rightContent} showDivider reverse={ReverseLayout} />
       </section>
       <Divider />
     </>
