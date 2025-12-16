@@ -84,6 +84,7 @@ export default function Header({ globalData }) {
               </motion.div>
             ) : (
               <motion.h1
+                key="logo-text"
                 layoutId="craig-text"
                 transition={transitionSettings}
               >
@@ -244,6 +245,7 @@ export default function Header({ globalData }) {
               </motion.button>
             ) : (
               <motion.h1
+                key="menu-text-svg"
                 layoutId="linke-text"
                 onClick={toggleMenu}
                 className={`${styles.cursorPointer}`}
@@ -285,7 +287,7 @@ export default function Header({ globalData }) {
       <AnimatePresence>
         {(openMobileMenu) && (
           <motion.nav
-            key="navMenu"
+            key="navMenu-mobile"
             className={styles.nav}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

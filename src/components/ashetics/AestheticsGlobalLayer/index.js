@@ -5,27 +5,31 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import styles from "./AestheticsGlobalLayer.module.css";
-import { useAestheticsScroll } from "@/context/AestheticsContext";
+import { useAestheticsNav, useAestheticsScroll } from "@/context/AestheticsContext";
 import { useEffect, useRef, useState } from "react";
 
 export default function AestheticsGlobalLayer({ allAestheticsData }) {
   const pathname = usePathname();
   const currentSlug = pathname.split("/").pop();
+
+  const { internalNav, setInternalNav } = useAestheticsNav();
   
   const activeData = allAestheticsData.find((item) => item.Slug === currentSlug);
   
   const x = useAestheticsScroll();
   
-  const bgImage = activeData?.DesktopMedia?.ImageORCarousel?.[0]?.url || "";
+  const bgImage = activeData?.DesktopMedia?.ImageORCarousel?.[0]?.url;
   const isVideo = activeData?.DesktopMedia?.EnableMuxVideo;
-  
-  // const [isFirstLoad, setIsFirstLoad] = useState(true);
+
   const [hoveredSlug, setHoveredSlug] = useState(null);
   const isFirstLoad = useRef(true);
 
   useEffect(() => {
-    // setIsFirstLoad(false);
     isFirstLoad.current = false;
+  }, []);
+
+  useEffect(() => {
+    setInternalNav(false);
   }, []);
 
   return (
@@ -36,21 +40,21 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
           <motion.div
             key={currentSlug} 
             className={styles.imageWrapper}
-            initial={{ y: isFirstLoad.current ? "0%" : "100%" }} 
+            initial={{ y: internalNav ? "100%" : "0%" }} 
             animate={{ y: "0%" }} 
-            exit={{ y: "-20%", opacity: 0.5 }} 
-            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+            exit={{ y: internalNav ? "-20%" : "0%", opacity: 0.5 }} 
+            transition={{ duration: internalNav ? 0.5 : 0, ease: [0.76, 0, 0.24, 1] }}
           >
             {isVideo ? (
                <div className={styles.placeholderVideo}>Video Component Here</div>
             ) : (
-              <Image
+              bgImage ? (<Image
                 src={bgImage || ''}
                 alt="Background"
                 fill
                 style={{ objectFit: "cover" }}
                 priority
-              />
+              />) : null
             )}
             <div className={styles.overlay}></div>
           </motion.div>
@@ -66,7 +70,7 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
             return (
               <li key={item.Slug} onMouseEnter={() => setHoveredSlug(item.Slug)}
             onMouseLeave={() => setHoveredSlug(null)}>
-                <Link href={`/aesthetics/${item.Slug}`} className={showActiveStyle ? styles.activeLink : styles.link}>
+                <Link href={`/aesthetics/${item.Slug}`} onClick={() => setInternalNav(true)} className={showActiveStyle ? styles.activeLink : styles.link}>
                   <span className={styles.icon}>{showActiveStyle ? "(•)" : "( )"}</span>
                   {item.Name}
                 </Link>
