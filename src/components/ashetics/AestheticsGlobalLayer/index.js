@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import styles from "./AestheticsGlobalLayer.module.css";
 import { useAestheticsScroll } from "@/context/AestheticsContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AestheticsGlobalLayer({ allAestheticsData }) {
   const pathname = usePathname();
@@ -19,11 +19,13 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
   const bgImage = activeData?.DesktopMedia?.ImageORCarousel?.[0]?.url || "";
   const isVideo = activeData?.DesktopMedia?.EnableMuxVideo;
   
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  // const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [hoveredSlug, setHoveredSlug] = useState(null);
+  const isFirstLoad = useRef(true);
 
   useEffect(() => {
-    setIsFirstLoad(false);
+    // setIsFirstLoad(false);
+    isFirstLoad.current = false;
   }, []);
 
   return (
@@ -34,7 +36,7 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
           <motion.div
             key={currentSlug} 
             className={styles.imageWrapper}
-            initial={{ y: isFirstLoad ? "0%" : "100%" }} 
+            initial={{ y: isFirstLoad.current ? "0%" : "100%" }} 
             animate={{ y: "0%" }} 
             exit={{ y: "-20%", opacity: 0.5 }} 
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
@@ -43,7 +45,7 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
                <div className={styles.placeholderVideo}>Video Component Here</div>
             ) : (
               <Image
-                src={bgImage}
+                src={bgImage || ''}
                 alt="Background"
                 fill
                 style={{ objectFit: "cover" }}
