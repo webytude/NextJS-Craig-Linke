@@ -100,7 +100,7 @@ export default function FullScreenMedia({ data }) {
           loop
           playsInline
           preload="auto"
-          style={{ aspectRatio: '16 / 9', width: '100%', height: '100%', objectFit: 'cover' }}
+          className="video"
         />
       );
     }

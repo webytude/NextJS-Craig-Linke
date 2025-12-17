@@ -40,11 +40,11 @@ export default function FourRowMediaAndText({ data }) {
 
   const leftContent = (
     <>
-      <div className="p20 centerContent">
-        <SlideRight>
-          <MediaRenderer media={Media} width={431} height={578} />
+      {/* <div className="p20 centerContent"> */}
+        <SlideRight className={`p20 centerContent media`}>
+          <MediaRenderer media={Media} width={431} height={578} classes="fullWidth" />
         </SlideRight>
-      </div>
+      {/* </div> */}
     </>
   );
 

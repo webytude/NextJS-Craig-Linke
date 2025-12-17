@@ -75,8 +75,8 @@ export default function ExpressiveMediaModule({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20 centerContent">
-        <MediaRenderer media={RightSideMedia} width={436} height={585} />
+      <div className="p20 centerContent media">
+        <MediaRenderer media={RightSideMedia} width={436} height={585} classes="fullWidth" />
       </div>
     </>
   );

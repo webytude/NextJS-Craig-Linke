@@ -121,7 +121,8 @@
     overflow: hidden;
     font-size: 12px;
   }
-  .nav > ul > li a {
+  .nav > ul > li a,
+  .navLink span {
     display: block;
     padding: 16px;
   }
@@ -164,10 +165,6 @@
 }
 
 .megaMenuContent {
-  display: grid;
-  grid-template-columns: 40% 60%; 
-  max-width: 100%;
-  margin: 0;
   padding: 20px;
   height: 254px; 
 }
@@ -192,4 +189,21 @@
   align-items: center;
   justify-content: end;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .megaMenuContent {
+    display: grid;
+    grid-template-columns: 40% 60%; 
+    max-width: 100%;
+    margin: 0;
+  }
+}
+@media (max-width: 768px) {
+  .megaMenuLinks {
+    height: 100%;
+  }
+  .megaMenuContent {
+    height: 281px; 
+  }
 }

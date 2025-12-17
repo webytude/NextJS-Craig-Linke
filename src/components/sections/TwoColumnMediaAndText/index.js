@@ -66,11 +66,11 @@ export default function TwoColumnMediaAndText({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20 centerContent">
-        <SlideLeft>
-          <MediaRenderer media={LeftSide} width={431} height={578} />
+      {/* <div className="p20 centerContent"> */}
+        <SlideLeft className="p20 centerContent media">
+          <MediaRenderer media={LeftSide} width={431} height={578} classes="fullWidth" />
         </SlideLeft>
-      </div>
+      {/* </div> */}
     </>
   );
 

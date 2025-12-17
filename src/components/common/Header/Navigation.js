@@ -56,7 +56,7 @@ const MegaMenuOverlay = ({ activeItem, onClose, onLinkClick }) => {
               </div>
             </div>
 
-            <div className={styles.megaMenuImageContainer}>
+            <div className={`${styles.megaMenuImageContainer} hide-mobile`}>
               <AnimatePresence mode="wait">
                 {activeImage && (
                   // <motion.img

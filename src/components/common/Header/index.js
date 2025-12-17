@@ -297,7 +297,7 @@ export default function Header({ globalData }) {
               ease: "easeInOut", 
             }}
           >
-            <Navigation menu={headerData?.Menu} onCloseMenu={closeMobileMenu} onLinkClick={handleLinkClick} />
+            <Navigation menu={headerData?.MainMenu} onCloseMenu={closeMobileMenu} onLinkClick={handleLinkClick} />
             <div className={`${styles.menuBottom} hide-desktop`}>
               <SocialLinks socialLinks={footerData.SocialLinks} />
               <ContctDetail extraDetails={footerData.ExtraDetails} />
