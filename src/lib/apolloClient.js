@@ -10,6 +10,17 @@ const client = new ApolloClient({
             Authorization: `Bearer ${token}`
         },
     }),
+    cache: new InMemoryCache(),
+    defaultOptions: {
+        query: {
+            fetchPolicy: "no-cache",
+            errorPolicy: "all",
+        },
+        watchQuery: {
+            fetchPolicy: "no-cache",
+            errorPolicy: "all",
+        },
+    },
 });
 
 export default client;
