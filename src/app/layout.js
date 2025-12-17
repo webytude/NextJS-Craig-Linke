@@ -20,6 +20,8 @@ export async function generateMetadata() {
   };
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({ children }) {
   const { data } = await client.query({
     query: GLOBAL_QUERY,
