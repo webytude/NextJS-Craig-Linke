@@ -10,22 +10,22 @@ export function createPage({
   propName = 'data',
   metadataConfig
 }) {
-  const fetchPageData = cache(async (params) => {
+  const fetchPageData = async (params) => {
     const variables = getVariables ? getVariables(params) : {};
-    
+
     try {
-      const { data } = await client.query({ 
-        query, 
+      const { data } = await client.query({
+        query,
         variables,
-        fetchPolicy: "cache-first"
+        fetchPolicy: "no-cache",
       });
-      
+
       return getData ? getData(data, variables) : data;
     } catch (error) {
       console.error("API Error:", error);
       return null;
     }
-  });
+  };
 
   const generateMetadata = async ({ params }) => {
     const resolvedParams = await params;
