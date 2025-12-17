@@ -44,7 +44,7 @@ export default function TwoColumnMediaAndText({ data }) {
         mobileAlign="flex-start"
         style={{minHeight: 430}}
       >
-         <div className="content p20">
+         <div className="content p20 flex-end">
           {RightSide.Content.map((text, index) => (
             <div key={index}>
               <div className="text-light uppercase pb20">

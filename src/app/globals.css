@@ -87,6 +87,9 @@ ul {
 .justify-space-between {
     justify-content: space-between;
 }
+.flex-start {
+    align-items: flex-start;
+}
 .flex-end {
     align-items: flex-end;
 }
@@ -360,7 +363,7 @@ button:hover {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   border-right: 1px solid #EAEAE8; 
   height: 100%;
 }

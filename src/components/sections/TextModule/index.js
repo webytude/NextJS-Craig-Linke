@@ -39,7 +39,7 @@ export default function TextModule({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20 content">
+      <div className="p20 content flex-start">
         {SideContent.map((text, index) => (
           <FadeUp key={index}>
             <Paragraph>
