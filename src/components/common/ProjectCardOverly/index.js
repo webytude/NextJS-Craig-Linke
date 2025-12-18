@@ -25,6 +25,7 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
           height={600}
           className="image"
         />
+        <div className={styles.overly} />
       </div>
       <div className={styles.proOverlyContent}>
         <div className="flex justify-space-between p20 hide-mobile">
