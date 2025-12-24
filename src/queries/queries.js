@@ -677,6 +677,28 @@ export const PAGES_QUERY = gql`
   }
 `;
 
+// Query specifically for draft content
+export const PAGES_QUERY_PREVIEW = gql`
+  query pages($slug: String!) {
+    pages(
+      filters: { Slug: { eq: $slug } }
+      status: DRAFT
+    ) {
+      Name
+      ShortDescription
+      ThemeColor
+      Seo {
+        metaTitle
+        metaDescription
+        schemaMarkup
+      }
+      Blocks {
+        ${BLOCKS_SELECTION}
+      }
+    }
+  }
+`;
+
 export const GLOBAL_QUERY = gql`
   query Global {
     global {

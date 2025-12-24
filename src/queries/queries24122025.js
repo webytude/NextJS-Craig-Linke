@@ -97,7 +97,9 @@ const BLOCKS_SELECTION = `
   }
   ... on ComponentSectionInteriorDesign {
     Title
+    ShowInQuickView
     SubTitle
+    ShowInQuickView
     InteriorDesign: Description
     Button {
       ButtonText
@@ -141,6 +143,7 @@ const BLOCKS_SELECTION = `
   }
   ... on ComponentSectionTextModule {
     Title
+    ShowInQuickView
     SideContent(pagination: { limit: -1 }) {
       Content
     }
@@ -230,11 +233,6 @@ const BLOCKS_SELECTION = `
   ... on ComponentSectionAboutHero {
     Title
     SubTitle
-    Buttons(pagination: { limit: -1 }) {
-      ButtonText
-      ButtonURL
-      OpenNewTab
-    }
     ShortText
     RightSideMedia {
       EnableMuxVideo
@@ -331,37 +329,7 @@ const BLOCKS_SELECTION = `
         alternativeText
       }
     }
-  }
-  ... on ComponentGlobalProjectMedia {
-    EnableMuxVideo
-    MuxVideo {
-      playback_id
-    }
-    ImageORCarousel {
-      alternativeText
-      url
-    }
-    MediaType
-    id
-  }
-  ... on ComponentSectionExploreProjects {
-    Title
-    SelectProjects {
-      Name
-      Slug
-      Media {
-          EnableMuxVideo
-          MuxVideo {
-            playback_id
-          }
-          MediaType
-          ImageORCarousel {
-            alternativeText
-            url
-          }
-      }
-    }
-  }  
+  } 
 `;
 
 export const PAGES_QUERY = gql`
@@ -472,6 +440,7 @@ export const PAGES_QUERY = gql`
         }
         ... on ComponentSectionInteriorDesign {
           Title
+          ShowInQuickView
           SubTitle
           InteriorDesign: Description
           Button {
@@ -516,6 +485,7 @@ export const PAGES_QUERY = gql`
         }
         ... on ComponentSectionTextModule {
           Title
+          ShowInQuickView
           SideContent(pagination: { limit: -1 }) {
             Content
           }
@@ -605,11 +575,6 @@ export const PAGES_QUERY = gql`
         ... on ComponentSectionAboutHero {
           Title
           SubTitle
-          Buttons(pagination: { limit: -1 }) {
-            ButtonText
-            ButtonURL
-            OpenNewTab
-          }
           ShortText
           RightSideMedia {
             EnableMuxVideo
@@ -728,10 +693,17 @@ export const GLOBAL_QUERY = gql`
           alternativeText
           url
         }
-        Menu(pagination: { limit: -1 }) {
-          ButtonText
-          ButtonURL
-          OpenNewTab
+        MainMenu(pagination: {limit:-1}) {
+          Name
+          Link
+          SubMenu(pagination: {limit:-1}) {
+            Name
+            Link
+            Image {
+              alternativeText
+              url
+            }
+          }
         }
       }
       Footer {
@@ -807,6 +779,7 @@ export const JOURNALS_QUERY = gql`
     journals {
       Name
       Slug
+      publishedAt
       Description
       Media {
         EnableMuxVideo
@@ -827,6 +800,39 @@ export const JOURNALS_QUERY = gql`
         MetaTitle
         MetaDescription
         SchemaMarkup
+      }
+    }
+  }
+`;
+
+export const GET_BY_SLUG_JOURNALS = gql`
+  query GetBySlugJournals($slug: String!) {
+    journals(filters: { Slug: { eq: $slug } }) {
+      Name
+      Slug
+      Description
+      Media {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          alternativeText
+          url
+        }
+      }
+      JournalCategory {
+        Name
+        Slug
+      }
+      ThemeColor
+      Seo {
+        MetaTitle
+        MetaDescription
+        SchemaMarkup
+      }
+      Blocks {
+        ${BLOCKS_SELECTION}
       }
     }
   }
@@ -907,6 +913,157 @@ export const PROJECTS_QUERY_SLUG = gql`
         }  
       }
       
+    }
+  }
+`;
+
+export const ASTHETICS_QUERY_SLUG = gql `
+  query AstheticsDetails {
+    astheticsDetails {
+      Name
+      Slug
+      Description
+      DesktopMedia {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          url
+          alternativeText
+        }
+      }
+      MobileMedia {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          url
+          alternativeText
+        }
+      }
+      QuickLinks {
+        Name
+        Slug
+      }
+      Blocks {
+        ... on ComponentSectionMediaWithTopBottomContent {
+          id
+          Title
+          ShowInQuickView
+          TopContent
+          BottomContent
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              url
+              alternativeText
+            }
+          }
+        }
+        ... on ComponentSectionProjectWithManuallyEditable {
+          Title
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              url
+              alternativeText
+            }
+          }
+          Description
+          Button {
+            ButtonText
+            ButtonURL
+            OpenNewTab
+          }
+        }
+        ... on ComponentSectionImageAndText {
+          Title
+          ShowInQuickView
+          Media {
+          EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              url
+              alternativeText
+            }
+          }
+          Heading
+          Content
+        }
+        ... on ComponentSectionFullWidthMedia {
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              url
+              alternativeText
+            }
+          }
+          Padding {
+            DesktopTopPadding
+            DesktopBottomPadding
+            MobileTopPadding
+            MobileBottomPadding
+          }
+        }
+        ... on ComponentSectionAestheticMaterials {
+          Title
+          ShowInQuickView
+          TopContent
+          BottomContent
+          MaterialsImages {
+            url
+            alternativeText
+          }
+        }
+        ... on ComponentSectionSingleMedia {
+          Media {
+            EnableMuxVideo
+            MuxVideo {
+              playback_id
+            }
+            ImageORCarousel {
+              url
+              alternativeText
+            }
+          }
+        }
+        ... on ComponentSectionAstheticsContact {
+          Title
+          ShowInQuickView
+          Description
+          Content
+        }
+        ... on ComponentSectionRelatedAesthetics {
+          RelatedAesthetics {
+            Name
+            Slug
+            Description
+            DesktopMedia {
+              EnableMuxVideo
+              MuxVideo {
+                playback_id
+              }
+              ImageORCarousel {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
