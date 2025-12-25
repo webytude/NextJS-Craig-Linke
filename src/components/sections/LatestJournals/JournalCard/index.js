@@ -16,7 +16,7 @@ export default function JournalCard({ data }) {
     <div className={styles.journalCard}>
       <Heading className={styles.title} level={4}>{Name}</Heading>
       <div className={styles.imageWrapper}>
-        <Link href={Slug}>
+        <Link href={`/journals/${Slug}`}>
         <MediaRenderer media={Media} width={322} height={434} />
         </Link>
       </div>
@@ -26,7 +26,7 @@ export default function JournalCard({ data }) {
         </Paragraph>
       </div>
       <div className={styles.readMore}>
-        <LinkWithArrow text="READ MORE" href={`journals/${Slug}`} />
+        <LinkWithArrow text="READ MORE" href={`/journals/${Slug}`} />
       </div>
     </div>
   )

@@ -8,7 +8,7 @@ export default function ProjectCard({ project }) {
   const { Name, Media, Slug } = project;
   return (
     <div className="text-center">
-      <Link href={`projects/${Slug}`}>
+      <Link href={`/projects/${Slug}`}>
         <div className={styles.imageWrapper}>
             <MediaRenderer media={Media} width={338} height={480} classes={'image'} />
         </div>

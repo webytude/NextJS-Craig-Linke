@@ -11,7 +11,7 @@ export default function JournalCard({ journal }) {
   return (
     <div className={styles.journalCard}>
       <div className={styles.imageWrapper}>
-        <Link href={`journal/${journal?.Slug}`}>
+        <Link href={`/journals/${journal?.Slug}`}>
             <MediaRenderer media={journal?.Media} width={334} height={434} classes={'image'} />
         </Link>
       </div>
@@ -35,7 +35,7 @@ export default function JournalCard({ journal }) {
           </Paragraph>
         </div>
         <div className={styles.readMore}>
-          <LinkWithArrow text="READ MORE" href={`journals/${journal?.Slug}`} />
+          <LinkWithArrow text="READ MORE" href={`/journals/${journal?.Slug}`} />
         </div>
       </div>
     </div>
