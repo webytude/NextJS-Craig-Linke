@@ -1,9 +1,13 @@
-import { JOURNALS_QUERY } from "@/queries/queries";
+import { JOURNALS_QUERY, JOURNALS_QUERY_PREVIEW } from "@/queries/queries";
 import JournalClient from "./ClientPage";
 import { createPage } from "@/utils/createPage";
 
 const { Page, generateMetadata } = createPage({
-  query: JOURNALS_QUERY,
+  // query: JOURNALS_QUERY,
+  queries: {
+    live: JOURNALS_QUERY,
+    preview: JOURNALS_QUERY_PREVIEW,
+  },
   component: JournalClient,
   propName: 'journal',
   

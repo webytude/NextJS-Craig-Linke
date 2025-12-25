@@ -1,11 +1,15 @@
 // "use client";
 
-import { PAGES_QUERY } from "@/queries/queries";
+import { PAGES_QUERY, PAGES_QUERY_PREVIEW } from "@/queries/queries";
 import DynamicClientPage from "./DynamicClientPage";
 import { createPage } from "@/utils/createPage";
 
 const { Page, generateMetadata } = createPage({
-  query: PAGES_QUERY,
+  // query: PAGES_QUERY,
+  queries: {
+    live: PAGES_QUERY,
+    preview: PAGES_QUERY_PREVIEW,
+  },
   component: DynamicClientPage,
   propName: 'page',
   

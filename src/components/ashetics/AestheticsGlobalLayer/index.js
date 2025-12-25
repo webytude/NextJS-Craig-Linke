@@ -81,7 +81,7 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
             return (
               <li key={item.Slug} onMouseEnter={() => setHoveredSlug(item.Slug)}
             onMouseLeave={() => setHoveredSlug(null)}>
-                <Link href={`/aesthetics/${item.Slug}`} onClick={() => setInternalNav(true)} className={showActiveStyle ? styles.activeLink : styles.link}>
+                <Link href={`/asthetics-details/${item.Slug}`} onClick={() => setInternalNav(true)} className={showActiveStyle ? styles.activeLink : styles.link}>
                   <span className={styles.icon}>{showActiveStyle ? "(•)" : "( )"}</span>
                   {item.Name}
                 </Link>

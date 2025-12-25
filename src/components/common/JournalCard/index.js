@@ -35,7 +35,7 @@ export default function JournalCard({ journal }) {
           </Paragraph>
         </div>
         <div className={styles.readMore}>
-          <LinkWithArrow text="READ MORE" href={`journal/${journal?.Slug}`} />
+          <LinkWithArrow text="READ MORE" href={`journals/${journal?.Slug}`} />
         </div>
       </div>
     </div>

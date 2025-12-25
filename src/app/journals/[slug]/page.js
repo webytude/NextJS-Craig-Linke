@@ -1,9 +1,13 @@
 import { createPage } from "@/utils/createPage";
 import JournalClient from "./JournalClient";
-import { GET_BY_SLUG_JOURNALS } from "@/queries/queries";
+import { GET_BY_SLUG_JOURNALS, GET_BY_SLUG_JOURNALS_PREVIEW } from "@/queries/queries";
 
 const { Page, generateMetadata } = createPage({
-  query: GET_BY_SLUG_JOURNALS,
+  // query: GET_BY_SLUG_JOURNALS,
+  queries: {
+    live: GET_BY_SLUG_JOURNALS,
+    preview: GET_BY_SLUG_JOURNALS_PREVIEW,
+  },
   component: JournalClient,
   propName: 'journal',
   

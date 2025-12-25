@@ -1,10 +1,14 @@
 
-import { PROJECTS_QUERY } from "@/queries/queries";;
+import { PROJECTS_QUERY, PROJECTS_QUERY_PREVIEW } from "@/queries/queries";;
 import ProjectsClient from "./ClientPage";
 import { createPage } from "@/utils/createPage";
 
 const { Page, generateMetadata } = createPage({
-  query: PROJECTS_QUERY,
+  // query: PROJECTS_QUERY,
+  queries: {
+    live: PROJECTS_QUERY,
+    preview: PROJECTS_QUERY_PREVIEW,
+  },
   component: ProjectsClient,
   propName: 'project',
   

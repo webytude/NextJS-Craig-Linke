@@ -27,7 +27,7 @@ export default function JournalCardOverly({ firstItem }) {
             </Paragraph>
           </div>
           <div className={styles.readMore}>
-            <LinkWithArrow text="READ MORE" href={`journal/${firstItem.Slug}`} />
+            <LinkWithArrow text="READ MORE" href={`journals/${firstItem.Slug}`} />
           </div>
           </div>
         </div>

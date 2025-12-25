@@ -1,10 +1,8 @@
-import { cache } from 'react';
 import { notFound } from 'next/navigation';
 import client from '@/lib/apolloClient';
-import { PAGES_QUERY, PAGES_QUERY_PREVIEW } from '@/queries/queries';
 
 export function createPage({
-  query,
+  queries,
   getVariables,
   getData,
   component: ClientComponent,
@@ -16,29 +14,21 @@ export function createPage({
     const isPreview = resolvedSearchParams.preview === 'true';
     const baseVariables = getVariables ? getVariables(params) : {};
 
-    console.log('isPreview', isPreview)
-
-    // const query = isPreview
-    //   ? PAGES_QUERY_PREVIEW
-    //   : PAGES_QUERY;
-
-      console.log('query', query)
-
     const variables = {
       ...baseVariables,
-      status: isPreview ? "PREVIEW" : "LIVE",
+      status: isPreview ? "DRAFT" : "LIVE",
     };
 
-    console.log("Fetching with variables:", variables);
+    const activeQuery = isPreview
+      ? queries.preview
+      : queries.live;
 
     try {
       const { data } = await client.query({
-        query,
+        query: activeQuery,
         variables,
         fetchPolicy: "no-cache",
       });
-
-      console.log("Data received:", data);
 
       return getData ? getData(data, variables) : data;
     } catch (error) {

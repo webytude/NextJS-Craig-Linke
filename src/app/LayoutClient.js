@@ -17,7 +17,7 @@ export default function LayoutClient({ children, globalData }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(!showLoader);
 
-  const isAestheticsPage = pathname?.startsWith('/aesthetics');
+  const isAestheticsPage = pathname?.startsWith('/asthetics-details');
 
   useEffect(() => {
     if (!loaderExitStarted) {
