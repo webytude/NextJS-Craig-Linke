@@ -220,11 +220,11 @@ export default function AestheticsClient({ asthetics }) {
                   </Paragraph>
                   </Fade>
               </div>
-              <div
+              {/* <div
                 className={`${styles.child} ${styles.bottomRight} hide-mobile`}
               >
                 <LinkWithArrow text={"SCROLL"} href={"#"} />
-              </div>
+              </div> */}
               <div className={`${styles.child} ${styles.center}`}>
                 <Fade>
                   <Heading level={1} className={styles.mainHeading}>
