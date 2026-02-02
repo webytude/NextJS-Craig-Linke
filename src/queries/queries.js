@@ -987,6 +987,7 @@ export const ASTHETICS_QUERY_SLUG = gql `
         ImageORCarousel {
           url
           alternativeText
+        }
       }
       QuickLinks {
         Name
@@ -1033,6 +1034,7 @@ export const ASTHETICS_QUERY_SLUG_PREVIEW = gql `
         ImageORCarousel {
           url
           alternativeText
+        }
       }        
       QuickLinks {
         Name
