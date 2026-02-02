@@ -329,7 +329,56 @@ const BLOCKS_SELECTION = `
         alternativeText
       }
     }
-  } 
+  }
+  ... on ComponentSectionOurProcess {
+    Media {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
+      }
+    }
+    ProcessSteps(pagination: {limit:-1}) {
+      Title
+      Content
+    }
+  }
+  ... on ComponentSectionServices {
+    Title
+    Description
+    ServicesLists (pagination: {limit:-1}) {
+      ServiceMedia {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          alternativeText
+          url
+        }
+      }
+      ServiceName
+    }
+  }
+  ... on ComponentSectionFaq {
+    Title
+    FAQContent (pagination: {limit:-1}) {
+      Title
+      Content
+    }
+  }
+  ... on ComponentSectionAwards {
+    Title
+    Lists (pagination: {limit:-1}) {
+      ButtonText
+      ButtonURL
+      OpenNewTab
+    }
+  }
+
 `;
 
 export const PAGES_QUERY = gql`
@@ -641,6 +690,10 @@ export const PROJECTS_QUERY_SLUG = gql`
       Architecture
       Photography
       Aesthetic
+      Metadata (pagination: {limit:-1}) {
+        Label
+        Value
+      }
       Description
       ThemeColor
       Seo {
@@ -720,6 +773,10 @@ export const PROJECTS_QUERY_SLUG_PREVIEW = gql`
       Architecture
       Photography
       Aesthetic
+      Metadata (pagination: {limit:-1}) {
+        Label
+        Value
+      }
       Description
       ThemeColor
       Seo {
@@ -922,6 +979,15 @@ export const ASTHETICS_QUERY_SLUG = gql `
           alternativeText
         }
       }
+      FeaturedMedia {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          url
+          alternativeText
+      }
       QuickLinks {
         Name
         Slug
@@ -959,6 +1025,15 @@ export const ASTHETICS_QUERY_SLUG_PREVIEW = gql `
           alternativeText
         }
       }
+      FeaturedMedia {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          url
+          alternativeText
+      }        
       QuickLinks {
         Name
         Slug
