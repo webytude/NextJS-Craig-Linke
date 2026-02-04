@@ -13,7 +13,7 @@ export default function Awards({ data }) {
   const leftContent = (
     <>
       <Box className={styles.awardsLeftCol} fullHeight direction="column" justify="space-between">
-        <FadeUp>
+        <FadeUp style={{ maxWidth: 480 }}>
           <BlocksRenderer content={AwardTitle || []} />
         </FadeUp>
       </Box>
@@ -22,7 +22,7 @@ export default function Awards({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20 content flex-start">
+      <div className="p20">
         <ul className={styles.awardList}>
         {Lists.map((button, index) => (
           <li key={index}>
