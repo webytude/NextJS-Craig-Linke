@@ -11,6 +11,8 @@ const generateId = (text) => {
 
 export default function DynamicClientPage({ page }) {
 
+  console.log('page', page)
+
   useEffect(() => {
     const finalTheme = page?.ThemeColor && page.ThemeColor.trim() !== ""
       ? page.ThemeColor

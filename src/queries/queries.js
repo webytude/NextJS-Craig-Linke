@@ -40,8 +40,14 @@ const BLOCKS_SELECTION = `
     BottomTitle
     BottomDescription
     Media {
-      url
-      alternativeText
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        url
+        alternativeText
+      }
     }
     FeaturedProjects {
       Title

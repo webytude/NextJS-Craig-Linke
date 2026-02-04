@@ -7,9 +7,11 @@ import ProjectWithManuallyEditable from "../ashetics/ProjectWithManuallyEditable
 import RelatedAesthetics from "../ashetics/RelatedAesthetics";
 import SingleMedia from "../ashetics/SingleMedia";
 import AboutHero from "../sections/AboutHero";
+import Awards from "../sections/Awards";
 import ContactHero from "../sections/ContactHero";
 import ExploreProjects from "../sections/ExploreProjects";
 import ExpressiveMediaModule from "../sections/ExpressiveMediaModule";
+import Faq from "../sections/Faq";
 import FeaturedProjects from "../sections/FeaturedProjects";
 import FourRowMediaAndText from "../sections/FourRowMediaAndText";
 import FullScreenMedia from "../sections/FullScreenMedia";
@@ -17,7 +19,9 @@ import FullWidthMedia from "../sections/FullWidthMedia";
 import HomeHero from "../sections/HomeHero";
 import InteriorDesign from "../sections/InteriorDesign";
 import LatestJournals from "../sections/LatestJournals";
+import OurProcess from "../sections/OurProcess";
 import ProjectHighlight from "../sections/ProjectHighlight";
+import OurServices from "../sections/Services";
 import TeamListing from "../sections/TeamListing";
 import TextModule from "../sections/TextModule";
 import TwoColumnMediaAndText from "../sections/TwoColumnMediaAndText";
@@ -38,6 +42,18 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
 
     case "ComponentSectionFullScreenMedia":
       return <FullScreenMedia data={block} />;
+
+    case "ComponentSectionFaq":
+      return <Faq data={block} />;
+
+    case "ComponentSectionAwards":
+      return <Awards data={block} />;
+
+    case "ComponentSectionOurProcess":
+      return <OurProcess data={block} />;
+
+    case "ComponentSectionServices":
+      return <OurServices data={block} />;
 
     case "ComponentSectionInteriorDesign":
       return <InteriorDesign data={block} />;

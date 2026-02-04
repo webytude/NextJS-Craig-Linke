@@ -11,7 +11,7 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
   return (
     <div className={styles.projectHighlight}>
       <div className="flex justify-space-between pt20 hide-desktop">
-        <div className="text-light uppercase">
+        <div className="uppercase">
           <FadeUp>
             {topTitle}
           </FadeUp>
@@ -29,7 +29,7 @@ export default function ProjectCardOverly({ bottomDescription, bottomTitle, butt
       </div>
       <div className={styles.proOverlyContent}>
         <div className="flex justify-space-between p20 hide-mobile">
-          <FadeUp><div className="text-light uppercase">{topTitle}</div></FadeUp>
+          <FadeUp><div className="uppercase">{topTitle}</div></FadeUp>
           <FadeUp>
             <LinkWithArrow
                 text={button?.ButtonText}

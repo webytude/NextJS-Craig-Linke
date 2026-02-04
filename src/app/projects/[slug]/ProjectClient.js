@@ -201,6 +201,7 @@ export default function ProjectClient({ projects }) {
                               opacity: isActive ? 1 : 0.5,
                               cursor: "pointer",
                             }}
+                            className={styles.galleryThumb}
                           >
                             <MediaRenderer
                               media={block}

@@ -95,6 +95,9 @@
   max-height: 295px;
   width: 114%;
 }
+.galleryThumb {
+  width: 40px;
+}
 .detailWrapper {
   padding: 24px 16px;
 }
