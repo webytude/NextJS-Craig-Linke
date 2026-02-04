@@ -152,6 +152,8 @@ export default function ProjectClient({ projects }) {
   //   pointerEvents: contentOpacity === 0 ? 'none' : 'auto',
   // };
 
+  console.log('projects', projects)
+
   return (
     <>
       <div className="hide-mobile">
@@ -159,26 +161,12 @@ export default function ProjectClient({ projects }) {
           <div className={styles.pageWrapper}>
             <div className={styles.leftColumn}>
               <div className={`${styles.specification} p20`}>
-                <div>
-                  <label>LOCATION</label>
-                  {projects.Location}
-                </div>
-                <div>
-                  <label>YEAR</label>
-                  {projects.Year}
-                </div>
-                <div>
-                  <label>ARCHITECTURE</label>
-                  {projects.Architecture}
-                </div>
-                <div>
-                  <label>PHOTOGRAPHY</label>
-                  {projects.Photography}
-                </div>
-                <div>
-                  <label>AESTHETIC</label>
-                  {projects.Aesthetic}
-                </div>
+                {projects.Metadata.map((specific, index) => (
+                  <div>
+                    <label>{specific.Label}</label>
+                    {specific.Value}
+                  </div>
+                ))}
               </div>
               <div className={styles.bottomWrapper}>
                 {galleryMediaBlocks.length > 0 && (

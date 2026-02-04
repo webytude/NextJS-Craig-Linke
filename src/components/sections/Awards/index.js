@@ -1,11 +1,45 @@
-import React from 'react'
+import TwoColumnLayout from '@/components/layouts/TwoColumnLayout';
+import FadeUp from '@/components/ui/animations/FadeUp';
+import Box from '@/components/ui/Box/Box';
+import Divider from '@/components/ui/Divider';
+import Link from 'next/link';
+import styles from './awards.module.css';
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 export default function Awards({ data }) {
-  console.log('Awards', data)
+
+  const {AwardTitle, Lists} = data;
+
+  const leftContent = (
+    <>
+      <Box className={styles.awardsLeftCol} fullHeight direction="column" justify="space-between">
+        <FadeUp>
+          <BlocksRenderer content={AwardTitle || []} />
+        </FadeUp>
+      </Box>
+    </>
+  );
+
+  const rightContent = (
+    <>
+      <div className="p20 content flex-start">
+        <ul className={styles.awardList}>
+        {Lists.map((button, index) => (
+          <li key={index}>
+            <Link href={button.ButtonURL}>{button.ButtonText}</Link>
+          </li>
+        ))}
+        </ul>
+      </div>
+    </>
+  );
 
   return (
-    <div>
-      Awards
-    </div>
+    <>
+    <section className="text-module padding">
+      <TwoColumnLayout left={leftContent} right={rightContent} />
+    </section>
+    <Divider />
+    </>
   )
 }

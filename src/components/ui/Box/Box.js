@@ -37,6 +37,7 @@ export default function Box({
   dividerWidth = "1px",
   className = "",
   style = {},
+  ...rest
 }) {
 
 
@@ -104,7 +105,7 @@ export default function Box({
   );
 
   return (
-    <div className={boxClasses} style={boxStyle}>
+    <div className={boxClasses} style={boxStyle} {...rest}>
       {processedChildren}
       {showDivider && currentDirection.includes("row") && (
         <div 

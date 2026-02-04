@@ -377,7 +377,7 @@ const BLOCKS_SELECTION = `
     }
   }
   ... on ComponentSectionAwards {
-    Title
+    AwardTitle
     Lists (pagination: {limit:-1}) {
       ButtonText
       ButtonURL
