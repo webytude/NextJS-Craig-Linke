@@ -61,7 +61,8 @@
     overflow: hidden;
     width: 100%;
 }
-.gallery .imageWrapper img {
+.gallery .imageWrapper img,
+.gallery .imageWrapper mux-player {
   position: absolute;
   top: 0;
   left: 0;
@@ -88,12 +89,16 @@
   justify-self: end;
 }
 .leftGallery {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .galleryBlock {
-  overflow-y: auto;
-  max-height: 295px;
-  width: 114%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 400px;
+
+  column-gap: 3;
+  align-content: flex-start;
 }
 .galleryThumb {
   width: 40px;

@@ -5,6 +5,7 @@ import styles from './faq.module.css'
 import { useState } from 'react';
 import Paragraph from '@/components/ui/Paragraph';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import Divider from '@/components/ui/Divider';
 
 export default function Faq({ data }) {
   const {Title, FAQContent} = data;
@@ -49,8 +50,11 @@ export default function Faq({ data }) {
     </div>
   );
   return (
-    <section className={styles.faqSection}>
-      <TwoColumnLayout left={leftContent} right={rightContent} />
-    </section>
+    <>
+      <section className={styles.faqSection}>
+        <TwoColumnLayout left={leftContent} right={rightContent} />
+      </section>
+      <Divider />
+    </>
   )
 }

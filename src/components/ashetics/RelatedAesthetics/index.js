@@ -4,6 +4,9 @@ import astheticsStyles from '../style/asthetics..module.css';
 import styles from './relatedAesthetics.module.css';
 
 export default function RelatedAesthetics({ data }) {
+
+  console.log('RelatedAesthetics', data)
+  
   const { RelatedAesthetics } = data;
   
   return (

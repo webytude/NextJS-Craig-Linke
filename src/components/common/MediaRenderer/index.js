@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import styles from './mediaRenderer.module.css';
 
-export default function MediaRenderer({ media, width, height, classes }) {
+export default function MediaRenderer({ media, width, height, classes, videoWidth, videoHeight }) {
   if (!media) return null;
 
   const { EnableMuxVideo, MuxVideo, ImageORCarousel } = media;
@@ -24,7 +24,7 @@ export default function MediaRenderer({ media, width, height, classes }) {
         playsInline
         preload="auto"
         controls={false}
-        style={{ width: "100%", height: '100%', '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
+        style={{ width: width ? width : "100%", height: height ? height : "100%", '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
       />
     );
   }

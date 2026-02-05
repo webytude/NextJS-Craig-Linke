@@ -945,7 +945,7 @@ const ASTHETICS_BLOCK_SELECTION = `
       Name
       Slug
       Description
-      DesktopMedia {
+      FeaturedMedia {
         EnableMuxVideo
         MuxVideo {
           playback_id
