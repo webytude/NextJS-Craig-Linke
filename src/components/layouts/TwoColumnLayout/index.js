@@ -4,6 +4,7 @@ export default function TwoColumnLayout({
   left,
   right,
   fullHeight = false,
+  height = null,
   reverse = false,
   gap = "0px",
   showDivider = false,
@@ -15,7 +16,11 @@ export default function TwoColumnLayout({
   style = {},
 }) {
   const containerStyle = {
-    height: fullHeight ? "calc(100vh - 52px)" : "auto",
+    height: height
+      ? height
+      : fullHeight
+      ? "calc(100vh - 52px)"
+      : "auto",
     gap,
     ...style,
   };

@@ -115,7 +115,7 @@ export default function OurServices({ data }) {
             padding="0"
           >
             {row.map((item, itemIndex) => (
-              <Box className="cursor" onMouseEnter={() => handleMouseEnter(item)} onMouseLeave={handleMouseLeave} justify="center" align="center" key={itemIndex} borderRight={itemIndex === 0} style={{ minHeight: 360 }}>
+              <Box className={`${styles.serviceBox} cursor`} onMouseEnter={() => handleMouseEnter(item)} onMouseLeave={handleMouseLeave} justify="center" align="center" key={itemIndex} borderRight={itemIndex === 0} style={{ minHeight: 360 }}>
                 <div className="uppercase">{item.ServiceName}</div>
               </Box>
             ))}
@@ -128,7 +128,7 @@ export default function OurServices({ data }) {
   return (
     <>
     <section className="ourServices">
-      <TwoColumnLayout fullHeight left={leftContent} right={rightContent} showDivider />
+      <TwoColumnLayout height="85vh" left={leftContent} right={rightContent} showDivider />
     </section>
     <Divider />
     </>

@@ -1,3 +1,7 @@
+.serviceBox:hover {
+  background: #695A4C !important;
+}
+
 .services-section {
   background: #746357;
   padding: 80px;

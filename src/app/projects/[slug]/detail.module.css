@@ -100,6 +100,16 @@
   column-gap: 3;
   align-content: flex-start;
 }
+@media (max-height: 750px) {
+  .galleryBlock {
+    max-height: 330px;
+  }
+}
+@media (max-height: 690px) {
+  .galleryBlock {
+    max-height: 250px;
+  }
+}
 .galleryThumb {
   width: 40px;
 }
