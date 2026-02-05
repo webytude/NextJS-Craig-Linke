@@ -24,7 +24,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         playsInline
         preload="auto"
         controls={false}
-        style={{ width: width ? width : "100%", height: height ? height : "100%", '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
+        style={{ width: videoWidth ? videoWidth : "100%", height: videoHeight ? videoHeight : "100%", '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
       />
     );
   }
