@@ -13,7 +13,7 @@ import SlideRight from "@/components/ui/animations/SlideRight";
 import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function InteriorDesign({ data }) {
-  const { Title, SubTitle, InteriorDesign, Media, Button } = data;
+  const { Title, SubTitle, InteriorDesign, Media, Button, ShowInReverseLayout } = data;
 
   const leftContent = (
     <>
@@ -79,7 +79,7 @@ export default function InteriorDesign({ data }) {
     <>
     <Divider className="hide-desktop" style={{ marginTop: '35px'}} />
     <section className="InteriorDesign">
-      <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} />
+      <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} reverse={ShowInReverseLayout} />
     </section>
     <Divider />
     </>

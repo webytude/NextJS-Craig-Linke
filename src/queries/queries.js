@@ -105,7 +105,7 @@ const BLOCKS_SELECTION = `
     Title
     ShowInQuickView
     SubTitle
-    ShowInQuickView
+    ShowInReverseLayout
     InteriorDesign: Description
     Button {
       ButtonText
