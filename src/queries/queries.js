@@ -499,7 +499,7 @@ export const GLOBAL_QUERY = gql`
 
 export const PROJECTS_QUERY = gql`
   query Projects {
-    projects {
+    projects(pagination: { limit: -1 }) {
       Name
       Slug
       Media {
