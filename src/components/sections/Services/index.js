@@ -12,6 +12,7 @@ import LinkWithArrow from "@/components/ui/Link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Divider from "@/components/ui/Divider";
+import Link from "next/link";
 
 export default function OurServices({ data }) {
 
@@ -115,8 +116,11 @@ export default function OurServices({ data }) {
             padding="0"
           >
             {row.map((item, itemIndex) => (
-              <Box className={`${styles.serviceBox} cursor`} onMouseEnter={() => handleMouseEnter(item)} onMouseLeave={handleMouseLeave} justify="center" align="center" key={itemIndex} borderRight={itemIndex === 0} style={{ minHeight: 360 }}>
-                <div className="uppercase">{item.ServiceName}</div>
+              
+              <Box className={`${styles.serviceBox}`} onMouseEnter={() => handleMouseEnter(item)} onMouseLeave={handleMouseLeave} justify="center" align="center" key={itemIndex} borderRight={itemIndex === 0} >
+                <Link key={itemIndex} href={item.ServiceURL || "#"} className={`${styles.serviceBoxLink}`}>
+                  <div className="uppercase">{item.ServiceName}</div>
+                </Link>
               </Box>
             ))}
           </Box>

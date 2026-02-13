@@ -5,6 +5,7 @@ import MediaRenderer from "../MediaRenderer";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import FadeUp from "@/components/ui/animations/FadeUp";
 import FadeIn from "@/components/ui/animations/FadeIn";
+import Link from "next/link";
 
 export default function ProjectCardOverly({
   bottomDescription,
@@ -61,6 +62,7 @@ export default function ProjectCardOverly({
           </div>
         </div>
       </div>
+      <Link href={button?.ButtonURL} className={styles.contentLink}></Link>
     </div>
   );
 }

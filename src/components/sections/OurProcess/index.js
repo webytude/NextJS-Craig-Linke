@@ -23,7 +23,7 @@ export default function OurProcess({ data }) {
       return (
         <div key={index} className={styles.step}>
           <div className={styles.left}>
-            <span className={`${styles.number} headingTwo`}>{stepNumber}</span>
+            <span className={`${styles.stepNumber} headingTwo`}>{stepNumber}</span>
           </div>
           <div className={styles.right}>
             <h3 className="headingTwo">{item.Title}</h3>
@@ -31,7 +31,7 @@ export default function OurProcess({ data }) {
               <BlocksRenderer content={item.Content || []} />
             </Paragraph>
           </div>
-          
+          <MediaRenderer media={item.Media} classes={styles.ProcessMedia} />
         </div>
       )
       })}

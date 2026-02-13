@@ -14,6 +14,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import RelatedProjects from "@/components/sections/RelatedProjects";
 import Loading from "@/components/common/Loading";
+import Testimonial from "@/components/sections/Testimonial";
 
 export default function ProjectClient({ projects }) {
 
@@ -161,12 +162,13 @@ export default function ProjectClient({ projects }) {
           <div className={styles.pageWrapper}>
             <div className={styles.leftColumn}>
               <div className={`${styles.specification} p20`}>
-                {projects.Metadata.map((specific, index) => (
+                {/* {projects.Metadata.map((specific, index) => (
                   <div>
                     <label>{specific.Label}</label>
                     {specific.Value}
                   </div>
-                ))}
+                ))} */}                
+                <BlocksRenderer content={projects.LeftDescription || []} />                
               </div>
               <div className={styles.bottomWrapper}>
                 {galleryMediaBlocks.length > 0 && (
@@ -215,33 +217,45 @@ export default function ProjectClient({ projects }) {
               </div>
             </div>
             <div className={styles.middleColumn}>
-              {galleryMediaBlocks.length > 0 && (
-                <div className={styles.gallery}>
-                  {galleryMediaBlocks.map((block) => {
-                    const isPortrait = block.MediaType === "Portrait";
-                    const mediaWidth = isPortrait ? 524 : 720;
-                    const mediaHeight = isPortrait ? 746 : 500;
+              <div className={styles.gallery}>
+                {projects?.Blocks?.map((block, index) => {
+                  const key = block?.id
+                    ? `${block.__typename}-${block.id}`
+                    : `${block.__typename}-${index}`;                    
 
-                    return (
-                      <div
-                        key={block.id}
-                        className={styles.imageWrapper}
-                        ref={(el) => (imageRefs.current[block.id] = el)}
-                        data-id={block.id}
-                      >
-                        <MediaRenderer
-                          media={block}
-                          width={mediaWidth}
-                          height={mediaHeight}
-                          videoWidth={mediaWidth}
-                          videoHeight={mediaHeight}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+                  switch (block.__typename) {
+                    case "ComponentGlobalProjectMedia":
+                    
+                      const isPortrait = block.MediaType === "Portrait";
+                      const mediaWidth = isPortrait ? 524 : 720;
+                      const mediaHeight = isPortrait ? 746 : 500;
+
+                      return (
+                        <div
+                          key={key}
+                          className={styles.imageWrapper}
+                          ref={(el) => (imageRefs.current[block.id] = el)}
+                          data-id={block.id}
+                        >
+                          <MediaRenderer
+                            media={block}
+                            width={mediaWidth}
+                            height={mediaHeight}
+                          />
+                        </div>
+                      );
+
+                    case "ComponentSectionTestimonial":
+                      return <Testimonial key={key} data={block} />;
+
+                    default:
+                      return null;
+                  }
+                })}
+
+              </div>
             </div>
+
             <div className={styles.rightColumn}>
               <div className="p20">
                 <Heading level={5} color="#000">
@@ -343,20 +357,39 @@ export default function ProjectClient({ projects }) {
           </div>
           {galleryMediaBlocks.length > 0 && (
             <div className={styles.gallery}>
-              {galleryMediaBlocks.map((block) => {
-                const isPortrait = block.MediaType === "Portrait";
-                const mediaWidth = isPortrait ? 524 : 720;
-                const mediaHeight = isPortrait ? 746 : 500;
+              {projects?.Blocks?.map((block, index) => {
+                const key = block?.id
+                  ? `${block.__typename}-${block.id}`
+                  : `${block.__typename}-${index}`;                    
 
-                return (
-                  <div key={block.id} className={styles.imageWrapper}>
-                    <MediaRenderer
-                      media={block}
-                      width={mediaWidth}
-                      height={mediaHeight}
-                    />
-                  </div>
-                );
+                switch (block.__typename) {
+                  case "ComponentGlobalProjectMedia":
+                  
+                    const isPortrait = block.MediaType === "Portrait";
+                    const mediaWidth = isPortrait ? 524 : 720;
+                    const mediaHeight = isPortrait ? 746 : 500;
+
+                    return (
+                      <div
+                        key={key}
+                        className={styles.imageWrapper}
+                        ref={(el) => (imageRefs.current[block.id] = el)}
+                        data-id={block.id}
+                      >
+                        <MediaRenderer
+                          media={block}
+                          width={mediaWidth}
+                          height={mediaHeight}
+                        />
+                      </div>
+                    );
+
+                  case "ComponentSectionTestimonial":
+                    return <Testimonial key={key} data={block} />;
+
+                  default:
+                    return null;
+                }
               })}
             </div>
           )}

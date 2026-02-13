@@ -350,6 +350,16 @@ const BLOCKS_SELECTION = `
     ProcessSteps(pagination: {limit:-1}) {
       Title
       Content
+      Media {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          alternativeText
+          url
+        }
+      }
     }
   }
   ... on ComponentSectionServices {
@@ -367,6 +377,7 @@ const BLOCKS_SELECTION = `
         }
       }
       ServiceName
+      ServiceURL
     }
   }
   ... on ComponentSectionFaq {
@@ -700,6 +711,7 @@ export const PROJECTS_QUERY_SLUG = gql`
         Label
         Value
       }
+      LeftDescription
       Description
       ThemeColor
       Seo {
@@ -751,7 +763,17 @@ export const PROJECTS_QUERY_SLUG = gql`
                 }
             }
           }
-        }  
+        } 
+        ... on ComponentSectionTestimonial {
+          Name
+          Description
+          Padding {
+            DesktopTopPadding
+            DesktopBottomPadding
+            MobileTopPadding
+            MobileBottomPadding
+          }
+        } 
       }
       
     }

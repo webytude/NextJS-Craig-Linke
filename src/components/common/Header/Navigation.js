@@ -110,24 +110,26 @@ export default function Navigation({ menu, onCloseMenu, onLinkClick, isMenuOpen 
 
   return (
     <>
-      <ul className={styles.navListContainer}>
+      <ul
+        className={styles.navListContainer}
+        // onMouseLeave={() => setActiveItem(null)}
+      >
         {menu.map((item, index) => {
           const hasSubMenu = item.SubMenu && item.SubMenu.length > 0;
           const isActive = activeItem?.Name === item.Name;
 
           return (
-            <li key={`${item.Link}-${index}`} className={styles.navItem}>
-              <span
-                className={`${styles.navLink} ${isActive ? styles.active : ''}`}
-                onClick={() => handleMainItemClick(item)}
-              >
-                {hasSubMenu ? (
-                  <span style={{ cursor: 'pointer' }}>{item.Name}</span>
-                ) : (
+            <li
+              key={`${item.Link}-${index}`}
+              className={styles.navItem}
+              onMouseEnter={() => {
+                if (item.SubMenu?.length) setActiveItem(item);
+              }}
+            >
+              <span className={`${styles.navLink} ${isActive ? styles.active : ""}`}>
                   <Link href={item.Link} onClick={onLinkClick}>
                     {item.Name}
-                  </Link>
-                )}
+                  </Link>               
               </span>
             </li>
           );
