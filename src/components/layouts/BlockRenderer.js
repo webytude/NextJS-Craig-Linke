@@ -9,6 +9,7 @@ import SingleMedia from "../ashetics/SingleMedia";
 import AboutHero from "../sections/AboutHero";
 import Awards from "../sections/Awards";
 import ContactHero from "../sections/ContactHero";
+import ContentHero from "../sections/ContentHero";
 import ExploreProjects from "../sections/ExploreProjects";
 import ExpressiveMediaModule from "../sections/ExpressiveMediaModule";
 import Faq from "../sections/Faq";
@@ -16,6 +17,7 @@ import FeaturedProjects from "../sections/FeaturedProjects";
 import FourRowMediaAndText from "../sections/FourRowMediaAndText";
 import FullScreenMedia from "../sections/FullScreenMedia";
 import FullWidthMedia from "../sections/FullWidthMedia";
+import HomeContactHero from "../sections/HomeContectHero";
 import HomeHero from "../sections/HomeHero";
 import InteriorDesign from "../sections/InteriorDesign";
 import LatestJournals from "../sections/LatestJournals";
@@ -45,6 +47,12 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
 
     case "ComponentSectionFaq":
       return <Faq data={block} />;
+
+    case "ComponentSectionNewContactHero":
+      return <HomeContactHero data={block} />;
+
+    case "ComponentSectionContentHeroModule":
+      return <ContentHero data={block} />;
 
     case "ComponentSectionAwards":
       return <Awards data={block} />;

@@ -1,0 +1,267 @@
+"use client";
+
+import MediaRenderer from "@/components/common/MediaRenderer";
+import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
+import FadeUp from "@/components/ui/animations/FadeUp";
+import SlideRight from "@/components/ui/animations/SlideRight";
+import Box from "@/components/ui/Box/Box";
+import Divider from "@/components/ui/Divider";
+import Heading from "@/components/ui/Heading";
+import Paragraph from "@/components/ui/Paragraph";
+import styles from "./homeContactHero.module.css";
+import { useState } from "react";
+
+export default function HomeContactHero({ data }) {
+  const { Title, PhoneNumber, Media, Email, Address } = data;
+
+  const [statusMessage, setStatusMessage] = useState(null);
+
+  const [formData, setFormData] = useState({
+    FullName: "",
+    Email: "",
+    Phone: "",
+    ProjectSuburban: "",
+    ServicesRequired: "",
+    TotalBudget: "",
+    Message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    let dataToSend = {};
+    dataToSend = {
+      data: {
+        FullName: formData.FullName,
+        Email: formData.Email,
+        Phone: formData.Phone,
+        ProjectSuburban: formData.ProjectSuburban,
+        ServicesRequired: formData.ServicesRequired,
+        TotalBudget: formData.TotalBudget,
+        Message: formData.Message,
+      },
+    };
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/contacts`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
+        },
+      );
+
+      const result = await res.json();
+
+      if (res.ok && result.data) {
+        setStatusMessage({
+          type: "success",
+          text: "Thank you! Your form has been submitted successfully.",
+        });
+        setFormData({
+          FullName: "",
+          Email: "",
+          PhoneNumber: "",
+          AboutYourBusiness: "",
+          AboutYourProject: "",
+          FormType: "",
+        });
+      } else {
+        console.error("Submission failed:", result);
+        setStatusMessage({
+          type: "error",
+          text: result.error || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Form submission failed", error);
+      setStatusMessage({
+        type: "error",
+        text: "Network error. Please try again.",
+      });
+      setStatusMessage({
+        type: "error",
+        text: "Network error. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const leftContent = (
+    <>
+      <Box
+        fullHeight
+        direction="column"
+        justify="space-between"
+        mobileGap="90px"
+        padding="0"
+      >
+        <FadeUp classes="p20">
+          <Heading level={1} style={{ maxWidth: 580 }}>
+            {Title}
+          </Heading>
+        </FadeUp>
+      </Box>
+      <Box
+        fullHeight
+        direction="row"
+        justify="space-between"
+        align="flex-end"
+        padding="0"
+        equalChildren
+        mobileDirection="row-reverse"
+        mobileJustify="center"
+        mobileAlign="center"
+      >
+        <SlideRight className="p20 fullHeight">
+          <MediaRenderer media={Media} classes={"image"} />
+        </SlideRight>
+        <div />
+      </Box>
+    </>
+  );
+
+  const rightContent = (
+    <>
+      <Box padding="0" fullHeight justify="center">
+        <div className="contactForm fullWidth">
+          <form onSubmit={(e) => handleSubmit(e, "Contact")}>
+            <div className={styles.formGrid}>
+              <div className={styles.floatingGroup}>
+                <input
+                  type="text"
+                  name="FullName"
+                  placeholder=""
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="FullName">FULL NAME</label>
+              </div>
+              <div className={styles.floatingGroup}>
+                <input
+                  type="email"
+                  name="Email"
+                  placeholder=""
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="email">EMAIL</label>
+              </div>
+              <div className={styles.floatingGroup}>
+                <input
+                  type="text"
+                  name="Phone"
+                  placeholder=""
+                  onChange={handleChange}
+                />
+                <label htmlFor="phone">PHONE</label>
+              </div>
+              <div className={styles.floatingGroup}>
+                <input
+                  type="text"
+                  name="Phone"
+                  placeholder=""
+                  onChange={handleChange}
+                />
+                <label htmlFor="phone">Address</label>
+              </div>
+              <div className={styles.floatingGroup}>
+                <select name="ServicesRequired" defaultValue="">
+                  <option value="" disabled hidden>
+                    SERVICES
+                  </option>
+                  <option>Pre-Construction Support</option>
+                  <option>Interior Design</option>
+                  <option>Landscaping</option>
+                  <option>Building</option>
+                </select>
+              </div>
+              <div className={styles.floatingGroup}>
+                <select name="totalBudget" defaultValue="">
+                  <option value="" disabled hidden>
+                    Total Project Budget
+                  </option>
+                  <option value="1000-5000">$1,000 – $5,000</option>
+                  <option value="5000-10000">$5,000 – $10,000</option>
+                  <option value="10000-25000">$10,000 – $25,000</option>
+                  <option value="25000-50000">$25,000 – $50,000</option>
+                  <option value="50000+">$50,000+</option>
+                </select>
+              </div>
+              <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
+                <select name="HearAbout" defaultValue="">
+                  <option value="" disabled hidden>
+                    HOW DID YOU HEAR ABOUT US
+                  </option>
+                  <option>Google Search</option>
+                  <option>Social Media</option>
+                  <option>Friend / Family Referral</option>
+                  <option>Colleague</option>
+                  <option>Online Advertisement</option>
+                  <option>Blog / Article</option>
+                  <option>Email Newsletter</option>
+                  <option>Event / Webinar</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
+                <textarea
+                  rows="5"
+                  name="Message"
+                  placeholder=""
+                  onChange={handleChange}
+                ></textarea>
+                <label htmlFor="message">MESSAGE</label>
+              </div>
+            </div>
+            <button className={styles.submitBtn}>
+              {" "}
+              <span>{isSubmitting ? "SUBMITTING..." : "SUBMIT ENQUIRY"}</span>
+            </button>
+            {statusMessage && (
+              <p
+                className={`response-msg uppercase pt20 ${
+                  statusMessage.type === "success"
+                    ? styles.success
+                    : styles.textError
+                }`}
+              >
+                {statusMessage.text}
+              </p>
+            )}
+          </form>
+        </div>
+      </Box>
+      <div className={`${styles.bottomContact} text-center uppercase`}>
+        <Paragraph>{Address}</Paragraph>
+        <Paragraph>{Email}</Paragraph>
+        <Paragraph>{PhoneNumber}</Paragraph>
+      </div>
+    </>
+  );
+
+  return (
+    <>
+      <section className="homeContactHero fitToScreen">
+        <TwoColumnLayout
+          fullHeight
+          left={leftContent}
+          right={rightContent}
+          showDivider
+        />
+      </section>
+      <Divider />
+    </>
+  );
+}

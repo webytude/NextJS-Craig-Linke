@@ -130,7 +130,7 @@ export default function ContactForm() {
       <div className={styles.floatingGroup}>
         <select name="ServicesRequired" defaultValue="">
           <option value="" disabled hidden>
-            SERVICES REQUIRED
+            SERVICES
           </option>
           <option>Pre-Construction Support</option>
           <option>Interior Design</option>

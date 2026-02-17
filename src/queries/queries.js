@@ -406,7 +406,38 @@ const BLOCKS_SELECTION = `
       OpenNewTab
     }
   }
-
+  ... on ComponentSectionNewContactHero {
+    Title
+    Media {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
+      }
+    }
+    Address
+    Email
+    PhoneNumber
+  }
+  ... on ComponentSectionContentHeroModule {
+    Title
+    Heading
+    ContentHeroModule: Description
+    Media {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
+      }
+    }
+    ShowInReverseLayout
+  }
 `;
 
 export const PAGES_QUERY = gql`
