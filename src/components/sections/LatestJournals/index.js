@@ -25,8 +25,8 @@ export default function LatestJournals({ data }) {
           <div className="hide-desktop">
             <FadeUp>
             <LinkWithArrow
-              text={Button.ButtonText}
-              href={Button.ButtonURL}
+              text={Button?.ButtonText || 'Read More'}
+              href={Button?.ButtonURL || '#'}
             />
             </FadeUp>
           </div>
@@ -44,7 +44,7 @@ export default function LatestJournals({ data }) {
   const rightContent = (
     <>
       <div className="p20 text-right hide-mobile">
-        <FadeUp><LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} /></FadeUp>
+        <FadeUp><LinkWithArrow text={Button?.ButtonText || 'Read More'} href={Button?.ButtonURL || '#'} /></FadeUp>
       </div>
       <Spacer desktop={84} tablet={50} mobile={30} />
       <FadeUp>

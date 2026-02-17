@@ -260,7 +260,7 @@ export default function ProjectClient({ projects }) {
 
             <div className={styles.rightColumn}>
               <div className="p20">
-                <Heading level={5} color="#000">
+                <Heading level={1} color="#000" className={styles.heading}>
                   {projects.Name}
                 </Heading>
                 <Paragraph className={styles.paragraph}>
