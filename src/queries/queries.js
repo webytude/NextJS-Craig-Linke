@@ -384,6 +384,11 @@ const BLOCKS_SELECTION = `
       ServiceName
       ServiceURL
     }
+    Button {
+      ButtonText
+      ButtonURL
+      OpenNewTab
+    }
   }
   ... on ComponentSectionFaq {
     Title

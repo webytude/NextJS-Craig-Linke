@@ -16,7 +16,7 @@ import Link from "next/link";
 
 export default function OurServices({ data }) {
 
-  const {Title, Description, ServicesLists} = data;
+  const {Title, Description, ServicesLists, Button} = data;
 
   const defaultImageObject = {
     url: '/images/default-placeholder.jpg',
@@ -51,8 +51,6 @@ export default function OurServices({ data }) {
       setCurrentImage(defaultImageObject);
     }
   };
-
-  console.log('currentImage', data)
 
   const rows = [];
 
@@ -89,8 +87,8 @@ export default function OurServices({ data }) {
             </SlideRight>
         <div className="text-right">
           <LinkWithArrow
-              text={'Read More'}
-              href={"#"}
+              text={Button.ButtonText}
+              href={Button.ButtonURL}
             />
         </div>
       </Box>
