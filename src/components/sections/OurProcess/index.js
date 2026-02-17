@@ -30,8 +30,8 @@ export default function OurProcess({ data }) {
             <Paragraph>
               <BlocksRenderer content={item.Content || []} />
             </Paragraph>
+            <MediaRenderer media={item.Media} classes={styles.ProcessMedia} />
           </div>
-          <MediaRenderer media={item.Media} classes={styles.ProcessMedia} />
         </div>
       )
       })}

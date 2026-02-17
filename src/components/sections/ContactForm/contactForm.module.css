@@ -1,25 +1,21 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* This gives 20px gap between all items */
+  gap: 20px;
   width: 80%;
   max-width: 800px;
 }
-
-
 .submitBtn {
   background: transparent;
   border: none;
   letter-spacing: 0.5px;
   cursor: pointer;
 }
-
 .floatingGroup {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
 }
-
 .floatingGroup input,
 .floatingGroup textarea {
   width: 100%;
@@ -29,7 +25,14 @@
   border-bottom: 1px solid #b0a7a2;
   outline: none;
 }
-
+.floatingGroup select {
+  width: 100%;
+  padding: 0 0 20px;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #b0a7a2;
+  outline: none;
+}
 .floatingGroup label {
   position: absolute;
   left: 0;
@@ -40,7 +43,6 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-
 .floatingGroup input:focus + label,
 .floatingGroup textarea:focus + label,
 .floatingGroup input:not(:placeholder-shown) + label,

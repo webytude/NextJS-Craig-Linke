@@ -156,7 +156,8 @@ button:hover {
 }
 .Stone button,
 .Stone input,
-.Stone textarea {
+.Stone textarea,
+.Stone select {
   color: #EAEAE8;
 }
 .White,

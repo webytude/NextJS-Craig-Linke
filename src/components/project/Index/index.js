@@ -140,7 +140,7 @@ export default function Index({ onClose, projects }) {
             exit="exit"
             className={`p20 text-right`}
           >
-            <MediaRenderer media={hoveredMedia} width={431} height={627} />
+            <MediaRenderer media={hoveredMedia} width={431} height={627} videoWidth={431} videoHeight={627} />
           </motion.div>
         ) : (
           <motion.p

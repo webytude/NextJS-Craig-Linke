@@ -241,6 +241,8 @@ export default function ProjectClient({ projects }) {
                             media={block}
                             width={mediaWidth}
                             height={mediaHeight}
+                            videoWidth={mediaWidth}
+                            videoHeight={mediaHeight}
                           />
                         </div>
                       );

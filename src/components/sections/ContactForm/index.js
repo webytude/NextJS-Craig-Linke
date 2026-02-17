@@ -128,12 +128,12 @@ export default function ContactForm() {
         <label htmlFor="projectSuburb">PROJECT SUBURB</label>
       </div>
       <div className={styles.floatingGroup}>
-        <input
-          type="text"
-          name="ServicesRequired"
-          placeholder=""
-          onChange={handleChange}
-        />
+        <select name="ServicesRequired">
+          <option>Pre-Construction Support</option>
+          <option>Interior Design</option>
+          <option>Landscaping</option>
+          <option>Building</option>
+        </select>
         <label htmlFor="servicesRequired">SERVICES REQUIRED</label>
       </div>
       <div className={styles.floatingGroup}>
@@ -144,6 +144,15 @@ export default function ContactForm() {
           onChange={handleChange}
         />
         <label htmlFor="totalBudget">TOTAL BUDGET</label>
+      </div>
+      <div className={styles.floatingGroup}>
+        <select name="ServicesRequired">
+          <option>Pre-Construction Support</option>
+          <option>Interior Design</option>
+          <option>Landscaping</option>
+          <option>Building</option>
+        </select>
+        <label htmlFor="servicesRequired">how did you hear about us</label>
       </div>
       <div className={styles.floatingGroup}>
         <textarea
