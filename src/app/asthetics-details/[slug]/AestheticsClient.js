@@ -42,8 +42,6 @@ export default function AestheticsClient({ asthetics }) {
 
   const activeData = asthetics.find((p) => p.Slug === currentSlug);
 
-  console.log('activeData', activeData)
-
   useEffect(() => {
     x.set(0);
   }, [currentSlug, x]);
