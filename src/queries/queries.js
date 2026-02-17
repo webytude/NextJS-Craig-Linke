@@ -99,6 +99,11 @@ const BLOCKS_SELECTION = `
           url
         }
       }
+      Button {
+        ButtonText
+        ButtonURL
+        OpenNewTab
+      }
     }
   }
   ... on ComponentSectionInteriorDesign {

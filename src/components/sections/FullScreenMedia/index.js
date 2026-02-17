@@ -25,6 +25,8 @@ export default function FullScreenMedia({ data }) {
   const [isSticky, setIsSticky] = useState(false);
   const revealRef = useRef(null);
 
+  console.log('TextList', TextList)
+
   useEffect(() => {
   const handleScroll = () => {
     if (revealRef.current) {
@@ -217,7 +219,7 @@ export default function FullScreenMedia({ data }) {
                         </div>
                         <Spacer desktop={20} />
                         <div className={styles.readMore}>
-                          <LinkWithArrow text="READ MORE" href="#" />
+                          <LinkWithArrow text={item.Button.ButtonText} href={item.Button.ButtonURL} />
                         </div>
                       </div>
                     </div>

@@ -29,7 +29,7 @@ export default function ProjectWithManuallyEditable({ data }) {
             </Paragraph>
           </div>
           <div className={styles.readMore}>
-            <LinkWithArrow text={data?.Button?.ButtonText} href={data?.Button?.ButtonUR} />
+            <LinkWithArrow text={data?.Button?.ButtonText} href={data?.Button?.ButtonURL} />
           </div>
           </div>
         </FadeUp>

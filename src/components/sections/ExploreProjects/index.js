@@ -19,7 +19,7 @@ export default function ExploreProjects({ data }) {
           <div className="relatedProjects">
             <div className="grid">
                 {SelectProjects.map((p, i) => (
-                  <ProjectCard project={p} />
+                  <ProjectCard key={i} project={p} />
                 ))}
             </div>
           </div>

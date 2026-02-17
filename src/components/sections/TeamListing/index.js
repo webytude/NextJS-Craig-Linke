@@ -81,9 +81,9 @@ export default function TeamListing({ data }) {
             </div>
             <div className={styles.teamList}>
               <FadeUp>
-                {Listing.map((member) => (
+                {Listing.map((member, index) => (
                     <div
-                        key={member.id}
+                        key={index}
                         className={`${styles.teamMemberItem} ${activeMemberId === member.id ? styles.active : ''}`}
                         onMouseEnter={() => handleMouseEnter(member)}
                         onMouseLeave={handleMouseLeave}

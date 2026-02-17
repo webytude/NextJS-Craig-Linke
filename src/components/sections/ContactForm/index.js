@@ -128,13 +128,15 @@ export default function ContactForm() {
         <label htmlFor="projectSuburb">PROJECT SUBURB</label>
       </div>
       <div className={styles.floatingGroup}>
-        <select name="ServicesRequired">
+        <select name="ServicesRequired" defaultValue="">
+          <option value="" disabled hidden>
+            SERVICES REQUIRED
+          </option>
           <option>Pre-Construction Support</option>
           <option>Interior Design</option>
           <option>Landscaping</option>
           <option>Building</option>
         </select>
-        <label htmlFor="servicesRequired">SERVICES REQUIRED</label>
       </div>
       <div className={styles.floatingGroup}>
         <input
@@ -146,13 +148,20 @@ export default function ContactForm() {
         <label htmlFor="totalBudget">TOTAL BUDGET</label>
       </div>
       <div className={styles.floatingGroup}>
-        <select name="ServicesRequired">
-          <option>Pre-Construction Support</option>
-          <option>Interior Design</option>
-          <option>Landscaping</option>
-          <option>Building</option>
+        <select name="HearAbout" defaultValue="">
+          <option value="" disabled hidden>
+            HOW DID YOU HEAR ABOUT US
+          </option>
+          <option>Google Search</option>
+          <option>Social Media</option>
+          <option>Friend / Family Referral</option>
+          <option>Colleague</option>
+          <option>Online Advertisement</option>
+          <option>Blog / Article</option>
+          <option>Email Newsletter</option>
+          <option>Event / Webinar</option>
+          <option>Other</option>
         </select>
-        <label htmlFor="servicesRequired">how did you hear about us</label>
       </div>
       <div className={styles.floatingGroup}>
         <textarea

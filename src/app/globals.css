@@ -141,7 +141,8 @@ ul {
 }
 button,
 input,
-textarea {
+textarea,
+select {
   font-size: 12px;
   letter-spacing: 0.5px;
   font-family: 'saanslight';
@@ -156,8 +157,7 @@ button:hover {
 }
 .Stone button,
 .Stone input,
-.Stone textarea,
-.Stone select {
+.Stone textarea {
   color: #EAEAE8;
 }
 .White,

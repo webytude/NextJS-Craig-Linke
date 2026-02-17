@@ -32,6 +32,13 @@
   background: transparent;
   border-bottom: 1px solid #b0a7a2;
   outline: none;
+  appearance: none;
+  color: #EAEAE8;
+  text-transform: uppercase;
+}
+.floatingGroup select option {
+  color: #000;
+  text-transform: capitalize;
 }
 .floatingGroup label {
   position: absolute;
@@ -47,6 +54,10 @@
 .floatingGroup textarea:focus + label,
 .floatingGroup input:not(:placeholder-shown) + label,
 .floatingGroup textarea:not(:placeholder-shown) + label {
+  top: -12px;
+}
+.floatingGroup select:focus + label,
+.floatingGroup select:valid + label {
   top: -12px;
 }
 .textError {
