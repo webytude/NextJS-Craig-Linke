@@ -389,6 +389,7 @@ const BLOCKS_SELECTION = `
       ButtonURL
       OpenNewTab
     }
+    ShowInReverseLayout
   }
   ... on ComponentSectionFaq {
     Title

@@ -16,7 +16,9 @@ import Link from "next/link";
 
 export default function OurServices({ data }) {
 
-  const {Title, Description, ServicesLists, Button} = data;
+  const {Title, Description, ServicesLists, Button, ShowInReverseLayout} = data;
+
+  console.log('OurServices data', data)
 
   const defaultImageObject = {
     url: '/images/default-placeholder.jpg',
@@ -76,7 +78,7 @@ export default function OurServices({ data }) {
       </Box>
       <Box
         fullHeight
-        direction="row"
+        direction={ShowInReverseLayout ? "row-reverse" : "row"}
         justify="space-between"
         align="flex-end"
         padding="20px"
@@ -85,7 +87,7 @@ export default function OurServices({ data }) {
           <SlideRight>
               <MediaRenderer media={currentImage} width={413} height={472} />
             </SlideRight>
-        <div className="text-right">
+        <div className={ShowInReverseLayout ? "text-left" : "text-right"}>
           <LinkWithArrow
               text={Button.ButtonText}
               href={Button.ButtonURL}
