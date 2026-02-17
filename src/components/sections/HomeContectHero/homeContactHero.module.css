@@ -68,8 +68,17 @@
   grid-column: span 2;
 }
 .bottomContact {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .bottomContact {
     position: absolute;
     bottom: 0;
-    padding: 20px;
     width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .bottomContact {
+    padding: 50px 0px;
+  }
 }

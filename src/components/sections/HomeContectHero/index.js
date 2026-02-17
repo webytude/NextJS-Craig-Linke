@@ -127,7 +127,7 @@ export default function HomeContactHero({ data }) {
         <SlideRight className="p20 fullHeight">
           <MediaRenderer media={Media} classes={"image"} />
         </SlideRight>
-        <div />
+        <div className="hide-mobile" />
       </Box>
     </>
   );
@@ -259,6 +259,7 @@ export default function HomeContactHero({ data }) {
           left={leftContent}
           right={rightContent}
           showDivider
+          showMobileDivider={false}
         />
       </section>
       <Divider />

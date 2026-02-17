@@ -35,7 +35,7 @@ export default function ContentHero({ data }) {
     <>
         <Box fullHeight justify="center">
         <SlideRight className={styles.center}>
-            <MediaRenderer media={Media} width={514} height={642} />
+            <MediaRenderer media={Media} width={514} height={642} classes={"image"} />
         </SlideRight>
         </Box>
     </>
