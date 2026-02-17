@@ -44,7 +44,7 @@ export default function ContentHero({ data }) {
   return (
     <>
       <section className="contentHero fitToScreen">
-        <TwoColumnLayout fullHeight left={leftContent} right={rightContent} style={{ maxWidth: 1250, margin: 'auto'}} />
+        <TwoColumnLayout reverse={ShowInReverseLayout} fullHeight left={leftContent} right={rightContent} style={{ maxWidth: 1250, margin: 'auto'}} />
       </section>
       <Divider />
     </>
