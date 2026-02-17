@@ -4,6 +4,7 @@ import Spacer from "@/components/ui/Spacer";
 import { renderRichText } from "@/utils/richText";
 import JournalCard from "./JournalCard";
 import FadeUp from "@/components/ui/animations/FadeUp";
+import Divider from "@/components/ui/Divider";
 
 export default function LatestJournals({ data }) {
   const { Title, Button, SelectJournals } = data;
