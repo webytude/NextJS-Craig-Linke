@@ -196,6 +196,9 @@ export default function AestheticsClient({ asthetics }) {
                   <ul className={styles.topNav}>
                     {activeData.Blocks.map((item, index) => {
                       if (item.ShowInQuickView && item.Title) {
+
+                        const displayTitle = item.QuickViewTitle || item.Title;
+
                         return (
                           <li key={item.id || index}>
                             <Link
@@ -205,7 +208,7 @@ export default function AestheticsClient({ asthetics }) {
                                 scrollToSection(index);
                               }}
                             >
-                              {item.Title}
+                              {displayTitle}
                             </Link>
                           </li>
                         );

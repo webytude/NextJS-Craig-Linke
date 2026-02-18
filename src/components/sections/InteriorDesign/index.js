@@ -58,7 +58,7 @@ export default function InteriorDesign({ data }) {
         </div>
         <div className="p20 text-right">
           <FadeUp>
-            <LinkWithArrow text={Button?.ButtonText} href={Button?.ButtonURL} />
+            <LinkWithArrow text={Button?.ButtonText} href={Button?.ButtonURL} target={Button?.OpenNewTab ? "_blank" : "_self"} />
           </FadeUp>
         </div>
       </Box>

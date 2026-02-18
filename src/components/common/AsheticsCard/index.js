@@ -15,7 +15,7 @@ export default function AsheticsCard({ data }) {
       <FadeUp>
       <Heading className={blockType === 'AstheticsDetail' ? 'hide-mobile' : ''} level={4}>{data?.Title || data?.Name}</Heading>
       <div className={blockType === 'AstheticsDetail' ? `${styles.imageWrapper} ${styles.relatedImageWrapper}` : styles.imageWrapper}>
-          <Link href={data?.Button?.ButtonUR || `${data?.Slug}` || "#"}>
+          <Link href={data?.Button?.ButtonUR || `${data?.Slug}` || "#"} target={data?.Button?.OpenNewTab ? "_blank" : "_self"}>
             <MediaRenderer media={data?.Media || data?.FeaturedMedia} width={334} height={434} />
           </Link>
       </div>
