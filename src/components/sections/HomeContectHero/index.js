@@ -242,7 +242,7 @@ export default function HomeContactHero({ data }) {
                   placeholder=""
                   onChange={handleChange}
                 ></textarea>
-                <label htmlFor="message">MESSAGE</label>
+                <label htmlFor="message">YOUR MESSAGE</label>
               </div>
             </div>
             <button className={styles.submitBtn}>
