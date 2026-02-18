@@ -23,10 +23,23 @@ export default function LayoutClient({ children, globalData }) {
   useEffect(() => {
     const lenis = getLenis();
 
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    }
-  }, [pathname]);
+    if (!lenis) return;
+
+    const timeout = setTimeout(() => {
+      const hash = window.location.hash;
+
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          lenis.scrollTo(element, { duration: 1.2 });
+        }
+      } else {
+        lenis.scrollTo(0, { immediate: true });
+      }
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [pathname, loaderExitStarted]);
 
   useEffect(() => {
     if (!loaderExitStarted) {

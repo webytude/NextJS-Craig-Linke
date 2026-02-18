@@ -957,6 +957,7 @@ const ASTHETICS_BLOCK_SELECTION = `
   ... on ComponentSectionImageAndText {
     Title
     ShowInQuickView
+    QuickViewTitle
     Media {
     EnableMuxVideo
       MuxVideo {
