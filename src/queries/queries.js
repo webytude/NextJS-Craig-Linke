@@ -925,6 +925,7 @@ const ASTHETICS_BLOCK_SELECTION = `
   }
   ... on ComponentSectionProjectWithManuallyEditable {
     Title
+    ShowInQuickView
     Media {
       EnableMuxVideo
       MuxVideo {

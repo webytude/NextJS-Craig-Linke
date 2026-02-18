@@ -85,7 +85,7 @@ export default function OurServices({ data }) {
         equalChildren
       >
           <SlideRight>
-              <MediaRenderer media={currentImage} width={413} height={472} />
+              <MediaRenderer media={currentImage} width={413} height={472} classes={"image"} />
             </SlideRight>
         <div className={ShowInReverseLayout ? "text-left" : "text-right"}>
           <LinkWithArrow

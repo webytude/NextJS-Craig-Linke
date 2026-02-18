@@ -170,7 +170,7 @@ export default function ProjectClient({ projects }) {
                 ))} */}                
                 <BlocksRenderer content={projects.LeftDescription || []} />                
               </div>
-              <div className={styles.bottomWrapper}>
+              {/* <div className={styles.bottomWrapper}>
                 {galleryMediaBlocks.length > 0 && (
                   <div
                     className={`${styles.materialsPhoto} ${styles.leftGallery} p20`}
@@ -196,17 +196,17 @@ export default function ProjectClient({ projects }) {
                             <MediaRenderer
                               media={block}
                               width={40}
-                              height={57}
+                              height={40}
                             />
                           </div>
                         );
                       })}
 
-                      {/* {galleryMediaBlocks.map((block) => (
+                      {galleryMediaBlocks.map((block) => (
                     <div key={block.id}>
                       <MediaRenderer media={block} width={40} height={57} />
                     </div>
-                  ))} */}
+                  ))}
                     </div>
                   </div>
                 )}
@@ -214,7 +214,7 @@ export default function ProjectClient({ projects }) {
                 <div className="text-center font12 uppercase p20">
                   GALLERY MODE
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className={styles.middleColumn}>
               <div className={styles.gallery}>
@@ -336,26 +336,7 @@ export default function ProjectClient({ projects }) {
             </Paragraph>
           </div>
           <div className={`${styles.specification}`}>
-            <div>
-              <label>LOCATION</label>
-              {projects.Location}
-            </div>
-            <div>
-              <label>YEAR</label>
-              {projects.Year}
-            </div>
-            <div>
-              <label>ARCHITECTURE</label>
-              {projects.Architecture}
-            </div>
-            <div>
-              <label>PHOTOGRAPHY</label>
-              {projects.Photography}
-            </div>
-            <div>
-              <label>AESTHETIC</label>
-              {projects.Aesthetic}
-            </div>
+            <BlocksRenderer content={projects.LeftDescription || []} />
           </div>
           {galleryMediaBlocks.length > 0 && (
             <div className={styles.gallery}>
