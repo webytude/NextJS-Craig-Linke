@@ -33,7 +33,7 @@ export default function InteriorDesign({ data }) {
         </FadeUp>
         <Spacer mobile={30} />
         <FadeUp>
-        <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+        <LinkWithArrow text={Button?.ButtonText} href={Button?.ButtonURL} />
         </FadeUp>
       </div>
       </Box>
@@ -58,7 +58,7 @@ export default function InteriorDesign({ data }) {
         </div>
         <div className="p20 text-right">
           <FadeUp>
-            <LinkWithArrow text={Button.ButtonText} href={Button.ButtonURL} />
+            <LinkWithArrow text={Button?.ButtonText} href={Button?.ButtonURL} />
           </FadeUp>
         </div>
       </Box>

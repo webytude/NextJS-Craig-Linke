@@ -89,8 +89,8 @@ export default function OurServices({ data }) {
             </SlideRight>
         <div className={ShowInReverseLayout ? "text-left" : "text-right"}>
           <LinkWithArrow
-              text={Button.ButtonText}
-              href={Button.ButtonURL}
+              text={Button?.ButtonText || 'Read More'}
+              href={Button?.ButtonURL || '#'}
             />
         </div>
       </Box>
