@@ -431,6 +431,15 @@ const BLOCKS_SELECTION = `
     Address
     Email
     PhoneNumber
+    ServicesDropdown (pagination: {limit:-1}) {
+      Value
+    }
+    BudgetDropdown (pagination: {limit:-1}) {
+      Value
+    }
+    HowDidYouHearDropdown (pagination: {limit:-1}) {
+      Value
+    }
   }
   ... on ComponentSectionContentHeroModule {
     Title

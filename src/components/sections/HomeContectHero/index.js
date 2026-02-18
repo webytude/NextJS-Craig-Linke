@@ -12,7 +12,9 @@ import styles from "./homeContactHero.module.css";
 import { useState } from "react";
 
 export default function HomeContactHero({ data }) {
-  const { Title, PhoneNumber, Media, Email, Address } = data;
+  const { Title, PhoneNumber, Media, Email, Address, BudgetDropdown, HowDidYouHearDropdown, ServicesDropdown } = data;
+
+  console.log('HomeContactHero', data)
 
   const [statusMessage, setStatusMessage] = useState(null);
 
@@ -192,11 +194,12 @@ export default function HomeContactHero({ data }) {
                   <option value="" disabled hidden>
                     SERVICES
                   </option>
-                  <option>New Home</option>
+                  {ServicesDropdown.map((option, index) => <option key={index}>{option.Value}</option>)}
+                  {/* <option>New Home</option>
                   <option>Interior Design</option>
                   <option>Custom Renovation / Addition</option>
                   <option>Outdoor Living</option>
-                  <option>Boutique Commercial</option>
+                  <option>Boutique Commercial</option> */}
                 </select>
               </div>
               <div className={styles.floatingGroup}>
@@ -208,11 +211,12 @@ export default function HomeContactHero({ data }) {
                   <option value="" disabled hidden>
                     Total Project Budget
                   </option>
-                  <option value="1000-5000">$1,000 – $5,000</option>
+                  {BudgetDropdown.map((option, index) => <option key={index}>{option.Value}</option>)}
+                  {/* <option value="1000-5000">$1,000 – $5,000</option>
                   <option value="5000-10000">$5,000 – $10,000</option>
                   <option value="10000-25000">$10,000 – $25,000</option>
                   <option value="25000-50000">$25,000 – $50,000</option>
-                  <option value="50000+">$50,000+</option>
+                  <option value="50000+">$50,000+</option> */}
                 </select>
               </div>
               <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
@@ -224,7 +228,8 @@ export default function HomeContactHero({ data }) {
                   <option value="" disabled hidden>
                     HOW DID YOU HEAR ABOUT US
                   </option>
-                  <option>Google Search</option>
+                  {HowDidYouHearDropdown.map((option, index) => <option key={index}>{option.Value}</option>)}
+                  {/* <option>Google Search</option>
                   <option>Social Media</option>
                   <option>Friend / Family Referral</option>
                   <option>Colleague</option>
@@ -232,7 +237,7 @@ export default function HomeContactHero({ data }) {
                   <option>Blog / Article</option>
                   <option>Email Newsletter</option>
                   <option>Event / Webinar</option>
-                  <option>Other</option>
+                  <option>Other</option> */}
                 </select>
               </div>
               <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
