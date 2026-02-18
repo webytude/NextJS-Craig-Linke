@@ -12,6 +12,7 @@ export default function ContactForm() {
     ProjectSuburban: "",
     ServicesRequired: "",
     TotalBudget: "",
+    HowDidYouHearAboutUs: "",
     Message: "",
   });
 
@@ -34,6 +35,7 @@ export default function ContactForm() {
         ProjectSuburban: formData.ProjectSuburban,
         ServicesRequired: formData.ServicesRequired,
         TotalBudget: formData.TotalBudget,
+        HowDidYouHearAboutUs: formData.HowDidYouHearAboutUs,
         Message: formData.Message,
       },
     };
@@ -128,7 +130,11 @@ export default function ContactForm() {
         <label htmlFor="projectSuburb">PROJECT SUBURB</label>
       </div>
       <div className={styles.floatingGroup}>
-        <select name="ServicesRequired" defaultValue="">
+        <select
+          name="ServicesRequired"
+          value={formData.ServicesRequired}
+          onChange={handleChange}
+        >
           <option value="" disabled hidden>
             SERVICES
           </option>
@@ -148,7 +154,11 @@ export default function ContactForm() {
         <label htmlFor="totalBudget">TOTAL BUDGET</label>
       </div>
       <div className={styles.floatingGroup}>
-        <select name="HearAbout" defaultValue="">
+        <select
+          name="HowDidYouHearAboutUs"
+          value={formData.HowDidYouHearAboutUs}
+          onChange={handleChange}
+        >
           <option value="" disabled hidden>
             HOW DID YOU HEAR ABOUT US
           </option>

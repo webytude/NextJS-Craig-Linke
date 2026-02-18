@@ -20,9 +20,11 @@ export default function HomeContactHero({ data }) {
     FullName: "",
     Email: "",
     Phone: "",
+    Address: "",
     ProjectSuburban: "",
     ServicesRequired: "",
     TotalBudget: "",
+    HowDidYouHearAboutUs: "",
     Message: "",
   });
 
@@ -42,9 +44,11 @@ export default function HomeContactHero({ data }) {
         FullName: formData.FullName,
         Email: formData.Email,
         Phone: formData.Phone,
+        Address: formData.Address,
         ProjectSuburban: formData.ProjectSuburban,
         ServicesRequired: formData.ServicesRequired,
         TotalBudget: formData.TotalBudget,
+        HowDidYouHearAboutUs: formData.HowDidYouHearAboutUs,
         Message: formData.Message,
       },
     };
@@ -71,10 +75,13 @@ export default function HomeContactHero({ data }) {
         setFormData({
           FullName: "",
           Email: "",
-          PhoneNumber: "",
-          AboutYourBusiness: "",
-          AboutYourProject: "",
-          FormType: "",
+          Phone: "",
+          Address: "",
+          ProjectSuburban: "",
+          ServicesRequired: "",
+          TotalBudget: "",
+          HowDidYouHearAboutUs: "",
+          Message: "",
         });
       } else {
         console.error("Submission failed:", result);
@@ -170,25 +177,34 @@ export default function HomeContactHero({ data }) {
               <div className={styles.floatingGroup}>
                 <input
                   type="text"
-                  name="Phone"
+                  name="Address"
                   placeholder=""
                   onChange={handleChange}
                 />
-                <label htmlFor="phone">Address</label>
+                <label htmlFor="Address">Address</label>
               </div>
               <div className={styles.floatingGroup}>
-                <select name="ServicesRequired" defaultValue="">
+                <select
+                  name="ServicesRequired"
+                  value={formData.ServicesRequired}
+                  onChange={handleChange}
+                >
                   <option value="" disabled hidden>
                     SERVICES
                   </option>
-                  <option>Pre-Construction Support</option>
+                  <option>New Home</option>
                   <option>Interior Design</option>
-                  <option>Landscaping</option>
-                  <option>Building</option>
+                  <option>Custom Renovation / Addition</option>
+                  <option>Outdoor Living</option>
+                  <option>Boutique Commercial</option>
                 </select>
               </div>
               <div className={styles.floatingGroup}>
-                <select name="totalBudget" defaultValue="">
+                <select
+                  name="TotalBudget"
+                  value={formData.TotalBudget}
+                  onChange={handleChange}
+                >
                   <option value="" disabled hidden>
                     Total Project Budget
                   </option>
@@ -200,7 +216,11 @@ export default function HomeContactHero({ data }) {
                 </select>
               </div>
               <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
-                <select name="HearAbout" defaultValue="">
+                <select
+                  name="HowDidYouHearAboutUs"
+                  value={formData.HowDidYouHearAboutUs}
+                  onChange={handleChange}
+                >
                   <option value="" disabled hidden>
                     HOW DID YOU HEAR ABOUT US
                   </option>
