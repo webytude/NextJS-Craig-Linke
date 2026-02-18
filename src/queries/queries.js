@@ -169,10 +169,14 @@ const BLOCKS_SELECTION = `
     Listing(pagination: { limit: -1 }) {
       Name
       Role
-      Listing: Description
       Image {
         alternativeText
         url
+      }
+      Button {
+        ButtonText
+        ButtonURL
+        OpenNewTab
       }
     }
     ReadBioLabel
@@ -365,6 +369,12 @@ const BLOCKS_SELECTION = `
           url
         }
       }
+    }
+    Padding {
+      DesktopTopPadding
+      DesktopBottomPadding
+      MobileTopPadding
+      MobileBottomPadding
     }
   }
   ... on ComponentSectionServices {
@@ -744,16 +754,8 @@ export const PROJECTS_QUERY_SLUG = gql`
           url
         }
       }
-      Location
-      Year
-      Architecture
-      Photography
-      Aesthetic
-      Metadata (pagination: {limit:-1}) {
-        Label
-        Value
-      }
       LeftDescription
+      SubTitle
       Description
       ThemeColor
       Seo {

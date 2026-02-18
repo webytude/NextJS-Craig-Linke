@@ -5,6 +5,7 @@
 }
 .imageWrapper {
     padding: 48px 0px;
+    height: 70vh;
 }
 .contentWrapper {
     display: flex;

@@ -262,6 +262,7 @@ export default function ProjectClient({ projects }) {
               <div className="p20">
                 <Heading level={1} color="#000" className={styles.heading}>
                   {projects.Name}
+                  <span>{projects?.SubTitle}</span>
                 </Heading>
                 <Paragraph className={styles.paragraph}>
                   <BlocksRenderer content={projects.Description || []} />
