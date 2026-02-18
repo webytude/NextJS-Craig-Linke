@@ -84,7 +84,7 @@ export default function OurServices({ data }) {
         padding="20px"
         equalChildren
       >
-          <SlideRight>
+          <SlideRight className="fullHeight">
               <MediaRenderer media={currentImage} width={413} height={472} classes={"image"} />
             </SlideRight>
         <div className={ShowInReverseLayout ? "text-left" : "text-right"}>
