@@ -178,9 +178,16 @@ export default function FullScreenMedia({ data }) {
                     <div
                       onClick={isMobile ? () => handleMobileClick(item, index) : undefined}
                       onMouseLeave={!isMobile ? handleMouseLeave : undefined}
-                      className={classNames(styles.listItemWrapper, {
-                        [styles.activeOnMobile]: isMobile && isActive,
-                      })}
+                      // className={classNames(styles.listItemWrapper, {
+                      //   [styles.activeOnMobile]: isMobile && isActive,
+                      // })}
+                      className={classNames(
+                        styles.listItemWrapper,
+                        "fullWidth",
+                        {
+                          [styles.activeOnMobile]: isMobile && isActive,
+                        }
+                      )}
                       >
                       <FadeUp>
                       <h4

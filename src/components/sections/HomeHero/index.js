@@ -36,8 +36,8 @@ export default function HomeHero({ data }) {
             <div className="hide-mobile">
               <FadeUp>
                 <LinkWithArrow
-                  text={Button.ButtonText}
-                  href={Button.ButtonURL}
+                  text={Button?.ButtonText || 'Read More'}
+                  href={Button?.ButtonURL || '#'}
                 />
               </FadeUp>
             </div>
@@ -69,8 +69,8 @@ export default function HomeHero({ data }) {
               <FadeUp>
                 <div className="text-center hide-desktop">
                   <LinkWithArrow
-                    text={Button.ButtonText}
-                    href={Button.ButtonURL}
+                    text={Button?.ButtonText || 'Read More'}
+                    href={Button?.ButtonURL || '#'}
                   />
                 </div>
               </FadeUp>

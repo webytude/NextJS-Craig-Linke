@@ -26,7 +26,7 @@ export default function Awards({ data }) {
         <ul className={styles.awardList}>
         {Lists.map((button, index) => (
           <li key={index}>
-            <Link href={button.ButtonURL || '#'}>{button.ButtonText}</Link>
+            <Link href={button?.ButtonURL || '#'}>{button?.ButtonText}</Link>
           </li>
         ))}
         </ul>
