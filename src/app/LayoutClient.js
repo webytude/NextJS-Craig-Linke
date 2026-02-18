@@ -8,6 +8,7 @@ import BodyTheme from '@/components/layouts/BodyTheme'
 import Loader from '@/components/Loader';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { getLenis } from "@/components/common/SmoothScrolling";
 
 export default function LayoutClient({ children, globalData }) {
   const pathname = usePathname();
@@ -18,6 +19,14 @@ export default function LayoutClient({ children, globalData }) {
   const [isAnimationComplete, setIsAnimationComplete] = useState(!showLoader);
 
   const isAestheticsPage = pathname?.startsWith('/asthetics-details');
+
+  useEffect(() => {
+    const lenis = getLenis();
+
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (!loaderExitStarted) {
