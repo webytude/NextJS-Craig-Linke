@@ -184,7 +184,11 @@ export default function HomeContactHero({ data }) {
                 <label htmlFor="Address">Address</label>
               </div>
               <div className={styles.floatingGroup}>
-                <select name="ServicesRequired" defaultValue="">
+                <select
+                  name="ServicesRequired"
+                  value={formData.ServicesRequired}
+                  onChange={handleChange}
+                >
                   <option value="" disabled hidden>
                     SERVICES
                   </option>
@@ -196,7 +200,11 @@ export default function HomeContactHero({ data }) {
                 </select>
               </div>
               <div className={styles.floatingGroup}>
-                <select name="TotalBudget" defaultValue="">
+                <select
+                  name="TotalBudget"
+                  value={formData.TotalBudget}
+                  onChange={handleChange}
+                >
                   <option value="" disabled hidden>
                     Total Project Budget
                   </option>
@@ -208,7 +216,11 @@ export default function HomeContactHero({ data }) {
                 </select>
               </div>
               <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
-                <select name="HowDidYouHearAboutUs" defaultValue="">
+                <select
+                  name="HowDidYouHearAboutUs"
+                  value={formData.HowDidYouHearAboutUs}
+                  onChange={handleChange}
+                >
                   <option value="" disabled hidden>
                     HOW DID YOU HEAR ABOUT US
                   </option>
