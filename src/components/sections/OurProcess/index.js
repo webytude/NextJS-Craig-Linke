@@ -7,32 +7,34 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import styles from './ourProcess.module.css';
 
 export default function OurProcess({ data }) {
+  
+  console.log('OurProcess', data)
+
   const { Media, ProcessSteps, Padding } = data;
 
   const {
-  DesktopTopPadding,
-  DesktopBottomPadding,
-  MobileTopPadding,
-  MobileBottomPadding,
-} = Padding;
+    DesktopTopPadding,
+    DesktopBottomPadding,
+    MobileTopPadding,
+    MobileBottomPadding,
+  } = Padding || {};
 
-  console.log('OurProcess', data)
-
+  
   const styleVars = {};
 
-  if (DesktopTopPadding) {
+  if (DesktopTopPadding != null) {
     styleVars["--desktop-pt"] = `${DesktopTopPadding}px`;
   }
 
-  if (DesktopBottomPadding) {
+  if (DesktopBottomPadding != null) {
     styleVars["--desktop-pb"] = `${DesktopBottomPadding}px`;
   }
 
-  if (MobileTopPadding) {
+  if (MobileTopPadding != null) {
     styleVars["--mobile-pt"] = `${MobileTopPadding}px`;
   }
 
-  if (MobileBottomPadding) {
+  if (MobileBottomPadding != null) {
     styleVars["--mobile-pb"] = `${MobileBottomPadding}px`;
   }
 
