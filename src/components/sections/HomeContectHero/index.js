@@ -115,6 +115,7 @@ export default function HomeContactHero({ data }) {
         justify="space-between"
         mobileGap="90px"
         padding="0"
+        className={styles.box}
       >
         <FadeUp classes="p20">
           <Heading level={1} style={{ maxWidth: 580 }}>
@@ -132,6 +133,7 @@ export default function HomeContactHero({ data }) {
         mobileDirection="row-reverse"
         mobileJustify="center"
         mobileAlign="center"
+        className={styles.box}
       >
         <SlideRight className="p20 fullHeight">
           <MediaRenderer media={Media} classes={"image"} />

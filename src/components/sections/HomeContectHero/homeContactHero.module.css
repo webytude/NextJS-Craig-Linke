@@ -70,11 +70,16 @@
 .bottomContact {
   padding: 20px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .bottomContact {
     position: absolute;
     bottom: 0;
     width: 100%;
+  }
+}
+@media (max-width: 1024px) {
+  .box {
+    min-height: auto !important;
   }
 }
 @media (max-width: 768px) {
