@@ -34,7 +34,7 @@
     font-size: 13px;
 }
 .memberName {
-    flex: 2;
+    flex: 0 0 39%;
 }
 .memberTitle {
     flex: 2;

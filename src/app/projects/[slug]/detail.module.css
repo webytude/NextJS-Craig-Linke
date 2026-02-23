@@ -88,9 +88,6 @@
 .grid > *:nth-child(3n + 3) {
   justify-self: end;
 }
-.leftGallery {
-  /* overflow: hidden; */
-}
 .galleryBlock {
   display: flex;
   flex-direction: column;
@@ -107,9 +104,6 @@
   color: #6C5D50;
   display: block;
 }
-/* .rightColumn .heading:not(:has(+ div h2)) {
-  margin-bottom: 20px;
-} */
 @media (max-height: 750px) {
   .galleryBlock {
     max-height: 330px;
@@ -154,5 +148,12 @@
   }
   .productImg {
     margin-bottom: 50px;
+  }
+}
+@media (max-width: 768px) {
+  .gallery .imageWrapper img,
+  .gallery .imageWrapper mux-player {
+    width: 100%;
+    height: auto;
   }
 }
