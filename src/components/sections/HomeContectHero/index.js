@@ -24,14 +24,19 @@ export default function HomeContactHero({ data }) {
     Phone: "",
     Address: "",
     ProjectSuburban: "",
-    ServicesRequired: "",
+    ServicesRequired: [],
     TotalBudget: "",
     HowDidYouHearAboutUs: "",
     Message: "",
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, multiple, selectedOptions } = e.target;
+    const fieldValue = multiple
+      ? Array.from(selectedOptions, (option) => option.value)
+      : value;
+    setFormData({ ...formData, [name]: fieldValue });
+    // setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +53,7 @@ export default function HomeContactHero({ data }) {
         Phone: formData.Phone,
         Address: formData.Address,
         ProjectSuburban: formData.ProjectSuburban,
-        ServicesRequired: formData.ServicesRequired,
+        ServicesRequired: formData.ServicesRequired.join(", "),
         TotalBudget: formData.TotalBudget,
         HowDidYouHearAboutUs: formData.HowDidYouHearAboutUs,
         Message: formData.Message,
@@ -80,7 +85,7 @@ export default function HomeContactHero({ data }) {
           Phone: "",
           Address: "",
           ProjectSuburban: "",
-          ServicesRequired: "",
+          ServicesRequired: [],
           TotalBudget: "",
           HowDidYouHearAboutUs: "",
           Message: "",
@@ -191,6 +196,7 @@ export default function HomeContactHero({ data }) {
                 <select
                   name="ServicesRequired"
                   value={formData.ServicesRequired}
+                  multiple
                   onChange={handleChange}
                 >
                   <option value="" disabled hidden>
