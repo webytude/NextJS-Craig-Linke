@@ -8,13 +8,39 @@ import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import Divider from '@/components/ui/Divider';
 
 export default function Faq({ data }) {
-  const {Title, FAQContent} = data;
+  const {Title, FAQContent, Padding} = data;
 
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+
+  const {
+    DesktopTopPadding,
+    DesktopBottomPadding,
+    MobileTopPadding,
+    MobileBottomPadding,
+  } = Padding || {};
+
+  
+  const styleVars = {};
+
+  if (DesktopTopPadding != null) {
+    styleVars["--desktop-pt"] = `${DesktopTopPadding}px`;
+  }
+
+  if (DesktopBottomPadding != null) {
+    styleVars["--desktop-pb"] = `${DesktopBottomPadding}px`;
+  }
+
+  if (MobileTopPadding != null) {
+    styleVars["--mobile-pt"] = `${MobileTopPadding}px`;
+  }
+
+  if (MobileBottomPadding != null) {
+    styleVars["--mobile-pb"] = `${MobileBottomPadding}px`;
+  }
 
   const leftContent = (
     <div className='p20'>
@@ -51,7 +77,7 @@ export default function Faq({ data }) {
   );
   return (
     <>
-      <section className={styles.faqSection}>
+      <section className={`${styles.faqSection} padding`} style={styleVars}>
         <TwoColumnLayout left={leftContent} right={rightContent} />
       </section>
       <Divider />

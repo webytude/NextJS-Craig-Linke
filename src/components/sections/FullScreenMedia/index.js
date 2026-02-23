@@ -15,6 +15,7 @@ import MediaRenderer from "@/components/common/MediaRenderer";
 import MuxPlayer from "@mux/mux-player-react";
 import classNames from 'classnames';
 import FadeUp from "@/components/ui/animations/FadeUp";
+import Link from "next/link";
 
 export default function FullScreenMedia({ data }) {
   const { Title, FullScreenMedia, DefaultMedia, TextList } = data;
@@ -192,6 +193,7 @@ export default function FullScreenMedia({ data }) {
                         onMouseEnter={!isMobile ? () => handleMouseEnter(item.HoverMedia) : undefined}
                         level={4} className={styles.listItemHeading}
                       >
+                        <Link href={item?.Button?.ButtonURL}>
                         {item.Title}
                         {isMobile && (
                           <span className={styles.toggleIcon}>
@@ -207,6 +209,7 @@ export default function FullScreenMedia({ data }) {
                             )}
                           </span>
                         )}
+                        </Link>
                       </h4>
                       <Divider color="#EAEAE8" className={styles.divider} />
                       </FadeUp>

@@ -6,6 +6,9 @@
 .imageWrapper {
     padding: 48px 0px;
     height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .contentWrapper {
     display: flex;

@@ -59,8 +59,6 @@ export default async function Home() {
     
     const page = data?.pages?.find((p) => p.Slug === slug);
 
-    console.log('PAGES META:', page)
-
     const themeColor = page?.ThemeColor || "";
     const schemaMarkup = page?.Seo?.SchemaMarkup;
 

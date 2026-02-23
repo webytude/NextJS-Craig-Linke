@@ -9,22 +9,30 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 export default function TextModule({ data }) {
   const { Title, SideContent, Padding } = data;
 
-  const sectionStyle = {};
+  const {
+    DesktopTopPadding,
+    DesktopBottomPadding,
+    MobileTopPadding,
+    MobileBottomPadding,
+  } = Padding || {};
 
-  const hasPaddingData = Padding && Object.keys(Padding).length > 0;
+  
+  const styleVars = {};
 
-  if (hasPaddingData) {
-    const {
-      DesktopTopPadding = 0,
-      DesktopBottomPadding = 0,
-      MobileTopPadding = 0,
-      MobileBottomPadding = 0,
-    } = Padding;
+  if (DesktopTopPadding != null) {
+    styleVars["--desktop-pt"] = `${DesktopTopPadding}px`;
+  }
 
-    sectionStyle['--desktop-top-padding'] = `${DesktopTopPadding}px`;
-    sectionStyle['--desktop-bottom-padding'] = `${DesktopBottomPadding}px`;
-    sectionStyle['--mobile-top-padding'] = `${MobileTopPadding}px`;
-    sectionStyle['--mobile-bottom-padding'] = `${MobileBottomPadding}px`;
+  if (DesktopBottomPadding != null) {
+    styleVars["--desktop-pb"] = `${DesktopBottomPadding}px`;
+  }
+
+  if (MobileTopPadding != null) {
+    styleVars["--mobile-pt"] = `${MobileTopPadding}px`;
+  }
+
+  if (MobileBottomPadding != null) {
+    styleVars["--mobile-pb"] = `${MobileBottomPadding}px`;
   }
 
   const leftContent = (
@@ -53,7 +61,7 @@ export default function TextModule({ data }) {
 
   return (
     <>
-      <section className="text-module padding" style={sectionStyle}>
+      <section className="text-module padding" style={styleVars}>
         <TwoColumnLayout left={leftContent} right={rightContent} />
       </section>
       {/* <Divider /> */}

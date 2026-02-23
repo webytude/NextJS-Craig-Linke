@@ -407,6 +407,12 @@ const BLOCKS_SELECTION = `
       Title
       Content
     }
+    Padding {
+      DesktopTopPadding
+      DesktopBottomPadding
+      MobileTopPadding
+      MobileBottomPadding
+    }
   }
   ... on ComponentSectionAwards {
     AwardTitle

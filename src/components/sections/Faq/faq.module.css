@@ -1,5 +1,6 @@
 .faqSection {
-    padding: 12px 0px 100px;
+    padding-top: var(--desktop-top-padding, 12px);
+    padding-bottom: var(--desktop-bottom-padding, 100px);
 }
 .item {
   border-bottom: 1px solid #938579;
