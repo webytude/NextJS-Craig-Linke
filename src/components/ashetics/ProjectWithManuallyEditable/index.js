@@ -17,7 +17,7 @@ export default function ProjectWithManuallyEditable({ data }) {
         <FadeUp>
           <Heading className={'hide-mobile'} level={4}>{data?.Title}</Heading>
           <div className={styles.imageWrapper}>
-              <Link href={data?.Button?.ButtonUR || `${data?.Slug}` || "#"}>
+              <Link href={data?.Button?.ButtonURL || `${data?.Slug}` || "#"} target={data?.Button?.OpenNewTab ? "_blank" : "_self"}>
                 <MediaRenderer media={data?.Media || data?.DesktopMedia} width={349} height={495} />
               </Link>
           </div>

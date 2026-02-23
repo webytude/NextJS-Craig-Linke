@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from './teamListing.module.css';
 import Image from 'next/image';
 import FadeUp from '@/components/ui/animations/FadeUp';
+import Link from 'next/link';
 
 export default function TeamListing({ data }) {
   const { Listing, ReadBioLabel } = data;
@@ -90,9 +91,9 @@ export default function TeamListing({ data }) {
                     >
                         <span className={styles.memberName}>{member.Name}</span>
                         <span className={styles.memberTitle}>{member.Role}</span>
-                        <a href={`/team/${member.id}`} className={styles.readBio}>
-                            READ BIO
-                        </a>
+                        <Link href={member?.Button?.ButtonURL} target={member?.Button?.OpenNewTab ? "_blank" : "_self"}>
+                          {member?.Button?.ButtonText || 'READ BIO'}
+                        </Link>
                     </div>
                 ))}
                 </FadeUp>

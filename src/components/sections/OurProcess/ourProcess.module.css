@@ -1,5 +1,8 @@
 .ourProcess {
-  padding: 24px 0px 90px;
+  padding-top: var(--desktop-pt, 24px);
+  padding-bottom: var(--desktop-pb, 90px);
+  /* padding-top: var(--desktop-pt);
+  padding-bottom: var(--desktop-pb); */
 }
 .step {
   display: grid;
@@ -26,4 +29,10 @@
 .ProcessMedia{
   grid-column: 1 / -1;
   margin-top: 35px;
+}
+@media (max-width: 768px) {
+  .ourProcess {
+    padding-top: var(--mobile-pt, 24px); 
+    padding-bottom: var(--mobile-pb, 90px);
+  }
 }

@@ -7,7 +7,37 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import styles from './ourProcess.module.css';
 
 export default function OurProcess({ data }) {
-  const { Media, ProcessSteps } = data;
+  
+  console.log('OurProcess', data)
+
+  const { Media, ProcessSteps, Padding } = data;
+
+  const {
+    DesktopTopPadding,
+    DesktopBottomPadding,
+    MobileTopPadding,
+    MobileBottomPadding,
+  } = Padding || {};
+
+  
+  const styleVars = {};
+
+  if (DesktopTopPadding != null) {
+    styleVars["--desktop-pt"] = `${DesktopTopPadding}px`;
+  }
+
+  if (DesktopBottomPadding != null) {
+    styleVars["--desktop-pb"] = `${DesktopBottomPadding}px`;
+  }
+
+  if (MobileTopPadding != null) {
+    styleVars["--mobile-pt"] = `${MobileTopPadding}px`;
+  }
+
+  if (MobileBottomPadding != null) {
+    styleVars["--mobile-pb"] = `${MobileBottomPadding}px`;
+  }
+
   const leftContent = (
     <>
       <SlideLeft className="p20 stickyBox">
@@ -21,7 +51,7 @@ export default function OurProcess({ data }) {
       {ProcessSteps.map((item, index) => {
       const stepNumber = String(index + 1).padStart(2, "0");
       return (
-        <div key={index} className={styles.step}>
+        <div key={index} className={styles.step} style={{}}>
           <div className={styles.left}>
             <span className={`${styles.stepNumber} headingTwo`}>{stepNumber}</span>
           </div>
@@ -40,7 +70,7 @@ export default function OurProcess({ data }) {
 
   return (
     <>
-      <section className={styles.ourProcess}>
+      <section className={styles.ourProcess} style={styleVars}>
         <TwoColumnLayout left={leftContent} right={rightContent} />
       </section>
       <Divider />

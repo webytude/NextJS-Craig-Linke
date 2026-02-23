@@ -169,10 +169,14 @@ const BLOCKS_SELECTION = `
     Listing(pagination: { limit: -1 }) {
       Name
       Role
-      Listing: Description
       Image {
         alternativeText
         url
+      }
+      Button {
+        ButtonText
+        ButtonURL
+        OpenNewTab
       }
     }
     ReadBioLabel
@@ -366,6 +370,12 @@ const BLOCKS_SELECTION = `
         }
       }
     }
+    Padding {
+      DesktopTopPadding
+      DesktopBottomPadding
+      MobileTopPadding
+      MobileBottomPadding
+    }
   }
   ... on ComponentSectionServices {
     Title
@@ -421,6 +431,15 @@ const BLOCKS_SELECTION = `
     Address
     Email
     PhoneNumber
+    ServicesDropdown (pagination: {limit:-1}) {
+      Value
+    }
+    BudgetDropdown (pagination: {limit:-1}) {
+      Value
+    }
+    HowDidYouHearDropdown (pagination: {limit:-1}) {
+      Value
+    }
   }
   ... on ComponentSectionContentHeroModule {
     Title
@@ -744,16 +763,8 @@ export const PROJECTS_QUERY_SLUG = gql`
           url
         }
       }
-      Location
-      Year
-      Architecture
-      Photography
-      Aesthetic
-      Metadata (pagination: {limit:-1}) {
-        Label
-        Value
-      }
       LeftDescription
+      SubTitle
       Description
       ThemeColor
       Seo {
@@ -925,6 +936,8 @@ const ASTHETICS_BLOCK_SELECTION = `
   }
   ... on ComponentSectionProjectWithManuallyEditable {
     Title
+    ShowInQuickView
+    QuickViewTitle
     Media {
       EnableMuxVideo
       MuxVideo {
