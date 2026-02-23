@@ -50,7 +50,10 @@ export default function Header({ globalData }) {
           <AnimatePresence mode="popLayout" initial={false}>
             <span className={styles.mobileLeftArea}>
               <button
-                className={styles.menuToggleButton}
+                // className={styles.menuToggleButton}
+                className={`${styles.menuToggleButton} ${
+                  openMobileMenu ? styles.active : ""
+                }`}
                 onClick={handleMobileToggle}
               >
                 <span className={`${styles.hamburgerLine} toogleBtn`}></span>

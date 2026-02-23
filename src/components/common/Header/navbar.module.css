@@ -92,11 +92,33 @@
     height: 12px;
     padding: 0;
     z-index: 1001;
+    position: relative;
   }
+  
   .hamburgerLine {
     width: 100%;
     height: 1px;
     transition: all 0.3s ease;
+  }
+  .menuToggleButton span:nth-child(1) {
+    top: 2px;
+  }
+  .menuToggleButton span:nth-child(2) {
+    top: 6px;
+  }
+  .menuToggleButton span:nth-child(3) {
+    top: 10px;
+  }
+  .active span:nth-child(1) {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+  .active span:nth-child(2) {
+    opacity: 0;
+  }
+  .active span:nth-child(3) {
+    top: 6px;
+    transform: rotate(-45deg);
   }
   .nav {
     position: fixed;
