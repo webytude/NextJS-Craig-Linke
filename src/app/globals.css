@@ -2,8 +2,7 @@
 @font-face {
     font-family: 'saanslight';
     src: url('fonts/saanslight-webfont.woff2') format('woff2'),
-         url('fonts/saanslight-webfont.woff') format('woff'),
-         url('fonts/saanslight-webfont.svg#saanslight') format('svg');
+         url('fonts/saanslight-webfont.woff') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -11,13 +10,14 @@
 @font-face {
     font-family: 'collapselight_italic';
     src: url('fonts/collapse-lightitalic-webfont.woff2') format('woff2'),
-         url('fonts/collapse-lightitalic-webfont.woff') format('woff'),
-         url('fonts/collapse-lightitalic-webfont.svg#collapselight_italic') format('svg');
+         url('fonts/collapse-lightitalic-webfont.woff') format('woff');
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
     font-display: swap;
 }
-
+html {
+  -webkit-text-size-adjust: 100%;
+}
 body.loading main {
   opacity: 0;
   visibility: hidden;
@@ -40,8 +40,11 @@ body {
   color: #EAEAE8;
   font-size: 12px;
   letter-spacing: 0.5px;
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
   transition: background-color 1s ease-in-out;
 }
 * {
@@ -262,6 +265,12 @@ button:hover {
 }
 .pb20 {
   padding-bottom: 20px;
+}
+.pb30 {
+  padding-bottom: 30px;
+}
+.hideText {
+  opacity: 0;
 }
 .text-light, .hero-text-light {
   color: #BBAEA1;
