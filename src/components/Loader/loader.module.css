@@ -43,3 +43,29 @@
   justify-content: center;
   align-items: center;
 }
+.leftSVG {
+  width: 166px;
+  height: 31px;
+}
+.middleSVG {
+  width: 60px;
+  height: 38px;
+}
+.rightSVG {
+  width: 162px;
+  height: 30px;
+}
+@media (max-width: 768px) {
+  .leftSVG {
+    width: 81.34px;
+    height: 15.52px;
+  }
+  .middleSVG {
+    width: 29.49px;
+    height: 15.14px;
+  }
+  .rightSVG {
+    width: 79.48px;
+    height: 14.81px;
+  }
+}
