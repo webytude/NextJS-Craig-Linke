@@ -9,6 +9,7 @@ import Divider from "@/components/ui/Divider";
 import Heading from "@/components/ui/Heading";
 import Paragraph from "@/components/ui/Paragraph";
 import styles from "./homeContactHero.module.css";
+import Select from 'react-select';
 import { useState } from "react";
 
 export default function HomeContactHero({ data }) {
@@ -35,6 +36,23 @@ export default function HomeContactHero({ data }) {
       : value;
     setFormData({ ...formData, [name]: fieldValue });
     // setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSelectChange = (fieldName, selectedOption, isMulti = false) => {
+    let value;
+
+    if (isMulti) {
+      value = selectedOption
+        ? selectedOption.map((option) => option.value)
+        : [];
+    } else {
+      value = selectedOption ? selectedOption.value : "";
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: value,
+    }));
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -110,6 +128,83 @@ export default function HomeContactHero({ data }) {
     }
   };
 
+  const serviceOptions = ServicesDropdown?.map((item) => ({
+    value: item.Value,
+    label: item.Value,
+  }));
+
+  const BudgetOptions = BudgetDropdown?.map((item) => ({
+    value: item.Value,
+    label: item.Value,
+  }));
+
+  const HowDidYouHearOptions = HowDidYouHearDropdown?.map((item) => ({
+    value: item.Value,
+    label: item.Value,
+  }));
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      appearance: "none",
+      background: "none",
+      border: "none",
+      borderBottom: "1px solid #b0a7a2",
+      borderRadius: "0",
+      boxShadow: "none",
+      padding: "0 0 15px 12px",
+      textTransform: "uppercase",
+      letterSpacing: ".5px",
+      fontFamily: "saanslight",
+      fontSize: "12px",
+      minHeight: '35px',
+      // color: "#eaeae8",
+    }),
+
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "#fff",
+      borderRadius: "0",
+    }),
+
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? "#dfd2c8" : "transparent",
+      color: "#000",
+      textTransform: "uppercase",
+      fontSize: "12px",
+      cursor: "pointer",
+    }),
+
+    multiValue: (provided) => ({
+      ...provided,
+      backgroundColor: "#333",
+    }),
+
+    multiValueLabel: (provided) => ({
+      ...provided,
+      color: "#eaeae8",
+      fontSize: "12px",
+    }),
+
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: "#eaeae8",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#eaeae8",
+    }),
+    singleValue: (provided) => ({
+    ...provided,
+    color: "#eaeae8",
+  }),
+  };
+
   const leftContent = (
     <>
       <Box
@@ -144,6 +239,18 @@ export default function HomeContactHero({ data }) {
         <div className="hide-mobile" />
       </Box>
     </>
+  );
+
+  const selectedServices = serviceOptions.filter((option) =>
+    formData.ServicesRequired.includes(option.value)
+  );
+
+  const selectedBudget = BudgetOptions.find(
+    (option) => option.value === formData.TotalBudget
+  );
+
+  const selectedHearAbout = BudgetOptions.find(
+    (option) => option.value === formData.HowDidYouHearAboutUs
   );
 
   const rightContent = (
@@ -191,60 +298,60 @@ export default function HomeContactHero({ data }) {
                 <label htmlFor="Address">Address</label>
               </div>
               <div className={styles.floatingGroup}>
-                <select
+                <Select
+                  isMulti
                   name="ServicesRequired"
-                  value={formData.ServicesRequired}
-                  multiple
-                  onChange={handleChange}
-                >
-                  <option value="" disabled hidden>
-                    SERVICES
-                  </option>
-                  {ServicesDropdown.map((option, index) => <option key={index}>{option.Value}</option>)}
-                  {/* <option>New Home</option>
-                  <option>Interior Design</option>
-                  <option>Custom Renovation / Addition</option>
-                  <option>Outdoor Living</option>
-                  <option>Boutique Commercial</option> */}
-                </select>
+                  options={serviceOptions}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  styles={customStyles}
+                  placeholder="Services"
+                  components={{
+                    DropdownIndicator: () => null,
+                    IndicatorSeparator: () => null,
+                    ClearIndicator: () => null,
+                  }}
+                  value={selectedServices}
+                  onChange={(selected) =>
+                    handleSelectChange("ServicesRequired", selected, true)
+                  }
+                />
               </div>
               <div className={styles.floatingGroup}>
-                <select
+                <Select
                   name="TotalBudget"
-                  value={formData.TotalBudget}
-                  onChange={handleChange}
-                >
-                  <option value="" disabled hidden>
-                    Total Project Budget
-                  </option>
-                  {BudgetDropdown.map((option, index) => <option key={index}>{option.Value}</option>)}
-                  {/* <option value="1000-5000">$1,000 – $5,000</option>
-                  <option value="5000-10000">$5,000 – $10,000</option>
-                  <option value="10000-25000">$10,000 – $25,000</option>
-                  <option value="25000-50000">$25,000 – $50,000</option>
-                  <option value="50000+">$50,000+</option> */}
-                </select>
+                  value={selectedBudget}
+                  onChange={(selected) =>
+                    handleSelectChange("TotalBudget", selected)
+                  }
+                  options={BudgetOptions}
+                  classNamePrefix="select"
+                  styles={customStyles}
+                  placeholder="Total Project Budget"
+                  components={{
+                    DropdownIndicator: () => null,
+                    IndicatorSeparator: () => null,
+                    ClearIndicator: () => null,
+                  }}
+                />
               </div>
               <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
-                <select
+                <Select
                   name="HowDidYouHearAboutUs"
-                  value={formData.HowDidYouHearAboutUs}
-                  onChange={handleChange}
-                >
-                  <option value="" disabled hidden>
-                    HOW DID YOU HEAR ABOUT US
-                  </option>
-                  {HowDidYouHearDropdown.map((option, index) => <option key={index}>{option.Value}</option>)}
-                  {/* <option>Google Search</option>
-                  <option>Social Media</option>
-                  <option>Friend / Family Referral</option>
-                  <option>Colleague</option>
-                  <option>Online Advertisement</option>
-                  <option>Blog / Article</option>
-                  <option>Email Newsletter</option>
-                  <option>Event / Webinar</option>
-                  <option>Other</option> */}
-                </select>
+                  value={selectedHearAbout}
+                  onChange={(selected) =>
+                    handleSelectChange("HowDidYouHearAboutUs", selected)
+                  }
+                  options={HowDidYouHearOptions}
+                  classNamePrefix="select"
+                  styles={customStyles}
+                  placeholder="HOW DID YOU HEAR ABOUT US"
+                  components={{
+                    DropdownIndicator: () => null,
+                    IndicatorSeparator: () => null,
+                    ClearIndicator: () => null,
+                  }}
+                />
               </div>
               <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
                 <textarea
