@@ -466,8 +466,8 @@ const BLOCKS_SELECTION = `
 `;
 
 export const PAGES_QUERY = gql`
-  query pages {
-  pages {
+  query pages($slug: String!) {
+    pages(filters: { Slug: { eq: $slug } }) {
       Name
       Slug
       ThemeColor
@@ -486,21 +486,20 @@ export const PAGES_QUERY = gql`
 // Query specifically for draft content
 export const PAGES_QUERY_PREVIEW = gql`
   query pages($slug: String!) {
-  pages(status: DRAFT, filters: { Slug: { eq: $slug } }) {
-    Name
-    Slug
-    ThemeColor
-    Seo {
-      MetaTitle
-      MetaDescription
-      SchemaMarkup
-    }
-    Blocks {
-      ${BLOCKS_SELECTION}
+    pages(status: DRAFT, filters: { Slug: { eq: $slug } }) {
+      Name
+      Slug
+      ThemeColor
+      Seo {
+        MetaTitle
+        MetaDescription
+        SchemaMarkup
+      }
+      Blocks {
+        ${BLOCKS_SELECTION}
+      }
     }
   }
-}
-
 `;
 
 export const GLOBAL_QUERY = gql`
