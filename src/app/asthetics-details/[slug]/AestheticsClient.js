@@ -158,8 +158,6 @@ export default function AestheticsClient({ asthetics }) {
     }
   };
 
-  console.log('activeData', activeData)
-
   if (!activeData) return null;
 
   const isMobile = screenWidth < 768;

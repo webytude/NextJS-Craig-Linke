@@ -18,8 +18,6 @@ export default function OurServices({ data }) {
 
   const {Title, Description, ServicesLists, Button, ShowInReverseLayout} = data;
 
-  console.log('OurServices data', data)
-
   const defaultImageObject = {
     url: '/images/default-placeholder.jpg',
     alternativeText: 'Default Team Placeholder',

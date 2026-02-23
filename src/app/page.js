@@ -15,6 +15,7 @@ export async function generateMetadata() {
       fetchPolicy: 'no-cache',
     });
     page = data?.pages?.find((p) => p.Slug === slug);
+
   } catch (error) {
     console.error('Error fetching SEO data for home page:', error);
     return {
@@ -23,11 +24,22 @@ export async function generateMetadata() {
     };
   }
 
+  const productionDomain =
+      process.env.NEXT_PUBLIC_SITE_URL || "";
   const seo = page?.Seo;
+
+  const canonicalUrl =
+      page?.CanonicalUrl ||
+      (slug === "home"
+        ? productionDomain
+        : `${productionDomain}/${slug}`);
 
   return {
     title: seo?.MetaTitle || 'Craig Linke',
     description: seo?.MetaDescription || 'Craig Linke is a boutique, Adelaide based building and interior design company. We specialise in architectural builds and custom renovation projects.',
+    alternates: {
+      canonical: canonicalUrl,
+    },
   };
 }
 
@@ -47,9 +59,24 @@ export default async function Home() {
     
     const page = data?.pages?.find((p) => p.Slug === slug);
 
+    console.log('PAGES META:', page)
+
     const themeColor = page?.ThemeColor || "";
+    const schemaMarkup = page?.Seo?.SchemaMarkup;
 
     return <>
+
+      {schemaMarkup && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              typeof schemaMarkup === "string"
+                ? schemaMarkup
+                : JSON.stringify(schemaMarkup),
+          }}
+        />
+      )}
     
       <PageThemeSetter theme={themeColor} />
 

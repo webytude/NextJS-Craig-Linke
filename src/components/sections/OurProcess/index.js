@@ -7,8 +7,6 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import styles from './ourProcess.module.css';
 
 export default function OurProcess({ data }) {
-  
-  console.log('OurProcess', data)
 
   const { Media, ProcessSteps, Padding } = data;
 

@@ -153,8 +153,6 @@ export default function ProjectClient({ projects }) {
   //   pointerEvents: contentOpacity === 0 ? 'none' : 'auto',
   // };
 
-  console.log('projects', projects)
-
   return (
     <>
       <div className="hide-mobile">

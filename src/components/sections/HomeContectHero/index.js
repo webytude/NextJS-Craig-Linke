@@ -14,8 +14,6 @@ import { useState } from "react";
 export default function HomeContactHero({ data }) {
   const { Title, PhoneNumber, Media, Email, Address, BudgetDropdown, HowDidYouHearDropdown, ServicesDropdown } = data;
 
-  console.log('HomeContactHero', data)
-
   const [statusMessage, setStatusMessage] = useState(null);
 
   const [formData, setFormData] = useState({

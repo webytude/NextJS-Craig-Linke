@@ -1042,6 +1042,11 @@ export const ASTHETICS_QUERY_SLUG = gql `
       Name
       Slug
       Description
+      Seo {
+        MetaTitle
+        MetaDescription
+        SchemaMarkup
+      }
       DesktopMedia {
         EnableMuxVideo
         MuxVideo {
@@ -1089,6 +1094,11 @@ export const ASTHETICS_QUERY_SLUG_PREVIEW = gql `
       Name
       Slug
       Description
+      Seo {
+        MetaTitle
+        MetaDescription
+        SchemaMarkup
+      }
       DesktopMedia {
         EnableMuxVideo
         MuxVideo {

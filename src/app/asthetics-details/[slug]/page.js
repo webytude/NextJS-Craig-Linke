@@ -30,9 +30,23 @@ export async function generateMetadata({ params, searchParams }) {
     };
   }
 
+  const productionDomain =
+      process.env.NEXT_PUBLIC_SITE_URL || "";
+
+  const seo = asthetics?.Seo;
+
+  const canonicalUrl =
+      asthetics?.CanonicalUrl ||
+      (slug === "home"
+        ? productionDomain
+        : `${productionDomain}/${slug}`);
+
   return {
-    title: asthetics.MetaTitle || 'Craig Linke',
-    description: asthetics.MetaDescription || "Default description"
+    title: seo?.MetaTitle || 'Craig Linke',
+    description: seo?.MetaDescription || "Default description",
+    alternates: {
+      canonical: canonicalUrl,
+    },
   };
 }
 
