@@ -77,6 +77,7 @@
   line-height: 1.2;
   font-size: 20px;
   font-family: collapselight_italic;
+  font-style: italic;
   transition: color .3s;
   display: inline;
   cursor: pointer;

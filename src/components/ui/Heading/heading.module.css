@@ -1,5 +1,6 @@
 .heading {
   font-family: 'collapselight_italic';
+  font-style: italic;
   transition: color 0.3s ease;
 }
 
