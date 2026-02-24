@@ -6,7 +6,7 @@ export default function Paragraph({
   color = "",
   align = "",
   weight = 300,
-  lineHeight = '21px',
+  lineHeight = '',
   className = "",
   style = {},
 }) {

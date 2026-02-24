@@ -1,5 +1,6 @@
 .paragraph {
   transition: color 0.3s ease;
+  line-height: 21px;
 }
 
 .paragraph p {
@@ -18,8 +19,22 @@
 .large {
   font-size: 18px;
 }
-
-/* Responsive adjustments */
+@media (max-width: 1700px) {
+  .small {
+    font-size: 13px;
+  }
+  .paragraph {
+    line-height: 19px;
+  }
+}
+@media (max-width: 1450px) {
+  .small {
+    font-size: 12px;
+  }
+  .paragraph {
+    line-height: 17px;
+  }
+}
 @media (max-width: 1024px) {
   .large {
     font-size: 17px;

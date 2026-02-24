@@ -82,7 +82,7 @@ export default function InteriorDesign({ data }) {
   return (
     <>
     {/* <Divider className="hide-desktop" style={{ marginTop: '35px'}} /> */}
-    <section className="InteriorDesign">
+    <section className={styles.InteriorDesign}>
       <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} reverse={ShowInReverseLayout} />
     </section>
     <Divider />
