@@ -5,12 +5,13 @@ export default async function sitemap() {
   const baseUrl = "https://craiglinke.com.au";
 
   try {
-    const { data } = await client.query({
+    const { data: pageData } = await client.query({
       query: gql`
         query SitemapPages {
           pages(pagination: { limit: -1 }) {
             Slug
             updatedAt
+            publishedAt
           }
         }
       `,
@@ -23,32 +24,82 @@ export default async function sitemap() {
             projects(pagination: { limit: -1 }) {
                 Slug
                 updatedAt
+                publishedAt
             }
             }
         `,
         fetchPolicy: "no-cache",
     });
 
-    const pageUrls = data?.pages?.map((page) => ({
-      url:
-        page.Slug === "home"
-          ? baseUrl
-          : `${baseUrl}/${page.Slug}`,
-      lastModified: page.updatedAt,
-    }));
+    const { data: journalData } = await client.query({
+      query: gql`
+        query SitemapJournals {
+          journals(pagination: { limit: -1 }) {
+            Slug
+            updatedAt
+            publishedAt
+          }
+        }
+      `,
+      fetchPolicy: "no-cache",
+    });
 
-    const projectUrls = projectData?.projects?.map((project) => ({
-        url: `${baseUrl}/projects/${project.Slug}`,
-        lastModified: project.updatedAt,
-    }));
+    const { data: astheticsData } = await client.query({
+      query: gql`
+        query SitemapAsthetics {
+          astheticsDetails(pagination: { limit: -1 }) {
+            Slug
+            updatedAt
+            publishedAt
+          }
+        }
+      `,
+      fetchPolicy: "no-cache",
+    });
+
+    const pageUrls =
+    pageData?.pages
+      ?.filter(
+        (page) => page.publishedAt && page.Slug !== "home"
+      )
+      ?.map((page) => ({
+        url: `${baseUrl}/${page.Slug}`,
+        lastModified: page.updatedAt,
+      })) || [];
+
+    const projectUrls =
+      projectData?.projects
+        ?.filter((project) => project.publishedAt)
+        ?.map((project) => ({
+          url: `${baseUrl}/projects/${project.Slug}`,
+          lastModified: project.updatedAt,
+        })) || [];
+
+    const journalUrls =
+      journalData?.journals
+        ?.filter((journal) => journal.publishedAt)
+        ?.map((journal) => ({
+          url: `${baseUrl}/journals/${journal.Slug}`,
+          lastModified: journal.updatedAt,
+        })) || [];
+
+    const astheticsUrls =
+      astheticsData?.astheticsDetails
+        ?.filter((item) => item.publishedAt)
+        ?.map((item) => ({
+          url: `${baseUrl}/asthetics/${item.Slug}`,
+          lastModified: item.updatedAt,
+        })) || [];
 
     return [
       {
         url: baseUrl,
-        lastModified: new Date(),
+        lastModified: new Date()
       },
       ...pageUrls,
       ...projectUrls,
+      ...journalUrls,
+      ...astheticsUrls,
     ];
   } catch (error) {
     console.error("Sitemap generation error:", error);
