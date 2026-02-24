@@ -68,4 +68,11 @@
     width: 79.48px;
     height: 14.81px;
   }
+  .mask {
+    margin: 0 30px; 
+  }
+  .middleIcon {
+    width: 30px;
+    height: 16px;
+  }
 }

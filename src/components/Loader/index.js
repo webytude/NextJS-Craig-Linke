@@ -7,6 +7,13 @@ import SplashScreen from './splashScreen';
 
 const Loader = ({ onExitStart, onExitComplete }) => {
   const [triggerExit, setTriggerExit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
 
   useEffect(() => {
     const splashScreenAnimationDuration = 4500; 
@@ -21,6 +28,14 @@ const Loader = ({ onExitStart, onExitComplete }) => {
       clearTimeout(exitTimer);
     };
   }, [onExitStart]);
+
+  const leftAnimation = isMobile
+    ? "-90%" 
+    : "calc(-50vw + 230px)";
+
+  const rightAnimation = isMobile
+    ? "100%"
+    : "calc(50vw - 250px)";
 
   return (
     <>
@@ -40,7 +55,7 @@ const Loader = ({ onExitStart, onExitComplete }) => {
           
           <motion.div 
             className={styles.mask}
-            animate={{ x: "calc(-50vw + 230px)" }}
+            animate={{ x: leftAnimation }}
             transition={{ delay: 2, duration: 1.2, ease: "easeInOut" }} 
           >
             <motion.span
@@ -51,8 +66,6 @@ const Loader = ({ onExitStart, onExitComplete }) => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                // width="166"
-                // height="31"
                 viewBox="0 0 68 13"
                 fill="none"
                 className={styles.leftSVG}
@@ -88,8 +101,6 @@ const Loader = ({ onExitStart, onExitComplete }) => {
               transition={{ delay: 2.2, duration: 1.2, ease: "easeOut" }}
             >
               <svg
-                // width="60"
-                // height="38"
                 viewBox="0 0 26 14"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +116,7 @@ const Loader = ({ onExitStart, onExitComplete }) => {
 
           <motion.div 
             className={styles.mask}
-            animate={{ x: "calc(50vw - 250px)" }}
+            animate={{ x: rightAnimation }}
             transition={{ delay: 2, duration: 1.2, ease: "easeInOut" }}
           >
             <motion.span
@@ -116,8 +127,6 @@ const Loader = ({ onExitStart, onExitComplete }) => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                // width="162"
-                // height="30"
                 viewBox="0 0 67 12"
                 fill="none"
                 className={styles.rightSVG}

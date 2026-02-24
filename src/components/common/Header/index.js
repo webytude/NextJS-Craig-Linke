@@ -86,7 +86,7 @@ export default function Header({ globalData }) {
                 </Link>
               </motion.div>
             ) : (
-              <motion.h1
+              <motion.div
                 key="logo-text"
                 layoutId="craig-text"
                 transition={transitionSettings}
@@ -121,7 +121,7 @@ export default function Header({ globalData }) {
                     />
                   </svg>
                 </Link>
-              </motion.h1>
+              </motion.div>
             )}
           </AnimatePresence>
         </div>
@@ -137,7 +137,7 @@ export default function Header({ globalData }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.h1
+                <motion.div
                   layoutId="craig-text"
                   transition={transitionSettings}
                 >
@@ -171,8 +171,8 @@ export default function Header({ globalData }) {
                       />
                     </svg>
                   </Link>
-                </motion.h1>
-                <motion.h1
+                </motion.div>
+                <motion.div
                   layoutId="linke-text"
                   transition={transitionSettings}
                 >
@@ -206,7 +206,7 @@ export default function Header({ globalData }) {
                     />
                   </svg>
                   </Link>
-                </motion.h1>
+                </motion.div>
               </motion.div>
             ) : (
               <motion.nav
@@ -247,7 +247,7 @@ export default function Header({ globalData }) {
                 MENU
               </motion.button>
             ) : (
-              <motion.h1
+              <motion.div
                 key="menu-text-svg"
                 layoutId="linke-text"
                 onClick={toggleMenu}
@@ -282,7 +282,7 @@ export default function Header({ globalData }) {
                     fill="currentColor"
                   />
                 </svg>
-              </motion.h1>
+              </motion.div>
             )}
           </AnimatePresence>
         </div>
