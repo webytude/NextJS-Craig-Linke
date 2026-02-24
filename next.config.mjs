@@ -16,7 +16,9 @@ const nextConfig = {
   async redirects() {
     return [
 
-      // ===== PROJECT REDIRECTS =====
+      // =============================
+      // PROJECT REDIRECTS
+      // =============================
       { source: '/projects/toorak-gardens/fergusson', destination: '/projects/', permanent: true },
       { source: '/projects/norwood/theresa', destination: '/projects/', permanent: true },
       { source: '/projects/norwood/osmond-terrace', destination: '/projects/', permanent: true },
@@ -30,7 +32,12 @@ const nextConfig = {
       { source: '/projects/burnside/the-heritage-verandah', destination: '/projects/', permanent: true },
       { source: '/projects/st-peters/st-peters', destination: '/projects/', permanent: true },
       { source: '/projects/burnside/the-pool-pavilion', destination: '/projects/', permanent: true },
+      { source: '/projects/norwood/george', destination: '/projects/', permanent: true },
+      { source: '/projects/hyde-park/villa-kolam', destination: '/projects/', permanent: true },
+      { source: '/projects/forestville/teppanyaki-pavilion', destination: '/projects/', permanent: true },
+      { source: '/projects/magill/the-mccabes', destination: '/projects/', permanent: true },
 
+      // keep slug pages
       { source: '/projects/burnside/number-33', destination: '/projects/number-33/', permanent: true },
       { source: '/projects/toorak-gardens/belltunga', destination: '/projects/belltunga/', permanent: true },
       { source: '/projects/stonyfell/omh', destination: '/projects/omh/', permanent: true },
@@ -41,7 +48,9 @@ const nextConfig = {
       { source: '/projects/kensington-gardens/kensington', destination: '/projects/kensington/', permanent: true },
       { source: '/projects/unley/villa-1890', destination: '/projects/villa-1890/', permanent: true },
 
-      // ===== LEGACY PAGES =====
+      // =============================
+      // LEGACY PAGES
+      // =============================
       { source: '/about/meet-the-team', destination: '/about/', permanent: true },
 
       { source: '/services/architecturally-designed-homes', destination: '/services/', permanent: true },
@@ -50,8 +59,24 @@ const nextConfig = {
       { source: '/services/boutique-commercial', destination: '/services/', permanent: true },
 
       { source: '/projects/our-process', destination: '/our-process/', permanent: true },
+
+      // =============================
+      // LOCATION PAGES
+      // =============================
+      { source: '/location/:slug', destination: '/projects/', permanent: true },
+
+      // =============================
+      // PROJECT TYPE
+      // =============================
+      { source: '/project-type/:slug', destination: '/projects/', permanent: true },
+
+      // =============================
+      // PROJECT AWARDS
+      // =============================
+      { source: '/project-award/:slug', destination: '/about/', permanent: true },
+
     ];
-  },
+  }
 };
 
 export default nextConfig;
