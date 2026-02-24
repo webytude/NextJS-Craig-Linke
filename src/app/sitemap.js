@@ -87,7 +87,7 @@ export default async function sitemap() {
       astheticsData?.astheticsDetails
         ?.filter((item) => item.publishedAt)
         ?.map((item) => ({
-          url: `${baseUrl}/asthetics/${item.Slug}`,
+          url: `${baseUrl}/aesthetics-details/${item.Slug}`,
           lastModified: item.updatedAt,
         })) || [];
 
