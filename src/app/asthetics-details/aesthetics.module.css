@@ -191,4 +191,8 @@ h1.mainHeading {
     text-align: center;
     width: 100%;
   }
+  h1.mainHeading {
+    font-size: 30px;
+    padding: 0px 20px;
+  }
 }

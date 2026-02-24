@@ -97,10 +97,12 @@
   column-gap: 3;
   align-content: flex-start;
 }
-.rightColumn .heading {
+.rightColumn .heading,
+.detailContent .heading {
   font-size: 18px;
 }
-.rightColumn .heading span {
+.rightColumn .heading span,
+.detailContent .heading span {
   color: #6C5D50;
   display: block;
 }

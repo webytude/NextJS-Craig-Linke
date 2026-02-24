@@ -193,23 +193,27 @@ export default function FullScreenMedia({ data }) {
                         onMouseEnter={!isMobile ? () => handleMouseEnter(item.HoverMedia) : undefined}
                         level={4} className={styles.listItemHeading}
                       >
-                        <Link href={item?.Button?.ButtonURL}>
-                        {item.Title}
-                        {isMobile && (
-                          <span className={styles.toggleIcon}>
-                            {isActive ? (
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            ) : (
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            )}
-                          </span>
+                        {!isMobile ? (
+                          <Link href={item?.Button?.ButtonURL}>
+                            {item.Title}
+                          </Link>
+                        ) : (
+                          <>
+                            {item.Title}
+                            <span className={styles.toggleIcon}>
+                              {isActive ? (
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              ) : (
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              )}
+                            </span>
+                          </>
                         )}
-                        </Link>
                       </h4>
                       <Divider color="#EAEAE8" className={styles.divider} />
                       </FadeUp>
@@ -234,36 +238,6 @@ export default function FullScreenMedia({ data }) {
                   </Box>
                 )
               })}
-              {/* {TextList.map((item, index) => (
-                <Box key={index} className={styles.aestheticsListContent} padding="0">
-                  <div
-                    onMouseEnter={() => handleMouseEnter(item.HoverMedia)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <Heading level={4} style={{ cursor: "pointer" }}>
-                      {item.Title}
-                    </Heading>
-                    <Divider color="#EAEAE8" margin="22px 0px" />
-                    <div
-                      className={`${styles.listContent} ${
-                        currentMedia === item.HoverMedia ? styles.show : ""
-                      }`}
-                    >
-                      <div>
-                        <Paragraph>
-                          <BlocksRenderer
-                            content={item.HoverDescription || []}
-                          />
-                        </Paragraph>
-                      </div>
-                      <Spacer desktop={20} />
-                      <div>
-                        <LinkWithArrow text="READ MORE" href="#" />
-                      </div>
-                    </div>
-                  </div>
-                </Box>
-              ))} */}
             </Grid>
           </div>
         </div>

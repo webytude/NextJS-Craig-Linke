@@ -256,7 +256,7 @@ export default function HomeContactHero({ data }) {
   const rightContent = (
     <>
       <Box padding="0" fullHeight justify="center">
-        <div className="contactForm fullWidth">
+        <div className={`${styles.contactForm} fullWidth`}>
           <form onSubmit={(e) => handleSubmit(e, "Contact")}>
             <div className={styles.formGrid}>
               <div className={styles.floatingGroup}>
