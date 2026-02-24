@@ -11,6 +11,7 @@ export default function LinkWithArrow({
   target = "_self",
   className = "",
 }) {
+  if (!href || !text) return null;
   return (
     <Link href={href} target={target} className={`${styles.link} ${className}`}>
       {arrowDirection === "left" && <span className={styles.arrow}>←</span>}
