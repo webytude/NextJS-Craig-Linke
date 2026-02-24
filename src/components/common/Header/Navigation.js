@@ -42,7 +42,7 @@ const MegaMenuOverlay = ({ activeItem, onClose, onLinkClick }) => {
               {activeItem.SubMenu.map((sub, index) => (
                 <Link
                   key={index}
-                  href={`/asthetics-details/${sub.Link}`}
+                  href={`/aesthetics-details/${sub.Link}`}
                   onClick={() => {
                     onLinkClick && onLinkClick();
                     onClose();

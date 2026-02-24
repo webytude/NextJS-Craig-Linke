@@ -18,7 +18,7 @@ export default function LayoutClient({ children, globalData }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(!showLoader);
 
-  const isAestheticsPage = pathname?.startsWith('/asthetics-details');
+  const isAestheticsPage = pathname?.startsWith('/aesthetics-details');
 
   useEffect(() => {
     const lenis = getLenis();

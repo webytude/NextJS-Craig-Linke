@@ -7,6 +7,6 @@ export default function Aesthetics() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/asthetics-details/new-heritage')
+    router.replace('/aesthetics-details/new-heritage')
   }, [router])
 }
