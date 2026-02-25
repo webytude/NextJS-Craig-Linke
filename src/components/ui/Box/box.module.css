@@ -73,7 +73,7 @@
   width: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .box.has-mobile-gap {
     gap: var(--mobile-box-gap) !important;
   }

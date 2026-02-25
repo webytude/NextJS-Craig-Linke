@@ -74,7 +74,7 @@ export default function OurServices({ data }) {
   const [activeBoxIndex, setActiveBoxIndex] = useState(null);
 
   useEffect(() => {
-    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    const checkScreen = () => setIsMobile(window.innerWidth < 1024);
     checkScreen();
     window.addEventListener("resize", checkScreen);
     return () => window.removeEventListener("resize", checkScreen);

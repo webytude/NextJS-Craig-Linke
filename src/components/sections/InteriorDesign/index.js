@@ -18,9 +18,8 @@ export default function InteriorDesign({ data }) {
   const leftContent = (
     <>
       {/* === TOP BOX === */}
-      <Box fullHeight direction="column" justify="space-between" borderBottom mobileBorderBottom={false} mobileGap="30px">
+      <Box className={styles.topBox} fullHeight direction="column" justify="space-between" borderBottom mobileBorderBottom={false} mobileGap="30px">
         <div className="text-light uppercase">{Title}</div>
-        {/* <h1 className="headingOne" style={{ maxWidth: 470 }}>{SubTitle}</h1> */}
         <FadeUp>
           <Heading level={2} style={{ maxWidth: 470 }}>{SubTitle}</Heading>
         </FadeUp>
@@ -49,7 +48,7 @@ export default function InteriorDesign({ data }) {
         padding="0"
         equalChildren
         showDivider
-        className="hide-mobile"
+        className={`${styles.bottomBox} hide-mobile`}
       >
         <div className="p20">
           <FadeUp>

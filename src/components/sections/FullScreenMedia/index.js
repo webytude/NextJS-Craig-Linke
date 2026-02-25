@@ -52,7 +52,7 @@ export default function FullScreenMedia({ data }) {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+      setIsMobile(window.matchMedia("(max-width: 1024px)").matches);
     };
 
     checkMobile(); 

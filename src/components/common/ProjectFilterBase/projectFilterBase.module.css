@@ -37,7 +37,7 @@
 .icon {
   font-family: monospace;
 }
-@media (max-width: 980px) {
+@media (max-width: 1024px) {
   .navContainer {
     gap: 50px;
   }

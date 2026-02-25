@@ -1,3 +1,11 @@
 .InteriorDesign p {
     margin-bottom: 0;
 }
+@media (max-width: 1300px) and (min-width: 1024px) {
+  :global(.page-our-process) .topBox {
+    flex: 0 0 28% !important;
+  }
+  :global(.page-our-process) .bottomBox {
+    flex: 0 0 72% !important;
+  }
+}
