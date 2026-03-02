@@ -10,6 +10,9 @@
     justify-content: center;
     align-items: center;
 }
+.imageWrapper a {
+    height: 100%;
+}
 .contentWrapper {
     display: flex;
     flex-direction: column;

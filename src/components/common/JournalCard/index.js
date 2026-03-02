@@ -19,7 +19,7 @@ export default function JournalCard({ journal }) {
         <div className={styles.categoryName}>
           <div className={styles.name}>INSIGHTS</div>
           <div className={styles.date}>
-            {new Date(journal?.publishedAt)
+            {new Date(journal?.Date)
               .toLocaleDateString("en-US", {
                 month: "2-digit",
                 day: "2-digit",

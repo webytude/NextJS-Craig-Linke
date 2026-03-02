@@ -11,7 +11,6 @@
   z-index: 9999;
   overflow: hidden;
 }
-
 .logoWrapper {
   display: flex;
   align-items: center;
@@ -19,18 +18,15 @@
   position: relative;
   width: 100vw;
 }
-
 .mask {
   overflow: hidden;
   position: relative;
   display: inline-block;
   margin: 0 45px; 
 }
-
 .text {
   display: block;
 }
-
 .middleIcon {
   position: absolute;
   left: 50%;
@@ -61,8 +57,8 @@
     height: 15.52px;
   }
   .middleSVG {
-    width: 29.49px;
-    height: 15.14px;
+    width: 27.49px;
+    height: 13.14px;
   }
   .rightSVG {
     width: 79.48px;
@@ -74,5 +70,6 @@
   .middleIcon {
     width: 30px;
     height: 16px;
+    top: 40%;
   }
 }

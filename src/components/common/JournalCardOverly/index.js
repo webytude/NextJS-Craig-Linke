@@ -20,7 +20,7 @@ export default function JournalCardOverly({ firstItem }) {
           <div className={styles.categoryName}>
             <div className={styles.name}>INSIGHTS</div>
             <div className={styles.date}>
-              {new Date(firstItem?.publishedAt)
+              {new Date(firstItem?.Date)
               .toLocaleDateString("en-US", {
                 month: "2-digit",
                 day: "2-digit",

@@ -15,6 +15,7 @@ import MediaRenderer from "@/components/common/MediaRenderer";
 import RelatedProjects from "@/components/sections/RelatedProjects";
 import Loading from "@/components/common/Loading";
 import Testimonial from "@/components/sections/Testimonial";
+import VideoPreview from "./VideoPreview";
 
 export default function ProjectClient({ projects }) {
 
@@ -153,20 +154,22 @@ export default function ProjectClient({ projects }) {
   //   pointerEvents: contentOpacity === 0 ? 'none' : 'auto',
   // };
 
+  console.log('projects', projects)
+
   return (
     <>
       <div className="hide-mobile">
         <section>
           <div className={styles.pageWrapper}>
             <div className={styles.leftColumn}>
-              <div className={`${styles.specification} p20`}>
-                {/* {projects.Metadata.map((specific, index) => (
-                  <div>
-                    <label>{specific.Label}</label>
-                    {specific.Value}
-                  </div>
-                ))} */}                
+              <div className={`${styles.specification} p20`}>              
                 <BlocksRenderer content={projects.LeftDescription || []} />                
+              </div>
+              <div className={styles.bottomWrapper}>
+                <VideoPreview
+                    videoData={projects.VideoPreview}
+                    thumbnail="/images/thumbnail.jpg"
+                  />
               </div>
               {/* <div className={styles.bottomWrapper}>
                 {galleryMediaBlocks.length > 0 && (

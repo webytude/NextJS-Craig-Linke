@@ -633,6 +633,7 @@ export const JOURNALS_QUERY = gql`
       Name
       Slug
       publishedAt
+      Date
       Description
       Media {
         EnableMuxVideo
@@ -792,6 +793,16 @@ export const PROJECTS_QUERY_SLUG = gql`
             alternativeText
             url
           }
+        }
+      }
+      VideoPreview {
+        EnableMuxVideo
+        MP4_Video {
+          alternativeText
+          url
+        }
+        MuxVideo {
+          playback_id
         }
       }
       Blocks {
