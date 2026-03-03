@@ -231,6 +231,9 @@ export default function ProjectClient({ projects }) {
                       const mediaWidth = isPortrait ? 524 : 720;
                       const mediaHeight = isPortrait ? 746 : 500;
 
+                      const mediaVideoWidth = isPortrait ? "50%" : "80%";
+                      const mediaVideoHeight = isPortrait ? "80%" : "50%";
+
                       return (
                         <div
                           key={key}
@@ -242,8 +245,8 @@ export default function ProjectClient({ projects }) {
                             media={block}
                             width={mediaWidth}
                             height={mediaHeight}
-                            videoWidth={mediaWidth}
-                            videoHeight={mediaHeight}
+                            videoWidth={mediaVideoWidth}
+                            videoHeight={mediaVideoHeight}
                           />
                         </div>
                       );

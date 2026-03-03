@@ -1,4 +1,5 @@
 "use client";
+import MuxPlayer from "@mux/mux-player-react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./videoPreview.module.css";
 import { createPortal } from "react-dom";
@@ -6,37 +7,24 @@ import Loading from "@/components/common/Loading";
 
 export default function VideoPreview({ videoData, thumbnail }) {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const videoRef = useRef(null);
 
   if (!videoData) return null;
 
   const { EnableMuxVideo, MP4_Video, MuxVideo } = videoData;
 
-  let videoUrl = "";
-
-  if (EnableMuxVideo && MuxVideo?.playback_id) {
-    videoUrl = `https://stream.mux.com/${MuxVideo.playback_id}.m3u8`;
-  } else if (MP4_Video?.url) {
-    videoUrl = MP4_Video.url;
-  }
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  const handleLoaded = () => {
-    setLoading(false);
-  };
+
 
   const handleOpen = () => {
     setOpen(true);
-    setLoading(true);
   };
 
   return (
     <>
-      {/* Preview Section */}
       <div className={styles.previewWrapper}>
         <button onClick={handleOpen} className={styles.playBtn}>
           ▶ PLAY VIDEO
@@ -45,24 +33,44 @@ export default function VideoPreview({ videoData, thumbnail }) {
         {thumbnail && <img onClick={handleOpen} src={thumbnail} alt="Video Preview" width={124} height={70} />}
       </div>
 
-      {/* Modal */}
       {open &&
         createPortal(
             <div className={styles.modal}>
               <button onClick={() => setOpen(false)} className={styles.closeBtn}>CLOSE</button>
 
               <div className={styles.videoContainer}>
-                  {loading && <Loading />}
-
-                  {videoUrl && (
-                    <video
-                      ref={videoRef}
-                      src={videoUrl}
+                  {EnableMuxVideo && MuxVideo?.playback_id && (
+                    <MuxPlayer
+                      playbackId={MuxVideo.playback_id}
+                      streamType="on-demand"
                       autoPlay
                       muted
-                      playsInline
                       loop
-                      onLoadedData={handleLoaded}
+                      playsInline
+                      preload="auto"
+                      controls={false}
+                      style={{
+                        // width: "100%",
+                        maxWidth: '70%',
+                        height: "70%",
+                        "--controls": "none",
+                        "--media-object-fit": "cover",
+                        "--media-object-position": "center",
+                        objectFit: "cover",
+                        position: 'absolute',
+                        inset: 0,
+                        margin: 'auto'
+                      }}
+                    />
+                  )}
+
+                  {!EnableMuxVideo && MP4_Video?.url && (
+                    <video
+                      src={MP4_Video.url}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                       className={styles.video}
                     />
                   )}
