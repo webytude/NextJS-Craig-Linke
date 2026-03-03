@@ -56,9 +56,11 @@
 }
 .textError {
   color: #ff7474;
+  padding-left: 20px;
 }
 .success {
   color: #23ef21;
+  padding-left: 20px;
 }
 .submitBtn {
   background: transparent;
