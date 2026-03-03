@@ -27,6 +27,7 @@ export default function HomeContactHero({ data }) {
     TotalBudget: "",
     HowDidYouHearAboutUs: "",
     Message: "",
+    Website: "", // honeypot (should stay empty)
   });
 
   const handleChange = (e) => {
@@ -59,6 +60,13 @@ export default function HomeContactHero({ data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.Website) {
+      setStatusMessage({
+        type: "error",
+        text: "Invalid submission.",
+      });
+      return;
+    }
     setIsSubmitting(true);
 
     let dataToSend = {};
@@ -105,6 +113,7 @@ export default function HomeContactHero({ data }) {
           TotalBudget: "",
           HowDidYouHearAboutUs: "",
           Message: "",
+          Website: "",
         });
       } else {
         console.error("Submission failed:", result);
@@ -259,6 +268,17 @@ export default function HomeContactHero({ data }) {
         <div className={`${styles.contactForm} fullWidth`}>
           <form onSubmit={(e) => handleSubmit(e, "Contact")}>
             <div className={styles.formGrid}>
+              <div className={styles.honeypot} aria-hidden="true">
+                <input
+                  type="text"
+                  name="Website"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  placeholder=""
+                  onChange={handleChange}
+                />
+                <label htmlFor="Website">WEBSITE</label>
+              </div>
               <div className={styles.floatingGroup}>
                 <input
                   type="text"
