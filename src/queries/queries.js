@@ -801,6 +801,10 @@ export const PROJECTS_QUERY_SLUG = gql`
           alternativeText
           url
         }
+        VideoThumbnail {
+          alternativeText
+          url
+        }
         MuxVideo {
           playback_id
         }

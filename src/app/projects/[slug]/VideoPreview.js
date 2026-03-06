@@ -10,11 +10,34 @@ export default function VideoPreview({ videoData, thumbnail }) {
 
   if (!videoData) return null;
 
-  const { EnableMuxVideo, MP4_Video, MuxVideo } = videoData;
+  const { EnableMuxVideo, MP4_Video, MuxVideo, VideoThumbnail } = videoData;
 
+  const videoExists =
+    (EnableMuxVideo && MuxVideo?.playback_id) || MP4_Video?.url;
+
+  const thumbnailUrl =
+    EnableMuxVideo && MuxVideo?.playback_id
+      ? `https://image.mux.com/${MuxVideo.playback_id}/thumbnail.webp`
+      : VideoThumbnail?.url || thumbnail;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
+  }, [open]);
+
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("keydown", handleEsc);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+    };
   }, [open]);
 
 
@@ -25,58 +48,64 @@ export default function VideoPreview({ videoData, thumbnail }) {
 
   return (
     <>
-      <div className={styles.previewWrapper}>
-        <button onClick={handleOpen} className={styles.playBtn}>
-          ▶ PLAY VIDEO
-        </button>
+      {videoExists && (
+        <div className={styles.previewWrapper}>
+          <button onClick={handleOpen} className={styles.playBtn}>
+            ▶ PLAY VIDEO
+          </button>
 
-        {thumbnail && <img onClick={handleOpen} src={thumbnail} alt="Video Preview" width={124} height={70} />}
-      </div>
+          {thumbnailUrl && (
+            <img
+              onClick={handleOpen}
+              src={thumbnailUrl}
+              alt="Video Preview"
+              width={124}
+              height={70}
+            />
+          )}
+        </div>
+      )}
 
       {open &&
         createPortal(
-            <div className={styles.modal}>
-              <button onClick={() => setOpen(false)} className={styles.closeBtn}>CLOSE</button>
+          <div className={styles.modal}>
+            <button onClick={() => setOpen(false)} className={styles.closeBtn}>CLOSE</button>
 
-              <div className={styles.videoContainer}>
-                  {EnableMuxVideo && MuxVideo?.playback_id && (
-                    <MuxPlayer
-                      playbackId={MuxVideo.playback_id}
-                      streamType="on-demand"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="auto"
-                      controls={false}
-                      style={{
-                        // width: "100%",
-                        maxWidth: '70%',
-                        height: "70%",
-                        "--controls": "none",
-                        "--media-object-fit": "cover",
-                        "--media-object-position": "center",
-                        objectFit: "cover",
-                        position: 'absolute',
-                        inset: 0,
-                        margin: 'auto'
-                      }}
-                    />
-                  )}
+            <div className={styles.videoContainer}>
+              {EnableMuxVideo && MuxVideo?.playback_id && (
+                <MuxPlayer
+                  playbackId={MuxVideo.playback_id}
+                  streamType="on-demand"
+                  autoPlay
+                  playsInline
+                  preload="auto"
+                  controls
+                  style={{
+                    // width: "100%",
+                    maxWidth: '70%',
+                    height: "70%",
+                    "--media-object-fit": "cover",
+                    "--media-object-position": "center",
+                    objectFit: "cover",
+                    position: 'absolute',
+                    inset: 0,
+                    margin: 'auto'
+                  }}
+                />
+              )}
 
-                  {!EnableMuxVideo && MP4_Video?.url && (
-                    <video
-                      src={MP4_Video.url}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className={styles.video}
-                    />
-                  )}
-              </div>
-            </div>,
-            document.body
+              {!EnableMuxVideo && MP4_Video?.url && (
+                <video
+                  src={MP4_Video.url}
+                  autoPlay
+                  controls
+                  playsInline
+                  className={styles.video}
+                />
+              )}
+            </div>
+          </div>,
+          document.body
         )}
     </>
   );
