@@ -102,6 +102,7 @@ export default function OurServices({ data }) {
         justify="space-between"
         mobileGap="90px"
         padding="0"
+        className={styles.topBox}
       >
         <FadeUp classes="p20">
           <div className="text-light uppercase pb20">{Title}</div>
@@ -123,14 +124,14 @@ export default function OurServices({ data }) {
         align="flex-end"
         padding="20px"
         equalChildren
-        className="hide-mobile"
+        className={`${styles.bottomBox} hide-mobile`}
       >
-        <SlideRight className="fullHeight">
+        <SlideRight className={`${styles.imgBox}`}>
           <MediaRenderer
             media={currentImage}
-            width={413}
-            height={472}
-            classes={"image"}
+            width={433}
+            height={522}
+            // classes={"image"}
           />
         </SlideRight>
         <div className={ShowInReverseLayout ? "text-left" : "text-right"}>

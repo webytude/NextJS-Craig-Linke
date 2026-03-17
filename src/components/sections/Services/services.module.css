@@ -126,7 +126,21 @@
     transform: scale(1);
   }
 }
-
+.topBox {
+  flex: 0 0 35% !important;
+}
+.bottomBox {
+  flex: 0 0 65% !important;
+}
+.imgBox {
+  height: 100%;
+}
+.imgBox:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: bottom;
+}
 @media (max-width: 1024px) {
   .serviceBox {
     min-height: 215px !important;
