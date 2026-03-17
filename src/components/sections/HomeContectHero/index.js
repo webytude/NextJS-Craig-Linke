@@ -36,7 +36,6 @@ export default function HomeContactHero({ data }) {
       ? Array.from(selectedOptions, (option) => option.value)
       : value;
     setFormData({ ...formData, [name]: fieldValue });
-    // setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSelectChange = (fieldName, selectedOption, isMulti = false) => {
@@ -262,6 +261,25 @@ export default function HomeContactHero({ data }) {
     (option) => option.value === formData.HowDidYouHearAboutUs
   );
 
+  const handleServiceClick = (value) => {
+    setFormData((prev) => {
+      const alreadySelected = prev.ServicesRequired.includes(value);
+
+      let updatedServices;
+
+      if (alreadySelected) {
+        updatedServices = prev.ServicesRequired.filter((v) => v !== value);
+      } else {
+        updatedServices = [...prev.ServicesRequired, value];
+      }
+
+      return {
+        ...prev,
+        ServicesRequired: updatedServices,
+      };
+    });
+  };
+
   const rightContent = (
     <>
       <Box padding="0" fullHeight justify="center">
@@ -317,25 +335,17 @@ export default function HomeContactHero({ data }) {
                 />
                 <label htmlFor="Address">Address</label>
               </div>
-              <div className={styles.floatingGroup}>
-                <Select
-                  isMulti
-                  name="ServicesRequired"
-                  options={serviceOptions}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                  styles={customStyles}
-                  placeholder="Services"
-                  components={{
-                    DropdownIndicator: () => null,
-                    IndicatorSeparator: () => null,
-                    ClearIndicator: () => null,
-                  }}
-                  value={selectedServices}
-                  onChange={(selected) =>
-                    handleSelectChange("ServicesRequired", selected, true)
-                  }
-                />
+              <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
+                <label htmlFor="services">Services</label>
+                <div className={styles.serviceList}>
+                  {ServicesDropdown?.map((item) => <button type="button" key={item.Value} onClick={() => handleServiceClick(item.Value)} className={`${styles.btnLable} 
+        borderRight borderTop borderBottom borderLeft
+        ${
+          formData.ServicesRequired.includes(item.Value)
+            ? styles.active
+            : ""
+        }`}>{item.Value}</button>)}
+                </div>
               </div>
               <div className={styles.floatingGroup}>
                 <Select
@@ -355,7 +365,7 @@ export default function HomeContactHero({ data }) {
                   }}
                 />
               </div>
-              <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
+              <div className={`${styles.floatingGroup}`}>
                 <Select
                   name="HowDidYouHearAboutUs"
                   value={selectedHearAbout}

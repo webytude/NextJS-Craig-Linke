@@ -1,0 +1,36 @@
+.wrapper {
+  padding: 112px 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1020px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+}
+
+.imageBox {
+  position: relative;
+  width: 370px;
+  height: 480px;
+}
+
+.content {
+  text-align: center;
+  max-width: 380px;
+}
+
+.content p {
+  margin-bottom: 30px;
+  margin-top: 45px;
+}
+.divider {
+  position: absolute;
+  top: 50%;
+  left: -100vw;
+  width: 200vw;
+}

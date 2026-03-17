@@ -12,13 +12,12 @@ import LinkWithArrow from '@/components/ui/Link';
 export default function ProjectWithManuallyEditable({ data }) {
   return (
     <section className={`${astheticsStyles.section} ${astheticsStyles.projectWithManuallyEditable}`}>
-    {/* <AsheticsCard data={data} /> */}
       <div className={styles.asheticsCard}>
-        <FadeUp>
-          <Heading className={'hide-mobile'} level={4}>{data?.Title}</Heading>
+        {/* <FadeUp> */}
+          <Heading className={`${styles.heading} hide-mobile`} level={4}>{data?.Title}</Heading>
           <div className={styles.imageWrapper}>
               <Link href={data?.Button?.ButtonURL || `${data?.Slug}` || "#"} target={data?.Button?.OpenNewTab ? "_blank" : "_self"}>
-                <MediaRenderer media={data?.Media || data?.DesktopMedia} width={349} height={495} />
+                <MediaRenderer media={data?.Media || data?.DesktopMedia} width={349} height={495} videoHeight={495} videoWidth={349} />
               </Link>
           </div>
           <div className={styles.contentWrapper}>
@@ -32,7 +31,7 @@ export default function ProjectWithManuallyEditable({ data }) {
             <LinkWithArrow text={data?.Button?.ButtonText} href={data?.Button?.ButtonURL} />
           </div>
           </div>
-        </FadeUp>
+        {/* </FadeUp> */}
       </div>
     </section>
   )

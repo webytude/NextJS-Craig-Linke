@@ -23,7 +23,7 @@ export default function JournalCard({ journal }) {
               .toLocaleDateString("en-US", {
                 month: "2-digit",
                 day: "2-digit",
-                year: "numeric",
+                year: "2-digit",
               })
               .replace(/\//g, " / ")}
           </div>

@@ -9,6 +9,7 @@ import SingleMedia from "../ashetics/SingleMedia";
 import AboutHero from "../sections/AboutHero";
 import Awards from "../sections/Awards";
 import ContactHero from "../sections/ContactHero";
+import ContactUsCTA from "../sections/ContactUsCTA";
 import ContentHero from "../sections/ContentHero";
 import ExploreProjects from "../sections/ExploreProjects";
 import ExpressiveMediaModule from "../sections/ExpressiveMediaModule";
@@ -53,6 +54,9 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
 
     case "ComponentSectionContentHeroModule":
       return <ContentHero data={block} />;
+
+    case "ComponentSectionGetInTouch":
+      return <ContactUsCTA data={block} />;
 
     case "ComponentSectionAwards":
       return <Awards data={block} />;

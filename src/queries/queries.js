@@ -463,6 +463,25 @@ const BLOCKS_SELECTION = `
     }
     ShowInReverseLayout
   }
+  ... on ComponentSectionGetInTouch {
+      Media {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          alternativeText
+          url
+        }
+      }
+      Title
+      Description
+      Button {
+        ButtonText
+        ButtonURL
+        OpenNewTab
+      }
+  }
 `;
 
 export const PAGES_QUERY = gql`
