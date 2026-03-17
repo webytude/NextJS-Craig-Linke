@@ -20,9 +20,9 @@ export default function JournalCard({ journal }) {
           <div className={styles.name}>INSIGHTS</div>
           <div className={styles.date}>
             {new Date(journal?.Date)
-              .toLocaleDateString("en-US", {
-                month: "2-digit",
+              .toLocaleDateString("en-GB", {
                 day: "2-digit",
+                month: "2-digit",
                 year: "2-digit",
               })
               .replace(/\//g, " / ")}

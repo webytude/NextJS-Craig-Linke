@@ -135,6 +135,12 @@
 .imgBox {
   height: 100%;
 }
+.imgBox img {
+  aspect-ratio: 433 / 522;
+  height: 100%;
+  width: auto;
+  max-height: none;
+}
 .imgBox:before {
   content: '';
   display: inline-block;
