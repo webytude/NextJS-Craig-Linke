@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 
 // Static redirect map
 const redirects: Record<string, string> = {
-  // =============================
-  // PROJECT REDIRECTS
-  // =============================
   '/projects/toorak-gardens/fergusson': '/projects',
   '/projects/norwood/theresa': '/projects',
   '/projects/norwood/osmond-terrace': '/projects',
@@ -34,9 +31,6 @@ const redirects: Record<string, string> = {
   '/projects/kensington-gardens/kensington': '/projects/kensington',
   '/projects/unley/villa-1890': '/projects/villa-1890',
 
-  // =============================
-  // LEGACY PAGES
-  // =============================
   '/about/meet-the-team': '/about',
 
   '/services/architecturally-designed-homes': '/services',
@@ -48,34 +42,36 @@ const redirects: Record<string, string> = {
 }
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  const url = request.nextUrl.clone()
+  let pathname = url.pathname
 
-  // 1. Exact match redirects
+  // ✅ CRITICAL FIX: normalize trailing slash FIRST
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    pathname = pathname.slice(0, -1)
+  }
+
+  // =============================
+  // ✅ SINGLE STEP REDIRECT
+  // =============================
+
+  // 1. Exact redirects
   if (redirects[pathname]) {
-    const url = request.nextUrl.clone()
     url.pathname = redirects[pathname]
-    return NextResponse.redirect(url, 301) // ✅ force 301
+    return NextResponse.redirect(url, 301)
   }
 
-  // 2. Dynamic routes
-
-  // /location/:slug → /projects
+  // 2. Dynamic rules
   if (pathname.startsWith('/location/')) {
-    const url = request.nextUrl.clone()
     url.pathname = '/projects'
     return NextResponse.redirect(url, 301)
   }
 
-  // /project-type/:slug → /projects
   if (pathname.startsWith('/project-type/')) {
-    const url = request.nextUrl.clone()
     url.pathname = '/projects'
     return NextResponse.redirect(url, 301)
   }
 
-  // /project-award/:slug → /about
   if (pathname.startsWith('/project-award/')) {
-    const url = request.nextUrl.clone()
     url.pathname = '/about'
     return NextResponse.redirect(url, 301)
   }
@@ -83,7 +79,6 @@ export function middleware(request: NextRequest) {
   return NextResponse.next()
 }
 
-// Apply middleware to all routes
 export const config = {
   matcher: '/:path*',
 }
