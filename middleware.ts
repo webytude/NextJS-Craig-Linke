@@ -49,34 +49,27 @@ export function middleware(request: NextRequest) {
     pathname = pathname.slice(0, -1)
   }
 
-  // =============================
-  // ✅ SINGLE STEP REDIRECT
-  // =============================
+  let finalPath = pathname
 
-  // 1. Exact redirects
   if (redirects[pathname]) {
-    url.pathname = redirects[pathname]
-    return NextResponse.redirect(url, 301)
+    finalPath = redirects[pathname]
+  } else if (pathname.startsWith('/location/')) {
+    finalPath = '/projects'
+  } else if (pathname.startsWith('/project-type/')) {
+    finalPath = '/projects'
+  } else if (pathname.startsWith('/project-award/')) {
+    finalPath = '/about'
   }
 
-  // 2. Dynamic rules
-  if (pathname.startsWith('/location/')) {
-    url.pathname = '/projects'
-    return NextResponse.redirect(url, 301)
-  }
-
-  if (pathname.startsWith('/project-type/')) {
-    url.pathname = '/projects'
-    return NextResponse.redirect(url, 301)
-  }
-
-  if (pathname.startsWith('/project-award/')) {
-    url.pathname = '/about'
+  // Only ONE redirect from middleware
+  if (finalPath !== pathname) {
+    url.pathname = finalPath
     return NextResponse.redirect(url, 301)
   }
 
   return NextResponse.next()
 }
+
 
 export const config = {
   matcher: '/:path*',
