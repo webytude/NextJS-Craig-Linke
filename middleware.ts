@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Static redirect map
 const redirects: Record<string, string> = {
   '/projects/toorak-gardens/fergusson': '/projects',
   '/projects/norwood/theresa': '/projects',
@@ -19,6 +20,7 @@ const redirects: Record<string, string> = {
   '/projects/forestville/teppanyaki-pavilion': '/projects',
   '/projects/magill/the-mccabes': '/projects',
 
+  // keep slug pages
   '/projects/burnside/number-33': '/projects/number-33',
   '/projects/toorak-gardens/belltunga': '/projects/belltunga',
   '/projects/stonyfell/omh': '/projects/omh',
@@ -41,18 +43,12 @@ const redirects: Record<string, string> = {
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
+  let pathname = url.pathname
 
-  const originalHost = request.headers.get('host') || ''
-  const originalPath = url.pathname
-
-  let pathname = originalPath
-
-  // 1. Normalize trailing slash
   if (pathname.length > 1 && pathname.endsWith('/')) {
     pathname = pathname.slice(0, -1)
   }
 
-  // 2. Apply redirects
   let finalPath = pathname
 
   if (redirects[pathname]) {
@@ -65,27 +61,15 @@ export function middleware(request: NextRequest) {
     finalPath = '/about'
   }
 
-  // 3. Normalize host
-  let finalHost = originalHost
-  if (originalHost.startsWith('www.')) {
-    finalHost = originalHost.replace('www.', '')
+  // Only ONE redirect from middleware
+  if (finalPath !== pathname) {
+    url.pathname = finalPath
+    return NextResponse.redirect(url, 301)
   }
 
-  // 4. Check if anything actually changed
-  const shouldRedirect =
-    finalPath !== originalPath ||
-    finalHost !== originalHost
-
-  if (!shouldRedirect) {
-    return NextResponse.next()
-  }
-
-  // 5. Apply final URL
-  url.pathname = finalPath
-  url.host = finalHost
-
-  return NextResponse.redirect(url, 301)
+  return NextResponse.next()
 }
+
 
 export const config = {
   matcher: '/:path*',
