@@ -55,8 +55,8 @@ const nextConfig = {
       { source: '/about/meet-the-team', destination: '/about', permanent: true },
 
       { source: '/services/architecturally-designed-homes', destination: '/services', permanent: true },
-      // { source: '/services/custom-renovations-additions', destination: '/services', permanent: true },
-      { source: '/services/custom-renovations-additions/:path*', destination: '/services', permanent: true },
+      { source: '/services/custom-renovations-additions', destination: '/services', permanent: true },
+      // { source: '/services/custom-renovations-additions/:path*', destination: '/services', permanent: strue },
       { source: '/services/outdoor-living', destination: '/services', permanent: true },
       { source: '/services/boutique-commercial', destination: '/services', permanent: true },
 
