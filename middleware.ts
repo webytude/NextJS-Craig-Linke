@@ -42,10 +42,12 @@ const redirects: Record<string, string> = {
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
 
-  const host = request.headers.get('host') || ''
-  let pathname = url.pathname
+  const originalHost = request.headers.get('host') || ''
+  const originalPath = url.pathname
 
-  // 1. Remove trailing slash
+  let pathname = originalPath
+
+  // 1. Normalize trailing slash
   if (pathname.length > 1 && pathname.endsWith('/')) {
     pathname = pathname.slice(0, -1)
   }
@@ -63,25 +65,26 @@ export function middleware(request: NextRequest) {
     finalPath = '/about'
   }
 
-  // 3. Normalize host (www → non-www)
-  let finalHost = host
-  if (host.startsWith('www.')) {
-    finalHost = host.replace('www.', '')
+  // 3. Normalize host
+  let finalHost = originalHost
+  if (originalHost.startsWith('www.')) {
+    finalHost = originalHost.replace('www.', '')
   }
 
-  // 4. Apply changes to URL
+  // 4. Check if anything actually changed
+  const shouldRedirect =
+    finalPath !== originalPath ||
+    finalHost !== originalHost
+
+  if (!shouldRedirect) {
+    return NextResponse.next()
+  }
+
+  // 5. Apply final URL
   url.pathname = finalPath
   url.host = finalHost
 
-  // 5. Only ONE redirect
-  if (
-    finalPath !== request.nextUrl.pathname ||
-    finalHost !== host
-  ) {
-    return NextResponse.redirect(url, 301)
-  }
-
-  return NextResponse.next()
+  return NextResponse.redirect(url, 301)
 }
 
 export const config = {
