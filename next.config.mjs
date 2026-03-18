@@ -3,7 +3,7 @@ const nextConfig = {
   reactCompiler: true,
 
   // Keep consistent URL format
-  trailingSlash: true,
+  trailingSlash: false,
 
   images: {
     remotePatterns: [
