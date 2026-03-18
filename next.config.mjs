@@ -4,7 +4,7 @@ const nextConfig = {
 
   // Keep consistent URL format
   trailingSlash: false,
-
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       {
