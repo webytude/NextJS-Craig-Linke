@@ -1,0 +1,44 @@
+{
+  "redirects": [
+    { "source": "/projects/toorak-gardens/fergusson", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/norwood/theresa", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/norwood/osmond-terrace", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/clarence-park/churchill", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/burnside/craig-donnas", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/adelaide-city/the-kiln", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/unley-park/weybridge-house", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/parkside/the-garden-pavilion", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/norwood/osmond-terrace-part-2", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/norwood/the-cottage", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/burnside/the-heritage-verandah", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/st-peters/st-peters", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/burnside/the-pool-pavilion", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/norwood/george", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/hyde-park/villa-kolam", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/forestville/teppanyaki-pavilion", "destination": "/projects", "statusCode": 301 },
+    { "source": "/projects/magill/the-mccabes", "destination": "/projects", "statusCode": 301 },
+
+    { "source": "/projects/burnside/number-33", "destination": "/projects/number-33", "statusCode": 301 },
+    { "source": "/projects/toorak-gardens/belltunga", "destination": "/projects/belltunga", "statusCode": 301 },
+    { "source": "/projects/stonyfell/omh", "destination": "/projects/omh", "statusCode": 301 },
+    { "source": "/projects/kent-town/home-base", "destination": "/projects/home-base", "statusCode": 301 },
+    { "source": "/projects/north-adelaide/hill-house", "destination": "/projects/hill-house", "statusCode": 301 },
+    { "source": "/projects/fleurieu-peninsula/beach-house", "destination": "/projects/beach-house", "statusCode": 301 },
+    { "source": "/projects/medindie/le-jardin", "destination": "/projects/le-jardin", "statusCode": 301 },
+    { "source": "/projects/kensington-gardens/kensington", "destination": "/projects/kensington", "statusCode": 301 },
+    { "source": "/projects/unley/villa-1890", "destination": "/projects/villa-1890", "statusCode": 301 },
+
+    { "source": "/about/meet-the-team", "destination": "/about", "statusCode": 301 },
+
+    { "source": "/services/architecturally-designed-homes", "destination": "/services", "statusCode": 301 },
+    { "source": "/services/custom-renovations-additions", "destination": "/services", "statusCode": 301 },
+    { "source": "/services/outdoor-living", "destination": "/services", "statusCode": 301 },
+    { "source": "/services/boutique-commercial", "destination": "/services", "statusCode": 301 },
+
+    { "source": "/projects/our-process", "destination": "/our-process", "statusCode": 301 },
+
+    { "source": "/location/:slug", "destination": "/projects", "statusCode": 301 },
+    { "source": "/project-type/:slug", "destination": "/projects", "statusCode": 301 },
+    { "source": "/project-award/:slug", "destination": "/about", "statusCode": 301 }
+  ]
+}
