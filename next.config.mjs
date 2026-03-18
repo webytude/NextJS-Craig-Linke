@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
-
+  trailingSlash: false,
   images: {
     remotePatterns: [
       {
@@ -56,7 +56,6 @@ const nextConfig = {
 
       { source: '/services/architecturally-designed-homes', destination: '/services', permanent: true },
       { source: '/services/custom-renovations-additions', destination: '/services', permanent: true },
-      // { source: '/services/custom-renovations-additions/:path*', destination: '/services', permanent: strue },
       { source: '/services/outdoor-living', destination: '/services', permanent: true },
       { source: '/services/boutique-commercial', destination: '/services', permanent: true },
 
