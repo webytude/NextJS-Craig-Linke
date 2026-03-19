@@ -77,6 +77,7 @@ export default function VideoPreview({ videoData, thumbnail }) {
                   playsInline
                   preload="auto"
                   controls
+                  poster={thumbnailUrl}
                   style={{
                     // width: "100%",
                     maxWidth: '70%',
