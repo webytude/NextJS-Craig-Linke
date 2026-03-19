@@ -15,10 +15,7 @@ export default function VideoPreview({ videoData, thumbnail }) {
   const videoExists =
     (EnableMuxVideo && MuxVideo?.playback_id) || MP4_Video?.url;
 
-  const thumbnailUrl =
-    EnableMuxVideo && MuxVideo?.playback_id
-      ? `https://image.mux.com/${MuxVideo.playback_id}/thumbnail.webp`
-      : VideoThumbnail?.url || thumbnail;
+  const thumbnailUrl = VideoThumbnail?.url || thumbnail;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";

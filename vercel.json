@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "http://craiglinke.com.au/:path*",
+      "destination": "https://craiglinke.com.au/:path*",
+      "permanent": true,
+      "statusCode": 301
+    }
+  ]
+}
