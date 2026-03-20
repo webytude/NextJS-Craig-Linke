@@ -48,6 +48,9 @@
   display: flex;
   gap: 6px;
   flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .fixedNav a {
   display: flex;

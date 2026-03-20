@@ -8,7 +8,11 @@
     background: #6C5D50;
     color: #EAEAE8;
 }
-
+.projectList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 .projectList li {
     position: relative;
     border-bottom: 1px solid #938579;
