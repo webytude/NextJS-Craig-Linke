@@ -46,6 +46,7 @@ export default function AboutHero({ data, quickLinks }) {
         align="flex-end"
         padding="0"
         equalChildren
+        className="hide-mobile"
       >
           <FadeUp classes={`${styles.navItem} p20`}>
           {quickLinks && quickLinks.length > 0 ? (

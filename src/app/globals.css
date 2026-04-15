@@ -468,6 +468,7 @@ button,
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
+    gap: 0;
   }
   .grid {
     grid-template-columns: repeat(1, 1fr);

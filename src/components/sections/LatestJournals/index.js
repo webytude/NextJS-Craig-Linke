@@ -58,7 +58,7 @@ export default function LatestJournals({ data }) {
 
   return (
     <>
-    <section className="LatestJournals">
+    <section className="LatestJournals hide-mobile">
       <TwoColumnLayout showDivider left={leftContent} right={rightContent} />
     </section>
     <Divider />
