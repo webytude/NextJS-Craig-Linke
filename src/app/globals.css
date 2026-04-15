@@ -485,6 +485,9 @@ button,
   .aesthetics-container .full-width-media {
     padding: 40px 0px;
   }
+  .select__value-container {
+    padding: 2px 0px !important;
+  }
 }
 
 

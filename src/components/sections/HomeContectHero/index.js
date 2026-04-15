@@ -152,7 +152,9 @@ export default function HomeContactHero({ data }) {
   }));
 
   const customStyles = {
-    control: (provided, state) => ({
+    control: (provided, state) => {
+      const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+      return {
       ...provided,
       appearance: "none",
       background: "none",
@@ -160,14 +162,15 @@ export default function HomeContactHero({ data }) {
       borderBottom: "1px solid #b0a7a2",
       borderRadius: "0",
       boxShadow: "none",
-      padding: "0 0 15px 12px",
+      padding: isMobile ? "0 0 15px 0px" : "0 0 15px 12px",
       textTransform: "uppercase",
       letterSpacing: ".5px",
       fontFamily: "saanslight",
       fontSize: "12px",
       minHeight: '35px',
       // color: "#eaeae8",
-    }),
+      }
+    },
 
     menu: (provided) => ({
       ...provided,
@@ -203,10 +206,16 @@ export default function HomeContactHero({ data }) {
       ...provided,
       color: "#eaeae8",
     }),
-    placeholder: (provided) => ({
-      ...provided,
-      color: "#eaeae8",
-    }),
+    placeholder: (provided) => {
+      const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+      return {
+        ...provided,
+        color: "#eaeae8",
+        marginLeft: isMobile ? '0px' : '2px',
+        marginRight: isMobile ? '0px' : '2px',
+      }
+    },
     singleValue: (provided) => ({
     ...provided,
     color: "#eaeae8",
