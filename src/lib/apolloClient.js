@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
 const uri = process.env.NEXT_PUBLIC_GRAPHQL_URI;
-const token = process.env.NEXT_PUBLIC_GRAPHQL_AUTH_TOKEN;
+const token = process.env.GRAPHQL_AUTH_TOKEN;
 
 const client = new ApolloClient({
     link: new HttpLink({
