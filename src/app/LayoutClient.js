@@ -72,7 +72,7 @@ export default function LayoutClient({ children, globalData }) {
   };
 
   if (!isInitialized) {
-    return null;
+    return children;
   }
 
   return (
