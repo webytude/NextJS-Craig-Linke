@@ -22,7 +22,7 @@ async function getAestheticsData(searchParams) {
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
   const data = await getAestheticsData(searchParams);
-  const asthetics = data.find(p => p.Slug === slug)
+  const asthetics = data?.find(p => p.Slug === slug)
 
   if (!asthetics) {
     return {
@@ -51,11 +51,13 @@ export async function generateMetadata({ params, searchParams }) {
 }
 
 export default async function AestheticsDetail({ params, searchParams }) {
-  const asthetics = await getAestheticsData(searchParams);
+  const { slug } = await params;
+  const data = await getAestheticsData(searchParams);
+  const asthetics = data?.find((p) => p.Slug === slug);
 
   if (!asthetics) {
     return notFound();
   }
 
-  return <AestheticsClient asthetics={asthetics} />
+  return <AestheticsClient asthetics={data} />
 }

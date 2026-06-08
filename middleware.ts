@@ -43,7 +43,8 @@ const redirects: Record<string, string> = {
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
-  let pathname = url.pathname
+  const originalPathname = url.pathname
+  let pathname = originalPathname
 
   if (pathname.length > 1 && pathname.endsWith('/')) {
     pathname = pathname.slice(0, -1)
@@ -61,8 +62,8 @@ export function middleware(request: NextRequest) {
     finalPath = '/about'
   }
 
-  // Only ONE redirect from middleware
-  if (finalPath !== pathname) {
+  // Only ONE redirect from middleware (covers trailing-slash normalisation too)
+  if (finalPath !== originalPathname) {
     url.pathname = finalPath
     return NextResponse.redirect(url, 301)
   }

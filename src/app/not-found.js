@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LinkWithArrow from '@/components/ui/Link';
 
 export default function NotFound() {
   return (
@@ -38,6 +39,12 @@ export default function NotFound() {
               <span>0</span>
               <span>4</span>
             </h1>
+            <p style={{ marginTop: 24 }}>
+              We couldn&apos;t find the page you were looking for.
+            </p>
+            <div style={{ marginTop: 16 }}>
+              <LinkWithArrow text="Browse Projects" href="/projects" />
+            </div>
           </motion.div>
         </div>
       </motion.section>
