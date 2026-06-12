@@ -44,7 +44,7 @@ export async function generateMetadata() {
   };
 }
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export default async function Home() {
   const slug = 'home';
@@ -64,6 +64,17 @@ export default async function Home() {
     const themeColor = page?.ThemeColor || "";
     const schemaMarkup = page?.Seo?.SchemaMarkup;
 
+    const H1_BLOCK_TYPES = new Set([
+      'ComponentSectionHomeHero',
+      'ComponentSectionAboutHero',
+      'ComponentSectionContactHero',
+      'ComponentSectionServices',
+      'ComponentSectionNewContactHero',
+      'ComponentSectionContentHeroModule',
+      'ComponentSectionTextModule',
+    ]);
+    let h1Assigned = false;
+
     return <>
 
       {schemaMarkup && (
@@ -77,12 +88,14 @@ export default async function Home() {
           }}
         />
       )}
-    
+
       <PageThemeSetter theme={themeColor} />
 
-      {page?.Blocks?.map((block, i) => (
-        <BlockRenderer key={i} block={block} />
-      ))}
+      {page?.Blocks?.map((block, i) => {
+        const isFirstH1 = H1_BLOCK_TYPES.has(block.__typename) && !h1Assigned;
+        if (isFirstH1) h1Assigned = true;
+        return <BlockRenderer key={i} block={block} isFirstH1={isFirstH1} />;
+      })}
     </>;
   } catch (error) {
     console.error('Error loading home page:', error);

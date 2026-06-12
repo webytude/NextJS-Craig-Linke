@@ -72,7 +72,14 @@ export default function LayoutClient({ children, globalData }) {
   };
 
   if (!isInitialized) {
-    return children;
+    return (
+      <ApolloWrapper>
+        <BodyTheme />
+        {!isAestheticsPage && <Header globalData={globalData} />}
+        <main>{children}</main>
+        <Footer hideOnMobile={isAestheticsPage ? 'hide-desktop' : ''} globalData={globalData} />
+      </ApolloWrapper>
+    );
   }
 
   return (

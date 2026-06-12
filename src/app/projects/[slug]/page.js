@@ -2,9 +2,9 @@
 import { PROJECTS_QUERY_SLUG, PROJECTS_QUERY_SLUG_PREVIEW } from "@/queries/queries";
 import ProjectClient from "./ProjectClient";
 import { createPage } from "@/utils/createPage";
+import client from "@/lib/apolloClient";
 
 const { Page, generateMetadata } = createPage({
-  // query: PROJECTS_QUERY_SLUG,
   queries: {
     live: PROJECTS_QUERY_SLUG,
     preview: PROJECTS_QUERY_SLUG_PREVIEW,
@@ -26,9 +26,7 @@ const { Page, generateMetadata } = createPage({
 
       const canonicalUrl =
       data?.CanonicalUrl ||
-      (slug === "home"
-        ? productionDomain
-        : `${productionDomain}/${slug}`);
+      `${productionDomain}/projects/${slug}`;
 
       return {
         title: data?.Seo?.MetaTitle || 'Craig Linke',
@@ -40,6 +38,23 @@ const { Page, generateMetadata } = createPage({
     }
   }
 });
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URI, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.GRAPHQL_AUTH_TOKEN}` },
+      body: JSON.stringify({ query: '{ projects(pagination:{limit:-1},sort:["rank:asc"]) { Slug } }' }),
+      cache: 'no-store',
+    });
+    const { data } = await res.json();
+    return (data?.projects || []).map(p => ({ slug: p.Slug }));
+  } catch {
+    return [];
+  }
+}
 
 export { generateMetadata };
 export default Page;

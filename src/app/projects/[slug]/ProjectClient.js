@@ -247,6 +247,7 @@ export default function ProjectClient({ projects }) {
                             height={mediaHeight}
                             videoWidth={mediaVideoWidth}
                             videoHeight={mediaVideoHeight}
+                            altFallback={`${projects.Name} project image`}
                           />
                         </div>
                       );
@@ -330,10 +331,11 @@ export default function ProjectClient({ projects }) {
               width={358}
               height={510}
               classes={"image"}
+              altFallback={projects.Name}
             />
           </div>
           <div className={styles.detailContent}>
-            <Heading level={1} color="#000" className={styles.heading}>
+            <Heading level={2} color="#000" className={styles.heading} aria-hidden="true">
               {projects.Name}
               <span>{projects?.SubTitle}</span>
             </Heading>
@@ -369,6 +371,7 @@ export default function ProjectClient({ projects }) {
                           media={block}
                           width={mediaWidth}
                           height={mediaHeight}
+                          altFallback={`${projects.Name} project image`}
                         />
                       </div>
                     );

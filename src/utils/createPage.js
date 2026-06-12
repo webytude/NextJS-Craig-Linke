@@ -9,23 +9,17 @@ export function createPage({
   propName = 'data',
   metadataConfig
 }) {
-  const fetchPageData = async (params, searchParams) => {
-    const resolvedSearchParams = await searchParams;
-    const isPreview = resolvedSearchParams.preview === 'true';
+  const fetchPageData = async (params) => {
     const baseVariables = getVariables ? getVariables(params) : {};
 
     const variables = {
       ...baseVariables,
-      status: isPreview ? "DRAFT" : "LIVE",
+      status: "LIVE",
     };
-
-    const activeQuery = isPreview
-      ? queries.preview
-      : queries.live;
 
     try {
       const { data } = await client.query({
-        query: activeQuery,
+        query: queries.live,
         variables,
         fetchPolicy: "no-cache",
       });
@@ -37,10 +31,9 @@ export function createPage({
     }
   };
 
-  const generateMetadata = async ({ params, searchParams }) => {
+  const generateMetadata = async ({ params }) => {
     const resolvedParams = await params;
-    const resolvedSearchParams = await searchParams;
-    const data = await fetchPageData(resolvedParams, resolvedSearchParams);
+    const data = await fetchPageData(resolvedParams);
 
     if (!data && metadataConfig?.notFoundTitle) {
        return { title: metadataConfig.notFoundTitle };
@@ -56,10 +49,9 @@ export function createPage({
     };
   };
 
-  const Page = async ({ params, searchParams }) => {
+  const Page = async ({ params }) => {
     const resolvedParams = await params;
-    const resolvedSearchParams = await searchParams;
-    const data = await fetchPageData(resolvedParams, resolvedSearchParams);
+    const data = await fetchPageData(resolvedParams);
 
     if (!data) {
       return notFound();
@@ -85,7 +77,7 @@ export function createPage({
             }}
           />
         )}
-        
+
         <ClientComponent {...props} />
       </>
     );

@@ -1,11 +1,11 @@
 // "use client";
 
-import { PAGES_QUERY, PAGES_QUERY_PREVIEW } from "@/queries/queries";
+import { PAGES_QUERY, PAGES_QUERY_PREVIEW, PAGES_ALL_SLUGS_QUERY } from "@/queries/queries";
 import DynamicClientPage from "./DynamicClientPage";
 import { createPage } from "@/utils/createPage";
+import client from "@/lib/apolloClient";
 
 const { Page, generateMetadata } = createPage({
-  // query: PAGES_QUERY,
   queries: {
     live: PAGES_QUERY,
     preview: PAGES_QUERY_PREVIEW,
@@ -38,6 +38,23 @@ const { Page, generateMetadata } = createPage({
     },
   },
 });
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URI, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.GRAPHQL_AUTH_TOKEN}` },
+      body: JSON.stringify({ query: '{ pages(pagination:{limit:-1}) { Slug } }' }),
+      cache: 'no-store',
+    });
+    const { data } = await res.json();
+    return (data?.pages || []).map(p => ({ slug: p.Slug }));
+  } catch {
+    return [];
+  }
+}
 
 export { generateMetadata };
 export default Page;

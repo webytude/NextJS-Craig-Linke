@@ -14,7 +14,7 @@ import Heading from "@/components/ui/Heading";
 import SlideLeft from "@/components/ui/animations/SlideLeft";
 import { useState } from "react";
 
-export default function AboutHero({ data, quickLinks }) {
+export default function AboutHero({ data, quickLinks, headingLevel = 1 }) {
   const { Title, SubTitle, ShortText, RightSideMedia } = data;
   const [activeId, setActiveId] = useState('');
   const [hoveredCategory, setHoveredCategory] = useState(null);
@@ -32,11 +32,11 @@ export default function AboutHero({ data, quickLinks }) {
     <>
       <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom>
         <div className="text-light uppercase">{Title}</div>
-        <FadeUp><Heading level={1} style={{ maxWidth: 476 }}>{SubTitle}</Heading></FadeUp>
+        <FadeUp><Heading level={headingLevel} style={{ maxWidth: 476 }}>{SubTitle}</Heading></FadeUp>
       </Box>
       <Box className="hide-desktop" borderBottom>
         <FadeUp style={{ width: '100%' }}>
-          <MediaRenderer media={RightSideMedia} classes={"image"} />
+          <MediaRenderer media={RightSideMedia} classes={"image"} altFallback={SubTitle} />
         </FadeUp>
       </Box>
       <Box
@@ -87,7 +87,7 @@ export default function AboutHero({ data, quickLinks }) {
   const rightContent = (
     <>
       <SlideLeft className="p20 hide-mobile fullHeight">
-        <MediaRenderer media={RightSideMedia} classes={"image"} />
+        <MediaRenderer media={RightSideMedia} classes={"image"} altFallback={SubTitle} />
       </SlideLeft>
     </>
   );

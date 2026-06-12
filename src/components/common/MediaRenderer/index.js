@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import styles from './mediaRenderer.module.css';
 
-export default function MediaRenderer({ media, width, height, classes, videoWidth, videoHeight }) {
+export default function MediaRenderer({ media, width, height, classes, videoWidth, videoHeight, altFallback = "" }) {
   if (!media) return null;
 
   const { EnableMuxVideo, MuxVideo, ImageORCarousel } = media;
@@ -43,7 +43,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
           <SwiperSlide key={index}>
             <Image
               src={img.url}
-              alt={img?.alternativeText || ""}
+              alt={img?.alternativeText || altFallback}
               width={width || 716}
               height={height || 889}
               className={classes || ''}
@@ -62,7 +62,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
     return (
       <Image
         src={img.url}
-        alt={img?.alternativeText || ""}
+        alt={img?.alternativeText || altFallback}
         width={width || 716}
         height={height || 889}
         className={classes || ''}

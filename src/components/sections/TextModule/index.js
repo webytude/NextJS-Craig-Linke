@@ -6,8 +6,9 @@ import Paragraph from "@/components/ui/Paragraph";
 import { renderRichText } from "@/utils/richText";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
-export default function TextModule({ data }) {
+export default function TextModule({ data, headingLevel = 1 }) {
   const { Title, SideContent, Padding } = data;
+  const HeadingTag = `h${headingLevel}`;
 
   const {
     DesktopTopPadding,
@@ -39,7 +40,7 @@ export default function TextModule({ data }) {
     <>
       <Box fullHeight direction="column" justify="space-between">
         <FadeUp>
-        <h1 className="headingOne">{Title}</h1>
+        <HeadingTag className="headingOne">{Title}</HeadingTag>
         </FadeUp>
       </Box>
     </>

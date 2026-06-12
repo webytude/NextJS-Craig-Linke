@@ -4,7 +4,6 @@ import ProjectsClient from "./ClientPage";
 import { createPage } from "@/utils/createPage";
 
 const { Page, generateMetadata } = createPage({
-  // query: PROJECTS_QUERY,
   queries: {
     live: PROJECTS_QUERY,
     preview: PROJECTS_QUERY_PREVIEW,

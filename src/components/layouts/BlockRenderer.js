@@ -29,7 +29,8 @@ import TeamListing from "../sections/TeamListing";
 import TextModule from "../sections/TextModule";
 import TwoColumnMediaAndText from "../sections/TwoColumnMediaAndText";
 
-export default function BlockRenderer({ block, quickViewLinks, blockId }) {
+export default function BlockRenderer({ block, quickViewLinks, blockId, isFirstH1 }) {
+  const headingLevel = isFirstH1 ? 1 : 2;
 
   const Component = () => {
     switch (block.__typename) {
@@ -50,10 +51,10 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
       return <Faq data={block} />;
 
     case "ComponentSectionNewContactHero":
-      return <HomeContactHero data={block} />;
+      return <HomeContactHero data={block} headingLevel={headingLevel} />;
 
     case "ComponentSectionContentHeroModule":
-      return <ContentHero data={block} />;
+      return <ContentHero data={block} headingLevel={headingLevel} />;
 
     case "ComponentSectionGetInTouch":
       return <ContactUsCTA data={block} />;
@@ -65,7 +66,7 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
       return <OurProcess data={block} />;
 
     case "ComponentSectionServices":
-      return <OurServices data={block} />;
+      return <OurServices data={block} headingLevel={headingLevel} />;
 
     case "ComponentSectionInteriorDesign":
       return <InteriorDesign data={block} />;
@@ -74,7 +75,7 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
       return <LatestJournals data={block} />;
 
     case "ComponentSectionTextModule":
-      return <TextModule data={block} />;
+      return <TextModule data={block} headingLevel={headingLevel} />;
 
     case "ComponentSectionTeamListing":
       return <TeamListing data={block} />;
@@ -89,7 +90,7 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
       return <ExploreProjects data={block} />;
 
     case "ComponentSectionAboutHero":
-      return <AboutHero data={block} quickLinks={quickViewLinks} />;
+      return <AboutHero data={block} quickLinks={quickViewLinks} headingLevel={headingLevel} />;
 
     case "ComponentSection4RowMediaAndText":
       return <FourRowMediaAndText data={block} />;

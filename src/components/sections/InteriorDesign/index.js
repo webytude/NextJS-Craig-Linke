@@ -72,7 +72,7 @@ export default function InteriorDesign({ data }) {
     <>
       <div className="p20">
         <SlideLeft>
-          <MediaRenderer media={Media} classes={'image'} />
+          <MediaRenderer media={Media} classes={'image'} altFallback={SubTitle || Title} />
         </SlideLeft>
       </div>
     </>

@@ -11,7 +11,7 @@ export default function JournalCardOverly({ firstItem }) {
   return (
     <div className={styles.projectHighlight}>
       <div className={styles.imgWrapper}>        
-          <MediaRenderer media={firstItem?.Media} width={912} classes={'image'} />
+          <MediaRenderer media={firstItem?.Media} width={912} classes={'image'} altFallback={firstItem?.Name} />
           <div className={styles.overly} />
       </div>
       <div className={styles.proOverlyContent}>

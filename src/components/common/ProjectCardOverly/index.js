@@ -27,6 +27,7 @@ export default function ProjectCardOverly({
           width={800}
           height={600}
           classes={"image"}
+          altFallback={bottomTitle}
         />
         <div className={styles.overly} />
       </div>

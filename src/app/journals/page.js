@@ -3,7 +3,6 @@ import JournalClient from "./ClientPage";
 import { createPage } from "@/utils/createPage";
 
 const { Page, generateMetadata } = createPage({
-  // query: JOURNALS_QUERY,
   queries: {
     live: JOURNALS_QUERY,
     preview: JOURNALS_QUERY_PREVIEW,

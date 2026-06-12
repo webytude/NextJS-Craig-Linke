@@ -32,18 +32,32 @@ export default function DynamicClientPage({ page }) {
     id: generateId(block.Title),
   }));
 
+  const H1_BLOCK_TYPES = new Set([
+    'ComponentSectionHomeHero',
+    'ComponentSectionAboutHero',
+    'ComponentSectionContactHero',
+    'ComponentSectionServices',
+    'ComponentSectionNewContactHero',
+    'ComponentSectionContentHeroModule',
+    'ComponentSectionTextModule',
+  ]);
+  let h1Assigned = false;
+
   return (
     <>
-      {page.Blocks.map((block, index) => (
-        <BlockRenderer
-          key={index}
-          block={block}
-          quickViewLinks={quickViewLinks}
-          blockId={
-            block.ShowInQuickView === true ? generateId(block.Title) : null
-          }
-        />
-      ))}
+      {page.Blocks.map((block, index) => {
+        const isFirstH1 = H1_BLOCK_TYPES.has(block.__typename) && !h1Assigned;
+        if (isFirstH1) h1Assigned = true;
+        return (
+          <BlockRenderer
+            key={index}
+            block={block}
+            quickViewLinks={quickViewLinks}
+            blockId={block.ShowInQuickView === true ? generateId(block.Title) : null}
+            isFirstH1={isFirstH1}
+          />
+        );
+      })}
     </>
   );
 }

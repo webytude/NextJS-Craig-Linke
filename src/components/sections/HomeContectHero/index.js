@@ -12,7 +12,7 @@ import styles from "./homeContactHero.module.css";
 import Select from 'react-select';
 import { useState } from "react";
 
-export default function HomeContactHero({ data }) {
+export default function HomeContactHero({ data, headingLevel = 1 }) {
   const { Title, PhoneNumber, Media, Email, Address, BudgetDropdown, HowDidYouHearDropdown, ServicesDropdown } = data;
 
   const [statusMessage, setStatusMessage] = useState(null);
@@ -233,7 +233,7 @@ export default function HomeContactHero({ data }) {
         className={styles.box}
       >
         <FadeUp classes="p20">
-          <Heading level={1} style={{ maxWidth: 580 }}>
+          <Heading level={headingLevel} style={{ maxWidth: 580 }}>
             {Title}
           </Heading>
         </FadeUp>

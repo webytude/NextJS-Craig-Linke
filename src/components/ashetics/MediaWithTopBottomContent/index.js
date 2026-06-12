@@ -54,7 +54,7 @@ export default function MediaWithTopBottomContent({ data }) {
   const rightContent = (
     <>
       <SlideLeft className={"p20 fullHeight"}>
-        <MediaRenderer media={Media} classes={"image"} />
+        <MediaRenderer media={Media} classes={"image"} altFallback={Title} />
       </SlideLeft>
     </>
   );
