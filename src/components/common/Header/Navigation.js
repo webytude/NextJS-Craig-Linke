@@ -33,48 +33,33 @@ const MegaMenuOverlay = ({ activeItem, onClose, onLinkClick }) => {
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-          onMouseLeave={onClose} 
+          onMouseLeave={onClose}
         >
           <div className={styles.megaMenuContent}>
             <div className={styles.megaMenuLinks}>
               <div className="uppercase">{activeItem.Name}</div>
               <div>
-              {activeItem.SubMenu.map((sub, index) => (
-                <Link
-                  key={index}
-                  href={`/aesthetics-details/${sub.Link}`}
-                  onClick={() => {
-                    onLinkClick && onLinkClick();
-                    onClose();
-                  }}
-                  onMouseEnter={() => setActiveImage(sub.Image?.url)}
-                  className={styles.subMenuItem}
-                >
-                  {sub.Name}
-                </Link>
-              ))}
+                {activeItem.SubMenu.map((sub, index) => (
+                  <Link
+                    key={index}
+                    href={`/aesthetics-details/${sub.Link}`}
+                    onClick={() => {
+                      onLinkClick && onLinkClick();
+                      onClose();
+                    }}
+                    onMouseEnter={() => setActiveImage(sub.Image?.url)}
+                    className={styles.subMenuItem}
+                  >
+                    {sub.Name}
+                  </Link>
+                ))}
               </div>
             </div>
 
             <div className={`${styles.megaMenuImageContainer} hide-mobile`}>
               <AnimatePresence mode="wait">
                 {activeImage && (
-                  // <motion.img
-                  //   key={activeImage}
-                  //   src={activeImage}
-                  //   alt="Preview"
-                  //   initial={{ opacity: 0, scale: 1.05 }}
-                  //   animate={{ opacity: 1, scale: 1 }}
-                  //   exit={{ opacity: 0 }}
-                  //   transition={{ duration: 0.4 }}
-                  //   className={styles.megaMenuImage}
-                  // />
-                  <Image
-                    src={activeImage}
-                    alt={""}
-                    width={176}
-                    height={238}
-                  />
+                  <Image src={activeImage} alt={""} width={176} height={238} />
                 )}
               </AnimatePresence>
             </div>
@@ -82,11 +67,16 @@ const MegaMenuOverlay = ({ activeItem, onClose, onLinkClick }) => {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 };
 
-export default function Navigation({ menu, onCloseMenu, onLinkClick, isMenuOpen }) {
+export default function Navigation({
+  menu,
+  onCloseMenu,
+  onLinkClick,
+  isMenuOpen,
+}) {
   const [activeItem, setActiveItem] = useState(null);
 
   useEffect(() => {
@@ -95,17 +85,20 @@ export default function Navigation({ menu, onCloseMenu, onLinkClick, isMenuOpen 
     }
   }, [isMenuOpen]);
 
-  const handleMainItemClick = (item) => {
-    if (item.SubMenu && item.SubMenu.length > 0) {
-      if (activeItem?.Name === item.Name) {
-        setActiveItem(null);
-      } else {
-        setActiveItem(item);
-      }
-    } else {
-      if (onLinkClick) onLinkClick();
-      setActiveItem(null);
+  const handleMainItemClick = (e, item) => {
+    const hasSubMenu = item.SubMenu && item.SubMenu.length > 0;
+
+    if (!hasSubMenu) {
+      return;
     }
+
+    if (activeItem?.Name !== item.Name) {
+      e.preventDefault();
+      setActiveItem(item);
+      return;
+    }
+
+    setActiveItem(null);
   };
 
   return (
@@ -126,18 +119,34 @@ export default function Navigation({ menu, onCloseMenu, onLinkClick, isMenuOpen 
                 if (item.SubMenu?.length) setActiveItem(item);
               }}
             >
-              <span className={`${styles.navLink} ${isActive ? styles.active : ""}`}>
-                  <Link href={item.Link} onClick={onLinkClick}>
-                    {item.Name}
-                  </Link>               
+              <span
+                className={`${styles.navLink} ${isActive ? styles.active : ""}`}
+              >
+                <Link
+                  href={item.Link}
+                  onClick={(e) => {
+                    if (item.SubMenu?.length) {
+                      if (activeItem?.Name !== item.Name) {
+                        e.preventDefault();
+                        setActiveItem(item);
+                        return;
+                      }
+
+                      setActiveItem(null);
+                      onLinkClick?.();
+                    }
+                  }}
+                >
+                  {item.Name}
+                </Link>
               </span>
             </li>
           );
         })}
       </ul>
-      <MegaMenuOverlay 
-        activeItem={activeItem} 
-        onClose={() => setActiveItem(null)} 
+      <MegaMenuOverlay
+        activeItem={activeItem}
+        onClose={() => setActiveItem(null)}
         onLinkClick={onLinkClick}
       />
     </>
