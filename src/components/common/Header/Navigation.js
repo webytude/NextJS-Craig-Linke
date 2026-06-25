@@ -134,6 +134,8 @@ export default function Navigation({
 
                       setActiveItem(null);
                       onLinkClick?.();
+                    } else {
+                      onLinkClick?.();
                     }
                   }}
                 >
