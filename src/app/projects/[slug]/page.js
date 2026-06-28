@@ -21,7 +21,7 @@ const { Page, generateMetadata } = createPage({
     notFoundTitle: "Page Not Found",
     generate: (data) => {
       const productionDomain =
-      process.env.NEXT_PUBLIC_SITE_URL || "";
+      process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au";
       const slug = data?.Slug || "";
 
       const canonicalUrl =

@@ -39,14 +39,12 @@ export function createPage({
        return { title: metadataConfig.notFoundTitle };
     }
 
-    if (metadataConfig?.generate) {
-      return metadataConfig.generate(data);
-    }
-
-    return {
+    const base = metadataConfig?.generate ? metadataConfig.generate(data) : {
       title: 'Craig Linke',
       description: 'Default description',
     };
+
+    return base;
   };
 
   const Page = async ({ params }) => {
@@ -57,12 +55,8 @@ export function createPage({
       return notFound();
     }
 
+    const schemaMarkup = data?.SchemaMarkup || data?.Seo?.SchemaMarkup || data?.Seo?.schemaMarkup;
     const props = { [propName]: data };
-
-    const schemaMarkup =
-      data?.SchemaMarkup ||
-      data?.Seo?.SchemaMarkup ||
-      data?.Seo?.schemaMarkup;
 
     return (
       <>
@@ -70,14 +64,10 @@ export function createPage({
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html:
-                typeof schemaMarkup === "string"
-                  ? schemaMarkup
-                  : JSON.stringify(schemaMarkup),
+              __html: typeof schemaMarkup === 'string' ? schemaMarkup : JSON.stringify(schemaMarkup)
             }}
           />
         )}
-
         <ClientComponent {...props} />
       </>
     );

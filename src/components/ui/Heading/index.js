@@ -1,7 +1,7 @@
 import styles from "./heading.module.css";
 
 export default function Heading({
-  level = 1, // 1–6 for h1–h6
+  level = 1,
   children,
   color = "",
   align = "",
@@ -10,8 +10,9 @@ export default function Heading({
   lineHeight = 1.2,
   className = "",
   style = {},
+  ...rest
 }) {
-  const Tag = `h${level}`; // dynamic HTML tag (h1, h2, etc.)
+  const Tag = `h${level}`;
 
   const inlineStyle = {
     color,
@@ -26,6 +27,7 @@ export default function Heading({
     <Tag
       className={`${styles.heading} ${styles[`h${level}`]} ${className}`}
       style={inlineStyle}
+      {...rest}
     >
       {children}
     </Tag>

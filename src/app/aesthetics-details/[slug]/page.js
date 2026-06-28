@@ -43,7 +43,7 @@ export async function generateMetadata({ params, searchParams }) {
     return { title: "Aesthetics Not Found" };
   }
 
-  const productionDomain = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const productionDomain = process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au";
   const seo = asthetics?.Seo;
 
   return {

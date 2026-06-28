@@ -26,13 +26,13 @@ export async function generateMetadata() {
   }
 
   const productionDomain =
-      process.env.NEXT_PUBLIC_SITE_URL || "";
+      (process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au").replace(/\/$/, '');
   const seo = page?.Seo;
 
   const canonicalUrl =
       page?.CanonicalUrl ||
       (slug === "home"
-        ? productionDomain
+        ? `${productionDomain}/`
         : `${productionDomain}/${slug}`);
 
   return {
@@ -71,31 +71,23 @@ export default async function Home() {
       'ComponentSectionServices',
       'ComponentSectionNewContactHero',
       'ComponentSectionContentHeroModule',
-      'ComponentSectionTextModule',
     ]);
-    let h1Assigned = false;
+    const firstH1Index = (page?.Blocks ?? []).findIndex(b => H1_BLOCK_TYPES.has(b.__typename));
 
     return <>
-
+      <PageThemeSetter theme={themeColor} />
       {schemaMarkup && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html:
-              typeof schemaMarkup === "string"
-                ? schemaMarkup
-                : JSON.stringify(schemaMarkup),
+            __html: typeof schemaMarkup === 'string' ? schemaMarkup : JSON.stringify(schemaMarkup)
           }}
         />
       )}
 
-      <PageThemeSetter theme={themeColor} />
-
-      {page?.Blocks?.map((block, i) => {
-        const isFirstH1 = H1_BLOCK_TYPES.has(block.__typename) && !h1Assigned;
-        if (isFirstH1) h1Assigned = true;
-        return <BlockRenderer key={i} block={block} isFirstH1={isFirstH1} />;
-      })}
+      {page?.Blocks?.map((block, i) => (
+        <BlockRenderer key={i} block={block} isFirstH1={i === firstH1Index} />
+      ))}
     </>;
   } catch (error) {
     console.error('Error loading home page:', error);

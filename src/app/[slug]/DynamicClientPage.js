@@ -39,15 +39,18 @@ export default function DynamicClientPage({ page }) {
     'ComponentSectionServices',
     'ComponentSectionNewContactHero',
     'ComponentSectionContentHeroModule',
-    'ComponentSectionTextModule',
   ]);
-  let h1Assigned = false;
+  const firstH1Index = page.Blocks.findIndex(b => H1_BLOCK_TYPES.has(b.__typename));
 
   return (
     <>
+      {firstH1Index === -1 && (
+        <h1 style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>
+          {page.Name}
+        </h1>
+      )}
       {page.Blocks.map((block, index) => {
-        const isFirstH1 = H1_BLOCK_TYPES.has(block.__typename) && !h1Assigned;
-        if (isFirstH1) h1Assigned = true;
+        const isFirstH1 = index === firstH1Index;
         return (
           <BlockRenderer
             key={index}
