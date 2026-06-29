@@ -171,7 +171,7 @@
     width: 100%;
     height: calc(100vh - 53px);
     z-index: 99;
-    overflow: hidden;
+    overflow: auto;
   }
   .nav > ul {
     flex-direction: column;
@@ -204,7 +204,7 @@
   }
   .menuBottom {
     position: absolute;
-    bottom: 0;
+    /* bottom: 0; */
     padding: 16px;
     border-top: 1px solid #957579;
     width: 100%;
