@@ -37,7 +37,17 @@ const MegaMenuOverlay = ({ activeItem, onClose, onLinkClick }) => {
         >
           <div className={styles.megaMenuContent}>
             <div className={styles.megaMenuLinks}>
-              <div className="uppercase">{activeItem.Name}</div>
+              <div className="uppercase">
+                <Link
+                  href={activeItem.Link}
+                  onClick={() => {
+                    onLinkClick && onLinkClick();
+                    onClose();
+                  }}
+                >
+                  {activeItem.Name}
+                </Link>
+              </div>
               <div>
                 {activeItem.SubMenu.map((sub, index) => (
                   <Link
