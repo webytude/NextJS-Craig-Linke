@@ -37,7 +37,7 @@ const MegaMenuOverlay = ({ activeItem, onClose, onLinkClick }) => {
         >
           <div className={styles.megaMenuContent}>
             <div className={styles.megaMenuLinks}>
-              <div className="uppercase">
+              <div className="uppercase hide-mobile">
                 <Link
                   href={activeItem.Link}
                   onClick={() => {

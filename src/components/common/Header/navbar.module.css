@@ -233,6 +233,6 @@
     height: 100%;
   }
   .megaMenuContent {
-    height: 281px; 
+    height: auto; 
   }
 }
