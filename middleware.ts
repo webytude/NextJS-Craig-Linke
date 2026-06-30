@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+/*
 // Static redirect map
 const redirects: Record<string, string> = {
   '/projects/toorak-gardens/fergusson': '/projects',
@@ -41,6 +42,7 @@ const redirects: Record<string, string> = {
   '/projects/our-process': '/our-process',
 }
 
+/*
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
   let pathname = url.pathname
@@ -68,6 +70,10 @@ export function middleware(request: NextRequest) {
   }
 
   return NextResponse.next()
+}
+  */
+export function middleware() {
+  return NextResponse.next();
 }
 
 
