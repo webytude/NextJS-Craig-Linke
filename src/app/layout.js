@@ -2,7 +2,7 @@ import "./globals.css";
 import { GLOBAL_QUERY } from "@/queries/queries";
 import LayoutClient from "./LayoutClient";
 import client from "@/lib/apolloClient";
-import SmoothScrolling from "@/components/common/SmoothScrolling";
+// import SmoothScrolling from "@/components/common/SmoothScrolling";
 import Script from "next/script";
 
 
@@ -54,7 +54,7 @@ export default async function RootLayout({ children }) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <SmoothScrolling />
+        {/* <SmoothScrolling /> */}
         <LayoutClient globalData={data.global}>{children}</LayoutClient>
       </body>
     </html>

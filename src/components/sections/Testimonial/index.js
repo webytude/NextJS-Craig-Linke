@@ -1,7 +1,4 @@
-'use client';
-
 import styles from './testimonial.module.css'
-import { useState } from 'react';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 export default function Testimonial({ data }) {

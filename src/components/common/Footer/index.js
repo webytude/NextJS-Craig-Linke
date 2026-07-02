@@ -1,12 +1,6 @@
-"use client";
 
-import Image from "next/image";
 import styles from "./footer.module.css";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import Divider from "@/components/ui/Divider";
 import SocialLinks from "./SocialLinks";
 import ContctDetail from "./Contact";
 

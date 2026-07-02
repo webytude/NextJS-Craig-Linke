@@ -1,4 +1,9 @@
 import dynamic from "next/dynamic";
+import HomeHero from"../sections/HomeHero";
+import ContactHero from"../sections/ContactHero";
+import ContentHero from"../sections/ContentHero";
+import AboutHero from"../sections/AboutHero";
+import HomeContactHero from"../sections/HomeContectHero";
 
 const AestheticMaterials = dynamic(() => import("../ashetics/AestheticMaterials"));
 const AstheticsContact = dynamic(() => import("../ashetics/AstheticsContact"));
@@ -7,11 +12,8 @@ const MediaWithTopBottomContent = dynamic(() => import("../ashetics/MediaWithTop
 const ProjectWithManuallyEditable = dynamic(() => import("../ashetics/ProjectWithManuallyEditable"));
 const RelatedAesthetics = dynamic(() => import("../ashetics/RelatedAesthetics"));
 const SingleMedia = dynamic(() => import("../ashetics/SingleMedia"));
-const AboutHero = dynamic(() => import("../sections/AboutHero"));
 const Awards = dynamic(() => import("../sections/Awards"));
-const ContactHero = dynamic(() => import("../sections/ContactHero"));
 const ContactUsCTA = dynamic(() => import("../sections/ContactUsCTA"));
-const ContentHero = dynamic(() => import("../sections/ContentHero"));
 const ExploreProjects = dynamic(() => import("../sections/ExploreProjects"));
 const ExpressiveMediaModule = dynamic(() => import("../sections/ExpressiveMediaModule"));
 const Faq = dynamic(() => import("../sections/Faq"));
@@ -19,8 +21,6 @@ const FeaturedProjects = dynamic(() => import("../sections/FeaturedProjects"));
 const FourRowMediaAndText = dynamic(() => import("../sections/FourRowMediaAndText"));
 const FullScreenMedia = dynamic(() => import("../sections/FullScreenMedia"));
 const FullWidthMedia = dynamic(() => import("../sections/FullWidthMedia"));
-const HomeContactHero = dynamic(() => import("../sections/HomeContectHero"));
-const HomeHero = dynamic(() => import("../sections/HomeHero"));
 const InteriorDesign = dynamic(() => import("../sections/InteriorDesign"));
 const LatestJournals = dynamic(() => import("../sections/LatestJournals"));
 const OurProcess = dynamic(() => import("../sections/OurProcess"));

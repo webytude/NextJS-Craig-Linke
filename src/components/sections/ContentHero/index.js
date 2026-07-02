@@ -1,5 +1,3 @@
-"use client";
-
 import MediaRenderer from "@/components/common/MediaRenderer";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
 import FadeUp from "@/components/ui/animations/FadeUp";

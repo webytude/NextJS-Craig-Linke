@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import MuxPlayer from "@mux/mux-player-react";
 import Image from "next/image";
