@@ -13,7 +13,7 @@ export async function generateMetadata() {
     const { data } = await client.query({
       query: PAGES_QUERY,
       variables: { slug },
-      fetchPolicy: 'no-cache',
+      fetchPolicy: 'cache-first',
     });
     page = data?.pages?.find((p) => p.Slug === slug);
 
@@ -50,7 +50,7 @@ export default async function Home() {
     const { data, loading, error } = await client.query({
       query: PAGES_QUERY,
       variables: { slug },
-      fetchPolicy: 'no-cache',
+      fetchPolicy: 'cache-first',
     });
 
     

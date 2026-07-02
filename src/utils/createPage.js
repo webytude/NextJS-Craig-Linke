@@ -27,7 +27,7 @@ export function createPage({
       const { data } = await client.query({
         query: activeQuery,
         variables,
-        fetchPolicy: "no-cache",
+        fetchPolicy: "cache-first",
       });
 
       return getData ? getData(data, variables) : data;

@@ -13,7 +13,7 @@ async function getAestheticsData(searchParams) {
 
   const { data } = await client.query({ 
     query,
-    fetchPolicy: 'no-cache',
+    fetchPolicy: 'cache-first',
   });
 
   return data?.astheticsDetails;

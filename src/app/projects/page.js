@@ -41,26 +41,3 @@ const { Page, generateMetadata } = createPage({
 
 export { generateMetadata };
 export default Page;
-
-// async function getData() {
-//   const { data } = await client.query({ 
-//     query: PROJECTS_QUERY, 
-//     fetchPolicy: "cache-first",
-//   });
-  
-//   return data?.projects;
-// }
-
-// export async function generateMetadata() {
-//   return {
-//     title: 'Craig Linke',
-//     description: "Default description"
-//   };
-// }
-
-// export default async function Projects() {
-
-//   const projectData = await getData();
-
-//   return <ProjectsClient project={projectData} />;
-// }

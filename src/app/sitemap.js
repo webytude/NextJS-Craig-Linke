@@ -15,7 +15,7 @@ export default async function sitemap() {
           }
         }
       `,
-      fetchPolicy: "no-cache",
+      fetchPolicy: "cache-first",
     });
 
     const { data: projectData } = await client.query({
@@ -28,7 +28,7 @@ export default async function sitemap() {
             }
             }
         `,
-        fetchPolicy: "no-cache",
+        fetchPolicy: "cache-first",
     });
 
     const { data: journalData } = await client.query({
@@ -41,7 +41,7 @@ export default async function sitemap() {
           }
         }
       `,
-      fetchPolicy: "no-cache",
+      fetchPolicy: "cache-first",
     });
 
     const { data: astheticsData } = await client.query({
@@ -54,7 +54,7 @@ export default async function sitemap() {
           }
         }
       `,
-      fetchPolicy: "no-cache",
+      fetchPolicy: "cache-first",
     });
 
     const pageUrls =

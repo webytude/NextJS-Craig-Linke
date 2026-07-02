@@ -8,7 +8,7 @@ import BodyTheme from '@/components/layouts/BodyTheme'
 import Loader from '@/components/Loader';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { getLenis } from "@/components/common/SmoothScrolling";
+// import { getLenis } from "@/components/common/SmoothScrolling";
 
 export default function LayoutClient({ children, globalData }) {
   const pathname = usePathname();
@@ -20,26 +20,26 @@ export default function LayoutClient({ children, globalData }) {
 
   const isAestheticsPage = pathname?.startsWith('/aesthetics-details');
 
-  useEffect(() => {
-    const lenis = getLenis();
+  // useEffect(() => {
+  //   const lenis = getLenis();
 
-    if (!lenis) return;
+  //   if (!lenis) return;
 
-    const timeout = setTimeout(() => {
-      const hash = window.location.hash;
+  //   const timeout = setTimeout(() => {
+  //     const hash = window.location.hash;
 
-      if (hash) {
-        const element = document.querySelector(hash);
-        if (element) {
-          lenis.scrollTo(element, { duration: 1.2 });
-        }
-      } else {
-        lenis.scrollTo(0, { immediate: true });
-      }
-    }, 300);
+  //     if (hash) {
+  //       const element = document.querySelector(hash);
+  //       if (element) {
+  //         lenis.scrollTo(element, { duration: 1.2 });
+  //       }
+  //     } else {
+  //       lenis.scrollTo(0, { immediate: true });
+  //     }
+  //   }, 300);
 
-    return () => clearTimeout(timeout);
-  }, [pathname, loaderExitStarted]);
+  //   return () => clearTimeout(timeout);
+  // }, [pathname, loaderExitStarted]);
 
   useEffect(() => {
     if (!loaderExitStarted) {

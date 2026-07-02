@@ -9,7 +9,7 @@ import Script from "next/script";
 export async function generateMetadata() {
   const { data } = await client.query({
     query: GLOBAL_QUERY,
-    fetchPolicy: 'no-cache',
+    fetchPolicy: 'cache-first',
   });
 
   return {
@@ -27,7 +27,7 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
   const { data } = await client.query({
     query: GLOBAL_QUERY,
-    fetchPolicy: 'no-cache',
+    fetchPolicy: 'cache-first',
   });
 
   return (

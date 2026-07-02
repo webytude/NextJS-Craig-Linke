@@ -19,57 +19,9 @@ import VideoPreview from "./VideoPreview";
 
 export default function ProjectClient({ projects }) {
 
-  // const [project, setProject] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
   const [activeImageId, setActiveImageId] = useState(null);
   const [contentOpacity, setContentOOpacity] = useState(1);
   const imageRefs = useRef({});
-
-  // useEffect(() => {
-  //   if (!slug) {
-  //     setLoading(false);
-  //     setError(new Error("No project slug provided."));
-  //     return;
-  //   }
-
-  //   const fetchProject = async () => {
-  //     setLoading(true);
-  //     setError(null);
-  //     setProject(null);
-
-  //     try {
-  //       const { data: fetchedApolloData, errors: apolloErrors } =
-  //         await client.query({
-  //           query: PROJECTS_QUERY_SLUG,
-  //           variables: { slug: slug },
-  //           fetchPolicy: "network-only",
-  //         });
-
-  //       if (apolloErrors) {
-  //         console.error("GraphQL Query Errors:", apolloErrors);
-  //         setError(new Error(apolloErrors.map((e) => e.message).join(", ")));
-  //         return;
-  //       }
-
-  //       const fetchedProject = fetchedApolloData?.projects?.[0];
-
-  //       if (fetchedProject) {
-  //         setProject(fetchedProject);
-  //       } else {
-  //         setError(new Error(`Project with slug "${slug}" not found.`));
-  //       }
-  //     } catch (err) {
-  //       console.error("Error fetching project details:", err);
-  //       setError(new Error(`Failed to load project: ${err.message}`));
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProject();
-  // }, [slug, client]);
 
   useEffect(() => {
     const handleScroll = () => {
