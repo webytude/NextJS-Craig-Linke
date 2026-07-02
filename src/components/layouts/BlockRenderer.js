@@ -1,33 +1,34 @@
-import AestheticMaterials from "../ashetics/AestheticMaterials";
-import AstheticsContact from "../ashetics/AstheticsContact";
-// import FullWidthMediaAshetics from "../ashetics/FullWidthMedia";
-import ImageAndText from "../ashetics/ImageAndText";
-import MediaWithTopBottomContent from "../ashetics/MediaWithTopBottomContent";
-import ProjectWithManuallyEditable from "../ashetics/ProjectWithManuallyEditable";
-import RelatedAesthetics from "../ashetics/RelatedAesthetics";
-import SingleMedia from "../ashetics/SingleMedia";
-import AboutHero from "../sections/AboutHero";
-import Awards from "../sections/Awards";
-import ContactHero from "../sections/ContactHero";
-import ContactUsCTA from "../sections/ContactUsCTA";
-import ContentHero from "../sections/ContentHero";
-import ExploreProjects from "../sections/ExploreProjects";
-import ExpressiveMediaModule from "../sections/ExpressiveMediaModule";
-import Faq from "../sections/Faq";
-import FeaturedProjects from "../sections/FeaturedProjects";
-import FourRowMediaAndText from "../sections/FourRowMediaAndText";
-import FullScreenMedia from "../sections/FullScreenMedia";
-import FullWidthMedia from "../sections/FullWidthMedia";
-import HomeContactHero from "../sections/HomeContectHero";
-import HomeHero from "../sections/HomeHero";
-import InteriorDesign from "../sections/InteriorDesign";
-import LatestJournals from "../sections/LatestJournals";
-import OurProcess from "../sections/OurProcess";
-import ProjectHighlight from "../sections/ProjectHighlight";
-import OurServices from "../sections/Services";
-import TeamListing from "../sections/TeamListing";
-import TextModule from "../sections/TextModule";
-import TwoColumnMediaAndText from "../sections/TwoColumnMediaAndText";
+import dynamic from "next/dynamic";
+
+const AestheticMaterials = dynamic(() => import("../ashetics/AestheticMaterials"));
+const AstheticsContact = dynamic(() => import("../ashetics/AstheticsContact"));
+const ImageAndText = dynamic(() => import("../ashetics/ImageAndText"));
+const MediaWithTopBottomContent = dynamic(() => import("../ashetics/MediaWithTopBottomContent"));
+const ProjectWithManuallyEditable = dynamic(() => import("../ashetics/ProjectWithManuallyEditable"));
+const RelatedAesthetics = dynamic(() => import("../ashetics/RelatedAesthetics"));
+const SingleMedia = dynamic(() => import("../ashetics/SingleMedia"));
+const AboutHero = dynamic(() => import("../sections/AboutHero"));
+const Awards = dynamic(() => import("../sections/Awards"));
+const ContactHero = dynamic(() => import("../sections/ContactHero"));
+const ContactUsCTA = dynamic(() => import("../sections/ContactUsCTA"));
+const ContentHero = dynamic(() => import("../sections/ContentHero"));
+const ExploreProjects = dynamic(() => import("../sections/ExploreProjects"));
+const ExpressiveMediaModule = dynamic(() => import("../sections/ExpressiveMediaModule"));
+const Faq = dynamic(() => import("../sections/Faq"));
+const FeaturedProjects = dynamic(() => import("../sections/FeaturedProjects"));
+const FourRowMediaAndText = dynamic(() => import("../sections/FourRowMediaAndText"));
+const FullScreenMedia = dynamic(() => import("../sections/FullScreenMedia"));
+const FullWidthMedia = dynamic(() => import("../sections/FullWidthMedia"));
+const HomeContactHero = dynamic(() => import("../sections/HomeContectHero"));
+const HomeHero = dynamic(() => import("../sections/HomeHero"));
+const InteriorDesign = dynamic(() => import("../sections/InteriorDesign"));
+const LatestJournals = dynamic(() => import("../sections/LatestJournals"));
+const OurProcess = dynamic(() => import("../sections/OurProcess"));
+const ProjectHighlight = dynamic(() => import("../sections/ProjectHighlight"));
+const OurServices = dynamic(() => import("../sections/Services"));
+const TeamListing = dynamic(() => import("../sections/TeamListing"));
+const TextModule = dynamic(() => import("../sections/TextModule"));
+const TwoColumnMediaAndText = dynamic(() => import("../sections/TwoColumnMediaAndText"));
 
 export default function BlockRenderer({ block, quickViewLinks, blockId }) {
 
@@ -109,9 +110,6 @@ export default function BlockRenderer({ block, quickViewLinks, blockId }) {
 
     case "ComponentSectionImageAndText":
       return <ImageAndText data={block} />;
-
-    // case "ComponentSectionFullWidthMedia":
-    //   return <FullWidthMediaAshetics data={block} />;
 
     case "ComponentSectionAestheticMaterials":
       return <AestheticMaterials data={block} />;
