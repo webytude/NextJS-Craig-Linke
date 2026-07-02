@@ -80,20 +80,8 @@ export default function LayoutClient({ children, globalData }) {
       {showLoader && (
         <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} />
       )}
-      {/* <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} /> */}
 
       <motion.div
-        // initial={{ y: showLoader ? '100%' : '0%' }}
-        // animate={{ y: (showLoader && !loaderExitStarted) ? '100%' : '0%' }}
-        // transition={{ duration: showLoader ? 1 : 0,  ease: [0.83, 0, 0.17, 1] }}
-        // onAnimationComplete={() => {
-        //   setIsAnimationComplete(true);
-        // }}
-        // style={{
-        //   transform: isAnimationComplete ? 'none' : undefined,
-        //   width: '100%',
-        //   minHeight: '100vh'
-        // }}
         initial={{ y: showLoader ? '100%' : 0 }}
         animate={{ 
            y: 0
@@ -108,7 +96,6 @@ export default function LayoutClient({ children, globalData }) {
         <BodyTheme />
         {!isAestheticsPage && <Header globalData={globalData} />}
         <main>{children}</main>
-        {/* {!isAestheticsPage && <Footer globalData={globalData} />} */}
         <Footer hideOnMobile={isAestheticsPage ? 'hide-desktop' : ''} globalData={globalData} />
       </ApolloWrapper>
       </motion.div>

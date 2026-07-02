@@ -13,7 +13,7 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-    unoptimized: true,
+    // unoptimized: true,
   },
 };
 

@@ -22,7 +22,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         controls={false}
         style={{ width: videoWidth ? videoWidth : "100%", height: videoHeight ? videoHeight : "100%", '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
       />
@@ -47,6 +47,9 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
               width={width || 716}
               height={height || 889}
               className={classes || ''}
+              priority
+              loading="eager"
+              fetchPriority="high"
               // style={responsiveImageStyle}
               // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

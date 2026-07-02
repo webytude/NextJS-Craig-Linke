@@ -23,31 +23,25 @@ export default function HomeHero({ data }) {
         borderBottom
         padding="0"
       >
-        <FadeUp classes="p20">
+        <div className="p20">
           <Heading level={1} style={{ maxWidth: 580 }}>
             {Title}
           </Heading>
-        </FadeUp>
+        </div>
         <div className="flex justify-space-between fullWidth p20">
-          <FadeUp>
-            <div className="uppercase hero-text-light">{ShortText}</div>
-          </FadeUp>
+          <div className="uppercase hero-text-light">{ShortText}</div>
           {Button && (
             <div className="hide-mobile">
-              <FadeUp>
                 <LinkWithArrow
                   text={Button?.ButtonText || 'Read More'}
                   href={Button?.ButtonURL || '#'}
                 />
-              </FadeUp>
             </div>
           )}
         </div>
       </Box>
       <Box className="hide-desktop" borderBottom>
-        <FadeUp>
           <MediaRenderer media={RightSideMedia} classes={"image"} />
-        </FadeUp>
       </Box>
       <Box
         fullHeight
@@ -61,19 +55,17 @@ export default function HomeHero({ data }) {
         mobileJustify="center"
         mobileAlign="center"
       >
-          <SlideRight className="p20 fullHeight">
+          <div className="p20 fullHeight">
             <MediaRenderer media={LeftSideMedia} classes={"image"} />
-          </SlideRight>
+          </div>
           <div className="p20">
             {Button && (
-              <FadeUp>
                 <div className="text-center hide-desktop">
                   <LinkWithArrow
                     text={Button?.ButtonText || 'Read More'}
                     href={Button?.ButtonURL || '#'}
                   />
                 </div>
-              </FadeUp>
             )}
           </div>
       </Box>
@@ -82,9 +74,9 @@ export default function HomeHero({ data }) {
 
   const rightContent = (
     <>
-        <SlideLeft className="p20 hide-mobile fullHeight">
+        <div className="p20 hide-mobile fullHeight">
           <MediaRenderer media={RightSideMedia} classes={"image"} />
-        </SlideLeft>
+        </div>
     </>
   );
 
