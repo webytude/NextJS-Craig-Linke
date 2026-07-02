@@ -77,7 +77,7 @@ export default function LayoutClient({ children, globalData }) {
 
   return (
     <>
-      {showLoader && (
+      {/* {showLoader && (
         <Loader onExitStart={handleLoaderExitStart} onExitComplete={handleLoaderExitComplete} />
       )}
 
@@ -91,14 +91,14 @@ export default function LayoutClient({ children, globalData }) {
           duration: showLoader ? 4 : 0,
           ease: [0.76, 0, 0.24, 1]
         }}
-      >
+      > */}
       <ApolloWrapper>
         <BodyTheme />
         {!isAestheticsPage && <Header globalData={globalData} />}
         <main>{children}</main>
         <Footer hideOnMobile={isAestheticsPage ? 'hide-desktop' : ''} globalData={globalData} />
       </ApolloWrapper>
-      </motion.div>
+      {/* </motion.div> */}
     </>
   )
 }
