@@ -1,12 +1,14 @@
 "use client";
 
-import MuxPlayer from "@mux/mux-player-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import styles from './mediaRenderer.module.css';
+
+const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false });
+const MediaCarousel = dynamic(() => import("./MediaCarousel"), {
+  ssr: false,
+  loading: () => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>Loading...</div>
+});
 
 export default function MediaRenderer({ media, width, height, classes, videoWidth, videoHeight }) {
   if (!media) return null;
@@ -38,24 +40,12 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
   if (Array.isArray(ImageORCarousel) && ImageORCarousel.length > 1) {
     return (
       <div className={styles.sliderWrapper}>
-        <Swiper style={{ width: '100%', height: '100%' }}>
-        {ImageORCarousel.map((img, index) => (
-          <SwiperSlide key={index}>
-            <Image
-              src={img.url}
-              alt={img?.alternativeText || ""}
-              width={width || 716}
-              height={height || 889}
-              className={classes || ''}
-              priority
-              loading="eager"
-              fetchPriority="high"
-              // style={responsiveImageStyle}
-              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </SwiperSlide>
-        ))}
-        </Swiper>
+        <MediaCarousel
+          ImageORCarousel={ImageORCarousel}
+          width={width}
+          height={height}
+          classes={classes}
+        />
       </div>
     );
   }
@@ -69,8 +59,8 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         width={width || 716}
         height={height || 889}
         className={classes || ''}
-        // style={responsiveImageStyle}
-        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        style={responsiveImageStyle}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
     );
   }

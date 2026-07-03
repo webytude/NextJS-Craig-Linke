@@ -1,31 +1,40 @@
 import Link from 'next/link'
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import Image from 'next/image';
 import styles from './socialLinks.module.css'
 import FadeUp from '@/components/ui/animations/FadeUp';
+import dynamic from 'next/dynamic';
+
+const SocialSwiper = dynamic(() => import('./SocialSwiper'), { ssr: false });
 
 export default function SocialLinks({ socialLinks }) {
   return (
     <div className={`${styles.social} social-mobile`}>
         <ul>
-        {socialLinks.map((item, index) => <li key={index}>
-          <FadeUp>
-            <Link href={item.Links.ButtonURL} target={item.Links.OpenNewTab ? "_blank" : ''}>
-            <Swiper className="mySwiper">
-                {item.Media.ImageORCarousel.map((item, index) => <SwiperSlide key={index}>
+        {socialLinks.map((item, index) => {
+          const images = item.Media?.ImageORCarousel || [];
+          const hasMultiple = images.length > 1;
+          const firstImage = images[0];
+
+          return (
+            <li key={index}>
+              <FadeUp>
+                <Link href={item.Links.ButtonURL} target={item.Links.OpenNewTab ? "_blank" : ''}>
+                  {hasMultiple ? (
+                    <SocialSwiper images={images} />
+                  ) : firstImage ? (
                     <Image
-                    src={item.url}
-                    width={70}
-                    height={96}
-                    alt={item.alternativeText || ""}
+                      src={firstImage.url}
+                      width={70}
+                      height={96}
+                      alt={firstImage.alternativeText || ""}
                     />
-                </SwiperSlide>)}
-            </Swiper>
-            <div className={styles.font12}>{item.Links.ButtonText}</div>
-            </Link>
-            </FadeUp>
-        </li>)}
+                  ) : null}
+                  <div className={styles.font12}>{item.Links.ButtonText}</div>
+                </Link>
+              </FadeUp>
+            </li>
+          );
+        })}
         </ul>
     </div>
   )

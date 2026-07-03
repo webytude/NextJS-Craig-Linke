@@ -4,14 +4,11 @@ import MediaRenderer from "@/components/common/MediaRenderer";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
 import Box from "@/components/ui/Box/Box";
 import Divider from "@/components/ui/Divider";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Pagination, Navigation } from 'swiper/modules';
-import Image from "next/image";
 import { useState } from "react";
 import styles from "./expressiveMedia.module.css";
+import dynamic from "next/dynamic";
+
+const ExpressiveSlider = dynamic(() => import("./ExpressiveSlider"), { ssr: false });
 
 export default function ExpressiveMediaModule({ data }) {
   const { LeftSideMedia, RightSideMedia } = data;
@@ -23,30 +20,12 @@ export default function ExpressiveMediaModule({ data }) {
   const leftContent = (
     <>
         <Box fullHeight direction="column" justify="space-between" mobileGap="90px" borderBottom mobileBorderBottom={false}>
-        <Swiper 
-              modules={[Pagination, Navigation]}
-              navigation={{
-                prevEl: prevEl,
-                nextEl: nextEl,
-              }}
-              pagination={{
-                el: paginationEl,
-                type: 'fraction',
-              }}
-              style={{ width: '100%', height: '100%' }}
-            >
-            {ImageORCarousel.map((img, index) => (
-              <SwiperSlide key={index}>
-                <Image
-                  src={img.url}
-                  alt={img?.alternativeText || ""}
-                  width={716}
-                  height={424}
-                  className="image"
-                />
-              </SwiperSlide>
-            ))}
-            </Swiper>
+        <ExpressiveSlider
+          ImageORCarousel={ImageORCarousel}
+          prevEl={prevEl}
+          nextEl={nextEl}
+          paginationEl={paginationEl}
+        />
       </Box>
       <Box
         fullHeight

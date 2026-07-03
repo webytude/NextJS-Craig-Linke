@@ -1,9 +1,11 @@
 "use client";
-import MuxPlayer from "@mux/mux-player-react";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styles from "./videoPreview.module.css";
 import { createPortal } from "react-dom";
 import Loading from "@/components/common/Loading";
+
+const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false });
 
 export default function VideoPreview({ videoData, thumbnail }) {
   const [open, setOpen] = useState(false);

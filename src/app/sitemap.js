@@ -5,57 +5,61 @@ export default async function sitemap() {
   const baseUrl = "https://craiglinke.com.au";
 
   try {
-    const { data: pageData } = await client.query({
-      query: gql`
-        query SitemapPages {
-          pages(pagination: { limit: -1 }) {
-            Slug
-            updatedAt
-            publishedAt
-          }
-        }
-      `,
-      fetchPolicy: "cache-first",
-    });
-
-    const { data: projectData } = await client.query({
+    const [pageRes, projectRes, journalRes, astheticsRes] = await Promise.all([
+      client.query({
         query: gql`
-            query SitemapProjects {
-            projects(pagination: { limit: -1 }) {
-                Slug
-                updatedAt
-                publishedAt
+          query SitemapPages {
+            pages(pagination: { limit: -1 }) {
+              Slug
+              updatedAt
+              publishedAt
             }
-            }
+          }
         `,
         fetchPolicy: "cache-first",
-    });
-
-    const { data: journalData } = await client.query({
-      query: gql`
-        query SitemapJournals {
-          journals(pagination: { limit: -1 }) {
-            Slug
-            updatedAt
-            publishedAt
+      }),
+      client.query({
+        query: gql`
+          query SitemapProjects {
+            projects(pagination: { limit: -1 }) {
+              Slug
+              updatedAt
+              publishedAt
+            }
           }
-        }
-      `,
-      fetchPolicy: "cache-first",
-    });
-
-    const { data: astheticsData } = await client.query({
-      query: gql`
-        query SitemapAsthetics {
-          astheticsDetails(pagination: { limit: -1 }) {
-            Slug
-            updatedAt
-            publishedAt
+        `,
+        fetchPolicy: "cache-first",
+      }),
+      client.query({
+        query: gql`
+          query SitemapJournals {
+            journals(pagination: { limit: -1 }) {
+              Slug
+              updatedAt
+              publishedAt
+            }
           }
-        }
-      `,
-      fetchPolicy: "cache-first",
-    });
+        `,
+        fetchPolicy: "cache-first",
+      }),
+      client.query({
+        query: gql`
+          query SitemapAsthetics {
+            astheticsDetails(pagination: { limit: -1 }) {
+              Slug
+              updatedAt
+              publishedAt
+            }
+          }
+        `,
+        fetchPolicy: "cache-first",
+      })
+    ]);
+
+    const pageData = pageRes?.data;
+    const projectData = projectRes?.data;
+    const journalData = journalRes?.data;
+    const astheticsData = astheticsRes?.data;
 
     const pageUrls =
     pageData?.pages

@@ -2,9 +2,10 @@ import { ASTHETICS_QUERY_SLUG, ASTHETICS_QUERY_SLUG_PREVIEW, GLOBAL_QUERY } from
 import { notFound } from "next/navigation";
 import AestheticsClient from "./AestheticsClient";
 import client from "@/lib/apolloClient";
+import { cache } from 'react';
 
-async function getAestheticsData(searchParams) {
-  const resolvedSearchParams = await searchParams;
+const memoizedGetAestheticsData = cache(async (searchParamsStr) => {
+  const resolvedSearchParams = JSON.parse(searchParamsStr);
   const isPreview = resolvedSearchParams?.preview === 'true';
 
   const query = isPreview
@@ -17,6 +18,11 @@ async function getAestheticsData(searchParams) {
   });
 
   return data?.astheticsDetails;
+});
+
+async function getAestheticsData(searchParams) {
+  const resolvedSearchParams = await searchParams;
+  return await memoizedGetAestheticsData(JSON.stringify(resolvedSearchParams || {}));
 }
 
 export async function generateMetadata({ params, searchParams }) {

@@ -12,10 +12,12 @@ import Spacer from "@/components/ui/Spacer";
 import LinkWithArrow from "@/components/ui/Link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import MediaRenderer from "@/components/common/MediaRenderer";
-import MuxPlayer from "@mux/mux-player-react";
 import classNames from 'classnames';
 import FadeUp from "@/components/ui/animations/FadeUp";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false });
 
 export default function FullScreenMedia({ data }) {
   const { Title, FullScreenMedia, DefaultMedia, TextList } = data;

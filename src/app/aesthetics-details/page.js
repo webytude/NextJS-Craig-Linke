@@ -1,12 +1,5 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 export default function Aesthetics() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace('/aesthetics-details/new-heritage')
-  }, [router])
+  redirect('/aesthetics-details/new-heritage');
 }

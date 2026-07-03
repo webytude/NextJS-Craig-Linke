@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import client from '@/lib/apolloClient';
+import { cache } from 'react';
 
 export function createPage({
   queries,
@@ -9,10 +10,11 @@ export function createPage({
   propName = 'data',
   metadataConfig
 }) {
-  const fetchPageData = async (params, searchParams) => {
-    const resolvedSearchParams = await searchParams;
-    const isPreview = resolvedSearchParams.preview === 'true';
-    const baseVariables = getVariables ? getVariables(params) : {};
+  const memoizedFetch = cache(async (paramString, searchParamString) => {
+    const resolvedParams = JSON.parse(paramString);
+    const resolvedSearchParams = JSON.parse(searchParamString);
+    const isPreview = resolvedSearchParams?.preview === 'true';
+    const baseVariables = getVariables ? getVariables(resolvedParams) : {};
 
     const variables = {
       ...baseVariables,
@@ -35,6 +37,15 @@ export function createPage({
       console.error("API Error:", error);
       return null;
     }
+  });
+
+  const fetchPageData = async (params, searchParams) => {
+    const resolvedParams = await params;
+    const resolvedSearchParams = await searchParams;
+    return await memoizedFetch(
+      JSON.stringify(resolvedParams || {}),
+      JSON.stringify(resolvedSearchParams || {})
+    );
   };
 
   const generateMetadata = async ({ params, searchParams }) => {

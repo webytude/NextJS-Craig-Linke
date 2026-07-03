@@ -7,7 +7,9 @@ import Image from "next/image";
 import styles from "./AestheticsGlobalLayer.module.css";
 import { useAestheticsNav, useAestheticsScroll } from "@/context/AestheticsContext";
 import { useEffect, useRef, useState } from "react";
-import MuxPlayer from "@mux/mux-player-react";
+import dynamic from "next/dynamic";
+
+const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false });
 
 export default function AestheticsGlobalLayer({ allAestheticsData }) {
   const pathname = usePathname();
