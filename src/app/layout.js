@@ -3,27 +3,6 @@ import { GLOBAL_QUERY } from "@/queries/queries";
 import LayoutClient from "./LayoutClient";
 import client from "@/lib/apolloClient";
 import Script from "next/script";
-import localFont from "next/font/local";
-
-const sansFont = localFont({
-  src: [
-    { path: "./fonts/saanslight-webfont.woff2", weight: "300", style: "normal" },
-    { path: "./fonts/saanslight-webfont.woff", weight: "300", style: "normal" },
-  ],
-  variable: "--font-saanslight",
-  display: "swap",
-  preload: true,
-});
-
-const headingFont = localFont({
-  src: [
-    { path: "./fonts/collapse-lightitalic-webfont.woff2", weight: "300", style: "italic" },
-    { path: "./fonts/collapse-lightitalic-webfont.woff", weight: "300", style: "italic" },
-  ],
-  variable: "--font-collapselight-italic",
-  display: "swap",
-  preload: true,
-});
 
 export async function generateMetadata() {
   const productionDomain = process.env.NEXT_PUBLIC_SITE_URL || "https://www.craiglinke.com";
@@ -95,7 +74,7 @@ export default async function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={`${sansFont.variable} ${headingFont.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-M7253PM8"
