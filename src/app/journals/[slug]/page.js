@@ -2,6 +2,8 @@ import { createPage } from "@/utils/createPage";
 import JournalClient from "./JournalClient";
 import { GET_BY_SLUG_JOURNALS, GET_BY_SLUG_JOURNALS_PREVIEW } from "@/queries/queries";
 
+export const revalidate = 300;
+
 const { Page, generateMetadata } = createPage({
   // query: GET_BY_SLUG_JOURNALS,
   queries: {

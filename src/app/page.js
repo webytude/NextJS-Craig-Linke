@@ -5,6 +5,8 @@ import BlockRenderer from "@/components/layouts/BlockRenderer";
 import PageThemeSetter from "@/components/layouts/PageThemeSetter";
 import Loading from "@/components/common/Loading";
 
+export const revalidate = 300;
+
 export async function generateMetadata() {
   const slug = 'home';
   let page = null;

@@ -2,6 +2,8 @@ import { PAGES_QUERY, PAGES_QUERY_PREVIEW } from "@/queries/queries";
 import DynamicClientPage from "./DynamicClientPage";
 import { createPage } from "@/utils/createPage";
 
+export const revalidate = 300;
+
 const { Page, generateMetadata } = createPage({
   // query: PAGES_QUERY,
   queries: {

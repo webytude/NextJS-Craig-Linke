@@ -1,11 +1,16 @@
 'use client';
 
 import React from 'react'
+import dynamic from 'next/dynamic';
 import ApolloWrapper from './ApolloWrapper'
 import Header from '@/components/common/Header'
-import Footer from '@/components/common/Footer'
 import BodyTheme from '@/components/layouts/BodyTheme'
 import { usePathname } from 'next/navigation';
+
+const Footer = dynamic(() => import('@/components/common/Footer'), {
+  ssr: true,
+  loading: () => null,
+});
 
 export default function LayoutClient({ children, globalData }) {
   const pathname = usePathname();

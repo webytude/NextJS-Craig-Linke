@@ -3,6 +3,8 @@ import { PROJECTS_QUERY, PROJECTS_QUERY_PREVIEW } from "@/queries/queries";;
 import ProjectsClient from "./ClientPage";
 import { createPage } from "@/utils/createPage";
 
+export const revalidate = 300;
+
 const { Page, generateMetadata } = createPage({
   // query: PROJECTS_QUERY,
   queries: {

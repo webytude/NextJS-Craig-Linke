@@ -3,6 +3,8 @@ import { PROJECTS_QUERY_SLUG, PROJECTS_QUERY_SLUG_PREVIEW } from "@/queries/quer
 import ProjectClient from "./ProjectClient";
 import { createPage } from "@/utils/createPage";
 
+export const revalidate = 300;
+
 const { Page, generateMetadata } = createPage({
   // query: PROJECTS_QUERY_SLUG,
   queries: {

@@ -2,32 +2,82 @@ import "./globals.css";
 import { GLOBAL_QUERY } from "@/queries/queries";
 import LayoutClient from "./LayoutClient";
 import client from "@/lib/apolloClient";
-// import SmoothScrolling from "@/components/common/SmoothScrolling";
 import Script from "next/script";
+import localFont from "next/font/local";
 
+const sansFont = localFont({
+  src: [
+    { path: "./fonts/saanslight-webfont.woff2", weight: "300", style: "normal" },
+    { path: "./fonts/saanslight-webfont.woff", weight: "300", style: "normal" },
+  ],
+  variable: "--font-saanslight",
+  display: "swap",
+  preload: true,
+});
+
+const headingFont = localFont({
+  src: [
+    { path: "./fonts/collapse-lightitalic-webfont.woff2", weight: "300", style: "italic" },
+    { path: "./fonts/collapse-lightitalic-webfont.woff", weight: "300", style: "italic" },
+  ],
+  variable: "--font-collapselight-italic",
+  display: "swap",
+  preload: true,
+});
 
 export async function generateMetadata() {
-  const { data } = await client.query({
-    query: GLOBAL_QUERY,
-    fetchPolicy: 'cache-first',
-  });
+  const productionDomain = process.env.NEXT_PUBLIC_SITE_URL || "https://www.craiglinke.com";
 
-  return {
-    title: data.global.site_name,
-    description: data.global.site_description,
-    verification: {
-      google: "e6bYik4ximfOekIUbF5_utfkZasYsBiW1HREVUGGDuc",
-    },
-    icons: {
-      icon: [{ url: data.global.site_favicon?.url || '/favicon.ico' }],
-    },
-  };
+  try {
+    const { data } = await client.query({
+      query: GLOBAL_QUERY,
+      fetchPolicy: "cache-first",
+    });
+
+    return {
+      title: data?.global?.site_name || "Craig Linke",
+      description: data?.global?.site_description || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+      metadataBase: new URL(productionDomain),
+      alternates: {
+        canonical: productionDomain,
+      },
+      openGraph: {
+        title: data?.global?.site_name || "Craig Linke",
+        description: data?.global?.site_description || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+        type: "website",
+        url: productionDomain,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: data?.global?.site_name || "Craig Linke",
+        description: data?.global?.site_description || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+      },
+      verification: {
+        google: "e6bYik4ximfOekIUbF5_utfkZasYsBiW1HREVUGGDuc",
+      },
+      icons: {
+        icon: [{ url: data?.global?.site_favicon?.url || "/favicon.ico" }],
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Craig Linke",
+      description: "Craig Linke is a boutique, Adelaide based building and interior design company.",
+      metadataBase: new URL(productionDomain),
+      alternates: {
+        canonical: productionDomain,
+      },
+      icons: {
+        icon: [{ url: "/favicon.ico" }],
+      },
+    };
+  }
 }
 
 export default async function RootLayout({ children }) {
   const { data } = await client.query({
     query: GLOBAL_QUERY,
-    fetchPolicy: 'cache-first',
+    fetchPolicy: "cache-first",
   });
 
   return (
@@ -45,7 +95,7 @@ export default async function RootLayout({ children }) {
           }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body className={`${sansFont.variable} ${headingFont.variable}`} suppressHydrationWarning>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-M7253PM8"
@@ -54,7 +104,6 @@ export default async function RootLayout({ children }) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {/* <SmoothScrolling /> */}
         <LayoutClient globalData={data.global}>{children}</LayoutClient>
       </body>
     </html>

@@ -1,5 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import styles from "./videoPreview.module.css";
 import { createPortal } from "react-dom";
@@ -54,12 +55,14 @@ export default function VideoPreview({ videoData, thumbnail }) {
           </button>
 
           {thumbnailUrl && (
-            <img
+            <Image
               onClick={handleOpen}
               src={thumbnailUrl}
-              alt="Video Preview"
+              alt="Video preview thumbnail"
               width={124}
               height={70}
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           )}
         </div>
