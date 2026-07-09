@@ -55,6 +55,7 @@ export default function Header({ globalData }) {
                   openMobileMenu ? styles.active : ""
                 }`}
                 onClick={handleMobileToggle}
+                aria-label="Open menu"
               >
                 <span className={`${styles.hamburgerLine} toogleBtn`}></span>
                 <span className={`${styles.hamburgerLine} toogleBtn`}></span>
@@ -70,7 +71,7 @@ export default function Header({ globalData }) {
                 transition={transitionSettings}
                 className={styles.desktopMenuButton}
               >
-                <Link href={"/"}>
+                <Link href={"/"} aria-label="Go to homepage">
                   <svg
                     width="25"
                     height="13"
@@ -91,7 +92,7 @@ export default function Header({ globalData }) {
                 layoutId="craig-text"
                 transition={transitionSettings}
               >
-                <Link href={"/"}>
+                <Link href={"/"} aria-label="Go to homepage">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="68"
@@ -141,7 +142,7 @@ export default function Header({ globalData }) {
                   layoutId="craig-text"
                   transition={transitionSettings}
                 >
-                  <Link href={"/"}>
+                  <Link href={"/"} aria-label="CRAIG">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="68"
@@ -176,7 +177,7 @@ export default function Header({ globalData }) {
                   layoutId="linke-text"
                   transition={transitionSettings}
                 >
-                  <Link href={"/"}>
+                  <Link href={"/"} aria-label="LINKE">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="67"

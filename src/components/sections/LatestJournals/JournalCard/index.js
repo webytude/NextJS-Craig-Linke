@@ -16,7 +16,7 @@ export default function JournalCard({ data }) {
     <div className={styles.journalCard}>
       <Heading className={styles.title} level={4}>{Name}</Heading>
       <div className={styles.imageWrapper}>
-        <Link href={`/journals/${Slug}`}>
+        <Link href={`/journals/${Slug}`} aria-label={Name}>
         <MediaRenderer media={Media} width={322} height={434} />
         </Link>
       </div>

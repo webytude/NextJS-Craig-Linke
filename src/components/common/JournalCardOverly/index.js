@@ -40,7 +40,7 @@ export default function JournalCardOverly({ firstItem }) {
           </div>
           </div>
         </div>
-        <Link href={`/journals/${firstItem?.Slug}`} className={styles.contentLink}></Link>
+        <Link href={`/journals/${firstItem?.Slug}`} className={styles.contentLink} aria-label={firstItem?.Name}></Link>
       </div>
     </div>
   );

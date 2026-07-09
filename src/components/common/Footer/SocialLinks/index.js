@@ -18,7 +18,7 @@ export default function SocialLinks({ socialLinks }) {
           return (
             <li key={index}>
               <FadeUp>
-                <Link href={item.Links.ButtonURL} target={item.Links.OpenNewTab ? "_blank" : ''}>
+                <Link href={item.Links.ButtonURL} target={item.Links.OpenNewTab ? "_blank" : ''} aria-label={item.Links.ButtonText}>
                   {hasMultiple ? (
                     <SocialSwiper images={images} />
                   ) : firstImage ? (

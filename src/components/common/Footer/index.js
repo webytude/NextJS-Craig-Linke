@@ -16,7 +16,7 @@ const Footer = ({ globalData, hideOnMobile }) => {
           </div>
           <div className={styles.company}>
             <div className={styles.logoItem}>
-              <Link href={'/'}>
+              <Link href={'/'} aria-label="CRAIG">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="138"
@@ -48,7 +48,7 @@ const Footer = ({ globalData, hideOnMobile }) => {
               </Link>
             </div>
             <div className={styles.logoItem}>
-              <Link href={'/'}>
+              <Link href={'/'} aria-label="Go to homepage">
               <svg
                 width="51"
                 height="26"
@@ -64,7 +64,7 @@ const Footer = ({ globalData, hideOnMobile }) => {
               </Link>
             </div>
             <div className={styles.logoItem}>
-              <Link href={'/'}>
+              <Link href={'/'} aria-label="LINKE">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="135"
