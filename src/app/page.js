@@ -62,7 +62,6 @@ export default async function Home() {
     const page = data?.pages?.find((p) => p.Slug === slug);
 
     const themeColor = page?.ThemeColor || "";
-    const schemaMarkup = page?.Seo?.SchemaMarkup;
 
     const H1_BLOCK_TYPES = new Set([
       'ComponentSectionHomeHero',
@@ -76,14 +75,6 @@ export default async function Home() {
 
     return <>
       <PageThemeSetter theme={themeColor} />
-      {schemaMarkup && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: typeof schemaMarkup === 'string' ? schemaMarkup : JSON.stringify(schemaMarkup)
-          }}
-        />
-      )}
 
       {page?.Blocks?.map((block, i) => (
         <BlockRenderer key={i} block={block} isFirstH1={i === firstH1Index} />

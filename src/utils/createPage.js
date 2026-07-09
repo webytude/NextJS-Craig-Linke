@@ -55,22 +55,9 @@ export function createPage({
       return notFound();
     }
 
-    const schemaMarkup = data?.SchemaMarkup || data?.Seo?.SchemaMarkup || data?.Seo?.schemaMarkup;
     const props = { [propName]: data };
 
-    return (
-      <>
-        {schemaMarkup && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: typeof schemaMarkup === 'string' ? schemaMarkup : JSON.stringify(schemaMarkup)
-            }}
-          />
-        )}
-        <ClientComponent {...props} />
-      </>
-    );
+    return <ClientComponent {...props} />;
   };
 
   return { generateMetadata, Page };
