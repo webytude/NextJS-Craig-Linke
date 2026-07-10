@@ -64,10 +64,7 @@ export function middleware(request: NextRequest) {
     )
   }
 
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-pathname', pathname)
-
-  return NextResponse.next({ request: { headers: requestHeaders } })
+  return NextResponse.next()
 }
 
 

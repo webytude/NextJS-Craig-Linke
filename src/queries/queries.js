@@ -1189,34 +1189,3 @@ export const ASTHETICS_QUERY_SLUG_PREVIEW = gql `
     }
   }
 `;
-// Lightweight, schema-only queries used by the root layout to render
-// each page's JSON-LD in the document <head>.
-export const PAGE_SCHEMA_QUERY = gql`
-  query PageSchema($slug: String!) {
-    pages(filters: { Slug: { eq: $slug } }) {
-      Seo {
-        SchemaMarkup
-      }
-    }
-  }
-`;
-
-export const PROJECT_SCHEMA_QUERY = gql`
-  query ProjectSchema($slug: String!) {
-    projects(filters: { Slug: { eq: $slug } }) {
-      Seo {
-        SchemaMarkup
-      }
-    }
-  }
-`;
-
-export const JOURNAL_SCHEMA_QUERY = gql`
-  query JournalSchema($slug: String!) {
-    journals(filters: { Slug: { eq: $slug } }) {
-      Seo {
-        SchemaMarkup
-      }
-    }
-  }
-`;
