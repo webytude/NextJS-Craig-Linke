@@ -22,6 +22,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         aria-modal="true"
         aria-label="Video player"
         playbackId={MuxVideo.playback_id}
+        poster={`https://image.mux.com/${MuxVideo.playback_id}/thumbnail.jpg?time=1`}
         streamType="on-demand"
         autoPlay
         muted
