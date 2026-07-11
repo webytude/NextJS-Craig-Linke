@@ -18,6 +18,9 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
   if (EnableMuxVideo && MuxVideo?.playback_id) {
     return (
       <MuxPlayer
+        role="dialog"
+        aria-modal="true"
+        aria-label="Video player"
         playbackId={MuxVideo.playback_id}
         streamType="on-demand"
         autoPlay
