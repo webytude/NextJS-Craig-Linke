@@ -80,7 +80,9 @@ export default function VideoPreview({ videoData, thumbnail }) {
                   streamType="on-demand"
                   autoPlay
                   playsInline
-                  preload="auto"
+                  preload="none"
+                  maxResolution="720p"
+                  capRenditionToPlayerSize
                   controls
                   poster={thumbnailUrl}
                   style={{

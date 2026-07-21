@@ -1,10 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import LazyMuxPlayer from "@/components/common/LazyMuxPlayer";
 import Image from "next/image";
 import styles from './mediaRenderer.module.css';
 
-const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), { ssr: false });
 const MediaCarousel = dynamic(() => import("./MediaCarousel"), {
   ssr: false,
   loading: () => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>Loading...</div>
@@ -17,10 +17,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
 
   if (EnableMuxVideo && MuxVideo?.playback_id) {
     return (
-      <MuxPlayer
-        role="dialog"
-        aria-modal="true"
-        aria-label="Video player"
+      <LazyMuxPlayer
         playbackId={MuxVideo.playback_id}
         poster={`https://image.mux.com/${MuxVideo.playback_id}/thumbnail.jpg?time=1`}
         streamType="on-demand"
@@ -28,7 +25,6 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         muted
         loop
         playsInline
-        preload="metadata"
         controls={false}
         style={{ width: videoWidth ? videoWidth : "100%", height: videoHeight ? videoHeight : "100%", '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
       />
