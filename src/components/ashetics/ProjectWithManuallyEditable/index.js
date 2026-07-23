@@ -17,7 +17,7 @@ export default function ProjectWithManuallyEditable({ data }) {
           <Heading className={`${styles.heading} hide-mobile`} level={4}>{data?.Title}</Heading>
           <div className={styles.imageWrapper}>
               <Link href={data?.Button?.ButtonURL || `${data?.Slug}` || "#"} target={data?.Button?.OpenNewTab ? "_blank" : "_self"}>
-                <MediaRenderer media={data?.Media || data?.DesktopMedia} width={349} height={495} videoHeight={495} videoWidth={349} />
+                <MediaRenderer media={data?.Media || data?.DesktopMedia} width={349} height={495} videoHeight={495} videoWidth={349} altFallback={data?.Title} />
               </Link>
           </div>
           <div className={styles.contentWrapper}>

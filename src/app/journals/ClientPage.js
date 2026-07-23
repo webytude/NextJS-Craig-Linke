@@ -23,12 +23,15 @@ export default function JournalClient({ journal }) {
   }, []);
 
   return (
-    <ProjectFilterBase
-      projects={journal}
-      categoryKey={'JournalCategory'}
-      renderProjects={(filteredProjects) => (
-        <InfiniteJournal filteredProjects={filteredProjects} />
-      )}
-    />
+    <>
+      <h1 style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>Craig Linke Journal</h1>
+      <ProjectFilterBase
+        projects={journal}
+        categoryKey={'JournalCategory'}
+        renderProjects={(filteredProjects) => (
+          <InfiniteJournal filteredProjects={filteredProjects} />
+        )}
+      />
+    </>
   );
 }

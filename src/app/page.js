@@ -5,7 +5,7 @@ import BlockRenderer from "@/components/layouts/BlockRenderer";
 import PageThemeSetter from "@/components/layouts/PageThemeSetter";
 import Loading from "@/components/common/Loading";
 
-export const revalidate = 300;
+// export const revalidate = 300;
 
 export async function generateMetadata() {
   const slug = 'home';
@@ -28,13 +28,13 @@ export async function generateMetadata() {
   }
 
   const productionDomain =
-      process.env.NEXT_PUBLIC_SITE_URL || "";
+      (process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au").replace(/\/$/, '');
   const seo = page?.Seo;
 
   const canonicalUrl =
       page?.CanonicalUrl ||
       (slug === "home"
-        ? productionDomain
+        ? `${productionDomain}/`
         : `${productionDomain}/${slug}`);
 
   return {
@@ -45,6 +45,8 @@ export async function generateMetadata() {
     },
   };
 }
+
+export const revalidate = 3600;
 
 export default async function Home() {
   const slug = 'home';
@@ -64,24 +66,29 @@ export default async function Home() {
     const themeColor = page?.ThemeColor || "";
     const schemaMarkup = page?.Seo?.SchemaMarkup;
 
-    return <>
+    const H1_BLOCK_TYPES = new Set([
+      'ComponentSectionHomeHero',
+      'ComponentSectionAboutHero',
+      'ComponentSectionContactHero',
+      'ComponentSectionServices',
+      'ComponentSectionNewContactHero',
+      'ComponentSectionContentHeroModule',
+    ]);
+    const firstH1Index = (page?.Blocks ?? []).findIndex(b => H1_BLOCK_TYPES.has(b.__typename));
 
+    return <>
+      <PageThemeSetter theme={themeColor} />
       {schemaMarkup && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html:
-              typeof schemaMarkup === "string"
-                ? schemaMarkup
-                : JSON.stringify(schemaMarkup),
+            __html: typeof schemaMarkup === 'string' ? schemaMarkup : JSON.stringify(schemaMarkup)
           }}
         />
       )}
-    
-      <PageThemeSetter theme={themeColor} />
 
       {page?.Blocks?.map((block, i) => (
-        <BlockRenderer key={i} block={block} />
+        <BlockRenderer key={i} block={block} isFirstH1={i === firstH1Index} />
       ))}
     </>;
   } catch (error) {

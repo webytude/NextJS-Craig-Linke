@@ -1,11 +1,11 @@
 import { createPage } from "@/utils/createPage";
 import JournalClient from "./JournalClient";
 import { GET_BY_SLUG_JOURNALS, GET_BY_SLUG_JOURNALS_PREVIEW } from "@/queries/queries";
+import client from "@/lib/apolloClient";
 
-export const revalidate = 300;
+// export const revalidate = 300;
 
 const { Page, generateMetadata } = createPage({
-  // query: GET_BY_SLUG_JOURNALS,
   queries: {
     live: GET_BY_SLUG_JOURNALS,
     preview: GET_BY_SLUG_JOURNALS_PREVIEW,
@@ -22,14 +22,12 @@ const { Page, generateMetadata } = createPage({
     notFoundTitle: "Page Not Found",
     generate: (data) => {
       const productionDomain =
-      process.env.NEXT_PUBLIC_SITE_URL || "";
+      process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au";
       const slug = data?.Slug || "";
 
       const canonicalUrl =
       data?.CanonicalUrl ||
-      (slug === "home"
-        ? productionDomain
-        : `${productionDomain}/${slug}`);
+      `${productionDomain}/journals/${slug}`;
 
       return {
         title: data?.Seo?.MetaTitle || 'Craig Linke',
@@ -41,6 +39,23 @@ const { Page, generateMetadata } = createPage({
     }
   }
 });
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URI, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.GRAPHQL_AUTH_TOKEN}` },
+      body: JSON.stringify({ query: '{ journals { Slug } }' }),
+      cache: 'no-store',
+    });
+    const { data } = await res.json();
+    return (data?.journals || []).map(j => ({ slug: j.Slug }));
+  } catch {
+    return [];
+  }
+}
 
 export { generateMetadata };
 export default Page;

@@ -43,11 +43,7 @@ const redirects: Record<string, string> = {
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
-  let pathname = url.pathname
-
-  if (pathname.length > 1 && pathname.endsWith('/')) {
-    pathname = pathname.slice(0, -1)
-  }
+  const pathname = url.pathname
 
   let finalPath = pathname
 
@@ -61,10 +57,11 @@ export function middleware(request: NextRequest) {
     finalPath = '/about'
   }
 
-  // Only ONE redirect from middleware
   if (finalPath !== pathname) {
-    url.pathname = finalPath
-    return NextResponse.redirect(url, 301)
+    return NextResponse.redirect(
+      new URL(finalPath + (url.search || ''), request.url),
+      301
+    )
   }
 
   return NextResponse.next()

@@ -5,7 +5,6 @@ import { createPage } from "@/utils/createPage";
 export const revalidate = 300;
 
 const { Page, generateMetadata } = createPage({
-  // query: JOURNALS_QUERY,
   queries: {
     live: JOURNALS_QUERY,
     preview: JOURNALS_QUERY_PREVIEW,
@@ -17,24 +16,16 @@ const { Page, generateMetadata } = createPage({
 
   metadataConfig: {
     notFoundTitle: "Page Not Found",
-    generate: (data) => {
+    generate: () => {
       const productionDomain =
-      process.env.NEXT_PUBLIC_SITE_URL || "";
-      const slug = data?.Slug || "";
-
-      const canonicalUrl =
-      data?.CanonicalUrl ||
-      (slug === "home"
-        ? productionDomain
-        : `${productionDomain}/${slug}`);
-
+        (process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au").replace(/\/$/, '');
       return {
-        title: data?.Seo?.MetaTitle || 'Craig Linke',
-        description: data?.Seo?.MetaDescription || 'Craig Linke is a boutique...',
+        title: 'Journals | Craig Linke',
+        description: 'Craig Linke is a boutique, Adelaide based building and interior design company. We specialise in architectural builds and custom renovation projects.',
         alternates: {
-          canonical: canonicalUrl,
+          canonical: `${productionDomain}/journals`,
         },
-      }
+      };
     }
   }
 });

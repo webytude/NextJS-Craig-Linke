@@ -32,18 +32,35 @@ export default function DynamicClientPage({ page }) {
     id: generateId(block.Title),
   }));
 
+  const H1_BLOCK_TYPES = new Set([
+    'ComponentSectionHomeHero',
+    'ComponentSectionAboutHero',
+    'ComponentSectionContactHero',
+    'ComponentSectionServices',
+    'ComponentSectionNewContactHero',
+    'ComponentSectionContentHeroModule',
+  ]);
+  const firstH1Index = page.Blocks.findIndex(b => H1_BLOCK_TYPES.has(b.__typename));
+
   return (
     <>
-      {page.Blocks.map((block, index) => (
-        <BlockRenderer
-          key={index}
-          block={block}
-          quickViewLinks={quickViewLinks}
-          blockId={
-            block.ShowInQuickView === true ? generateId(block.Title) : null
-          }
-        />
-      ))}
+      {firstH1Index === -1 && (
+        <h1 style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>
+          {page.Name}
+        </h1>
+      )}
+      {page.Blocks.map((block, index) => {
+        const isFirstH1 = index === firstH1Index;
+        return (
+          <BlockRenderer
+            key={index}
+            block={block}
+            quickViewLinks={quickViewLinks}
+            blockId={block.ShowInQuickView === true ? generateId(block.Title) : null}
+            isFirstH1={isFirstH1}
+          />
+        );
+      })}
     </>
   );
 }

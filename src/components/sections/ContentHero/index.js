@@ -9,7 +9,7 @@ import Paragraph from "@/components/ui/Paragraph";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import styles from './contentHero.module.css';
 
-export default function ContentHero({ data }) {
+export default function ContentHero({ data, headingLevel = 1 }) {
 
   const { Title, ShowInReverseLayout, Media, Heading: headingText, ContentHeroModule } = data;
 
@@ -18,7 +18,7 @@ export default function ContentHero({ data }) {
         <Box fullHeight justify="center">
       <FadeUp classes="p20 text-center" style={{maxWidth:570, margin: 'auto'}}>
         <div className="text-light uppercase">{Title}</div>
-        <Heading className={styles.heading}>
+        <Heading level={headingLevel} className={styles.heading}>
             <BlocksRenderer content={headingText || []} />
         </Heading>
         <Paragraph className="text-light" style={{ maxWidth: 420, margin: 'auto'}}>
@@ -33,7 +33,7 @@ export default function ContentHero({ data }) {
     <>
         <Box fullHeight justify="center">
         <SlideRight className={styles.center}>
-            <MediaRenderer media={Media} width={514} height={642} classes={"image"} />
+            <MediaRenderer media={Media} width={514} height={642} classes={"image"} altFallback={Title} />
         </SlideRight>
         </Box>
     </>

@@ -106,10 +106,11 @@ export default function ProjectClient({ projects }) {
   //   pointerEvents: contentOpacity === 0 ? 'none' : 'auto',
   // };
 
-
-
   return (
     <>
+      <h1 style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>
+        {projects.Name}{projects?.SubTitle ? `, ${projects.SubTitle}` : ''}
+      </h1>
       <div className="hide-mobile">
         <section>
           <div className={styles.pageWrapper}>
@@ -199,6 +200,7 @@ export default function ProjectClient({ projects }) {
                             height={mediaHeight}
                             videoWidth={mediaVideoWidth}
                             videoHeight={mediaVideoHeight}
+                            altFallback={`${projects.Name} project image`}
                           />
                         </div>
                       );
@@ -216,8 +218,8 @@ export default function ProjectClient({ projects }) {
 
             <div className={styles.rightColumn}>
               <div className="p20">
-                <Heading level={1} color="#000" className={styles.heading}>
-                  {projects.Name}
+                <Heading level={2} color="#000" className={styles.heading} aria-hidden="true">
+                  {projects.Name}{' '}
                   <span>{projects?.SubTitle}</span>
                 </Heading>
                 <Paragraph className={styles.paragraph}>
@@ -282,11 +284,12 @@ export default function ProjectClient({ projects }) {
               width={358}
               height={510}
               classes={"image"}
+              altFallback={projects.Name}
             />
           </div>
           <div className={styles.detailContent}>
-            <Heading level={1} color="#000" className={styles.heading}>
-              {projects.Name}
+            <Heading level={2} color="#000" className={styles.heading} aria-hidden="true">
+              {projects.Name}{' '}
               <span>{projects?.SubTitle}</span>
             </Heading>
             <Paragraph className={styles.paragraph}>
@@ -321,6 +324,7 @@ export default function ProjectClient({ projects }) {
                           media={block}
                           width={mediaWidth}
                           height={mediaHeight}
+                          altFallback={`${projects.Name} project image`}
                         />
                       </div>
                     );

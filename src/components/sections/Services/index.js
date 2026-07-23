@@ -15,7 +15,7 @@ import Divider from "@/components/ui/Divider";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function OurServices({ data }) {
+export default function OurServices({ data, headingLevel = 1 }) {
   const { Title, Description, ServicesLists, Button, ShowInReverseLayout } =
     data;
 
@@ -106,7 +106,7 @@ export default function OurServices({ data }) {
       >
         <FadeUp classes="p20">
           <div className="text-light uppercase pb20">{Title}</div>
-          <Heading level={1} style={{ maxWidth: 476 }}>
+          <Heading level={headingLevel} style={{ maxWidth: 476 }}>
             {Description}
           </Heading>
           <div className="pt20 pb30 hide-desktop">

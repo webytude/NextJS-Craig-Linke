@@ -13,11 +13,14 @@ export default function ProjectsClient({ project }) {
   }, []);
 
   return (
-    <ProjectFilterBase
-      projects={project}
-      renderProjects={(filteredProjects) => (
-        <InfiniteProjects filteredProjects={filteredProjects} />
-      )}
-    />
+    <>
+      <h1 style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>Craig Linke Projects</h1>
+      <ProjectFilterBase
+        projects={project}
+        renderProjects={(filteredProjects) => (
+          <InfiniteProjects filteredProjects={filteredProjects} />
+        )}
+      />
+    </>
   );
 }

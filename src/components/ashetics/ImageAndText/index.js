@@ -16,7 +16,7 @@ export default function ImageAndText({ data }) {
         <div className={styles.txtWrapper}>
           <div className={styles.imageWrapper}>
             <FadeUp>
-            <MediaRenderer media={Media} width={272} height={381} />
+            <MediaRenderer media={Media} width={272} height={381} altFallback={data.Heading || Title} />
             </FadeUp>
           </div>
           <div className='uppercase'>

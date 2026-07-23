@@ -521,6 +521,14 @@ export const PAGES_QUERY_PREVIEW = gql`
   }
 `;
 
+export const PAGES_ALL_SLUGS_QUERY = gql`
+  query allPageSlugs {
+    pages(pagination: { limit: -1 }) {
+      Slug
+    }
+  }
+`;
+
 export const GLOBAL_QUERY = gql`
   query Global {
     global {
