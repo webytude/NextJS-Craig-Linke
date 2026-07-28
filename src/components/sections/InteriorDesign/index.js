@@ -70,8 +70,8 @@ export default function InteriorDesign({ data }) {
 
   const rightContent = (
     <>
-      <div className="p20">
-        <SlideLeft>
+      <div className="p20 fullHeight">
+        <SlideLeft className="fullHeight">
           <MediaRenderer media={Media} classes={'image'} altFallback={SubTitle || Title} />
         </SlideLeft>
       </div>
@@ -82,7 +82,7 @@ export default function InteriorDesign({ data }) {
     <>
     {/* <Divider className="hide-desktop" style={{ marginTop: '35px'}} /> */}
     <section className={styles.InteriorDesign}>
-      <TwoColumnLayout left={leftContent} right={rightContent} showDivider showMobileDivider={false} reverse={ShowInReverseLayout} />
+      <TwoColumnLayout fullHeight left={leftContent} right={rightContent} showDivider showMobileDivider={false} reverse={ShowInReverseLayout} />
     </section>
     <Divider />
     </>
