@@ -70,5 +70,22 @@ export default async function AestheticsDetail({ params, searchParams }) {
     return notFound();
   }
 
-  return <AestheticsClient asthetics={data} />;
+  const schemaMarkup = asthetics?.Seo?.SchemaMarkup;
+
+  return (
+    <>
+      {schemaMarkup && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              typeof schemaMarkup === "string"
+                ? schemaMarkup
+                : JSON.stringify(schemaMarkup),
+          }}
+        />
+      )}
+      <AestheticsClient asthetics={data} />
+    </>
+  );
 }
