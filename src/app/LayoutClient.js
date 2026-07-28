@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import ApolloWrapper from './ApolloWrapper'
 import Header from '@/components/common/Header'
-import Footer from '@/components/common/Footer'
 import BodyTheme from '@/components/layouts/BodyTheme'
-import { usePathname } from 'next/navigation';
-import { getLenis } from "@/components/common/SmoothScrolling";
+import { usePathname } from 'next/navigation'
 
 /*
  * Intro loading animation disabled at the client's request.
@@ -20,6 +19,11 @@ import { getLenis } from "@/components/common/SmoothScrolling";
  * import { motion } from 'framer-motion';
  */
 
+const Footer = dynamic(() => import('@/components/common/Footer'), {
+  ssr: true,
+  loading: () => null,
+});
+
 export default function LayoutClient({ children, globalData }) {
   const pathname = usePathname();
 
@@ -32,27 +36,6 @@ export default function LayoutClient({ children, globalData }) {
   */
 
   const isAestheticsPage = pathname?.startsWith('/aesthetics-details');
-
-  useEffect(() => {
-    const lenis = getLenis();
-
-    if (!lenis) return;
-
-    const timeout = setTimeout(() => {
-      const hash = window.location.hash;
-
-      if (hash) {
-        const element = document.querySelector(hash);
-        if (element) {
-          lenis.scrollTo(element, { duration: 1.2 });
-        }
-      } else {
-        lenis.scrollTo(0, { immediate: true });
-      }
-    }, 300);
-
-    return () => clearTimeout(timeout);
-  }, [pathname]);
 
   /*
   useEffect(() => {

@@ -1,9 +1,8 @@
-// "use client";
-
-import { PAGES_QUERY, PAGES_QUERY_PREVIEW, PAGES_ALL_SLUGS_QUERY } from "@/queries/queries";
+import { PAGES_QUERY, PAGES_QUERY_PREVIEW } from "@/queries/queries";
 import DynamicClientPage from "./DynamicClientPage";
 import { createPage } from "@/utils/createPage";
-import client from "@/lib/apolloClient";
+
+export const revalidate = 300;
 
 const { Page, generateMetadata } = createPage({
   queries: {
@@ -38,8 +37,6 @@ const { Page, generateMetadata } = createPage({
     },
   },
 });
-
-export const revalidate = 3600;
 
 export async function generateStaticParams() {
   try {

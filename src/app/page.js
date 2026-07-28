@@ -5,7 +5,7 @@ import BlockRenderer from "@/components/layouts/BlockRenderer";
 import PageThemeSetter from "@/components/layouts/PageThemeSetter";
 import Loading from "@/components/common/Loading";
 
-// export const revalidate = 300;
+export const revalidate = 300;
 
 export async function generateMetadata() {
   const slug = 'home';
@@ -45,8 +45,6 @@ export async function generateMetadata() {
     },
   };
 }
-
-export const revalidate = 3600;
 
 export default async function Home() {
   const slug = 'home';
