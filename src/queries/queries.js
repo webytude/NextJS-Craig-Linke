@@ -482,6 +482,90 @@ const BLOCKS_SELECTION = `
         OpenNewTab
       }
   }
+  ... on ComponentSectionCareersIntro {
+    Title
+    SubTitle
+    CareersDescription: Description
+    RightSideMedia {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
+      }
+    }
+  }
+  ... on ComponentSectionCurrentOpportunity {
+    Title
+    SubTitle
+    OverviewLabel
+    OverviewDescription
+    Button {
+      ButtonText
+      ButtonURL
+      OpenNewTab
+    }
+  }
+  ... on ComponentSectionDepartments {
+    DepartmentsHeading: Heading
+    DepartmentLists(pagination: { limit: -1 }) {
+      Title
+      DepartmentDescription: Description
+      Media {
+        EnableMuxVideo
+        MuxVideo {
+          playback_id
+        }
+        ImageORCarousel {
+          alternativeText
+          url
+        }
+      }
+      Button {
+        ButtonText
+        ButtonURL
+        OpenNewTab
+      }
+    }
+  }
+  ... on ComponentSectionInterestForm {
+    Title
+    InterestContent: Content
+  }
+  ... on ComponentSectionOurStoryAndEthos {
+    EthosHeading: Heading
+    Media {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
+      }
+    }
+    EthosContent: Content
+  }
+  ... on ComponentSectionGuidingPrinciples {
+    PrinciplesHeading: Heading
+    Media {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
+      }
+    }
+    GuidingLists(pagination: { limit: -1 }) {
+      Number
+      Title
+      Description
+    }
+  }
 `;
 
 export const PAGES_QUERY = gql`
