@@ -6,7 +6,8 @@
 }
 .step {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  gap: 100px;
   padding: 30px 0px;
 }
 .step:first-child {
