@@ -25,7 +25,7 @@ export default function OurStoryAndEthos({ data }) {
   const rightContent = (
     <>
         <Box fullHeight justify="center">
-        <Paragraph className="text-light" style={{ maxWidth: 572}}>
+        <Paragraph style={{ maxWidth: 572}}>
             <BlocksRenderer content={EthosContent || []} />
         </Paragraph>      
       </Box>
@@ -34,12 +34,14 @@ export default function OurStoryAndEthos({ data }) {
 
     return (
         <>
-              <section className="contentHero fitToScreen">
+              <section className="contentHero">
                 <Heading level={2} className={styles.heading}>
                   {EthosHeading}
                 </Heading>
                 <Divider />
-                <TwoColumnLayout fullHeight left={leftContent} right={rightContent} style={{ maxWidth: 1250, margin: 'auto'}} />
+                <div className={styles.ourStoryAndEthos}>
+                  <TwoColumnLayout left={leftContent} right={rightContent} style={{ maxWidth: 1250, margin: 'auto'}} />
+                </div>
               </section>
             </>
     )

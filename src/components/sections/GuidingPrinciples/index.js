@@ -45,7 +45,9 @@ export default function GuidingPrinciples({ data }) {
         {PrinciplesHeading}
         </Heading>
         <Divider />
+        <div className={styles.guidingPrinciples}>
         <TwoColumnLayout left={leftContent} right={rightContent} />
+        </div>
       </section>
     </>
   );

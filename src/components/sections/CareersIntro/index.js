@@ -40,8 +40,8 @@ export default function CareersIntro({ data }) {
 
     return (
         <>
-        <section className="contentHero fitToScreen">
-        <TwoColumnLayout fullHeight left={leftContent} right={rightContent} style={{ maxWidth: 1250, margin: 'auto'}} />
+        <section className={styles.careersIntro}>
+        <TwoColumnLayout left={leftContent} right={rightContent} style={{ maxWidth: 1250, margin: 'auto'}} />
         </section>
         <Divider />
         </>

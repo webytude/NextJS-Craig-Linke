@@ -23,12 +23,14 @@ export default function InterestForm({ data }) {
 
   return (
     <>
-      <section className={styles.ourProcess}>
+      <section>
         <Heading level={2} className={styles.heading}>
           {Title}
         </Heading>
         <Divider />
-        <TwoColumnLayout left={leftContent} right={rightContent} />
+        <div className={styles.interestForm}>
+          <TwoColumnLayout left={leftContent} right={rightContent} />
+        </div>
       </section>
     </>
   );
