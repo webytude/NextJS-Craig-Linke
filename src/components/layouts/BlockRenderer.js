@@ -4,6 +4,12 @@ import ContactHero from"../sections/ContactHero";
 import ContentHero from"../sections/ContentHero";
 import AboutHero from"../sections/AboutHero";
 import HomeContactHero from"../sections/HomeContectHero";
+import CareersIntro from "../sections/CareersIntro";
+import CurrentOpportunity from "../sections/CurrentOpportunity";
+import Departments from "../sections/Departments";
+import InterestForm from "../sections/InterestForm";
+import OurStoryAndEthos from "../sections/OurStoryAndEthos";
+import GuidingPrinciples from "../sections/GuidingPrinciples";
 
 const AestheticMaterials = dynamic(() => import("../ashetics/AestheticMaterials"));
 const AstheticsContact = dynamic(() => import("../ashetics/AstheticsContact"));
@@ -101,6 +107,24 @@ export default function BlockRenderer({ block, quickViewLinks, blockId, isFirstH
 
     case "ComponentSectionContactHero":
       return <ContactHero data={block} />;
+
+    case "ComponentSectionCareersIntro":
+      return <CareersIntro data={block} />;
+
+    case "ComponentSectionCurrentOpportunity":
+      return <CurrentOpportunity data={block} />;
+
+    case "ComponentSectionDepartments":
+      return <Departments data={block} />;
+
+    case "ComponentSectionInterestForm":
+      return <InterestForm data={block} />;
+
+    case "ComponentSectionOurStoryAndEthos":
+      return <OurStoryAndEthos data={block} />;
+
+    case "ComponentSectionGuidingPrinciples":
+      return <GuidingPrinciples data={block} />;
 
     // Ashetics Detail
     case "ComponentSectionMediaWithTopBottomContent":
