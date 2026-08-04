@@ -84,3 +84,8 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .interestForm {
+    padding: 10px 0px 20px;
+  }
+}

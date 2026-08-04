@@ -45,4 +45,7 @@
     padding-top: var(--mobile-pt, 24px); 
     padding-bottom: var(--mobile-pb, 90px);
   }
+  .guidingPrinciples {
+    padding: 10px 0px 0px;
+  }
 }

@@ -7,3 +7,8 @@
 .ourStoryAndEthos {
     padding: 60px 0px 100px;
 }
+@media (max-width: 768px) {
+  .ourStoryAndEthos {
+    padding: 10px 0px 0px;
+  }
+}
