@@ -74,3 +74,13 @@
 .success {
   color: #23ef21;
 }
+.fileInput {
+  opacity: 0;
+}
+.uploadLable {
+  display: block;
+  width: 100%;
+  padding: 12px 0 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}

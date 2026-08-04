@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function InterestForms() {
   const [statusMessage, setStatusMessage] = useState(null);
-
+  const [fileName, setFileName] = useState("UPLOAD CV");
   const [formData, setFormData] = useState({
     FullName: "",
     Email: "",
@@ -17,6 +17,17 @@ export default function InterestForms() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setFileName(file.name);
+      handleChange(e);
+    } else {
+      setFileName("UPLOAD CV");
+    }
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -138,12 +149,14 @@ export default function InterestForms() {
       </div>
       <div className={styles.floatingGroup}>
         <input
-          type="text"
+          id="uploadCV"
+          type="file"
           name="uploadCV"
-          placeholder=""
-          onChange={handleChange}
+          accept=".pdf,.doc,.docx"
+          className={styles.fileInput}
+          onChange={handleFileChange}
         />
-        <label htmlFor="uploadCV">UPLOAD CV</label>
+        <label htmlFor="uploadCV" className={styles.uploadLable}>{fileName}</label>
       </div>
       <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
         <textarea
