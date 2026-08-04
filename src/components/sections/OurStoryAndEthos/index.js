@@ -15,9 +15,9 @@ export default function OurStoryAndEthos({ data }) {
     const leftContent = (
     <>
         <Box fullHeight justify="center">
-        <SlideRight className={styles.center}>
+        <div className={styles.center}>
             <MediaRenderer media={Media} width={514} height={642} classes={"image"} altFallback={""} />
-        </SlideRight>
+        </div>
         </Box>
     </>
   );
