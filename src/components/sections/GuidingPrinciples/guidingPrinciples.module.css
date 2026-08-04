@@ -7,7 +7,6 @@
 .step {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 100px;
   padding: 30px 0px;
 }
 .step:first-child {
@@ -35,6 +34,11 @@
 }
 .guidingPrinciples {
   padding: 10px 0px 80px;
+}
+@media (min-width: 768px) {
+ .step {
+  gap: 100px;
+} 
 }
 @media (max-width: 768px) {
   .ourProcess {
