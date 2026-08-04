@@ -12,9 +12,9 @@ export default function GuidingPrinciples({ data }) {
 
   const leftContent = (
     <>
-      <SlideLeft className="p20">
+      <div className="p20">
         <MediaRenderer media={Media} width={337} height={481} />
-      </SlideLeft>
+      </div>
     </>
   );
 
