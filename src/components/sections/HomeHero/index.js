@@ -2,13 +2,9 @@ import Box from "@/components/ui/Box/Box";
 import styles from "./homeHero.module.css";
 import TwoColumnLayout from "@/components/layouts/TwoColumnLayout";
 import LinkWithArrow from "@/components/ui/Link";
-// import Image from "next/image";
 import MediaRenderer from "@/components/common/MediaRenderer";
 import Divider from "@/components/ui/Divider";
 import Heading from "@/components/ui/Heading";
-// import FadeUp from "@/components/ui/animations/FadeUp";
-// import SlideLeft from "@/components/ui/animations/SlideLeft";
-// import SlideRight from "@/components/ui/animations/SlideRight";
 
 export default function HomeHero({ data }) {
   const { Title, ShortText, Button, LeftSideMedia, RightSideMedia } = data;

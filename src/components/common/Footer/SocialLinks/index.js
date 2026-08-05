@@ -27,6 +27,9 @@ export default function SocialLinks({ socialLinks }) {
                       width={70}
                       height={96}
                       alt={firstImage.alternativeText || ""}
+                      // priority
+                      quality={90}
+                      loading="lazy"
                     />
                   ) : null}
                   <div className={styles.font12}>{item.Links.ButtonText}</div>

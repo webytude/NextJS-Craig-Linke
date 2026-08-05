@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import dynamic from 'next/dynamic'
 import ApolloWrapper from './ApolloWrapper'
 import Header from '@/components/common/Header'

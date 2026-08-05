@@ -61,6 +61,9 @@ export default function AestheticMaterials({ data }) {
                     alt={material.alternativeText || "Material Image"}
                     width={36}
                     height={36}
+                    // priority
+                    quality={90}
+                    loading="lazy"
                   />
                 </div>
               ))}
