@@ -260,9 +260,8 @@ export default function ProjectClient({ projects }) {
                                 }
                                 width={36}
                                 height={36}
-                                // priority
+                                priority
                                 quality={90}
-                                loading="lazy"
                               />
                             )}
                           </div>

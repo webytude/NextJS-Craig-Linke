@@ -61,8 +61,7 @@ export default function VideoPreview({ videoData, thumbnail }) {
               alt="Video preview thumbnail"
               width={124}
               height={70}
-              // priority
-              loading="lazy"
+              priority
               sizes="(max-width: 768px) 100vw, 50vw"
               quality={90}
             />

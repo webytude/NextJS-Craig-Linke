@@ -111,10 +111,9 @@ export default function FullScreenMedia({ data }) {
           alt={mediaData.ImageORCarousel[0]?.alternativeText || ""}
           fill
           style={{ objectFit: "cover" }}
-          // priority
+          priority
           className={styles.mainMedia}
           quality={90}
-          loading="lazy"
         />
       );
     }
