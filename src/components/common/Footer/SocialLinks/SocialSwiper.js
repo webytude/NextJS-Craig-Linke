@@ -15,6 +15,8 @@ export default function SocialSwiper({ images }) {
             width={70}
             height={96}
             alt={img.alternativeText || ""}
+            priority
+            quality={90}
           />
         </SwiperSlide>
       ))}

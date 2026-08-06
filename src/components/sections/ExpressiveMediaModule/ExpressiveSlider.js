@@ -36,6 +36,7 @@ export default function ExpressiveSlider({ ImageORCarousel, prevEl, nextEl, pagi
               loading={isFirst ? "eager" : "lazy"}
               fetchPriority={isFirst ? "high" : "low"}
               sizes="(max-width: 768px) 100vw, 50vw"
+              quality={90}
             />
           </SwiperSlide>
         );

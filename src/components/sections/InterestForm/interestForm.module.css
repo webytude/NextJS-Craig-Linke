@@ -1,0 +1,91 @@
+.interestForm {
+  padding: 10px 0px 100px;
+}
+.heading {
+    padding: 35px 20px 20px;
+}
+.contactForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px 40px;
+}
+.fullWidth {
+  grid-column: 1 / -1;
+}
+.submitBtn {
+  background: transparent;
+  border: none;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.floatingGroup {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.floatingGroup input,
+.floatingGroup textarea {
+  width: 100%;
+  padding: 0 0 20px;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #b0a7a2;
+  outline: none;
+}
+.floatingGroup select {
+  width: 100%;
+  padding: 0 0 20px;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #b0a7a2;
+  outline: none;
+  appearance: none;
+  color: #EAEAE8;
+  text-transform: uppercase;
+}
+.floatingGroup select option {
+  color: #000;
+  text-transform: capitalize;
+}
+.floatingGroup label {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  pointer-events: none;
+  font-size: 12px;
+  transition: 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.floatingGroup input:focus + label,
+.floatingGroup textarea:focus + label,
+.floatingGroup input:not(:placeholder-shown) + label,
+.floatingGroup textarea:not(:placeholder-shown) + label {
+  top: -12px;
+}
+.floatingGroup select:focus + label,
+.floatingGroup select:valid + label {
+  top: -12px;
+}
+.textError {
+  color: #ff7474;
+}
+.success {
+  color: #23ef21;
+}
+.fileInput {
+  opacity: 0;
+}
+.uploadLable {
+  display: block;
+  width: 100%;
+  padding: 12px 0 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .interestForm {
+    padding: 10px 0px 20px;
+  }
+}

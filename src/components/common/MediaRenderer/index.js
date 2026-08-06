@@ -53,6 +53,8 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
               width={width || 716}
               height={height || 889}
               className={classes || ''}
+              priority
+              quality={90}
               // style={responsiveImageStyle}
               // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -74,6 +76,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         className={classes || ''}
         // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         sizes={sizes}
+        priority
         quality={90}
       />
     );

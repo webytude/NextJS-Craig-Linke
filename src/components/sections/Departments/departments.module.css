@@ -1,0 +1,22 @@
+.heading {
+    padding: 35px 20px 20px;
+}
+.dapartmentsList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+.departmentTitle {
+    padding: 20px 0px;
+}
+@media (max-width: 1024px) {
+    .dapartmentsList {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .dapartmentsList {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

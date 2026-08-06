@@ -260,6 +260,8 @@ export default function ProjectClient({ projects }) {
                                 }
                                 width={36}
                                 height={36}
+                                priority
+                                quality={90}
                               />
                             )}
                           </div>

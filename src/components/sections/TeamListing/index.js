@@ -76,6 +76,8 @@ export default function TeamListing({ data }) {
                     alt="Team Member"
                     width={244}
                     height={322}
+                    priority
+                    quality={90}
                     className={styles.teamImage}
                 />
                 </FadeUp>
