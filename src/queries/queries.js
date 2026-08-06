@@ -740,7 +740,7 @@ export const PROJECTS_QUERY_PREVIEW = gql`
 
 export const JOURNALS_QUERY = gql`
   query Journals {
-    journals {
+    journals(sort: ["Date:desc"]) {
       Name
       Slug
       publishedAt
@@ -772,7 +772,7 @@ export const JOURNALS_QUERY = gql`
 
 export const JOURNALS_QUERY_PREVIEW = gql`
   query Journals{
-    journals(status: DRAFT) {
+    journals(status: DRAFT, sort: ["Date:desc"]) {
       Name
       Slug
       publishedAt
