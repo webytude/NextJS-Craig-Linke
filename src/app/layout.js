@@ -5,7 +5,8 @@ import client from "@/lib/apolloClient";
 import Script from "next/script";
 
 export async function generateMetadata() {
-  const productionDomain = process.env.NEXT_PUBLIC_SITE_URL || "https://www.craiglinke.com";
+  const productionDomain =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.craiglinke.com";
 
   try {
     const { data } = await client.query({
@@ -15,21 +16,27 @@ export async function generateMetadata() {
 
     return {
       title: data?.global?.site_name || "Craig Linke",
-      description: data?.global?.site_description || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+      description:
+        data?.global?.site_description ||
+        "Craig Linke is a boutique, Adelaide based building and interior design company.",
       metadataBase: new URL(productionDomain),
       alternates: {
         canonical: productionDomain,
       },
       openGraph: {
         title: data?.global?.site_name || "Craig Linke",
-        description: data?.global?.site_description || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+        description:
+          data?.global?.site_description ||
+          "Craig Linke is a boutique, Adelaide based building and interior design company.",
         type: "website",
         url: productionDomain,
       },
       twitter: {
         card: "summary_large_image",
         title: data?.global?.site_name || "Craig Linke",
-        description: data?.global?.site_description || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+        description:
+          data?.global?.site_description ||
+          "Craig Linke is a boutique, Adelaide based building and interior design company.",
       },
       verification: {
         google: "e6bYik4ximfOekIUbF5_utfkZasYsBiW1HREVUGGDuc",
@@ -41,7 +48,8 @@ export async function generateMetadata() {
   } catch (error) {
     return {
       title: "Craig Linke",
-      description: "Craig Linke is a boutique, Adelaide based building and interior design company.",
+      description:
+        "Craig Linke is a boutique, Adelaide based building and interior design company.",
       metadataBase: new URL(productionDomain),
       alternates: {
         canonical: productionDomain,

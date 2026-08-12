@@ -23,7 +23,6 @@ export default function ExpressiveSlider({ ImageORCarousel, prevEl, nextEl, pagi
       style={{ width: '100%', height: '100%' }}
     >
       {ImageORCarousel.map((img, idx) => {
-        const isFirst = idx === 0;
         return (
           <SwiperSlide key={idx}>
             <Image
@@ -32,9 +31,7 @@ export default function ExpressiveSlider({ ImageORCarousel, prevEl, nextEl, pagi
               width={716}
               height={424}
               className="image"
-              priority={isFirst}
-              loading={isFirst ? "eager" : "lazy"}
-              fetchPriority={isFirst ? "high" : "low"}
+              loading="lazy"
               sizes="(max-width: 768px) 100vw, 50vw"
               quality={90}
             />

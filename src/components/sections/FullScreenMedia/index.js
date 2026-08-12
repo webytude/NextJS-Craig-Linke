@@ -111,7 +111,8 @@ export default function FullScreenMedia({ data }) {
           alt={mediaData.ImageORCarousel[0]?.alternativeText || ""}
           fill
           style={{ objectFit: "cover" }}
-          priority
+          loading="lazy"
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className={styles.mainMedia}
           quality={90}
         />

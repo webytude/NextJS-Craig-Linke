@@ -30,6 +30,7 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         loop
         playsInline
         controls={false}
+        preload="none"
         style={{ width: videoWidth ? videoWidth : "100%", height: videoHeight ? videoHeight : "100%", '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
       />
     );
@@ -44,23 +45,6 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
           height={height}
           classes={classes}
         />
-        <Swiper style={{ width: '100%', height: '100%' }}>
-        {ImageORCarousel.map((img, index) => (
-          <SwiperSlide key={index}>
-            <Image
-              src={img.url}
-              alt={img?.alternativeText || altFallback || ""}
-              width={width || 716}
-              height={height || 889}
-              className={classes || ''}
-              priority
-              quality={90}
-              // style={responsiveImageStyle}
-              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </SwiperSlide>
-        ))}
-        </Swiper>
       </div>
     );
   }
@@ -74,9 +58,8 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         width={width || 716}
         height={height || 889}
         className={classes || ''}
-        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         sizes={sizes}
-        priority
+        loading="lazy"
         quality={90}
       />
     );

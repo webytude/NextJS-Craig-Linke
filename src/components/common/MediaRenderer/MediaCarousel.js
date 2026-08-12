@@ -17,7 +17,6 @@ export default function MediaCarousel({ ImageORCarousel, width, height, classes 
   return (
     <Swiper style={{ width: '100%', height: '100%' }}>
       {ImageORCarousel.map((img, index) => {
-        const isFirst = index === 0;
         return (
           <SwiperSlide key={index}>
             <Image
@@ -26,9 +25,7 @@ export default function MediaCarousel({ ImageORCarousel, width, height, classes 
               width={width || 716}
               height={height || 889}
               className={classes || ''}
-              priority={isFirst}
-              loading={isFirst ? "eager" : "lazy"}
-              fetchPriority={isFirst ? "high" : "low"}
+              loading="lazy"
               style={responsiveImageStyle}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

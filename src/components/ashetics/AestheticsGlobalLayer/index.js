@@ -55,6 +55,7 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
                   loop
                   playsInline
                   controls={false}
+                  preload="none"
                   style={{ width: "100%", height: '100%', '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center', objectFit: 'cover' }}
                 />
             ) : (
