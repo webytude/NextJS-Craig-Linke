@@ -52,7 +52,12 @@ export default function HomeHero({ data }) {
         mobileAlign="center"
       >
           <div className="p20 fullHeight">
-            <MediaRenderer media={LeftSideMedia} classes={"image"} />
+            <MediaRenderer
+              media={LeftSideMedia}
+              classes={"image"}
+              priority
+              sizes="(max-width: 1024px) 100vw, 42vw"
+            />
           </div>
           <div className="p20">
             {Button && (
@@ -71,7 +76,12 @@ export default function HomeHero({ data }) {
   const rightContent = (
     <>
         <div className="p20 hide-mobile fullHeight">
-          <MediaRenderer media={RightSideMedia} classes={"image"} />
+          <MediaRenderer
+            media={RightSideMedia}
+            classes={"image"}
+            priority
+            sizes="(max-width: 1200px) 50vw, 42vw"
+          />
         </div>
     </>
   );

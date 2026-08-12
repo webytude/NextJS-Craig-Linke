@@ -64,8 +64,10 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
                 alt="Background"
                 fill
                 style={{ objectFit: "cover" }}
-                priority
-                quality={90}
+                sizes="100vw"
+                loading="eager"
+                fetchPriority="high"
+                quality={75}
               />) : null
             )}
             <div className={styles.overlay}></div>

@@ -14,7 +14,17 @@ const MediaCarousel = dynamic(() => import("./MediaCarousel"), {
   loading: () => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>Loading...</div>
 });
 
-export default function MediaRenderer({ media, width, height, classes, videoWidth, videoHeight, altFallback = "", sizes = "100vw" }) {
+export default function MediaRenderer({
+  media,
+  width,
+  height,
+  classes,
+  videoWidth,
+  videoHeight,
+  altFallback = "",
+  sizes = "100vw",
+  priority = false,
+}) {
   if (!media) return null;
 
   const { EnableMuxVideo, MuxVideo, ImageORCarousel } = media;
@@ -59,8 +69,10 @@ export default function MediaRenderer({ media, width, height, classes, videoWidt
         height={height || 889}
         className={classes || ''}
         sizes={sizes}
-        loading="lazy"
-        quality={90}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "low"}
+        priority={priority}
+        quality={75}
       />
     );
   }
