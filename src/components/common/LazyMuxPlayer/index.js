@@ -3,7 +3,7 @@
 import MuxPlayer from "@mux/mux-player-react";
 import { useEffect, useRef, useState } from "react";
 
-export default function LazyMuxPlayer({ playbackId, autoPlay = true, ...props }) {
+export default function LazyMuxPlayer({ playbackId, autoPlay = false, ...props }) {
   const playerRef = useRef(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
