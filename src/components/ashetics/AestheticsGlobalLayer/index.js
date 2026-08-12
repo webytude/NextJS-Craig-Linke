@@ -65,7 +65,7 @@ export default function AestheticsGlobalLayer({ allAestheticsData }) {
                 fill
                 style={{ objectFit: "cover" }}
                 sizes="100vw"
-                loading="eager"
+                loading="lazy"
                 fetchPriority="high"
                 quality={75}
               />) : null
