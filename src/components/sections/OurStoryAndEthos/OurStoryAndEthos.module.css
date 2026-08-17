@@ -3,9 +3,13 @@
 }
 .center {
     margin: auto;
+    min-height: 0;
 }
 .ourStoryAndEthos {
     padding: 60px 0px 100px;
+}
+.image{
+  max-height: 100%;
 }
 @media (max-width: 768px) {
   .ourStoryAndEthos {
