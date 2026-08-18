@@ -5,6 +5,8 @@ import styles from "./currentOpportunity.module.css";
 import Paragraph from "@/components/ui/Paragraph";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import LinkWithArrow from "@/components/ui/Link";
+import Link from "next/link";
+
 
 export default function CurrentOpportunity({ data }) {
   const { Title, SubTitle, OverviewLabel, OverviewDescription, Button } = data;
@@ -14,7 +16,9 @@ export default function CurrentOpportunity({ data }) {
     <div className="p20">
       <div className={`${styles.title} text-light`}>{Title}</div>
       <Heading level={2} className={styles.heading}>
-        {SubTitle}
+          <Link href={Button?.ButtonURL || '#'}>
+          {SubTitle}
+          </Link>
       </Heading>
       </div>
     </>
