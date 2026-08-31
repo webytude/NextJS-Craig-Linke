@@ -34,40 +34,36 @@ export default function ConnectWithOurTeam({ data }) {
 
   const leftContent = (
     <Box fullHeight direction="column" padding="0" className={styles.leftColumn}>
-      <div className={`${styles.title} text-light uppercase p20`}>{Title}</div>
-      <Box fullHeight justify="center" align="center" padding="0">
-        <FadeUp>
-          <nav className={styles.links} aria-label={Title}>
-            {contactLinks.map((link, index) => (
-              <Link
-                key={index}
-                href={link.href}
-                className={styles.link}
-                {...(link.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </FadeUp>
+      <Box fullHeight justify="center" align="center" padding="0" gap={'120px'} mobileGap={'20px'}>
+        <div className={`${styles.title} uppercase p20`}>{Title}</div>
+        <nav className={styles.links} aria-label={Title}>
+          {contactLinks.map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              className={styles.link}
+              {...(link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </Box>
     </Box>
   );
 
   const rightContent = (
-    <Box fullHeight justify="center" align="center" padding="0">
-      <SlideLeft className={styles.mediaWrapper}>
+    <div className="p20 centerContent media">
         <MediaRenderer
           media={Media}
-          width={400}
-          height={500}
-          classes="image"
+          width={436}
+          height={585}
+          classes="fullWidth"
           altFallback={Title}
         />
-      </SlideLeft>
-    </Box>
+    </div>
   );
 
   return (

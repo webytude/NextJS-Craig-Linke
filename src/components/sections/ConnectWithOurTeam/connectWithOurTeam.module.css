@@ -28,6 +28,10 @@
   width: 100%;
 }
 
+.boxGap {
+  gap: 100px;
+}
+
 @media (max-width: 1024px) {
   .link {
     font-size: 28px;
