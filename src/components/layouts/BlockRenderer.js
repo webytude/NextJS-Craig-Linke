@@ -35,6 +35,7 @@ const OurServices = dynamic(() => import("../sections/Services"));
 const TeamListing = dynamic(() => import("../sections/TeamListing"));
 const TextModule = dynamic(() => import("../sections/TextModule"));
 const TwoColumnMediaAndText = dynamic(() => import("../sections/TwoColumnMediaAndText"));
+const ConnectWithOurTeam = dynamic(() => import("../sections/ConnectWithOurTeam"));
 
 export default function BlockRenderer({ block, quickViewLinks, blockId, isFirstH1 }) {
   const headingLevel = isFirstH1 ? 1 : 2;
@@ -104,6 +105,9 @@ export default function BlockRenderer({ block, quickViewLinks, blockId, isFirstH
 
     case "ComponentSection2ColumnMediaAndText":
       return <TwoColumnMediaAndText data={block} />;
+
+    case "ComponentSectionConnectWithOurTeam":
+      return <ConnectWithOurTeam data={block} />;
 
     case "ComponentSectionContactHero":
       return <ContactHero data={block} />;

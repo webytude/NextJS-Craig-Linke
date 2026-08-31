@@ -1,0 +1,45 @@
+.title {
+  text-align: center;
+  width: 100%;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.link {
+  font-family: "collapselight_italic";
+  font-style: italic;
+  font-size: 34px;
+  line-height: 1.35;
+  font-weight: 300;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.mediaWrapper {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .link {
+    font-size: 28px;
+  }
+
+  .mediaWrapper {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .link {
+    font-size: 24px;
+  }
+}

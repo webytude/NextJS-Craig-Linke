@@ -566,6 +566,27 @@ const BLOCKS_SELECTION = `
       Description
     }
   }
+  ... on ComponentSectionConnectWithOurTeam {
+    Title
+    CallLabel
+    CallNumber
+    EmailLabel
+    Emailid
+    EnquiryLabel
+    EnquiryLink
+    InstagramLabel
+    InstagramLink
+    Media {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
+      }
+    }
+  }
 `;
 
 export const PAGES_QUERY = gql`
