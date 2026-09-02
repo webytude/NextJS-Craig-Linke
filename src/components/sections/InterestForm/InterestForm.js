@@ -11,9 +11,9 @@ export default function InterestForms() {
     Phone: "",
     linkedin: "",
     department: "",
-    uploadCV: "",
     yourMessage: "",
   });
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,9 +24,10 @@ export default function InterestForms() {
 
     if (file) {
       setFileName(file.name);
-      handleChange(e);
+      setSelectedFile(file);
     } else {
       setFileName("UPLOAD CV");
+      setSelectedFile(null);
     }
   };
 
@@ -36,28 +37,28 @@ export default function InterestForms() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    let dataToSend = {};
-    dataToSend = {
-      data: {
-        FullName: formData.FullName,
-        Email: formData.Email,
-        Phone: formData.Phone,
-        linkedin: formData.linkedin,
-        department: formData.department,
-        uploadCV: formData.uploadCV,
-        yourMessage: formData.yourMessage,
-      },
+    const careerData = {
+      Name: formData.FullName,
+      Email: formData.Email,
+      Phone: formData.Phone,
+      Linkedin: formData.linkedin,
+      Department: formData.department,
+      YourMessage: formData.yourMessage,
     };
+    const requestBody = selectedFile ? new FormData() : JSON.stringify({ data: careerData });
+
+    if (selectedFile) {
+      requestBody.append("data", JSON.stringify(careerData));
+      requestBody.append("files.CV", selectedFile);
+    }
 
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/careers`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataToSend),
+          ...(selectedFile ? {} : { "Content-Type": "application/json" }),
+          body: requestBody,
         }
       );
 
@@ -71,24 +72,22 @@ export default function InterestForms() {
         setFormData({
           FullName: "",
           Email: "",
-          PhoneNumber: "",
-          AboutYourBusiness: "",
-          AboutYourProject: "",
-          FormType: "",
+          Phone: "",
+          linkedin: "",
+          department: "",
+          yourMessage: "",
         });
+        setSelectedFile(null);
+        setFileName("UPLOAD CV");
       } else {
         console.error("Submission failed:", result);
         setStatusMessage({
           type: "error",
-          text: result.error || "Something went wrong. Please try again.",
+          text: result.error?.message || "Something went wrong. Please try again.",
         });
       }
     } catch (error) {
       console.error("Form submission failed", error);
-      setStatusMessage({
-        type: "error",
-        text: "Network error. Please try again.",
-      });
       setStatusMessage({
         type: "error",
         text: "Network error. Please try again.",
