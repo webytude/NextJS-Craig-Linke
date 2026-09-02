@@ -45,19 +45,24 @@ export default function InterestForms() {
       Department: formData.department,
       YourMessage: formData.yourMessage,
     };
-    const requestBody = new FormData();
-    requestBody.append("data", JSON.stringify(careerData));
-
-    if (selectedFile) {
-      requestBody.append("files.CV", selectedFile);
-    }
+    const requestOptions = selectedFile
+      ? (() => {
+          const body = new FormData();
+          body.append("data", JSON.stringify(careerData));
+          body.append("files.CV", selectedFile);
+          return { body };
+        })()
+      : {
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: careerData }),
+        };
 
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/careers`,
         {
           method: "POST",
-          body: requestBody,
+          ...requestOptions,
         }
       );
 
