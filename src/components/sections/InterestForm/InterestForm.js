@@ -51,7 +51,7 @@ export default function InterestForms() {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/contacts`,
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/careers`,
         {
           method: "POST",
           headers: {
