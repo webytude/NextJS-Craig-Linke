@@ -45,24 +45,30 @@ export default function InterestForms() {
       Department: formData.department,
       YourMessage: formData.yourMessage,
     };
-    const requestOptions = selectedFile
-      ? (() => {
-          const body = new FormData();
-          body.append("data", JSON.stringify(careerData));
-          body.append("files.CV", selectedFile);
-          return { body };
-        })()
-      : {
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ data: careerData }),
-        };
-
     try {
+      if (selectedFile) {
+        const uploadBody = new FormData();
+        uploadBody.append("files", selectedFile);
+
+        const uploadResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/upload`,
+          { method: "POST", body: uploadBody }
+        );
+        const uploadResult = await uploadResponse.json();
+
+        if (!uploadResponse.ok || !uploadResult[0]?.id) {
+          throw new Error(uploadResult.error?.message || "CV upload failed.");
+        }
+
+        careerData.CV = uploadResult[0].id;
+      }
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/careers`,
         {
           method: "POST",
-          ...requestOptions,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: careerData }),
         }
       );
 
