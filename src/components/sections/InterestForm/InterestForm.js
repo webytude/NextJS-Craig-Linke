@@ -45,10 +45,10 @@ export default function InterestForms() {
       Department: formData.department,
       YourMessage: formData.yourMessage,
     };
-    const requestBody = selectedFile ? new FormData() : JSON.stringify({ data: careerData });
+    const requestBody = new FormData();
+    requestBody.append("data", JSON.stringify(careerData));
 
     if (selectedFile) {
-      requestBody.append("data", JSON.stringify(careerData));
       requestBody.append("files.CV", selectedFile);
     }
 
@@ -57,7 +57,6 @@ export default function InterestForms() {
         `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/careers`,
         {
           method: "POST",
-          ...(selectedFile ? {} : { "Content-Type": "application/json" }),
           body: requestBody,
         }
       );
