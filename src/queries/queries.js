@@ -507,6 +507,7 @@ const BLOCKS_SELECTION = `
       ButtonURL
       OpenNewTab
     }
+    HideThisOpportunity
   }
   ... on ComponentSectionDepartments {
     DepartmentsHeading: Heading

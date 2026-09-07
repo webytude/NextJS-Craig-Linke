@@ -71,9 +71,9 @@
 .textError {
   color: #ff7474;
 }
-.success {
+/* .success {
   color: #23ef21;
-}
+} */
 .fileInput {
   opacity: 0;
 }

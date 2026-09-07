@@ -108,89 +108,91 @@ export default function InterestForms() {
   };
 
   return (
-    <form className={styles.contactForm} onSubmit={(e) => handleSubmit(e, "Contact")}>
-      <div className={styles.floatingGroup}>
-        <input
-          type="text"
-          name="FullName"
-          placeholder=""
-          required
-          onChange={handleChange}
-        />
-        <label htmlFor="FullName">FULL NAME</label>
-      </div>
-      <div className={styles.floatingGroup}>
-        <input
-          type="email"
-          name="Email"
-          placeholder=""
-          required
-          onChange={handleChange}
-        />
-        <label htmlFor="email">EMAIL</label>
-      </div>
-      <div className={styles.floatingGroup}>
-        <input
-          type="text"
-          name="Phone"
-          placeholder=""
-          onChange={handleChange}
-        />
-        <label htmlFor="phone">PHONE</label>
-      </div>
-      <div className={styles.floatingGroup}>
-        <input
-          type="text"
-          name="linkedin"
-          placeholder=""
-          onChange={handleChange}
-        />
-        <label htmlFor="linkedin">LINKEDIN</label>
-      </div>
-      <div className={styles.floatingGroup}>
-        <input
-          type="text"
-          name="department"
-          placeholder=""
-          onChange={handleChange}
-        />
-        <label htmlFor="department">DEPARTMENT</label>
-      </div>
-      <div className={styles.floatingGroup}>
-        <input
-          id="uploadCV"
-          type="file"
-          name="uploadCV"
-          accept=".pdf,.doc,.docx"
-          className={styles.fileInput}
-          onChange={handleFileChange}
-        />
-        <label htmlFor="uploadCV" className={styles.uploadLable}>{fileName}</label>
-      </div>
-      <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
-        <textarea
-          rows="5"
-          name="yourMessage"
-          placeholder=""
-          onChange={handleChange}
-        ></textarea>
-        <label htmlFor="yourMessage">YOUR MESSAGE</label>
-      </div>
-        <div>
-      <button className={`${styles.submitBtn} text-light`} disabled={isSubmitting}>
-        {" "}
-        <span>{isSubmitting ? "SUBMITTING..." : "Submit expression of interest"}</span>
-      </button>
-      </div>
+    <div className="interestForm">
+      <form className={styles.contactForm} onSubmit={(e) => handleSubmit(e, "Contact")}>
+        <div className={styles.floatingGroup}>
+          <input
+            type="text"
+            name="FullName"
+            placeholder=""
+            required
+            onChange={handleChange}
+          />
+          <label htmlFor="FullName">FULL NAME</label>
+        </div>
+        <div className={styles.floatingGroup}>
+          <input
+            type="email"
+            name="Email"
+            placeholder=""
+            required
+            onChange={handleChange}
+          />
+          <label htmlFor="email">EMAIL</label>
+        </div>
+        <div className={styles.floatingGroup}>
+          <input
+            type="text"
+            name="Phone"
+            placeholder=""
+            onChange={handleChange}
+          />
+          <label htmlFor="phone">PHONE</label>
+        </div>
+        <div className={styles.floatingGroup}>
+          <input
+            type="text"
+            name="linkedin"
+            placeholder=""
+            onChange={handleChange}
+          />
+          <label htmlFor="linkedin">LINKEDIN</label>
+        </div>
+        <div className={styles.floatingGroup}>
+          <input
+            type="text"
+            name="department"
+            placeholder=""
+            onChange={handleChange}
+          />
+          <label htmlFor="department">DEPARTMENT</label>
+        </div>
+        <div className={styles.floatingGroup}>
+          <input
+            id="uploadCV"
+            type="file"
+            name="uploadCV"
+            accept=".pdf,.doc,.docx"
+            className={styles.fileInput}
+            onChange={handleFileChange}
+          />
+          <label htmlFor="uploadCV" className={styles.uploadLable}>{fileName}</label>
+        </div>
+        <div className={`${styles.floatingGroup} ${styles.fullWidth}`}>
+          <textarea
+            rows="5"
+            name="yourMessage"
+            placeholder=""
+            onChange={handleChange}
+          ></textarea>
+          <label htmlFor="yourMessage">YOUR MESSAGE</label>
+        </div>
+          <div>
+        <button className={`${styles.submitBtn} text-light`} disabled={isSubmitting}>
+          {" "}
+          <span>{isSubmitting ? "SUBMITTING..." : "Submit expression of interest"}</span>
+        </button>
+        </div>
+      </form>
       {statusMessage && (
-        <p
+      <p
           className={`response-msg uppercase pt20 ${
             statusMessage.type === "success" ? styles.success : styles.textError
           }`}
         >
           {statusMessage.text}
-        </p>
-      )}
-    </form>
+      </p>
+        )}
+      </div>
   );
 }

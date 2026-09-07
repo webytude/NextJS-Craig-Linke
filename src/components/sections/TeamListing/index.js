@@ -93,9 +93,11 @@ export default function TeamListing({ data }) {
                     >
                         <span className={styles.memberName}>{member.Name}</span>
                         <span className={styles.memberTitle}>{member.Role}</span>
-                        <Link href={member?.Button?.ButtonURL} target={member?.Button?.OpenNewTab ? "_blank" : "_self"}>
-                          {member?.Button?.ButtonText || 'READ BIO'}
-                        </Link>
+                        {member?.Button?.ButtonURL && (
+                          <Link href={member?.Button?.ButtonURL} target={member?.Button?.OpenNewTab ? "_blank" : "_self"}>
+                            {member?.Button?.ButtonText || 'READ BIO'}
+                          </Link>
+                        )}
                     </div>
                 ))}
                 </FadeUp>

@@ -9,7 +9,10 @@ import Link from "next/link";
 
 
 export default function CurrentOpportunity({ data }) {
-  const { Title, SubTitle, OverviewLabel, OverviewDescription, Button } = data;
+  const { Title, SubTitle, OverviewLabel, OverviewDescription, HideThisOpportunity, Button } = data;
+  if (HideThisOpportunity === true) {
+    return null;
+  }
 
   const leftContent = (
     <>
