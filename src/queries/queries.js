@@ -166,6 +166,7 @@ const BLOCKS_SELECTION = `
     }
   }
   ... on ComponentSectionTeamListing {
+    ShowGlobalTeamListing
     Listing(pagination: { limit: -1 }) {
       Name
       Role
