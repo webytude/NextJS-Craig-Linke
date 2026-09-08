@@ -37,7 +37,7 @@ export default function TeamListing({ data }) {
   const pathname = usePathname();
 
   const useGlobalTeam = data?.ShowGlobalTeamListing === true;
-  const strapiToken = process.env.NEXT_PUBLIC_GRAPHQL_AUTH_TOKEN;
+  const strapiToken = process.env.GRAPHQL_AUTH_TOKEN;
 
   const { data: globalData, loading, error: globalError } = useQuery(
     TEAM_GLOBAL_QUERY,
@@ -57,9 +57,7 @@ export default function TeamListing({ data }) {
   // The global query may be restricted by the production API permissions.
   // Fall back to the section data so an authorization failure does not break
   // the page while the API configuration is corrected.
-  const teamData = useGlobalTeam
-    ? globalData?.global?.TeamListing || data
-    : data;
+  const teamData = useGlobalTeam ? globalData?.global?.TeamListing : data;
 
   const allListing = teamData?.Listing || [];
   const ReadBioLabel = teamData?.ReadBioLabel;
