@@ -37,11 +37,20 @@ export default function TeamListing({ data }) {
   const pathname = usePathname();
 
   const useGlobalTeam = data?.ShowGlobalTeamListing === true;
+  const strapiToken = process.env.NEXT_PUBLIC_GRAPHQL_AUTH_TOKEN;
 
   const { data: globalData, loading, error: globalError } = useQuery(
     TEAM_GLOBAL_QUERY,
     {
-      skip: !useGlobalTeam,
+      // A Strapi global query requires credentials in production. If the
+      // public token is not configured, use the already-fetched section data.
+      skip: !useGlobalTeam || !strapiToken,
+      errorPolicy: 'all',
+      context: {
+        headers: {
+          Authorization: `Bearer ${strapiToken}`,
+        },
+      },
     }
   );
 
@@ -118,7 +127,7 @@ export default function TeamListing({ data }) {
     }
   };
 
-  if (useGlobalTeam && loading && !globalError) {
+  if (useGlobalTeam && strapiToken && loading && !globalError) {
     return null;
   }
 
