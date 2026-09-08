@@ -38,15 +38,18 @@ export default function TeamListing({ data }) {
 
   const useGlobalTeam = data?.ShowGlobalTeamListing === true;
 
-  const { data: globalData, loading } = useQuery(
+  const { data: globalData, loading, error: globalError } = useQuery(
     TEAM_GLOBAL_QUERY,
     {
       skip: !useGlobalTeam,
     }
   );
 
+  // The global query may be restricted by the production API permissions.
+  // Fall back to the section data so an authorization failure does not break
+  // the page while the API configuration is corrected.
   const teamData = useGlobalTeam
-    ? globalData?.global?.TeamListing
+    ? globalData?.global?.TeamListing || data
     : data;
 
   const allListing = teamData?.Listing || [];
@@ -115,7 +118,7 @@ export default function TeamListing({ data }) {
     }
   };
 
-  if (useGlobalTeam && loading) {
+  if (useGlobalTeam && loading && !globalError) {
     return null;
   }
 
