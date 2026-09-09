@@ -13,7 +13,9 @@ export function createPage({
   const memoizedFetch = cache(async (paramString, searchParamString) => {
     const resolvedParams = JSON.parse(paramString);
     const resolvedSearchParams = JSON.parse(searchParamString);
+
     const isPreview = resolvedSearchParams?.preview === 'true';
+
     const baseVariables = getVariables ? getVariables(resolvedParams) : {};
 
     const variables = {
@@ -32,7 +34,29 @@ export function createPage({
         fetchPolicy: "cache-first",
       });
 
-      return getData ? getData(data, variables) : data;
+      const pageData = getData
+        ? getData(data, variables)
+        : data;
+
+      let globalData = null;
+
+      if (queries.global) {
+        const { data: globalResponse } = await client.query({
+          query: queries.global,
+          fetchPolicy: 'cache-first',
+        });
+
+        globalData = globalResponse?.global || null;
+
+        console.log('Create globalData', globalData)
+      }
+
+      return {
+        page: pageData,
+        global: globalData,
+      };
+
+      // return getData ? getData(data, variables) : data;
     } catch (error) {
       console.error("API Error:", error);
       return null;
@@ -70,13 +94,16 @@ export function createPage({
   const Page = async ({ params, searchParams }) => {
     const resolvedParams = await params;
     const resolvedSearchParams = await searchParams;
-    const data = await fetchPageData(resolvedParams, resolvedSearchParams);
+    const result = await fetchPageData(resolvedParams, resolvedSearchParams);
 
-    if (!data) {
+    if (!result) {
       return notFound();
     }
 
-    const props = { [propName]: data };
+    const data = result.page;
+    const global = result.global;
+
+    const props = { [propName]: data, global };
 
     const schemaMarkup =
       data?.SchemaMarkup ||

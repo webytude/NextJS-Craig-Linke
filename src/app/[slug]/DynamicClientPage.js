@@ -12,7 +12,7 @@ const generateId = (text) => {
     .replace(/(^-|-$)+/g, "");
 };
 
-export default function DynamicClientPage({ page }) {
+export default function DynamicClientPage({ page, global }) {
   useEffect(() => {
     const finalTheme =
       page?.ThemeColor && page.ThemeColor.trim() !== ""
@@ -55,6 +55,7 @@ export default function DynamicClientPage({ page }) {
           <BlockRenderer
             key={index}
             block={block}
+            global={global}
             quickViewLinks={quickViewLinks}
             blockId={block.ShowInQuickView === true ? generateId(block.Title) : null}
             isFirstH1={isFirstH1}

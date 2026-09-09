@@ -1,63 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client/react';
-import { gql } from '@apollo/client';
 import styles from './teamListing.module.css';
 import Image from 'next/image';
 import FadeUp from '@/components/ui/animations/FadeUp';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const TEAM_GLOBAL_QUERY = gql`
-  query TeamGlobal {
-    global {
-      TeamListing {
-        Listing(pagination: { limit: -1 }) {
-          id
-          Name
-          Role
-          Image {
-            alternativeText
-            url
-          }
-          Button {
-            ButtonText
-            ButtonURL
-            OpenNewTab
-          }
-        }
-        ReadBioLabel
-      }
-    }
-  }
-`;
+export default function TeamListing({ data, global }) {
 
-export default function TeamListing({ data }) {
-  const pathname = usePathname();
+  console.log('TeamListing global 1123:', global);   
+  const pathname = usePathname(); 
 
   const useGlobalTeam = data?.ShowGlobalTeamListing === true;
-  const strapiToken = process.env.GRAPHQL_AUTH_TOKEN;
 
-  const { data: globalData, loading, error: globalError } = useQuery(
-    TEAM_GLOBAL_QUERY,
-    {
-      // A Strapi global query requires credentials in production. If the
-      // public token is not configured, use the already-fetched section data.
-      skip: !useGlobalTeam || !strapiToken,
-      errorPolicy: 'all',
-      context: {
-        headers: {
-          Authorization: `Bearer ${strapiToken}`,
-        },
-      },
-    }
-  );
-
-  // The global query may be restricted by the production API permissions.
-  // Fall back to the section data so an authorization failure does not break
-  // the page while the API configuration is corrected.
-  const teamData = useGlobalTeam ? globalData?.global?.TeamListing : data;
+  const teamData = useGlobalTeam ? global?.TeamListing : data;
 
   const allListing = teamData?.Listing || [];
   const ReadBioLabel = teamData?.ReadBioLabel;
@@ -124,10 +81,6 @@ export default function TeamListing({ data }) {
       setActiveMemberId(null);
     }
   };
-
-  if (useGlobalTeam && strapiToken && loading && !globalError) {
-    return null;
-  }
 
   if (Listing.length === 0) {
     return (

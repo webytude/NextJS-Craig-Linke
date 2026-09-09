@@ -1,4 +1,4 @@
-import { PAGES_QUERY, PAGES_QUERY_PREVIEW } from "@/queries/queries";
+import { PAGES_QUERY, PAGES_QUERY_PREVIEW, TEAM_GLOBAL_QUERY } from "@/queries/queries";
 import DynamicClientPage from "./DynamicClientPage";
 import { createPage } from "@/utils/createPage";
 
@@ -8,6 +8,7 @@ const { Page, generateMetadata } = createPage({
   queries: {
     live: PAGES_QUERY,
     preview: PAGES_QUERY_PREVIEW,
+    global: TEAM_GLOBAL_QUERY,
   },
   component: DynamicClientPage,
   propName: "page",

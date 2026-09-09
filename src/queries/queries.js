@@ -704,6 +704,23 @@ export const GLOBAL_QUERY = gql`
         MetaDescription
         SchemaMarkup
       }
+      TeamListing {
+        Listing(pagination: { limit: -1 }) {
+          id
+          Name
+          Role
+          Image {
+            alternativeText
+            url
+          }
+          Button {
+            ButtonText
+            ButtonURL
+            OpenNewTab
+          }
+        }
+        ReadBioLabel
+      }
     }
   }
 `;
@@ -1292,6 +1309,30 @@ export const ASTHETICS_QUERY_SLUG_PREVIEW = gql `
       }
       Blocks {
         ${ASTHETICS_BLOCK_SELECTION}
+      }
+    }
+  }
+`;
+
+export const TEAM_GLOBAL_QUERY = gql`
+  query TeamGlobal {
+    global {
+      TeamListing {
+        Listing(pagination: { limit: -1 }) {
+          id
+          Name
+          Role
+          Image {
+            alternativeText
+            url
+          }
+          Button {
+            ButtonText
+            ButtonURL
+            OpenNewTab
+          }
+        }
+        ReadBioLabel
       }
     }
   }
