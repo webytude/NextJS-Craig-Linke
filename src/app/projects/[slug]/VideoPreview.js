@@ -82,7 +82,7 @@ export default function VideoPreview({ videoData, thumbnail }) {
                   autoPlay
                   playsInline
                   preload="none"
-                  maxResolution="720p"
+                  maxResolution="1080p"
                   capRenditionToPlayerSize
                   controls
                   poster={thumbnailUrl}

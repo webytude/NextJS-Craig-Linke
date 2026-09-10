@@ -38,7 +38,7 @@ export default function LazyMuxPlayer({ playbackId, autoPlay = false, ...props }
       ref={playerRef}
       playbackId={shouldLoad ? playbackId : undefined}
       poster={`https://image.mux.com/${playbackId}/thumbnail.webp?time=0`}
-      maxResolution="720p"
+      maxResolution="1080p"
       capRenditionToPlayerSize
       preload="none"
       autoPlay={shouldLoad && autoPlay}
