@@ -4,6 +4,7 @@
 .center {
     margin: auto;
     min-height: 0;
+    aspect-ratio: 4 / 5;
 }
 .ourStoryAndEthos {
     padding: 60px 0px 100px;
