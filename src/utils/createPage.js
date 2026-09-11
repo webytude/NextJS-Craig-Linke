@@ -48,7 +48,6 @@ export function createPage({
 
         globalData = globalResponse?.global || null;
 
-        console.log('Create globalData', globalData)
       }
 
       return {

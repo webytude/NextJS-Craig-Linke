@@ -15,7 +15,7 @@ import SlideLeft from "@/components/ui/animations/SlideLeft";
 import { useState } from "react";
 
 export default function AboutHero({ data, quickLinks, headingLevel = 1 }) {
-  const { Title, SubTitle, ShortText, RightSideMedia } = data;
+  const { Title, SubTitle, ShortText, SmallImage, RightSideMedia } = data;
   const [activeId, setActiveId] = useState('');
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
@@ -86,8 +86,16 @@ export default function AboutHero({ data, quickLinks, headingLevel = 1 }) {
 
   const rightContent = (
     <>
-      <SlideLeft className="p20 hide-mobile fullHeight">
-        <MediaRenderer media={RightSideMedia} classes={"image"} altFallback={SubTitle} />
+      <SlideLeft
+        className={`p20 hide-mobile fullHeight ${
+          SmallImage ? styles.smallImage : ""
+        }`}
+      >
+        <MediaRenderer
+          media={RightSideMedia}
+          classes="image"
+          altFallback={SubTitle}
+        />
       </SlideLeft>
     </>
   );

@@ -250,6 +250,7 @@ const BLOCKS_SELECTION = `
     Title
     SubTitle
     ShortText
+    SmallImage
     RightSideMedia {
       EnableMuxVideo
       MuxVideo {

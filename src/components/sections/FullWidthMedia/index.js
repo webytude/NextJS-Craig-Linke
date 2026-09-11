@@ -34,7 +34,9 @@ export default function FullWidthMedia({ data }) {
     <section className="full-width-media padding" style={styleVars}>
       <div className="p20">
         {/* <SlideLeft> */}
-        <MediaRenderer media={Media} classes={'image'} />
+        <div className={`full-width-media__frame${Media?.EnableMuxVideo ? " full-width-media__video-frame" : ""}`}>
+          <MediaRenderer media={Media} classes={'image'} />
+        </div>
         {/* </SlideLeft> */}
       </div>
     </section>

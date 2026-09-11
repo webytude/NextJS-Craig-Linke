@@ -9,7 +9,6 @@ import { usePathname } from 'next/navigation';
 
 export default function TeamListing({ data, global }) {
 
-  console.log('TeamListing global 1123:', global);   
   const pathname = usePathname(); 
 
   const useGlobalTeam = data?.ShowGlobalTeamListing === true;

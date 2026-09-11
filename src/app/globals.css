@@ -336,8 +336,28 @@ button,
   padding: 124px 0px;
 }
 .full-width-media {
-  padding-top: 100px;
+  padding-top: var(--desktop-top-padding, 100px);
+  padding-bottom: var(--desktop-bottom-padding, 100px);
   overflow: hidden;
+}
+
+/* The wrapper, rather than Mux's custom element, owns the page layout. This
+   prevents a layout shift when Mux receives the video dimensions. */
+.full-width-media__frame {
+  position: relative;
+  width: 100%;
+}
+
+.full-width-media__video-frame {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.full-width-media__video-frame mux-player {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .aesthetics-container .full-width-media .p20,

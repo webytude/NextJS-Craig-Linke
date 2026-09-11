@@ -14,3 +14,14 @@
 .icon {
   font-family: monospace;
 }
+.smallImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smallImage :global(.image) {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+}
