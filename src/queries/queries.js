@@ -127,6 +127,7 @@ const BLOCKS_SELECTION = `
         url
       }
     }
+    SmallImage
   }
   ... on ComponentSectionLatestJournals {
     id
@@ -511,6 +512,10 @@ const BLOCKS_SELECTION = `
     }
     HideThisOpportunity
   }
+  ... on ComponentSectionNoOpportunity {
+      NoOpportunityHeading: Heading
+      NoOpportunityDescription: Description
+  }
   ... on ComponentSectionDepartments {
     DepartmentsHeading: Heading
     DepartmentLists(pagination: { limit: -1 }) {
@@ -721,6 +726,27 @@ export const GLOBAL_QUERY = gql`
           }
         }
         ReadBioLabel
+      }
+      ConnectWithOurTeam {
+        Title
+        CallLabel
+        CallNumber
+        EmailLabel
+        Emailid
+        EnquiryLabel
+        EnquiryLink
+        InstagramLabel
+        InstagramLink
+        Media {
+          EnableMuxVideo
+          MuxVideo {
+            playback_id
+          }
+          ImageORCarousel {
+            alternativeText
+            url
+          }
+        }
       }
     }
   }

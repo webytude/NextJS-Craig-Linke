@@ -7,6 +7,7 @@ const AboutHero = dynamic(() => import("../sections/AboutHero"));
 const HomeContactHero = dynamic(() => import("../sections/HomeContectHero"));
 const CareersIntro = dynamic(() => import("../sections/CareersIntro"));
 const CurrentOpportunity = dynamic(() => import("../sections/CurrentOpportunity"));
+const NoOpportunity = dynamic(() => import("../sections/NoOpportunity"));
 const Departments = dynamic(() => import("../sections/Departments"));
 const InterestForm = dynamic(() => import("../sections/InterestForm"));
 const OurStoryAndEthos = dynamic(() => import("../sections/OurStoryAndEthos"));
@@ -117,6 +118,9 @@ export default function BlockRenderer({ block, global, quickViewLinks, blockId, 
 
     case "ComponentSectionCurrentOpportunity":
       return <CurrentOpportunity data={block} />;
+
+    case "ComponentSectionNoOpportunity":
+      return <NoOpportunity data={block} />;
 
     case "ComponentSectionDepartments":
       return <Departments data={block} />;

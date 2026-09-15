@@ -1,6 +1,18 @@
 .InteriorDesign p {
     margin-bottom: 0;
 }
+.smallImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smallImage :global(.image) {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+}
+
 @media (max-width: 1300px) and (min-width: 1024px) {
   :global(.page-our-process) .topBox {
     flex: 0 0 28% !important;

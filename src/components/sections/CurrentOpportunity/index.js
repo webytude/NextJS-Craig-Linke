@@ -31,16 +31,18 @@ export default function CurrentOpportunity({ data }) {
     <div className="p20">
       <div className={`${styles.title} text-light`}>{OverviewLabel}</div>
       <div className={styles.overview}>
-      <Paragraph
-        style={{ maxWidth: 420 }}
-      >
-        <BlocksRenderer content={OverviewDescription || []} />
-      </Paragraph>
-      <div className={styles.buttonWrapper}>
-        <LinkWithArrow
-            text={Button?.ButtonText || 'APPLY NOW'}
-            href={Button?.ButtonURL || '#'}
-        />
+        <Paragraph
+          style={{ maxWidth: 420 }}
+        >
+          <BlocksRenderer content={OverviewDescription || []} />
+        </Paragraph>
+        <div className={styles.buttonWrapper}>
+          {Button?.ButtonURL && (
+            <LinkWithArrow
+              text={Button?.ButtonText || 'APPLY NOW'}
+              href={Button.ButtonURL}
+            />
+          )}
         </div>
       </div>
     </div>

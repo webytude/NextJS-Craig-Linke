@@ -13,7 +13,7 @@ import SlideRight from "@/components/ui/animations/SlideRight";
 import SlideLeft from "@/components/ui/animations/SlideLeft";
 
 export default function InteriorDesign({ data }) {
-  const { Title, SubTitle, InteriorDesign, Media, Button, ShowInReverseLayout } = data;
+  const { Title, SubTitle, InteriorDesign, Media, Button, ShowInReverseLayout, SmallImage } = data;
 
   const leftContent = (
     <>
@@ -71,7 +71,7 @@ export default function InteriorDesign({ data }) {
   const rightContent = (
     <>
       <div className="p20 fullHeight">
-        <SlideLeft className="fullHeight">
+        <SlideLeft className={`fullHeight ${ SmallImage ? styles.smallImage : "" }`} >
           <MediaRenderer media={Media} classes={'image'} altFallback={SubTitle || Title} />
         </SlideLeft>
       </div>
