@@ -84,7 +84,7 @@ export default function TeamListing({ data, global }) {
     return (
       <section className="team-listing">
         <div className="container">
-          <p>No team members to display.</p>
+          <p className="no-team-members">No team members to display.</p>
         </div>
       </section>
     );
