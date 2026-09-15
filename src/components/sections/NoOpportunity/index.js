@@ -13,7 +13,7 @@ export default function NoOpportunity({ data }) {
           {NoOpportunityHeading}
         </Heading>
       </div>
-      <div className="p20">
+      <div>
         <Paragraph>
           <BlocksRenderer content={NoOpportunityDescription || []} />
         </Paragraph>
