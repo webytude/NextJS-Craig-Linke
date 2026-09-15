@@ -7,7 +7,14 @@ import Divider from "@/components/ui/Divider";
 import Link from "next/link";
 import styles from "./connectWithOurTeam.module.css";
 
-export default function ConnectWithOurTeam({ data }) {
+export default function ConnectWithOurTeam({ data, global }) {
+  const useGlobalConnect = data?.ShowGlobalConnectWithOurTeam === true;
+  const connectData = useGlobalConnect
+    ? global?.ConnectWithOurTeamGlobal
+    : data;
+
+  if (!connectData) return null;
+
   const {
     Title,
     CallLabel,
@@ -19,7 +26,7 @@ export default function ConnectWithOurTeam({ data }) {
     InstagramLabel,
     InstagramLink,
     Media,
-  } = data;
+  } = connectData;
 
   const contactLinks = [
     { label: CallLabel, href: CallNumber ? `tel:${CallNumber}` : null },

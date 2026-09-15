@@ -181,7 +181,6 @@ const BLOCKS_SELECTION = `
         OpenNewTab
       }
     }
-    ReadBioLabel
     Padding {
       DesktopTopPadding
       DesktopBottomPadding
@@ -575,6 +574,7 @@ const BLOCKS_SELECTION = `
     }
   }
   ... on ComponentSectionConnectWithOurTeam {
+    ShowGlobalConnectWithOurTeam
     Title
     CallLabel
     CallNumber
@@ -710,7 +710,7 @@ export const GLOBAL_QUERY = gql`
         MetaDescription
         SchemaMarkup
       }
-      TeamListing {
+      TeamListingGlobal {
         Listing(pagination: { limit: -1 }) {
           id
           Name
@@ -725,9 +725,8 @@ export const GLOBAL_QUERY = gql`
             OpenNewTab
           }
         }
-        ReadBioLabel
       }
-      ConnectWithOurTeam {
+      ConnectWithOurTeamGlobal {
         Title
         CallLabel
         CallNumber
@@ -1344,7 +1343,7 @@ export const ASTHETICS_QUERY_SLUG_PREVIEW = gql `
 export const TEAM_GLOBAL_QUERY = gql`
   query TeamGlobal {
     global {
-      TeamListing {
+      TeamListingGlobal {
         Listing(pagination: { limit: -1 }) {
           id
           Name
@@ -1359,7 +1358,27 @@ export const TEAM_GLOBAL_QUERY = gql`
             OpenNewTab
           }
         }
-        ReadBioLabel
+      }
+      ConnectWithOurTeamGlobal {
+        Title
+        CallLabel
+        CallNumber
+        EmailLabel
+        Emailid
+        EnquiryLabel
+        EnquiryLink
+        InstagramLabel
+        InstagramLink
+        Media {
+          EnableMuxVideo
+          MuxVideo {
+            playback_id
+          }
+          ImageORCarousel {
+            alternativeText
+            url
+          }
+        }
       }
     }
   }

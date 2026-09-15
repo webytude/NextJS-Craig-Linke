@@ -8,7 +8,7 @@ const generateId = (text) => {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 };
 
-export default function JournalClient({ journal }) {
+export default function JournalClient({ journal, global }) {
     useEffect(() => {
         const finalTheme = "Pinot";
         window.__PAGE_THEME_COLOR__ = finalTheme;
@@ -31,6 +31,7 @@ export default function JournalClient({ journal }) {
             <BlockRenderer 
                 key={index} 
                 block={block} 
+                global={global}
                 quickViewLinks={quickViewLinks} 
                 blockId={block.ShowInQuickView === true ? generateId(block.Title) : null} 
             />

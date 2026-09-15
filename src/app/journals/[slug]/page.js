@@ -1,6 +1,6 @@
 import { createPage } from "@/utils/createPage";
 import JournalClient from "./JournalClient";
-import { GET_BY_SLUG_JOURNALS, GET_BY_SLUG_JOURNALS_PREVIEW } from "@/queries/queries";
+import { GET_BY_SLUG_JOURNALS, GET_BY_SLUG_JOURNALS_PREVIEW, TEAM_GLOBAL_QUERY } from "@/queries/queries";
 import client from "@/lib/apolloClient";
 
 // export const revalidate = 300;
@@ -9,6 +9,7 @@ const { Page, generateMetadata } = createPage({
   queries: {
     live: GET_BY_SLUG_JOURNALS,
     preview: GET_BY_SLUG_JOURNALS_PREVIEW,
+    global: TEAM_GLOBAL_QUERY,
   },
   component: JournalClient,
   propName: 'journal',

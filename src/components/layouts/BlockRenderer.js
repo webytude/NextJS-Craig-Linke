@@ -108,7 +108,7 @@ export default function BlockRenderer({ block, global, quickViewLinks, blockId, 
       return <TwoColumnMediaAndText data={block} />;
 
     case "ComponentSectionConnectWithOurTeam":
-      return <ConnectWithOurTeam data={block} />;
+      return <ConnectWithOurTeam data={block} global={global} />;
 
     case "ComponentSectionContactHero":
       return <ContactHero data={block} />;

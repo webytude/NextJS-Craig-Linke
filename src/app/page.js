@@ -1,5 +1,5 @@
 import PageNotFound from "./PageNotFound";
-import { PAGES_QUERY } from "@/queries/queries";
+import { PAGES_QUERY, TEAM_GLOBAL_QUERY } from "@/queries/queries";
 import client from "@/lib/apolloClient";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
 import PageThemeSetter from "@/components/layouts/PageThemeSetter";
@@ -49,11 +49,17 @@ export async function generateMetadata() {
 export default async function Home() {
   const slug = "home";
   try {
-    const { data, loading, error } = await client.query({
-      query: PAGES_QUERY,
-      variables: { slug },
-      fetchPolicy: "cache-first",
-    });
+    const [{ data, loading, error }, { data: globalData }] = await Promise.all([
+      client.query({
+        query: PAGES_QUERY,
+        variables: { slug },
+        fetchPolicy: "cache-first",
+      }),
+      client.query({
+        query: TEAM_GLOBAL_QUERY,
+        fetchPolicy: "cache-first",
+      }),
+    ]);
 
     if (loading) return <Loading />;
     if (error) return <p>Error loading data</p>;
@@ -92,7 +98,12 @@ export default async function Home() {
         <PageThemeSetter theme={themeColor} />
 
         {page?.Blocks?.map((block, i) => (
-          <BlockRenderer key={i} block={block} isFirstH1={i === firstH1Index} />
+          <BlockRenderer
+            key={i}
+            block={block}
+            global={globalData?.global}
+            isFirstH1={i === firstH1Index}
+          />
         ))}
       </>
     );

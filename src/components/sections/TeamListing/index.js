@@ -13,10 +13,9 @@ export default function TeamListing({ data, global }) {
 
   const useGlobalTeam = data?.ShowGlobalTeamListing === true;
 
-  const teamData = useGlobalTeam ? global?.TeamListing : data;
+  const teamData = useGlobalTeam ? global?.TeamListingGlobal : data;
 
   const allListing = teamData?.Listing || [];
-  const ReadBioLabel = teamData?.ReadBioLabel;
 
 
   const currentSlug = pathname ?.split('/') .filter(Boolean) .pop() ?.toLowerCase();
@@ -145,9 +144,7 @@ export default function TeamListing({ data, global }) {
                           : '_self'
                       }
                     >
-                      {member.Button.ButtonText ||
-                        ReadBioLabel ||
-                        'READ BIO'}
+                      {member.Button.ButtonText || 'READ BIO'}
                     </Link>
                   )}
                 </div>

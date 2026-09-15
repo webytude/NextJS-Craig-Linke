@@ -37,6 +37,21 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL?.replace(/\/$/, "");
+
+    if (!strapiUrl) return [];
+
+    // Strapi's GraphQL API returns local media URLs such as /uploads/image.jpg.
+    // Proxy them to Strapi so Next's image optimizer can resolve them in local
+    // development as well as in production.
+    return [
+      {
+        source: "/uploads/:path*",
+        destination: `${strapiUrl}/uploads/:path*`,
+      },
+    ];
+  },
   async redirects() {
     return [
       // Projects
