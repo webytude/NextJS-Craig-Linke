@@ -34,6 +34,17 @@ const { Page, generateMetadata } = createPage({
         alternates: {
           canonical: canonicalUrl,
         },
+        openGraph: {
+          title: data?.page?.Seo?.MetaTitle || "Craig Linke",
+          description: data?.page?.Seo?.MetaDescription || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+          type: "website",
+          url: canonicalUrl,
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: data?.page?.Seo?.MetaTitle || "Craig Linke",
+          description: data?.page?.Seo?.MetaDescription || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+        },
       };
     },
   },

@@ -51,12 +51,24 @@ export async function generateMetadata({ params, searchParams }) {
 
   const productionDomain = process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au";
   const seo = asthetics?.Seo;
+  const canonicalUrl = asthetics?.CanonicalUrl || `${productionDomain}/aesthetics-details/${slug}`;
 
   return {
     title: seo?.MetaTitle || 'Craig Linke',
     description: seo?.MetaDescription || "Default description",
     alternates: {
       canonical: asthetics?.CanonicalUrl || `${productionDomain}/aesthetics-details/${slug}`,
+    },
+    openGraph: {
+      title: seo?.MetaTitle || "Craig Linke",
+      description: seo?.MetaDescription || "Craig Linke is a boutique, Adelaide based building and interior design company.",
+      type: "website",
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo?.MetaTitle || "Craig Linke",
+      description: seo?.MetaDescription || "Craig Linke is a boutique, Adelaide based building and interior design company.",
     },
   };
 }
