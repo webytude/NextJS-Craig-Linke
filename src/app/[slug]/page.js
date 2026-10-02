@@ -21,16 +21,16 @@ const { Page, generateMetadata } = createPage({
     notFoundTitle: "Page Not Found",
     generate: (data) => {
       const productionDomain = process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au";
-      const slug = data?.Slug || "";
-
+      const slug = data?.page?.Slug || "";
+      
       const canonicalUrl =
-        data?.CanonicalUrl ||
-        (slug === "home" ? productionDomain : `${productionDomain}/${slug}`);
+      data?.page?.CanonicalUrl ||
+      (slug === "home" ? productionDomain : `${productionDomain}/${slug}`);
 
       return {
-        title: data?.Seo?.MetaTitle || "Craig Linke",
+        title: data?.page?.Seo?.MetaTitle || "Craig Linke",
         description:
-          data?.Seo?.MetaDescription || "Craig Linke is a boutique...",
+          data?.page?.Seo?.MetaDescription || "Craig Linke is a boutique...",
         alternates: {
           canonical: canonicalUrl,
         },

@@ -24,15 +24,15 @@ const { Page, generateMetadata } = createPage({
     generate: (data) => {
       const productionDomain =
       process.env.NEXT_PUBLIC_SITE_URL || "https://craiglinke.com.au";
-      const slug = data?.Slug || "";
+      const slug = data?.page?.Slug || "";
 
       const canonicalUrl =
-      data?.CanonicalUrl ||
+      data?.page?.CanonicalUrl ||
       `${productionDomain}/projects/${slug}`;
 
       return {
-        title: data?.Seo?.MetaTitle || 'Craig Linke',
-        description: data?.Seo?.MetaDescription || 'Craig Linke is a boutique...',
+        title: data?.page?.Seo?.MetaTitle || 'Craig Linke',
+        description: data?.page?.Seo?.MetaDescription || 'Craig Linke is a boutique...',
         alternates: {
           canonical: canonicalUrl,
         },
