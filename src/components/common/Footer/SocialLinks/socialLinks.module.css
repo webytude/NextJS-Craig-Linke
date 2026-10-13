@@ -13,6 +13,7 @@
 }
 .social ul li img {
   margin-bottom: 5px;
+  aspect-ratio: 70 / 96;
 }
 /* --- Mobile Styles --- */
 @media (max-width: 980px) {

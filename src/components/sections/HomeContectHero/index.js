@@ -13,7 +13,7 @@ import Select from 'react-select';
 import { useState } from "react";
 
 export default function HomeContactHero({ data, headingLevel = 1 }) {
-  const { Title, PhoneNumber, Media, Email, Address, BudgetDropdown, HowDidYouHearDropdown, ServicesDropdown } = data;
+  const { Title, PhoneNumber, Media, Email, Address, BudgetDropdown, HowDidYouHearDropdown, ServicesDropdown, showTopDivider, setAutoHeight } = data;
 
   const [statusMessage, setStatusMessage] = useState(null);
 
@@ -225,11 +225,12 @@ export default function HomeContactHero({ data, headingLevel = 1 }) {
   const leftContent = (
     <>
       <Box
-        fullHeight
+        // fullHeight
         direction="column"
         justify="space-between"
         mobileGap="90px"
         padding="0"
+        style={{ height: setAutoHeight ? "auto" : "100%", flex: setAutoHeight ? "unset" : "1 1 0" }}
         className={styles.box}
       >
         <FadeUp classes="p20">
@@ -291,7 +292,7 @@ export default function HomeContactHero({ data, headingLevel = 1 }) {
 
   const rightContent = (
     <>
-      <Box padding="0" fullHeight justify="center">
+      <Box fullHeight justify="center" style={{ padding: setAutoHeight ? "100px 0px" : "0" }}>
         <div className={`${styles.contactForm} fullWidth`}>
           <form onSubmit={(e) => handleSubmit(e, "Contact")}>
             <div className={styles.formGrid}>
@@ -434,13 +435,15 @@ export default function HomeContactHero({ data, headingLevel = 1 }) {
 
   return (
     <>
-      <section className="homeContactHero fitToScreen">
+      {showTopDivider && <Divider />}
+      <section className={`homeContactHero ${setAutoHeight ? '' : 'fitToScreen'}`}>
         <TwoColumnLayout
           fullHeight
           left={leftContent}
           right={rightContent}
           showDivider
           showMobileDivider={false}
+          setAutoHeight={setAutoHeight}
         />
       </section>
       <Divider />

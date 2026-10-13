@@ -448,6 +448,8 @@ const BLOCKS_SELECTION = `
     HowDidYouHearDropdown (pagination: {limit:-1}) {
       Value
     }
+    showTopDivider
+    setAutoHeight
   }
   ... on ComponentSectionContentHeroModule {
     Title
@@ -1231,6 +1233,28 @@ const ASTHETICS_BLOCK_SELECTION = `
           url
           alternativeText
         }
+      }
+    }
+  }
+  ... on ComponentSectionConnectWithOurTeam {
+    ShowGlobalConnectWithOurTeam
+    Title
+    CallLabel
+    CallNumber
+    EmailLabel
+    Emailid
+    EnquiryLabel
+    EnquiryLink
+    InstagramLabel
+    InstagramLink
+    Media {
+      EnableMuxVideo
+      MuxVideo {
+        playback_id
+      }
+      ImageORCarousel {
+        alternativeText
+        url
       }
     }
   }

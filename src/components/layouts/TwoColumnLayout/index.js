@@ -14,9 +14,12 @@ export default function TwoColumnLayout({
   dividerHeight = "1px",
   className = "",
   style = {},
+  setAutoHeight
 }) {
   const containerStyle = {
-    height: height
+    height: setAutoHeight
+      ? "auto"
+      : height
       ? height
       : fullHeight
       ? "calc(100vh - 52px)"

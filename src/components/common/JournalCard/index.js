@@ -17,7 +17,7 @@ export default function JournalCard({ journal }) {
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.categoryName}>
-          <div className={styles.name}>INSIGHTS</div>
+          <div className={styles.name}>{journal?.JournalCategory?.map((category) => category?.Name).join(", ")}</div>
           <div className={styles.date}>
             {new Date(journal?.Date)
               .toLocaleDateString("en-GB", {

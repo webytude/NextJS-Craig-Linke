@@ -1,7 +1,5 @@
 "use client";
 
-import { ASTHETICS_QUERY_SLUG, GLOBAL_QUERY } from "@/queries/queries";
-import { useQuery } from "@apollo/client/react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
@@ -13,7 +11,6 @@ import {
 } from "framer-motion";
 import styles from "../aesthetics.module.css";
 import Paragraph from "@/components/ui/Paragraph";
-import { useParams, usePathname, useRouter } from "next/navigation";
 import BlockRenderer from "@/components/layouts/BlockRenderer";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Heading from "@/components/ui/Heading";
@@ -21,10 +18,7 @@ import LinkWithArrow from "@/components/ui/Link";
 import { useAestheticsScroll } from "@/context/AestheticsContext";
 import Fade from "@/components/ui/animations/Fade";
 
-export default function AestheticsClient({ asthetics }) {
-  const params = useParams();
-  const pathname = usePathname();
-  const currentSlug = params?.slug;
+export default function AestheticsClient({ activeAesthetic, global }) {
 
   const wrapperRef = useRef(null); 
   const containerRef = useRef(null);
@@ -40,11 +34,11 @@ export default function AestheticsClient({ asthetics }) {
   const [showNav, setShowNav] = useState(true);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  const activeData = asthetics.find((p) => p.Slug === currentSlug);
+  const activeData = activeAesthetic;
 
   useEffect(() => {
     x.set(0);
-  }, [currentSlug, x]);
+  }, [activeData?.Slug, x]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -239,7 +233,7 @@ export default function AestheticsClient({ asthetics }) {
           </section>
           {activeData.Blocks.map((block, index) => (
             <section key={index}>
-              <BlockRenderer key={index} block={block} />
+              <BlockRenderer key={index} block={block} global={global} />
             </section>
           ))}
         </motion.div>

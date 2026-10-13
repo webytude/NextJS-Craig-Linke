@@ -2,3 +2,7 @@
     text-align: center;
     padding: 40px 20px;
 }
+
+.noOpportunitySection .description p{
+    color: #bbaea1;
+}

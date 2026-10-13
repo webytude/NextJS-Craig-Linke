@@ -18,7 +18,7 @@ export default function JournalCardOverly({ firstItem }) {
         <div className={styles.contentBottom}>
           <div className={styles.contentWrapper}>
           <div className={styles.categoryName}>
-            <div className={styles.name}>INSIGHTS</div>
+            <div className={styles.name}> {firstItem?.JournalCategory ?.map((category) => category.Name) .filter(Boolean) .join(", ")} </div>
             <div className={styles.date}>
               {new Date(firstItem?.Date)
               .toLocaleDateString("en-GB", {

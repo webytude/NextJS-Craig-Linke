@@ -1,4 +1,4 @@
-import { ASTHETICS_QUERY_SLUG, ASTHETICS_QUERY_SLUG_PREVIEW } from "@/queries/queries";
+import { ASTHETICS_QUERY_SLUG, ASTHETICS_QUERY_SLUG_PREVIEW, TEAM_GLOBAL_QUERY, } from "@/queries/queries";
 import { notFound } from "next/navigation";
 import AestheticsClient from "./AestheticsClient";
 import client from "@/lib/apolloClient";
@@ -75,7 +75,10 @@ export async function generateMetadata({ params, searchParams }) {
 
 export default async function AestheticsDetail({ params, searchParams }) {
   const { slug } = await params;
-  const data = await getAestheticsData(searchParams);
+  const [data, { data: globalData }] = await Promise.all([
+    getAestheticsData(searchParams),
+    client.query({ query: TEAM_GLOBAL_QUERY, fetchPolicy: "cache-first", }),
+  ]);
   const asthetics = data?.find((p) => p.Slug === slug);
 
   if (!asthetics) {
@@ -97,7 +100,7 @@ export default async function AestheticsDetail({ params, searchParams }) {
           }}
         />
       )}
-      <AestheticsClient asthetics={data} />
+      <AestheticsClient activeAesthetic={asthetics} global={globalData?.global} />
     </>
   );
 }
