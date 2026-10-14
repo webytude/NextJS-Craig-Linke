@@ -3,7 +3,8 @@ import { PROJECTS_QUERY, PROJECTS_QUERY_PREVIEW } from "@/queries/queries";;
 import ProjectsClient from "./ClientPage";
 import { createPage } from "@/utils/createPage";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const { Page, generateMetadata } = createPage({
   queries: {

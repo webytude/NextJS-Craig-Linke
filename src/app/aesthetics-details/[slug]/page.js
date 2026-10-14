@@ -12,7 +12,7 @@ const memoizedGetAestheticsData = cache(async (searchParamsStr) => {
 
   const { data } = await client.query({
     query,
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'no-cache',
   });
 
   return data?.astheticsDetails;
@@ -23,7 +23,8 @@ async function getAestheticsData(searchParams) {
   return await memoizedGetAestheticsData(JSON.stringify(resolvedSearchParams || {}));
 }
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   try {
@@ -77,7 +78,7 @@ export default async function AestheticsDetail({ params, searchParams }) {
   const { slug } = await params;
   const [data, { data: globalData }] = await Promise.all([
     getAestheticsData(searchParams),
-    client.query({ query: TEAM_GLOBAL_QUERY, fetchPolicy: "cache-first", }),
+    client.query({ query: TEAM_GLOBAL_QUERY, fetchPolicy: "no-cache", }),
   ]);
   const asthetics = data?.find((p) => p.Slug === slug);
 

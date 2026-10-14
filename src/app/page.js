@@ -5,7 +5,8 @@ import BlockRenderer from "@/components/layouts/BlockRenderer";
 import PageThemeSetter from "@/components/layouts/PageThemeSetter";
 import Loading from "@/components/common/Loading";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata() {
   const slug = "home";
@@ -15,7 +16,7 @@ export async function generateMetadata() {
     const { data } = await client.query({
       query: PAGES_QUERY,
       variables: { slug },
-      fetchPolicy: "cache-first",
+      fetchPolicy: "no-cache",
     });
     page = data?.pages?.find((p) => p.Slug === slug);
   } catch (error) {
@@ -53,11 +54,11 @@ export default async function Home() {
       client.query({
         query: PAGES_QUERY,
         variables: { slug },
-        fetchPolicy: "cache-first",
+        fetchPolicy: "no-cache",
       }),
       client.query({
         query: TEAM_GLOBAL_QUERY,
-        fetchPolicy: "cache-first",
+        fetchPolicy: "no-cache",
       }),
     ]);
 

@@ -52,7 +52,8 @@ const { Page, generateMetadata } = createPage({
   }
 });
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   try {

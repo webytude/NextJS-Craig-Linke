@@ -7,7 +7,7 @@ import { ASTHETICS_QUERY_SLUG, GLOBAL_QUERY } from "@/queries/queries";
 async function getAestheticsList() {
   const { data } = await client.query({ 
     query: ASTHETICS_QUERY_SLUG,
-    fetchPolicy: "cache-first"
+    fetchPolicy: "no-cache"
   });
   return data?.astheticsDetails || [];
 }
@@ -15,7 +15,7 @@ async function getAestheticsList() {
 async function getGlobleData() {
   const { data } = await client.query({ 
     query: GLOBAL_QUERY,
-    fetchPolicy: "cache-first"
+    fetchPolicy: "no-cache"
   });
   return data?.global || [];
 }

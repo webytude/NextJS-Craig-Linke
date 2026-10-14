@@ -31,7 +31,7 @@ export function createPage({
       const { data } = await client.query({
         query: activeQuery,
         variables,
-        fetchPolicy: "cache-first",
+        fetchPolicy: "no-cache",
       });
 
       const pageData = getData
@@ -43,7 +43,7 @@ export function createPage({
       if (queries.global) {
         const { data: globalResponse } = await client.query({
           query: queries.global,
-          fetchPolicy: 'cache-first',
+          fetchPolicy: 'no-cache',
         });
 
         globalData = globalResponse?.global || null;
