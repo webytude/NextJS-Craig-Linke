@@ -131,6 +131,7 @@ export default function OurServices({ data, headingLevel = 1 }) {
             media={currentImage}
             width={433}
             height={522}
+            sizes="(max-width: 1024px) 100vw, 30vw"
             // classes={"image"}
           />
         </SlideRight>
